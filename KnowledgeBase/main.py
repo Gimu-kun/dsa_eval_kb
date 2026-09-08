@@ -7,8 +7,12 @@ dsa_knowledge_base = KnowledgeBase(
     instances=all_instances
 )
 
+import pprint
+from dataclasses import asdict
+
 def main():
-    print("dsa_knowledge_base",dsa_knowledge_base)
+    print("dsa_knowledge_base:")
+    pprint.pprint(asdict(dsa_knowledge_base), sort_dicts=False)
     
 if __name__ == "__main__":
     main()

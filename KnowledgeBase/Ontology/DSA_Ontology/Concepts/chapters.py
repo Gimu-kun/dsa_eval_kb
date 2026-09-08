@@ -1,24 +1,24 @@
 from MetaModel.classes.enums.types import ValueType, Cardinality
-from MetaModel.classes.Concept import Concept, Attribute
+from MetaModel.classes import Concept, Attribute
 
 Chapter=Concept(
     id="O_C_CHAPTER",
     name="Chapter",
-    domain="Chapter",
+    domain="DSA",
     subclassOf="",
     attributes=[],
     invariant=[],
     operation=[]
 )
 
-Overview=Concept(
+Chapter_Overview=Concept(
     id="O_C_CHAPTER_OVERVIEW",
     name="Overview",
-    domain="Chapter",
-    subclassOf="O_C_CHAPTER",
+    domain="DSA",
+    subclassOf=Chapter.id,
     attributes=[
         Attribute(
-            name="level",
+            name="weight",
             value_type=ValueType.INTEGER,
             value_domain=None,
             cardinality=Cardinality.ONE_ONE,
@@ -29,14 +29,14 @@ Overview=Concept(
     operation=[]
 )
 
-SearchingAndSorting=Concept(
+Chapter_SearchingAndSorting=Concept(
     id="O_C_CHAPTER_SEARCHING_AND_SORTING",
     name="SearchingAndSorting",
-    domain="Chapter",
-    subclassOf="O_C_CHAPTER",
+    domain="DSA",
+    subclassOf=Chapter.id,
     attributes=[
         Attribute(
-            name="level",
+            name="weight",
             value_type=ValueType.INTEGER,
             value_domain=None,
             cardinality=Cardinality.ONE_ONE,
@@ -47,14 +47,14 @@ SearchingAndSorting=Concept(
     operation=[]
 )
 
-LinkList=Concept(
+Chapter_LinkList=Concept(
     id="O_C_CHAPTER_LINKLIST",
     name="LinkList",
-    domain="Chapter",
-    subclassOf="O_C_CHAPTER",
+    domain="DSA",
+    subclassOf=Chapter.id,
     attributes=[
         Attribute(
-            name="level",
+            name="weight",
             value_type=ValueType.INTEGER,
             value_domain=None,
             cardinality=Cardinality.ONE_ONE,

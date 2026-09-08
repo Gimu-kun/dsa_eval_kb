@@ -1,1 +1,1 @@
-relations = []
+from .definitions import relations

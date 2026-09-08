@@ -5,9 +5,17 @@ from MetaModel.classes.enums.types import Cardinality, ValueType
 BloomLevel = Concept(
     id="O_C_BLOOM_LEVEL",
     name="BloomLevel",
-    domain="BloomLevel",
+    domain="DSA",
     subclassOf="",
-    attributes=[],
+    attributes=[
+        Attribute(
+            name="name",
+            value_type=ValueType.STRING,
+            value_domain=None,
+            cardinality=Cardinality.ONE_ONE,
+            constraint=None
+        )
+    ],
     invariant=[],
     operation=[]
 )
@@ -15,11 +23,11 @@ BloomLevel = Concept(
 BloomLevel_Remember = Concept(
     id="O_C_BLOOM_LEVEL_REMEMBER",
     name="Remember",
-    domain="BloomLevel",
-    subclassOf="O_C_BLOOM_LEVEL",
+    domain="DSA",
+    subclassOf=BloomLevel.id,
     attributes=[
         Attribute(
-            name="level",
+            name="weight",
             value_type=ValueType.INTEGER,
             value_domain=None,
             cardinality=Cardinality.ONE_ONE,
@@ -33,11 +41,11 @@ BloomLevel_Remember = Concept(
 BloomLevel_Understand = Concept(
     id="O_C_BLOOM_LEVEL_UNDERSTAND",
     name="Understand",
-    domain="BloomLevel",
-    subclassOf="O_C_BLOOM_LEVEL",
+    domain="DSA",
+    subclassOf=BloomLevel.id,
     attributes=[
         Attribute(
-            name="level",
+            name="weight",
             value_type=ValueType.INTEGER,
             value_domain=None,
             cardinality=Cardinality.ONE_ONE,
@@ -51,11 +59,11 @@ BloomLevel_Understand = Concept(
 BloomLevel_Apply = Concept(
     id="O_C_BLOOM_LEVEL_APPLY",
     name="Apply",
-    domain="BloomLevel",
-    subclassOf="O_C_BLOOM_LEVEL",
+    domain="DSA",
+    subclassOf=BloomLevel.id,
     attributes=[
         Attribute(
-            name="level",
+            name="weight",
             value_type=ValueType.INTEGER,
             value_domain=None,
             cardinality=Cardinality.ONE_ONE,
