@@ -1,6 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 if TYPE_CHECKING:
     from .Condition import Condition
@@ -9,3 +9,4 @@ if TYPE_CHECKING:
 class Invariant:
     name: str
     condition: Condition
+    description: Optional[str] = None

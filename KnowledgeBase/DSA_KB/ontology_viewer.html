@@ -1102,11 +1102,11 @@
           <span class="dataset-badge" id="badge-concepts">0</span>
         </li>
         <li class="dataset-item" onclick="selectDataset('hierarchy')">
-          <span>📁 hierachy.json</span>
+          <span>📁 hierarchy.json</span>
           <span class="dataset-badge" id="badge-hierarchy">0</span>
         </li>
         <li class="dataset-item" onclick="selectDataset('instances')">
-          <span>📁 instances.json</span>
+          <span>📁 instances.json (data/)</span>
           <span class="dataset-badge" id="badge-instances">0</span>
         </li>
         <li class="dataset-item" onclick="selectDataset('relations')">
@@ -1114,16 +1114,12 @@
           <span class="dataset-badge" id="badge-relations">0</span>
         </li>
         <li class="dataset-item" onclick="selectDataset('assertions')">
-          <span>📁 assertions.json</span>
+          <span>📁 assertions.json (data/)</span>
           <span class="dataset-badge" id="badge-assertions">0</span>
         </li>
         <li class="dataset-item" onclick="selectDataset('rules')">
           <span>📁 rules.json</span>
           <span class="dataset-badge" id="badge-rules">0</span>
-        </li>
-        <li class="dataset-item" onclick="selectDataset('operands')">
-          <span>📁 operands.json</span>
-          <span class="dataset-badge" id="badge-operands">0</span>
         </li>
         <li class="dataset-item" onclick="selectDataset('functions')">
           <span>📁 functions.json</span>
@@ -1380,16 +1376,25 @@
       }
     }
 
+    async function fetchFirstAvailable(urls) {
+      for (const u of urls) {
+        const d = await fetchJSONFile(u);
+        if (d) return d;
+      }
+      return null;
+    }
+
     async function fetchKBData(manualTrigger = false) {
       const t = Date.now();
       // Load all JSON files dynamically via fetch with cache-busting timestamp
-      const [cData, iData, rData, aData, ruData, hData] = await Promise.all([
+      const [cData, iData, rData, aData, ruData, hData, fData] = await Promise.all([
         fetchJSONFile(`./ontology/concepts.json?_t=${t}`),
-        fetchJSONFile(`./ontology/instances.json?_t=${t}`),
+        fetchFirstAvailable([`./data/instances.json?_t=${t}`, `./ontology/instances.json?_t=${t}`]),
         fetchJSONFile(`./ontology/relations.json?_t=${t}`),
-        fetchJSONFile(`./ontology/assertions.json?_t=${t}`),
+        fetchFirstAvailable([`./data/assertions.json?_t=${t}`, `./ontology/assertions.json?_t=${t}`]),
         fetchJSONFile(`./ontology/rules.json?_t=${t}`),
-        fetchJSONFile(`./ontology/hierachy.json?_t=${t}`)
+        fetchFirstAvailable([`./ontology/hierarchy.json?_t=${t}`, `./ontology/hierachy.json?_t=${t}`]),
+        fetchJSONFile(`./ontology/functions.json?_t=${t}`)
       ]);
 
       const hierarchy = (hData && (hData.hierarchy || hData.hierarchies)) ? (hData.hierarchy || hData.hierarchies) : [];
@@ -1408,9 +1413,10 @@
       const relations = (rData && rData.relations) ? rData.relations : [];
       const assertions = (aData && aData.assertions) ? aData.assertions : [];
       const rules = (ruData && ruData.rules) ? ruData.rules : [];
+      const functions = (fData && fData.functions) ? fData.functions : [];
 
       // Create fingerprint to detect changes
-      const fingerprint = `${concepts.length}_${hierarchy.length}_${instances.length}_${relations.length}_${assertions.length}_${rules.length}_${JSON.stringify(concepts).length}_${JSON.stringify(instances).length}`;
+      const fingerprint = `${concepts.length}_${hierarchy.length}_${instances.length}_${relations.length}_${assertions.length}_${rules.length}_${functions.length}_${JSON.stringify(concepts).length}_${JSON.stringify(instances).length}`;
 
       if (fingerprint !== lastDataFingerprint || manualTrigger) {
         lastDataFingerprint = fingerprint;
@@ -1421,6 +1427,7 @@
         KB_DATA.relations = relations;
         KB_DATA.assertions = assertions;
         KB_DATA.rules = rules;
+        KB_DATA.functions = functions;
 
         // Update header & sidebar counters
         updateHeaderAndSidebarStats();
@@ -1465,11 +1472,14 @@
       const bR = document.getElementById('badge-relations');
       const bA = document.getElementById('badge-assertions');
       const bRu = document.getElementById('badge-rules');
+      const bF = document.getElementById('badge-functions');
+      const fLen = (KB_DATA.functions || []).length;
       if (bC) bC.innerText = cLen;
       if (bI) bI.innerText = iLen;
       if (bR) bR.innerText = rLen;
       if (bA) bA.innerText = aLen;
       if (bRu) bRu.innerText = ruLen;
+      if (bF) bF.innerText = fLen;
 
       // HUD 3D stats
       const hudC = document.getElementById('hud-count-concepts');
@@ -1896,6 +1906,8 @@
           renderAssertionCard(card, item);
         } else if (currentDataset === 'rules') {
           renderRuleCard(card, item);
+        } else if (currentDataset === 'functions') {
+          renderFunctionCard(card, item);
         } else {
           card.innerHTML = `
             <div class="card-header">
@@ -1907,6 +1919,40 @@
 
         container.appendChild(card);
       });
+    }
+
+        function renderFunctionCard(card, item) {
+      const inputs = (item.input || []).map(p => `<code>${p.name}: ${p.valueType || p.value_type}</code>`).join(', ') || 'None';
+      let outStr = 'void';
+      if (item.output) {
+        if (Array.isArray(item.output)) {
+          outStr = item.output.map(p => `<code>${p.name}: ${p.valueType || p.value_type}</code>`).join(', ');
+        } else {
+          outStr = `<code>${item.output.name}: ${item.output.valueType || item.output.value_type}</code>`;
+        }
+      }
+      card.innerHTML = `
+        <div class="card-header">
+          <div class="card-title-group">
+            <div class="card-title-row">
+              <span class="card-id">${item.name || item.id}</span>
+              <span class="badge" style="background: #ecfdf5; color: #059669; border: 1px solid #a7f3d0;">HÀM (FUNCTION)</span>
+            </div>
+            <span class="card-subtitle">Mã định danh: <code>${item.id}</code></span>
+          </div>
+        </div>
+        <div class="card-info-section">
+          ${item.description ? `<div class="text-quote-box" style="margin-bottom: 0.75rem;"><b>Mô tả:</b> ${item.description}</div>` : ''}
+          <div class="info-line">
+            <span class="info-line-label">Đầu vào (Input):</span>
+            <div class="info-line-value">${inputs}</div>
+          </div>
+          <div class="info-line">
+            <span class="info-line-label">Đầu ra (Output):</span>
+            <div class="info-line-value">${outStr}</div>
+          </div>
+        </div>
+      `;
     }
 
     function renderHierarchyCard(card, item) {
@@ -1961,13 +2007,23 @@
       let opHtml = '<span style="color: var(--text-muted); font-style: italic;">Không có</span>';
       if (Array.isArray(item.operation) && item.operation.length > 0) {
         opHtml = `<div style="display: flex; flex-direction: column; gap: 0.35rem; margin-top: 0.35rem;">` + 
-          item.operation.map(op => `<div style="font-family: 'JetBrains Mono'; font-size: 0.85rem; color: var(--concept-color);">• ${typeof op === 'string' ? op : JSON.stringify(op)}</div>`).join('') +
+          item.operation.map(op => {
+            if (typeof op === 'string') return `<div style="font-family: 'JetBrains Mono'; font-size: 0.85rem; color: var(--concept-color);">• ${op}</div>`;
+            const inputs = (op.input || []).map(p => `${p.name}: ${p.valueType || p.value_type}`).join(', ');
+            const out = op.output ? (op.output.name ? `${op.output.name}: ${op.output.valueType || op.output.value_type}` : JSON.stringify(op.output)) : 'void';
+            return `<div style="font-family: 'JetBrains Mono'; font-size: 0.85rem; color: var(--concept-color);">• <b>${op.name}</b>(${inputs}) ➔ ${out}${op.description ? ` <span style="color: var(--text-muted); font-family: sans-serif;">(${op.description})</span>` : ''}</div>`;
+          }).join('') +
           `</div>`;
       }
 
       let invHtml = '<span style="color: var(--text-muted); font-style: italic;">Không có</span>';
-      if (item.invariant && (Array.isArray(item.invariant) ? item.invariant.length > 0 : true)) {
-        invHtml = `<div class="text-quote-box">${Array.isArray(item.invariant) ? item.invariant.join('<br>') : item.invariant}</div>`;
+      if (Array.isArray(item.invariant) && item.invariant.length > 0) {
+        invHtml = `<div style="display: flex; flex-direction: column; gap: 0.35rem; margin-top: 0.35rem;">` +
+          item.invariant.map(inv => {
+            if (typeof inv === 'string') return `<div class="text-quote-box">${inv}</div>`;
+            return `<div class="text-quote-box"><b>${inv.name}</b>: ${inv.description || ''} <code style="font-size: 0.8rem;">[${inv.condition ? inv.condition.operator : ''}]</code></div>`;
+          }).join('') +
+          `</div>`;
       }
 
       card.innerHTML = `

@@ -18,18 +18,20 @@ from KnowledgeBase.DSA_KB.meta_model.classes.Rule import (
 )
 
 class KnowledgeValidator:
-    def __init__(self, concepts, relations, instances, assertions, rules=None, hierarchy=None):
+    def __init__(self, concepts, relations, instances, assertions, rules=None, hierarchy=None, functions=None):
         self.concepts = concepts
         self.relations = relations
         self.instances = instances
         self.assertions = assertions
         self.rules = rules or []
         self.hierarchy = hierarchy or {}
+        self.functions = functions or []
         
         self.concept_map = {c.id: c for c in concepts}
         self.relation_map = {r.id: r for r in relations}
         self.instance_map = {i.id: i for i in instances}
         self.rule_map = {r.id: r for r in self.rules}
+        self.function_map = {f.id: f for f in self.functions}
         
         self.errors: List[str] = []
         self.warnings: List[str] = []
@@ -59,6 +61,11 @@ class KnowledgeValidator:
         for ruid, count in Counter(rule_ids).items():
             if count > 1:
                 self.errors.append(f"[Trùng lặp ID - Rule] Mã Luật '{ruid}' bị định nghĩa trùng lặp {count} lần trong rules.json")
+
+        func_ids = [f.id for f in self.functions if f.id]
+        for fid, count in Counter(func_ids).items():
+            if count > 1:
+                self.errors.append(f"[Trùng lặp ID - Function] Mã Hàm '{fid}' bị định nghĩa trùng lặp {count} lần trong functions.json")
 
         # 1.2 Kiểm tra xung đột ID chéo giữa Khái niệm và Đối tượng
         cross_ci = set(concept_ids) & set(instance_ids)
@@ -220,6 +227,26 @@ class KnowledgeValidator:
                 valid_values = [str(opnd.value).lower() for opnd in condition.operands]
                 return str(value).lower() not in valid_values
                 
+        if condition.condition_type == ConditionType.COMPARISON:
+            op = condition.operator
+            target_val = None
+            for opnd in condition.operands:
+                if hasattr(opnd, "operand_type") and opnd.operand_type != ValueType.VARIABLE:
+                    target_val = opnd.value
+                    break
+            if target_val is not None:
+                try:
+                    num_val = float(value)
+                    num_tgt = float(target_val)
+                    if op == "GT": return num_val > num_tgt
+                    elif op == "GTE": return num_val >= num_tgt
+                    elif op == "LT": return num_val < num_tgt
+                    elif op == "LTE": return num_val <= num_tgt
+                    elif op == "EQ": return num_val == num_tgt
+                    elif op == "NEQ": return num_val != num_tgt
+                except:
+                    pass
+
         return True
 
     def validate_instances(self):
@@ -246,12 +273,12 @@ class KnowledgeValidator:
                             f"(định nghĩa bởi Khái niệm '{instance.instanceOf}')"
                         )
                     
-            # Kiểm tra thuộc tính ngoài dự kiến (unexpected attribute)
+            # Kiểm tra kiểu dữ liệu và ràng buộc của các giá trị thực tế
             for attr_name, attr_val in actual_attrs.items():
                 if attr_name not in expected_attrs:
                     self.warnings.append(
-                        f"[Instance Thuộc Tính Thừa] Đối tượng '{instance.id}' có thuộc tính '{attr_name}' "
-                        f"không nằm trong định nghĩa của Khái niệm '{instance.instanceOf}' hay các lớp cha"
+                        f"[Instance Thuộc Tính Ngoài Dự Kiến] Đối tượng '{instance.id}' có thuộc tính '{attr_name}' "
+                        f"không được định nghĩa trong lược đồ Khái niệm '{instance.instanceOf}'"
                     )
                     continue
                 
@@ -263,11 +290,13 @@ class KnowledgeValidator:
                     )
                 
                 if attr_def.constraint:
-                    if not self.evaluate_condition(attr_val.value, attr_def.constraint):
-                        self.errors.append(
-                            f"[Instance Vi Phạm Ràng Buộc] Đối tượng '{instance.id}' thuộc tính '{attr_name}' "
-                            f"vi phạm ràng buộc '{attr_def.constraint.operator}' với giá trị '{attr_val.value}'"
-                        )
+                    constraints = attr_def.constraint if isinstance(attr_def.constraint, list) else [attr_def.constraint]
+                    for c in constraints:
+                        if not self.evaluate_condition(attr_val.value, c):
+                            self.errors.append(
+                                f"[Instance Vi Phạm Ràng Buộc] Đối tượng '{instance.id}' thuộc tính '{attr_name}' "
+                                f"vi phạm ràng buộc '{c.operator}' với giá trị '{attr_val.value}'"
+                            )
 
     # =========================================================================
     # 4. KIỂM TRA QUAN HỆ & PHÁN ĐOÁN (RELATIONS & ASSERTIONS VALIDATION)
@@ -345,11 +374,13 @@ class KnowledgeValidator:
                     )
                 
                 if attr_def.constraint:
-                    if not self.evaluate_condition(attr_val.value, attr_def.constraint):
-                        self.errors.append(
-                            f"[Assertion #{idx}] Thuộc tính '{attr_name}' vi phạm ràng buộc "
-                            f"'{attr_def.constraint.operator}' với giá trị '{attr_val.value}'"
-                        )
+                    constraints = attr_def.constraint if isinstance(attr_def.constraint, list) else [attr_def.constraint]
+                    for c in constraints:
+                        if not self.evaluate_condition(attr_val.value, c):
+                            self.errors.append(
+                                f"[Assertion #{idx}] Thuộc tính '{attr_name}' vi phạm ràng buộc "
+                                f"'{c.operator}' với giá trị '{attr_val.value}'"
+                            )
 
         # Kiểm tra bản số Cardinality
         for relation in self.relations:
@@ -398,6 +429,17 @@ class KnowledgeValidator:
                             self.errors.append(f"[Rule #{r.id}] Kết luận #{idx} tham chiếu quan hệ '{c.relation_id}' không tồn tại")
 
     # =========================================================================
+    # 6. KIỂM TRA TẬP HÀM (FUNCTIONS VALIDATION)
+    # =========================================================================
+    def validate_functions(self):
+        for f in self.functions:
+            if not f.id:
+                self.errors.append("[Function] Phát hiện Hàm không có trường 'id'")
+                continue
+            if not f.name:
+                self.warnings.append(f"[Function] Hàm '{f.id}' thiếu trường tên 'name'")
+
+    # =========================================================================
     # MAIN VALIDATION EXECUTION & REPORTING
     # =========================================================================
     def validate(self) -> bool:
@@ -416,6 +458,8 @@ class KnowledgeValidator:
         self.validate_assertions()
         # 5. Luật suy diễn
         self.validate_rules()
+        # 6. Tập hàm
+        self.validate_functions()
         
         total_issues = len(self.errors) + len(self.warnings)
         
@@ -428,6 +472,7 @@ class KnowledgeValidator:
         print(f" • Tổng số Quan hệ (Relations):     {len(self.relations)}")
         print(f" • Tổng số Phán đoán (Assertions):  {len(self.assertions)}")
         print(f" • Tổng số Luật (Rules):            {len(self.rules)}")
+        print(f" • Tổng số Hàm (Functions):         {len(self.functions)}")
         print("-" * 80)
         
         if self.errors:
@@ -462,6 +507,7 @@ if __name__ == "__main__":
     assertions = loader.load_assertions()
     rules = loader.load_rules()
     hierarchy = loader.load_hierarchy()
+    functions = loader.load_functions()
     
-    validator = KnowledgeValidator(concepts, relations, instances, assertions, rules, hierarchy=hierarchy)
+    validator = KnowledgeValidator(concepts, relations, instances, assertions, rules, hierarchy=hierarchy, functions=functions)
     validator.validate()

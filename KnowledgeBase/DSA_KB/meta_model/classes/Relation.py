@@ -15,5 +15,5 @@ class Relation:
     source: str
     cardinality: Cardinality
     target: str
-    constraint: Optional[Condition] = None
+    constraint: list[Condition] = field(default_factory=list)
     attributes: list[AttributeDefinition] = field(default_factory=list)

@@ -1,7 +1,6 @@
 from __future__ import annotations
-from dataclasses import dataclass
-from typing import TYPE_CHECKING, Optional
-from typing import Any
+from dataclasses import dataclass, field
+from typing import TYPE_CHECKING, Optional, Union
 
 if TYPE_CHECKING:
     from .enums.types import ValueType
@@ -12,9 +11,9 @@ class AttributeDefinition:
     name: str
     value_type: ValueType
     required: bool
-    constraint: Optional[Condition] = None
+    constraint: list[Condition] = field(default_factory=list)
 
 @dataclass
 class AttributeValue:
     name: str
-    value: int|bool|str|float|None
+    value: int | bool | str | float | None

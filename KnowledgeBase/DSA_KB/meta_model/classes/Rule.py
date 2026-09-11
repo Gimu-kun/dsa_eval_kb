@@ -1,9 +1,9 @@
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import Enum
-from typing import TYPE_CHECKING, Union
+from typing import TYPE_CHECKING, Union, Optional
 
-from KnowledgeBase.DSA_KB.meta_model.classes.Attribute import AttributeValue
+from .Attribute import AttributeValue
 
 if TYPE_CHECKING:
     from .Condition import Condition
@@ -21,8 +21,6 @@ class AttributeConclusion:
     valueType: str = ""
     value: Union[str, int, float, bool] = None
 
-from dataclasses import field
-
 @dataclass
 class RelationConclusion:
     type: ConclusionType = ConclusionType.ASSERTION
@@ -31,13 +29,12 @@ class RelationConclusion:
     target_instance: str = ""
     attributes: list[AttributeValue] = field(default_factory=list)
 
-
 @dataclass
-class ConceptConclusion():
+class ConceptConclusion:
     type: ConclusionType = ConclusionType.INSTANCE
     target_instance: str = ""
     attributes: list[AttributeValue] = field(default_factory=list)
-    
+
 ConclusionTypeAlias = Union[AttributeConclusion, RelationConclusion, ConceptConclusion]
 
 @dataclass
@@ -46,3 +43,4 @@ class Rule:
     name: str
     condition: Condition
     conclusion: list[ConclusionTypeAlias]
+    description: Optional[str] = None

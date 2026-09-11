@@ -218,6 +218,15 @@
             "target": "O_C_BIG_O",
             "constraint": [],
             "attributes": []
+        },
+        {
+            "id": "REL_ALGORITHM_USES_TECHNIQUE",
+            "name": "usesTechnique",
+            "source": "O_C_ALGORITHM",
+            "cardinality": "(0..*)",
+            "target": "O_C_ALGORITHM_DESIGN",
+            "constraint": [],
+            "attributes": []
         }
     ]
 }

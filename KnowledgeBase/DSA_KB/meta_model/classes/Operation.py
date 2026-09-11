@@ -1,13 +1,14 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional, Union
 
 if TYPE_CHECKING:
-    from .Attribute import Attribute
+    from .Parameter import Parameter
 
 
 @dataclass
 class Operation:
     name: str
-    input: list[Attribute] = field(default_factory=list)
-    output: list[Attribute] = field(default_factory=list)
+    description: Optional[str] = None
+    input: list[Parameter] = field(default_factory=list)
+    output: Optional[Union[list[Parameter], Parameter]] = None

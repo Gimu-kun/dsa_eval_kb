@@ -8,5 +8,7 @@ class ComparisonOperator(Enum):
     GTE = "GTE" #Greater Than Equal
     LT = "LT"   #Less Than
     LTE = "LTE" #Less Than Equal
+    IN = "IN"
+    RANGE = "RANGE"
     MIN = "MIN"
     MAX = "MAX"

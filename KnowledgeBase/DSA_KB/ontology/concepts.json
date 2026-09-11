@@ -30,7 +30,7 @@
         {
             "id": "O_C_QUESTION",
             "name": "Question",
-            "domain": "DSA",
+            "domain": "Assessment",
             "attributes": [
                 {
                     "name": "content",
@@ -45,7 +45,7 @@
         {
             "id": "O_C_BLOOM_LEVEL",
             "name": "Bloom Level",
-            "domain": "DSA",
+            "domain": "Assessment",
             "attributes": [
                 {
                     "name": "name",
@@ -66,7 +66,7 @@
         {
             "id": "O_C_DIFFICULTY",
             "name": "Difficulty",
-            "domain": "DSA",
+            "domain": "Assessment",
             "attributes": [
                 {
                     "name": "name",
@@ -87,7 +87,7 @@
         {
             "id": "O_C_CLOS",
             "name": "CLOs",
-            "domain": "DSA",
+            "domain": "Assessment",
             "attributes": [
                 {
                     "name": "name",
@@ -108,7 +108,7 @@
         {
             "id": "O_C_RUBRICS",
             "name": "Rubrics",
-            "domain": "DSA",
+            "domain": "Assessment",
             "attributes": [
                 {
                     "name": "name",
@@ -129,7 +129,7 @@
         {
             "id": "O_C_QUESTION_TYPE",
             "name": "Question Type",
-            "domain": "DSA",
+            "domain": "Assessment",
             "attributes": [
                 {
                     "name": "name",
@@ -231,6 +231,27 @@
                     "required": true,
                     "value_type": "str",
                     "constraint": []
+                },
+                {
+                    "name": "rank",
+                    "required": false,
+                    "value_type": "int",
+                    "constraint": [
+                        {
+                            "condition_type": "Comparison",
+                            "operator": "GT",
+                            "operands": [
+                                {
+                                    "operand_type": "variable",
+                                    "value": "x"
+                                },
+                                {
+                                    "operand_type": "int",
+                                    "value": "0"
+                                }
+                            ]
+                        }
+                    ]
                 }
             ],
             "invariant": [],
@@ -362,7 +383,36 @@
             "domain": "DSA",
             "attributes": [],
             "invariant": [],
-            "operation": []
+            "operation": [
+                {
+                    "name": "addHead",
+                    "description": "Thêm một phần tử vào đầu danh sách mảng",
+                    "input": [
+                        {
+                            "name": "x",
+                            "valueType": "O_C_NODE",
+                            "required": true
+                        }
+                    ],
+                    "output": null
+                },
+                {
+                    "name": "searchByValue",
+                    "description": "Tìm kiếm phần tử theo giá trị",
+                    "input": [
+                        {
+                            "name": "x",
+                            "valueType": "int",
+                            "required": true
+                        }
+                    ],
+                    "output": {
+                        "name": "y",
+                        "valueType": "O_C_NODE",
+                        "required": true
+                    }
+                }
+            ]
         },
         {
             "id": "O_C_MATRIX",
@@ -385,8 +435,56 @@
             "name": "Linked List",
             "domain": "DSA",
             "attributes": [],
-            "invariant": [],
-            "operation": []
+            "invariant": [
+                {
+                    "name": "nonNegativeSize",
+                    "description": "Kích thước danh sách liên kết phải không âm (size >= 0)",
+                    "condition": {
+                        "condition_type": "Comparison",
+                        "operator": "GTE",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "value": "x.size"
+                            },
+                            {
+                                "operand_type": "int",
+                                "value": "0"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "operation": [
+                {
+                    "name": "addHead",
+                    "description": "Thêm một node mới vào đầu danh sách liên kết",
+                    "input": [
+                        {
+                            "name": "x",
+                            "valueType": "O_C_NODE",
+                            "required": true
+                        }
+                    ],
+                    "output": null
+                },
+                {
+                    "name": "searchByValue",
+                    "description": "Tìm kiếm node theo giá trị",
+                    "input": [
+                        {
+                            "name": "x",
+                            "valueType": "int",
+                            "required": true
+                        }
+                    ],
+                    "output": {
+                        "name": "y",
+                        "valueType": "O_C_NODE",
+                        "required": true
+                    }
+                }
+            ]
         },
         {
             "id": "O_C_STACK",
@@ -505,6 +603,69 @@
                 {
                     "name": "name",
                     "required": true,
+                    "value_type": "str",
+                    "constraint": []
+                }
+            ],
+            "invariant": [],
+            "operation": []
+        },
+        {
+            "id": "O_C_TOPIC",
+            "name": "Topic",
+            "domain": "Assessment",
+            "attributes": [
+                {
+                    "name": "name",
+                    "required": true,
+                    "value_type": "str",
+                    "constraint": []
+                },
+                {
+                    "name": "description",
+                    "required": false,
+                    "value_type": "str",
+                    "constraint": []
+                }
+            ],
+            "invariant": [],
+            "operation": []
+        },
+        {
+            "id": "O_C_ADT",
+            "name": "Abstract Data Type",
+            "domain": "DSA",
+            "attributes": [
+                {
+                    "name": "name",
+                    "required": true,
+                    "value_type": "str",
+                    "constraint": []
+                },
+                {
+                    "name": "description",
+                    "required": false,
+                    "value_type": "str",
+                    "constraint": []
+                }
+            ],
+            "invariant": [],
+            "operation": []
+        },
+        {
+            "id": "O_C_REPRESENTATION",
+            "name": "Representation",
+            "domain": "DSA",
+            "attributes": [
+                {
+                    "name": "name",
+                    "required": true,
+                    "value_type": "str",
+                    "constraint": []
+                },
+                {
+                    "name": "description",
+                    "required": false,
                     "value_type": "str",
                     "constraint": []
                 }

@@ -1,3 +1,52 @@
 {
-    "functions": []
+    "functions": [
+        {
+            "id": "FUN_0001",
+            "name": "CountNodes",
+            "description": "Đếm và trả về số lượng node trong danh sách liên kết",
+            "input": [
+                {
+                    "name": "head",
+                    "valueType": "O_C_NODE",
+                    "required": true
+                }
+            ],
+            "output": {
+                "name": "count",
+                "valueType": "int"
+            }
+        },
+        {
+            "id": "FUN_0002",
+            "name": "CycleExists",
+            "description": "Kiểm tra danh sách liên kết có tạo thành liên kết vòng không",
+            "input": [
+                {
+                    "name": "head",
+                    "valueType": "O_C_NODE",
+                    "required": true
+                }
+            ],
+            "output": {
+                "name": "hasCycle",
+                "valueType": "bool"
+            }
+        },
+        {
+            "id": "FUN_0003",
+            "name": "SUM",
+            "description": "Tính tổng các tham số và trả về kết quả số thực",
+            "input": [
+                {
+                    "name": "values",
+                    "valueType": "O_C_ARRAY",
+                    "required": true
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "float"
+            }
+        }
+    ]
 }

@@ -12,4 +12,6 @@ class ValueType(Enum):
     VARIABLE = "variable"
     FUNC = "func"
     CONDITION = "condition"
+    RELATION = "relation"
+    INSTANCE = "instance"
     ANY = "any"

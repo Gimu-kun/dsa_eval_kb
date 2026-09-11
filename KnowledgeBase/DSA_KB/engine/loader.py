@@ -1,6 +1,7 @@
 import json
 import os
 import sys
+from typing import Optional, List, Union
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 dsa_kb_dir = os.path.dirname(current_dir)
@@ -9,7 +10,9 @@ root_dir = os.path.dirname(kb_dir)
 if root_dir not in sys.path:
     sys.path.insert(0, root_dir)
 
-from KnowledgeBase.DSA_KB.meta_model.classes import Concept, Relation, Rule, Operation
+from KnowledgeBase.DSA_KB.meta_model.classes import (
+    Concept, Relation, Rule, Operation, Function, Invariant, Parameter
+)
 from KnowledgeBase.DSA_KB.meta_model.classes.Instance import Instance
 from KnowledgeBase.DSA_KB.meta_model.classes.Assertion import Assertion
 from KnowledgeBase.DSA_KB.meta_model.classes.Hierarchy import Hierarchy
@@ -17,9 +20,9 @@ from KnowledgeBase.DSA_KB.meta_model.classes.Attribute import AttributeDefinitio
 from KnowledgeBase.DSA_KB.meta_model.classes.Condition import Condition
 from KnowledgeBase.DSA_KB.meta_model.classes.Operand import Operand
 from KnowledgeBase.DSA_KB.meta_model.classes.enums.types import ValueType, Cardinality, ConditionType
-from KnowledgeBase.DSA_KB.meta_model import Ontology, KnowledgeBase
+from KnowledgeBase.DSA_KB.meta_model import Ontology, KnowledgeBase, DataLayer
 
-def parse_condition(cond_data: dict) -> Condition:
+def parse_condition(cond_data: dict) -> Optional[Condition]:
     if not cond_data:
         return None
     operator = cond_data.get("operator")
@@ -27,7 +30,6 @@ def parse_condition(cond_data: dict) -> Condition:
     try:
         cond_type = ConditionType[cond_type_str]
     except KeyError:
-        # Fallback
         cond_type = next((c for c in ConditionType if c.value == cond_data.get("condition_type")), ConditionType.DOMAIN)
         
     operands_data = cond_data.get("operands", [])
@@ -37,12 +39,13 @@ def parse_condition(cond_data: dict) -> Condition:
             # Nested condition
             operands.append(parse_condition(op_data))
         else:
-            op_type_str = op_data.get("type", "string").upper()
+            raw_type = op_data.get("operand_type") or op_data.get("type", "string")
+            op_type_str = str(raw_type).upper()
             try:
                 op_type = ValueType[op_type_str]
             except KeyError:
-                op_type = next((v for v in ValueType if v.value == op_data.get("type")), ValueType.STRING)
-            operands.append(Operand(operand_type=op_type, value=op_data.get("value")))
+                op_type = next((v for v in ValueType if v.value == raw_type), ValueType.STRING)
+            operands.append(Operand(operand_type=op_type, value=str(op_data.get("value", ""))))
     return Condition(condition_type=cond_type, operator=operator, operands=operands)
 
 def parse_attribute_definition(attr_data: dict) -> AttributeDefinition:
@@ -53,17 +56,22 @@ def parse_attribute_definition(attr_data: dict) -> AttributeDefinition:
         val_type = next((v for v in ValueType if v.value == attr_data.get("value_type")), ValueType.STRING)
 
     constraint_data = attr_data.get("constraint")
-    constraint = None
-    if isinstance(constraint_data, list) and len(constraint_data) > 0:
-        constraint = parse_condition(constraint_data[0])
+    constraints = []
+    if isinstance(constraint_data, list):
+        for item in constraint_data:
+            cond = parse_condition(item)
+            if cond:
+                constraints.append(cond)
     elif isinstance(constraint_data, dict):
-        constraint = parse_condition(constraint_data)
+        cond = parse_condition(constraint_data)
+        if cond:
+            constraints.append(cond)
         
     return AttributeDefinition(
         name=attr_data.get("name"),
         value_type=val_type,
         required=bool(attr_data.get("required", False)),
-        constraint=constraint
+        constraint=constraints
     )
 
 def parse_attribute_value(attr_data: dict) -> AttributeValue:
@@ -72,20 +80,73 @@ def parse_attribute_value(attr_data: dict) -> AttributeValue:
         value=attr_data.get("value")
     )
 
+def parse_parameter(p_data: dict) -> Parameter:
+    if not p_data:
+        return Parameter(name="", value_type="any", required=True)
+    return Parameter(
+        name=p_data.get("name", ""),
+        value_type=p_data.get("valueType") or p_data.get("value_type", "any"),
+        required=bool(p_data.get("required", True))
+    )
+
+def parse_operation(op_data: dict) -> Operation:
+    inputs = [parse_parameter(p) for p in op_data.get("input", [])] if op_data.get("input") else []
+    raw_out = op_data.get("output")
+    outputs = None
+    if isinstance(raw_out, list):
+        outputs = [parse_parameter(p) for p in raw_out]
+    elif isinstance(raw_out, dict):
+        outputs = parse_parameter(raw_out)
+    return Operation(
+        name=op_data.get("name", ""),
+        description=op_data.get("description"),
+        input=inputs,
+        output=outputs
+    )
+
+def parse_invariant(inv_data: dict) -> Invariant:
+    return Invariant(
+        name=inv_data.get("name", ""),
+        condition=parse_condition(inv_data.get("condition")),
+        description=inv_data.get("description")
+    )
+
+def parse_function(fn_data: dict) -> Function:
+    inputs = [parse_parameter(p) for p in fn_data.get("input", [])] if fn_data.get("input") else []
+    raw_out = fn_data.get("output")
+    output = None
+    if isinstance(raw_out, list):
+        output = [parse_parameter(p) for p in raw_out]
+    elif isinstance(raw_out, dict):
+        output = parse_parameter(raw_out)
+    return Function(
+        id=fn_data.get("id", ""),
+        name=fn_data.get("name", ""),
+        input=inputs,
+        output=output,
+        description=fn_data.get("description")
+    )
+
 def parse_rule_conclusion(c_data: dict):
     from KnowledgeBase.DSA_KB.meta_model.classes.Rule import (
         ConclusionType, AttributeConclusion, RelationConclusion, ConceptConclusion
     )
     c_type_str = c_data.get("type", "attribute").lower()
     if c_type_str == "attribute":
+        raw_val = c_data.get("value")
+        val_type = c_data.get("valueType", "")
+        if val_type == "bool" and isinstance(raw_val, str):
+            val = raw_val.lower() == "true"
+        else:
+            val = raw_val
         return AttributeConclusion(
             type=ConclusionType.ATTRIBUTE,
             target_instance=c_data.get("target_instance", ""),
             attribute_name=c_data.get("attribute_name", ""),
-            valueType=c_data.get("valueType", ""),
-            value=c_data.get("value")
+            valueType=val_type,
+            value=val
         )
-    elif c_type_str == "assertion":
+    elif c_type_str in ("assertion", "relation"):
         attrs = [parse_attribute_value(a) for a in c_data.get("attributes", [])]
         return RelationConclusion(
             type=ConclusionType.ASSERTION,
@@ -94,7 +155,7 @@ def parse_rule_conclusion(c_data: dict):
             target_instance=c_data.get("target_instance", ""),
             attributes=attrs
         )
-    elif c_type_str == "instance":
+    elif c_type_str in ("instance", "concept"):
         attrs = [parse_attribute_value(a) for a in c_data.get("attributes", [])]
         return ConceptConclusion(
             type=ConclusionType.INSTANCE,
@@ -104,11 +165,23 @@ def parse_rule_conclusion(c_data: dict):
     return c_data
 
 class DsaKbLoader:
-    def __init__(self, ontology_dir: str):
+    def __init__(self, ontology_dir: str, data_dir: Optional[str] = None):
         self.ontology_dir = ontology_dir
+        if data_dir:
+            self.data_dir = data_dir
+        else:
+            parent_dir = os.path.dirname(self.ontology_dir)
+            potential_data = os.path.join(parent_dir, "data")
+            if os.path.exists(potential_data):
+                self.data_dir = potential_data
+            else:
+                self.data_dir = self.ontology_dir
 
     def load_hierarchies(self) -> list[Hierarchy]:
-        path = os.path.join(self.ontology_dir, "hierachy.json")
+        # Support both hierarchy.json and hierachy.json
+        path = os.path.join(self.ontology_dir, "hierarchy.json")
+        if not os.path.exists(path):
+            path = os.path.join(self.ontology_dir, "hierachy.json")
         if not os.path.exists(path) or os.path.getsize(path) == 0:
             return []
         with open(path, "r", encoding="utf-8") as f:
@@ -135,6 +208,8 @@ class DsaKbLoader:
         concepts = []
         for c in data.get("concepts", []):
             attrs = [parse_attribute_definition(a) for a in c.get("attributes", [])]
+            invariants = [parse_invariant(inv) for inv in c.get("invariant", [])]
+            operations = [parse_operation(op) for op in c.get("operation", [])]
             subclass_of = hierarchy_map.get(c.get("id")) or c.get("subclassOf")
             concept = Concept(
                 id=c.get("id"),
@@ -142,8 +217,8 @@ class DsaKbLoader:
                 domain=c.get("domain"),
                 subclass_of=subclass_of,
                 attributes=attrs,
-                invariant=[],
-                operation=[]
+                invariant=invariants,
+                operation=operations
             )
             concepts.append(concept)
         return concepts
@@ -163,7 +238,17 @@ class DsaKbLoader:
                 card = Cardinality.ONE_MANY
                 
             attrs = [parse_attribute_definition(a) for a in r.get("attributes", [])]
-            constraint = parse_condition(r.get("constraint"))
+            raw_constraint = r.get("constraint")
+            constraints = []
+            if isinstance(raw_constraint, list):
+                for item in raw_constraint:
+                    cond = parse_condition(item)
+                    if cond:
+                        constraints.append(cond)
+            elif isinstance(raw_constraint, dict):
+                cond = parse_condition(raw_constraint)
+                if cond:
+                    constraints.append(cond)
             
             relation = Relation(
                 id=r.get("id"),
@@ -172,13 +257,26 @@ class DsaKbLoader:
                 target=r.get("target"),
                 cardinality=card,
                 attributes=attrs,
-                constraint=constraint
+                constraint=constraints
             )
             relations.append(relation)
         return relations
 
+    def load_functions(self) -> list[Function]:
+        path = os.path.join(self.ontology_dir, "functions.json")
+        if not os.path.exists(path) or os.path.getsize(path) == 0:
+            return []
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        functions = []
+        for fn_data in data.get("functions", []):
+            functions.append(parse_function(fn_data))
+        return functions
+
     def load_instances(self) -> list[Instance]:
-        path = os.path.join(self.ontology_dir, "instances.json")
+        path = os.path.join(self.data_dir, "instances.json")
+        if not os.path.exists(path):
+            path = os.path.join(self.ontology_dir, "instances.json")
         if not os.path.exists(path) or os.path.getsize(path) == 0:
             return []
         with open(path, "r", encoding="utf-8") as f:
@@ -195,7 +293,9 @@ class DsaKbLoader:
         return instances
 
     def load_assertions(self) -> list[Assertion]:
-        path = os.path.join(self.ontology_dir, "assertions.json")
+        path = os.path.join(self.data_dir, "assertions.json")
+        if not os.path.exists(path):
+            path = os.path.join(self.ontology_dir, "assertions.json")
         if not os.path.exists(path) or os.path.getsize(path) == 0:
             return []
         with open(path, "r", encoding="utf-8") as f:
@@ -226,23 +326,34 @@ class DsaKbLoader:
                 id=r.get("id"),
                 name=r.get("name"),
                 condition=cond,
-                conclusion=conclusions
+                conclusion=conclusions,
+                description=r.get("description")
             )
             rules.append(rule)
         return rules
 
     def load_ontology(self) -> Ontology:
+        concepts = self.load_concepts()
+        all_ops = []
+        for c in concepts:
+            if c.operation:
+                all_ops.extend(c.operation)
         return Ontology(
-            concepts=self.load_concepts(),
+            concepts=concepts,
             hierarchies=self.load_hierarchies(),
             relations=self.load_relations(),
-            rules=self.load_rules()
+            rules=self.load_rules(),
+            functions=self.load_functions(),
+            operations=all_ops
         )
 
     def load_kb(self) -> KnowledgeBase:
-        return KnowledgeBase(
-            ontology=self.load_ontology(),
+        ontology = self.load_ontology()
+        data = DataLayer(
             instances=self.load_instances(),
             assertions=self.load_assertions()
         )
-
+        return KnowledgeBase(
+            ontology=ontology,
+            data=data
+        )

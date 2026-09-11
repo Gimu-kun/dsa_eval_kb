@@ -2,7 +2,8 @@
     "rules": [
         {
             "id": "RU_EVALUATE_ALGORITHM_VALIDITY",
-            "name": "Evaluate Algorithm Validity",
+            "name": "EvaluateAlgorithmValidity",
+            "description": "Nếu thuật giải thoả mãn tính hữu hạn, tính xác định và tính hiệu quả thì thuật giải được coi là hợp lệ",
             "condition": {
                 "condition_type": "Logical",
                 "operator": "AND",
@@ -53,9 +54,41 @@
                 {
                     "type": "attribute",
                     "target_instance": "I_ALGORITHM",
-                    "attribute_name": "isValid",
+                    "attribute_name": "isValidAlgorithm",
                     "valueType": "bool",
-                    "value": "true"
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "RU_INFER_RECURSIVE_FROM_DIVIDE_AND_CONQUER",
+            "name": "InferRecursiveFromDivideAndConquer",
+            "description": "Nếu thuật toán sử dụng kỹ thuật chia để trị thì suy ra thuật toán đó sử dụng đệ quy (suy diễn 1 chiều).",
+            "condition": {
+                "condition_type": "Existence",
+                "operator": "EXIST",
+                "operands": [
+                    {
+                        "operand_type": "relation",
+                        "value": "REL_ALGORITHM_USES_TECHNIQUE"
+                    },
+                    {
+                        "operand_type": "variable",
+                        "value": "x"
+                    },
+                    {
+                        "operand_type": "instance",
+                        "value": "I_DIVIDE_AND_CONQUER"
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "assertion",
+                    "source_instance": "x",
+                    "relation_id": "REL_ALGORITHM_USES_TECHNIQUE",
+                    "target_instance": "I_RECURSIVE",
+                    "attributes": []
                 }
             ]
         }
