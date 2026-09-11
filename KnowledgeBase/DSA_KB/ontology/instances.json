@@ -1,0 +1,820 @@
+{
+    "instances": [
+        {
+            "id": "I_CHAPTER_1",
+            "instanceOf": "O_C_CHAPTER",
+            "attributes": [
+                {
+                    "name": "title",
+                    "value": "overview"
+                },
+                {
+                    "name": "chapterNumber",
+                    "value": "1"
+                },
+                {
+                    "name": "description",
+                    "value": "Giới thiệu về môn học, mục tiêu học tập, phương pháp học tập và các cấu trúc dữ liệu, giải thuật cơ bản."
+                }
+            ]
+        },
+        {
+            "id": "I_CHAPTER_2",
+            "instanceOf": "O_C_CHAPTER",
+            "attributes": [
+                {
+                    "name": "title",
+                    "value": "searching and sorting"
+                },
+                {
+                    "name": "chapterNumber",
+                    "value": "2"
+                },
+                {
+                    "name": "description",
+                    "value": "Giới thiệu về các thuật toán tìm kiếm và sắp xếp. Các thuật toán tìm kiếm cơ bản được giới thiệu bao gồm tìm kiếm tuyến tính và tìm kiếm nhị phân. Các thuật toán sắp xếp cơ bản được giới thiệu bao gồm sắp xếp nổi bọt, sắp xếp chọn và sắp xếp chèn. Ngoài ra, chương này còn giới thiệu về độ phức tạp của các thuật toán tìm kiếm và sắp xếp."
+                }
+            ]
+        },
+        {
+            "id": "I_CHAPTER_3",
+            "instanceOf": "O_C_CHAPTER",
+            "attributes": [
+                {
+                    "name": "title",
+                    "value": "link list"
+                },
+                {
+                    "name": "chapterNumber",
+                    "value": "3"
+                },
+                {
+                    "name": "description",
+                    "value": "Giới thiệu về danh sách liên kết, một cấu trúc dữ liệu cho phép lưu trữ và thao tác với dữ liệu động. Sinh viên sẽ được tìm hiểu về khái niệm node, con trỏ và các loại danh sách liên kết khác nhau, bao gồm danh sách liên kết đơn, danh sách liên kết đôi và danh sách liên kết vòng. Chương này bao gồm các thao tác chèn, xóa và duyệt danh sách, cung cấp nền tảng vững chắc cho việc hiểu các cấu trúc dữ liệu phức tạp hơn."
+                }
+            ]
+        },
+        {
+            "id": "I_BLOOM_LEVEL_R",
+            "instanceOf": "O_C_BLOOM_LEVEL",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "remember"
+                },
+                {
+                    "name": "weight",
+                    "value": "1"
+                }
+            ]
+        },
+        {
+            "id": "I_BLOOM_LEVEL_U",
+            "instanceOf": "O_C_BLOOM_LEVEL",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "understand"
+                },
+                {
+                    "name": "weight",
+                    "value": "2"
+                }
+            ]
+        },
+        {
+            "id": "I_BLOOM_LEVEL_AP",
+            "instanceOf": "O_C_BLOOM_LEVEL",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "apply"
+                },
+                {
+                    "name": "weight",
+                    "value": "3"
+                }
+            ]
+        },
+        {
+            "id": "I_DIFFICULTY_EASY",
+            "instanceOf": "O_C_DIFFICULTY",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "easy"
+                },
+                {
+                    "name": "weight",
+                    "value": "1"
+                }
+            ]
+        },
+        {
+            "id": "I_DIFFICULTY_MEDIUM",
+            "instanceOf": "O_C_DIFFICULTY",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "medium"
+                },
+                {
+                    "name": "weight",
+                    "value": "2"
+                }
+            ]
+        },
+        {
+            "id": "I_DIFFICULTY_HARD",
+            "instanceOf": "O_C_DIFFICULTY",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "hard"
+                },
+                {
+                    "name": "weight",
+                    "value": "3"
+                }
+            ]
+        },
+        {
+            "id": "I_CLOS_1",
+            "instanceOf": "O_C_CLOS",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "CLO1"
+                },
+                {
+                    "name": "description",
+                    "value": "Hiểu được các khái niệm cơ bản về thuật toán, độ phức tạp và phương pháp biểu diễn thuật toán"
+                }
+            ]
+        },
+        {
+            "id": "I_CLOS_2",
+            "instanceOf": "O_C_CLOS",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "CLO2"
+                },
+                {
+                    "name": "description",
+                    "value": "Phân tích bài toán tìm kiếm, xác định ràng buộc và đánh giá các giải pháp thuật toán phù hợp"
+                }
+            ]
+        },
+        {
+            "id": "I_CLOS_3",
+            "instanceOf": "O_C_CLOS",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "CLO3"
+                },
+                {
+                    "name": "description",
+                    "value": "Phân tích bài toán sắp xếp, xác định ràng buộc và đánh giá giải pháp sắp xếp hiệu quả"
+                }
+            ]
+        },
+        {
+            "id": "I_CLOS_4",
+            "instanceOf": "O_C_CLOS",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "CLO4"
+                },
+                {
+                    "name": "description",
+                    "value": "Mô tả và phân tích các cấu trúc dữ liệu cơ bản"
+                }
+            ]
+        },
+        {
+            "id": "I_CLOS_5",
+            "instanceOf": "O_C_CLOS",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "CLO5"
+                },
+                {
+                    "name": "description",
+                    "value": "Thiết kế và mô tả giải pháp sử dụng cấu trúc dữ liệu và thuật toán để giải quyết các bài toán đơn giản"
+                }
+            ]
+        },
+        {
+            "id": "I_RUBRIC_ACCURACY",
+            "instanceOf": "O_C_RUBRICS",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "accuracy"
+                },
+                {
+                    "name": "description",
+                    "value": "Đánh giá về độ chính xác của câu trả lời"
+                }
+            ]
+        },
+        {
+            "id": "I_RUBRIC_COMPLETENESS",
+            "instanceOf": "O_C_RUBRICS",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "completeness"
+                },
+                {
+                    "name": "description",
+                    "value": "Đánh giá về mức độ đầy đủ của câu trả lời"
+                }
+            ]
+        },
+        {
+            "id": "I_RUBRIC_LOGICAL_ORDER",
+            "instanceOf": "O_C_RUBRICS",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "logical order"
+                },
+                {
+                    "name": "description",
+                    "value": "Đánh giá về tính hợp lý và thứ tự logic của câu trả lời"
+                }
+            ]
+        },
+        {
+            "id": "I_QUESTION_TYPE_DESCRIPTIVE",
+            "instanceOf": "O_C_QUESTION_TYPE",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "descriptive"
+                },
+                {
+                    "name": "weight",
+                    "value": "1"
+                },
+                {
+                    "name": "description",
+                    "value": "Câu hỏi yêu cầu sinh viên trình bày và giải thích ý tưởng"
+                }
+            ]
+        },
+        {
+            "id": "I_QUESTION_TYPE_PROCEDURE",
+            "instanceOf": "O_C_QUESTION_TYPE",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "procedure"
+                },
+                {
+                    "name": "weight",
+                    "value": "2"
+                },
+                {
+                    "name": "description",
+                    "value": "Câu hỏi thủ tục yêu cầu sinh viên trình bày các bước của thuật toán"
+                }
+            ]
+        },
+        {
+            "id": "I_QUESTION_TYPE_APPLICATION",
+            "instanceOf": "O_C_QUESTION_TYPE",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "application"
+                },
+                {
+                    "name": "weight",
+                    "value": "3"
+                },
+                {
+                    "name": "description",
+                    "value": "Câu hỏi yêu cầu sinh viên trình bày ý tưởng thuật giải bằng mã giả"
+                }
+            ]
+        },
+        {
+            "id": "I_QUESTION_001",
+            "instanceOf": "O_C_QUESTION",
+            "attributes": [
+                {
+                    "name": "content",
+                    "value": "Hãy trình bày khái niệm của thuật giải."
+                }
+            ]
+        },
+        {
+            "id": "I_ALGORITHM",
+            "instanceOf": "O_C_ALGORITHM",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "algorithm"
+                },
+                {
+                    "name": "isValid",
+                    "value": null
+                }
+            ]
+        },
+        {
+            "id": "I_BRUTE_FORCE",
+            "instanceOf": "O_C_ALGORITHM_DESIGN",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "brute force"
+                }
+            ]
+        },
+        {
+            "id": "I_GREEDY",
+            "instanceOf": "O_C_ALGORITHM_DESIGN",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "greedy"
+                }
+            ]
+        },
+        {
+            "id": "I_DIVIDE_AND_CONQUER",
+            "instanceOf": "O_C_ALGORITHM_DESIGN",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "divide and conquer"
+                }
+            ]
+        },
+        {
+            "id": "I_RECURSIVE",
+            "instanceOf": "O_C_ALGORITHM_DESIGN",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "recursive"
+                }
+            ]
+        },
+        {
+            "id": "I_PROPERTY_DEFINITENESS",
+            "instanceOf": "O_C_ALGORITHM_PROPERTY",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "definiteness"
+                },
+                {
+                    "name": "description",
+                    "value": "mỗi thuật toán phải được xác định một cách chính xác và không mơ hồ, không để xảy ra tình trạng có nhiều cách hiểu khác nhau."
+                }
+            ]
+        },
+        {
+            "id": "I_PROPERTY_FINITENESS",
+            "instanceOf": "O_C_ALGORITHM_PROPERTY",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "finiteness"
+                },
+                {
+                    "name": "description",
+                    "value": "Thuật toán phải kết thúc sau một số bước hữu hạn, không được rơi vào vòng lặp vô hạn."
+                }
+            ]
+        },
+        {
+            "id": "I_PROPERTY_EFFECTIVENESS",
+            "instanceOf": "O_C_ALGORITHM_PROPERTY",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "effectiveness"
+                },
+                {
+                    "name": "description",
+                    "value": "Thuật toán cần có khả năng giải quyết vấn đề mà nó được thiết kế để xử lý, đồng thời thực hiện điều đó một cách hiệu quả về mặt thời gian và không gian."
+                }
+            ]
+        },
+        {
+            "id": "I_PROPERTY_FEASIBILITY",
+            "instanceOf": "O_C_ALGORITHM_PROPERTY",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "feasibility"
+                },
+                {
+                    "name": "description",
+                    "value": "Thuật toán cần có tính thực tiễn và khả thi, nghĩa là có thể triển khai thuật toán đó với các nguồn lực và công nghệ hiện có."
+                }
+            ]
+        },
+        {
+            "id": "I_PROPERTY_INPUT",
+            "instanceOf": "O_C_ALGORITHM_PROPERTY",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "input"
+                },
+                {
+                    "name": "description",
+                    "value": "thuật toán phải có đầu vào được xác định rõ ràng có thể xử lý được."
+                }
+            ]
+        },
+        {
+            "id": "I_PROPERTY_OUTPUT",
+            "instanceOf": "O_C_ALGORITHM_PROPERTY",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "output"
+                },
+                {
+                    "name": "description",
+                    "value": "thuật toán phải tạo ra kết quả đầu ra được xác định rõ ràng"
+                }
+            ]
+        },
+        {
+            "id": "I_INTEGER",
+            "instanceOf": "O_C_PRIMITIVE_DATA_STRUCTURE",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "integer"
+                },
+                {
+                    "name": "notation",
+                    "value": "int"
+                }
+            ]
+        },
+        {
+            "id": "I_FLOAT",
+            "instanceOf": "O_C_PRIMITIVE_DATA_STRUCTURE",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "float"
+                },
+                {
+                    "name": "notation",
+                    "value": "float"
+                }
+            ]
+        },
+        {
+            "id": "I_CHARACTER",
+            "instanceOf": "O_C_PRIMITIVE_DATA_STRUCTURE",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "character"
+                },
+                {
+                    "name": "notation",
+                    "value": "char"
+                }
+            ]
+        },
+        {
+            "id": "I_BOOLEAN",
+            "instanceOf": "O_C_PRIMITIVE_DATA_STRUCTURE",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "boolean"
+                },
+                {
+                    "name": "notation",
+                    "value": "bool"
+                }
+            ]
+        },
+        {
+            "id": "I_CONSTANT_TIME",
+            "instanceOf": "O_C_BIG_O",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "constant time"
+                },
+                {
+                    "name": "notation",
+                    "value": "O(1)"
+                }
+            ]
+        },
+        {
+            "id": "I_LOGARITHMIC_TIME",
+            "instanceOf": "O_C_BIG_O",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "logarithmic time"
+                },
+                {
+                    "name": "notation",
+                    "value": "O(logn)"
+                }
+            ]
+        },
+        {
+            "id": "I_LINEAR_TIME",
+            "instanceOf": "O_C_BIG_O",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "linear time"
+                },
+                {
+                    "name": "notation",
+                    "value": "O(n)"
+                }
+            ]
+        },
+        {
+            "id": "I_LINEARITHMIC_TIME",
+            "instanceOf": "O_C_BIG_O",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "linearithmic time"
+                },
+                {
+                    "name": "notation",
+                    "value": "O(nlogn)"
+                }
+            ]
+        },
+        {
+            "id": "I_QUADRATIC_TIME",
+            "instanceOf": "O_C_BIG_O",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "quadratic time"
+                },
+                {
+                    "name": "notation",
+                    "value": "O(n^2)"
+                }
+            ]
+        },
+        {
+            "id": "I_EXPONENTIAL_TIME",
+            "instanceOf": "O_C_BIG_O",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "exponential time"
+                },
+                {
+                    "name": "notation",
+                    "value": "O(2^n)"
+                }
+            ]
+        },
+        {
+            "id": "I_FACTORIAL_TIME",
+            "instanceOf": "O_C_BIG_O",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "factorial time"
+                },
+                {
+                    "name": "notation",
+                    "value": "O(n!)"
+                }
+            ]
+        },
+        {
+            "id": "I_ARRAY",
+            "instanceOf": "O_C_ARRAY",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "array"
+                }
+            ]
+        },
+        {
+            "id": "I_MATRIX",
+            "instanceOf": "O_C_MATRIX",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "matrix"
+                }
+            ]
+        },
+        {
+            "id": "I_SINGLE_LINKED_LIST",
+            "instanceOf": "O_C_LINKED_LIST",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "single link list"
+                }
+            ]
+        },
+        {
+            "id": "I_DOUBLY_LINKED_LIST",
+            "instanceOf": "O_C_LINKED_LIST",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "doubly link list"
+                }
+            ]
+        },
+        {
+            "id": "I_CIRCULAR_LINKED_LIST",
+            "instanceOf": "O_C_LINKED_LIST",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "circular link list"
+                }
+            ]
+        },
+        {
+            "id": "I_STACK",
+            "instanceOf": "O_C_STACK",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "stack"
+                }
+            ]
+        },
+        {
+            "id": "I_QUEUE",
+            "instanceOf": "O_C_QUEUE",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "queue"
+                }
+            ]
+        },
+        {
+            "id": "I_TREE",
+            "instanceOf": "O_C_TREE",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "tree"
+                }
+            ]
+        },
+        {
+            "id": "I_GRAPH",
+            "instanceOf": "O_C_GRAPH",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "graph"
+                }
+            ]
+        },
+        {
+            "id": "I_LINEAR_SEARCH",
+            "instanceOf": "O_C_SEARCHING_ALGORITHM",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "linear search"
+                }
+            ]
+        },
+        {
+            "id": "I_BINARY_SEARCH",
+            "instanceOf": "O_C_SEARCHING_ALGORITHM",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "binary search"
+                }
+            ]
+        },
+        {
+            "id": "I_SELECTION_SORT",
+            "instanceOf": "O_C_COMPARISON_BASED_SORTING_ALGORITHM",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "selection sort"
+                }
+            ]
+        },
+        {
+            "id": "I_BUBBLE_SORT",
+            "instanceOf": "O_C_COMPARISON_BASED_SORTING_ALGORITHM",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "bubble sort"
+                }
+            ]
+        },
+        {
+            "id": "I_INSERTION_SORT",
+            "instanceOf": "O_C_COMPARISON_BASED_SORTING_ALGORITHM",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "insertion sort"
+                }
+            ]
+        },
+        {
+            "id": "I_MERGE_SORT",
+            "instanceOf": "O_C_COMPARISON_BASED_SORTING_ALGORITHM",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "merge sort"
+                }
+            ]
+        },
+        {
+            "id": "I_QUICK_SORT",
+            "instanceOf": "O_C_COMPARISON_BASED_SORTING_ALGORITHM",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "quick sort"
+                }
+            ]
+        },
+        {
+            "id": "I_HEAP_SORT",
+            "instanceOf": "O_C_COMPARISON_BASED_SORTING_ALGORITHM",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "heap sort"
+                }
+            ]
+        },
+        {
+            "id": "I_NODE",
+            "instanceOf": "O_C_NODE",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "node"
+                }
+            ]
+        },
+        {
+            "id": "I_POINTER",
+            "instanceOf": "O_C_POINTER",
+            "attributes": [
+                {
+                    "name": "name",
+                    "value": "pointer"
+                }
+            ]
+        },
+        {
+            "id": "I_QUESTION_002",
+            "instanceOf": "O_C_QUESTION",
+            "attributes": [
+                {
+                    "name": "content",
+                    "value": "So sánh hiệu năng giữa tìm kiếm tuyến tính (Linear Search) và tìm kiếm nhị phân (Binary Search) trên mảng đã sắp xếp."
+                }
+            ]
+        },
+        {
+            "id": "I_QUESTION_003",
+            "instanceOf": "O_C_QUESTION",
+            "attributes": [
+                {
+                    "name": "content",
+                    "value": "Phân tích ưu nhược điểm của danh sách liên kết đơn (Singly Linked List) so với mảng (Array)."
+                }
+            ]
+        }
+    ]
+}

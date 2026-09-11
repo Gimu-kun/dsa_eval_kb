@@ -1,0 +1,63 @@
+{
+    "rules": [
+        {
+            "id": "RU_EVALUATE_ALGORITHM_VALIDITY",
+            "name": "Evaluate Algorithm Validity",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "AND",
+                "operands": [
+                    {
+                        "condition_type": "Existence",
+                        "operator": "EXIST",
+                        "operands": [
+                            { "operand_type": "relation", "value": "REL_ALGORITHM_HAS_PROPERTY" },
+                            { "operand_type": "instance", "value": "I_PROPERTY_DEFINITENESS" }
+                        ]
+                    },
+                    {
+                        "condition_type": "Existence",
+                        "operator": "EXIST",
+                        "operands": [
+                            { "operand_type": "relation", "value": "REL_ALGORITHM_HAS_PROPERTY" },
+                            { "operand_type": "instance", "value": "I_PROPERTY_FINITENESS" }
+                        ]
+                    },
+                    {
+                        "condition_type": "Existence",
+                        "operator": "EXIST",
+                        "operands": [
+                            { "operand_type": "relation", "value": "REL_ALGORITHM_HAS_PROPERTY" },
+                            { "operand_type": "instance", "value": "I_PROPERTY_EFFECTIVENESS" }
+                        ]
+                    },
+                    {
+                        "condition_type": "Existence",
+                        "operator": "EXIST",
+                        "operands": [
+                            { "operand_type": "relation", "value": "REL_ALGORITHM_HAS_PROPERTY" },
+                            { "operand_type": "instance", "value": "I_PROPERTY_INPUT" }
+                        ]
+                    },
+                    {
+                        "condition_type": "Existence",
+                        "operator": "EXIST",
+                        "operands": [
+                            { "operand_type": "relation", "value": "REL_ALGORITHM_HAS_PROPERTY" },
+                            { "operand_type": "instance", "value": "I_PROPERTY_OUTPUT" }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "I_ALGORITHM",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": "true"
+                }
+            ]
+        }
+    ]
+}

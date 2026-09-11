@@ -1,0 +1,223 @@
+{
+    "relations": [
+        {
+            "id": "REL_CHAPTER_CONTRIBUTES_TO_CLOS",
+            "name": "contributesTo",
+            "source": "O_C_CHAPTER",
+            "cardinality": "(1..*)",
+            "target": "O_C_CLOS",
+            "constraint": [],
+            "attributes": []
+        },
+        {
+            "id": "REL_QUESTION_HAS_RUBRICS",
+            "name": "evaluatedBy",
+            "source": "O_C_QUESTION",
+            "cardinality": "(1..*)",
+            "target": "O_C_RUBRICS",
+            "constraint": [],
+            "attributes": [
+                {
+                    "name": "weight",
+                    "value_type": "float",
+                    "constraint": [
+                        {
+                            "condition_type": "Domain",
+                            "operator": "RANGE",
+                            "operands": [
+                                {
+                                    "type": "float",
+                                    "value": "0"
+                                },
+                                {
+                                    "type": "float",
+                                    "value": "1"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "REL_QUESTION_HAS_BLOOM_LEVEL",
+            "name": "hasBloomLevel",
+            "source": "O_C_QUESTION",
+            "cardinality": "(1..1)",
+            "target": "O_C_BLOOM_LEVEL",
+            "constraint": [],
+            "attributes": []
+        },
+        {
+            "id": "REL_QUESTION_HAS_DIFFICULTY",
+            "name": "hasDifficulty",
+            "source": "O_C_QUESTION",
+            "cardinality": "(1..1)",
+            "target": "O_C_DIFFICULTY",
+            "constraint": [],
+            "attributes": []
+        },
+        {
+            "id": "REL_QUESTION_HAS_QUESTION_TYPE",
+            "name": "hasQuestionType",
+            "source": "O_C_QUESTION",
+            "cardinality": "(1..1)",
+            "target": "O_C_QUESTION_TYPE",
+            "constraint": [],
+            "attributes": []
+        },
+        {
+            "id": "REL_BIG_O_WORSE_THAN_BIG_O",
+            "name": "worseThan",
+            "source": "O_C_BIG_O",
+            "cardinality": "(0..1)",
+            "target": "O_C_BIG_O",
+            "constraint": [],
+            "attributes": []
+        },
+        {
+            "id": "REL_ALGORITHM_HAS_PROPERTY",
+            "name": "hasProperties",
+            "source": "O_C_ALGORITHM",
+            "cardinality": "(0..*)",
+            "target": "O_C_ALGORITHM_PROPERTY",
+            "constraint": [],
+            "attributes": []
+        },
+        {
+            "id": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "name": "hasWorstComplexity",
+            "source": "O_C_ALGORITHM",
+            "cardinality": "(0..1)",
+            "target": "O_C_BIG_O",
+            "constraint": [],
+            "attributes": []
+        },
+        {
+            "id": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "name": "hasBestComplexity",
+            "source": "O_C_ALGORITHM",
+            "cardinality": "(0..1)",
+            "target": "O_C_BIG_O",
+            "constraint": [],
+            "attributes": []
+        },
+        {
+            "id": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "name": "hasAverageComplexity",
+            "source": "O_C_ALGORITHM",
+            "cardinality": "(0..1)",
+            "target": "O_C_BIG_O",
+            "constraint": [],
+            "attributes": []
+        },
+        {
+            "id": "REL_ALGORITHM_DESIGN_USE_TECHNIQUE",
+            "name": "useTechnique",
+            "source": "O_C_ALGORITHM_DESIGN",
+            "cardinality": "(0..1)",
+            "target": "O_C_ALGORITHM_DESIGN",
+            "constraint": [],
+            "attributes": []
+        },
+        {
+            "id": "REL_LINKED_LIST_HAS_HEAD",
+            "name": "hasHead",
+            "source": "O_C_LINKED_LIST",
+            "cardinality": "(1..1)",
+            "target": "O_C_POINTER",
+            "constraint": [],
+            "attributes": []
+        },
+        {
+            "id": "REL_LINKED_LIST_HAS_TAIL",
+            "name": "hasTail",
+            "source": "O_C_LINKED_LIST",
+            "cardinality": "(0..1)",
+            "target": "O_C_POINTER",
+            "constraint": [],
+            "attributes": []
+        },
+        {
+            "id": "REL_POINTER_POINT_TO_NODE",
+            "name": "pointTo",
+            "source": "O_C_POINTER",
+            "cardinality": "(0..1)",
+            "target": "O_C_NODE",
+            "constraint": [],
+            "attributes": []
+        },
+        {
+            "id": "REL_QUESTION_BELONGS_TO_CHAPTER",
+            "name": "belongsToChapter",
+            "source": "O_C_QUESTION",
+            "cardinality": "(1..1)",
+            "target": "O_C_CHAPTER",
+            "constraint": [],
+            "attributes": []
+        },
+        {
+            "id": "REL_QUESTION_TESTS_ALGORITHM",
+            "name": "testsAlgorithm",
+            "source": "O_C_QUESTION",
+            "cardinality": "(0..*)",
+            "target": "O_C_ALGORITHM",
+            "constraint": [],
+            "attributes": []
+        },
+        {
+            "id": "REL_QUESTION_TESTS_DATA_STRUCTURE",
+            "name": "testsDataStructure",
+            "source": "O_C_QUESTION",
+            "cardinality": "(0..*)",
+            "target": "O_C_DATA_STRUCTURE",
+            "constraint": [],
+            "attributes": []
+        },
+        {
+            "id": "REL_CHAPTER_COVERS_ALGORITHM",
+            "name": "coversAlgorithm",
+            "source": "O_C_CHAPTER",
+            "cardinality": "(0..*)",
+            "target": "O_C_ALGORITHM",
+            "constraint": [],
+            "attributes": []
+        },
+        {
+            "id": "REL_CHAPTER_COVERS_DATA_STRUCTURE",
+            "name": "coversDataStructure",
+            "source": "O_C_CHAPTER",
+            "cardinality": "(0..*)",
+            "target": "O_C_DATA_STRUCTURE",
+            "constraint": [],
+            "attributes": []
+        },
+        {
+            "id": "REL_ALGORITHM_OPERATES_ON_DATA_STRUCTURE",
+            "name": "operatesOn",
+            "source": "O_C_ALGORITHM",
+            "cardinality": "(0..*)",
+            "target": "O_C_DATA_STRUCTURE",
+            "constraint": [],
+            "attributes": []
+        },
+        {
+            "id": "REL_ALGORITHM_USES_DESIGN_TECHNIQUE",
+            "name": "usesDesignTechnique",
+            "source": "O_C_ALGORITHM",
+            "cardinality": "(0..*)",
+            "target": "O_C_ALGORITHM_DESIGN",
+            "constraint": [],
+            "attributes": []
+        },
+        {
+            "id": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "name": "hasSpaceComplexity",
+            "source": "O_C_ALGORITHM",
+            "cardinality": "(0..1)",
+            "target": "O_C_BIG_O",
+            "constraint": [],
+            "attributes": []
+        }
+    ]
+}
