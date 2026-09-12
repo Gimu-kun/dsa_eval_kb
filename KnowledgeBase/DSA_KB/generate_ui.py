@@ -1397,7 +1397,7 @@ html_content = '''<!DOCTYPE html>
         fetchJSONFile(`./ontology/relations.json?_t=${t}`),
         fetchFirstAvailable([`./data/assertions.json?_t=${t}`, `./ontology/assertions.json?_t=${t}`]),
         fetchJSONFile(`./ontology/rules.json?_t=${t}`),
-        fetchFirstAvailable([`./ontology/hierarchy.json?_t=${t}`, `./ontology/hierachy.json?_t=${t}`]),
+        fetchFirstAvailable([`./ontology/hierarchy.json?_t=${t}`, `./ontology/hierarchy.json?_t=${t}`]),
         fetchJSONFile(`./ontology/functions.json?_t=${t}`)
       ]);
 

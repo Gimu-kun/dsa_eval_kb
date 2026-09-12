@@ -114,7 +114,7 @@ class KnowledgeValidator:
                     self.errors.append(f"[Concept] Khái niệm '{c.id}' thuộc tính '{attr.name}' có kiểu dữ liệu không hợp lệ: {attr.value_type}")
 
     def validate_hierarchy(self):
-        """Kiểm tra tính hợp lệ của quan hệ kế thừa trong file hierachy.json / hierarchy.json."""
+        """Kiểm tra tính hợp lệ của quan hệ kế thừa trong file hierarchy.json / hierarchy.json."""
         for sub, sup in self.hierarchy.items():
             if sub not in self.concept_map:
                 self.errors.append(f"[Hierarchy] Khái niệm con (subclass) '{sub}' trong file hierarchy không tồn tại trong concepts.json")

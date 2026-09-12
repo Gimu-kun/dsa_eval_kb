@@ -178,10 +178,10 @@ class DsaKbLoader:
                 self.data_dir = self.ontology_dir
 
     def load_hierarchies(self) -> list[Hierarchy]:
-        # Support both hierarchy.json and hierachy.json
+        # Support both hierarchy.json and hierarchy.json
         path = os.path.join(self.ontology_dir, "hierarchy.json")
         if not os.path.exists(path):
-            path = os.path.join(self.ontology_dir, "hierachy.json")
+            path = os.path.join(self.ontology_dir, "hierarchy.json")
         if not os.path.exists(path) or os.path.getsize(path) == 0:
             return []
         with open(path, "r", encoding="utf-8") as f:
