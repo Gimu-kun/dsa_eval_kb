@@ -18,7 +18,7 @@ from KnowledgeBase.DSA_KB.meta_model.classes.Rule import (
 )
 
 class KnowledgeValidator:
-    def __init__(self, concepts, relations, instances, assertions, rules=None, hierarchy=None, functions=None):
+    def __init__(self, concepts, relations, instances, assertions, rules=None, hierarchy=None, functions=None, operands=None):
         self.concepts = concepts
         self.relations = relations
         self.instances = instances
@@ -26,12 +26,23 @@ class KnowledgeValidator:
         self.rules = rules or []
         self.hierarchy = hierarchy or {}
         self.functions = functions or []
+        self.operands = operands or []
         
         self.concept_map = {c.id: c for c in concepts}
         self.relation_map = {r.id: r for r in relations}
         self.instance_map = {i.id: i for i in instances}
         self.rule_map = {r.id: r for r in self.rules}
         self.function_map = {f.id: f for f in self.functions}
+        self.operand_map = {op.id: op for op in self.operands if op.id}
+        self.operand_var_map = {}
+        for op in self.operands:
+            if op.variable:
+                self.operand_var_map[op.variable] = op
+                clean_v = op.variable.replace("()", "")
+                self.operand_var_map[clean_v] = op
+        if "ques" not in self.operand_var_map and "O_C_QUESTION" in self.concept_map:
+            from KnowledgeBase.DSA_KB.meta_model.classes.Operand import Operand
+            self.operand_var_map["ques"] = Operand(id="OP_QUESTION", operand_type="concept", variable="ques", value="O_C_QUESTION")
         
         self.errors: List[str] = []
         self.warnings: List[str] = []
@@ -66,6 +77,11 @@ class KnowledgeValidator:
         for fid, count in Counter(func_ids).items():
             if count > 1:
                 self.errors.append(f"[Trùng lặp ID - Function] Mã Hàm '{fid}' bị định nghĩa trùng lặp {count} lần trong functions.json")
+
+        op_ids = [op.id for op in self.operands if op.id]
+        for opid, count in Counter(op_ids).items():
+            if count > 1:
+                self.errors.append(f"[Trùng lặp ID - Operand] Mã Toán hạn '{opid}' bị định nghĩa trùng lặp {count} lần trong operands.json")
 
         # 1.2 Kiểm tra xung đột ID chéo giữa Khái niệm và Đối tượng
         cross_ci = set(concept_ids) & set(instance_ids)
@@ -306,10 +322,14 @@ class KnowledgeValidator:
             if not r.id:
                 self.errors.append("[Relation] Phát hiện Quan hệ không có 'id'")
                 continue
-            if r.source not in self.concept_map:
-                self.errors.append(f"[Relation] Quan hệ '{r.id}' có miền nguồn (source) '{r.source}' không tồn tại trong concepts.json")
-            if r.target not in self.concept_map:
-                self.errors.append(f"[Relation] Quan hệ '{r.id}' có miền đích (target) '{r.target}' không tồn tại trong concepts.json")
+            sources = r.source if isinstance(r.source, list) else [s.strip() for s in r.source.split(",")] if isinstance(r.source, str) else []
+            for s in sources:
+                if s not in self.concept_map:
+                    self.errors.append(f"[Relation] Quan hệ '{r.id}' có miền nguồn (source) '{s}' không tồn tại trong concepts.json")
+            targets = r.target if isinstance(r.target, list) else [t.strip() for t in r.target.split(",")] if isinstance(r.target, str) else []
+            for t in targets:
+                if t not in self.concept_map:
+                    self.errors.append(f"[Relation] Quan hệ '{r.id}' có miền đích (target) '{t}' không tồn tại trong concepts.json")
             if not isinstance(r.cardinality, Cardinality):
                 self.errors.append(f"[Relation] Quan hệ '{r.id}' có bản số (cardinality) không hợp lệ: '{r.cardinality}'")
 
@@ -330,7 +350,8 @@ class KnowledgeValidator:
                 self.errors.append(f"[Assertion #{idx}] Thực thể nguồn '{assertion.source}' không tìm thấy trong instances hay concepts")
             else:
                 source_type = source_inst.instanceOf if source_inst else source_concept.id
-                if not self.is_subclass_or_self(source_type, relation.source):
+                sources = relation.source if isinstance(relation.source, list) else [s.strip() for s in relation.source.split(",")] if isinstance(relation.source, str) else [relation.source]
+                if not any(self.is_subclass_or_self(source_type, s) for s in sources):
                     self.errors.append(
                         f"[Assertion #{idx} Lệch Nguồn (Domain)] Nguồn '{assertion.source}' (kiểu '{source_type}') "
                         f"không phải là lớp con của miền nguồn '{relation.source}' trong quan hệ '{relation.id}'"
@@ -343,7 +364,8 @@ class KnowledgeValidator:
                 self.errors.append(f"[Assertion #{idx}] Thực thể đích '{assertion.target}' không tìm thấy trong instances hay concepts")
             else:
                 target_type = target_inst.instanceOf if target_inst else target_concept.id
-                if not self.is_subclass_or_self(target_type, relation.target):
+                targets = relation.target if isinstance(relation.target, list) else [t.strip() for t in relation.target.split(",")] if isinstance(relation.target, str) else [relation.target]
+                if not any(self.is_subclass_or_self(target_type, t) for t in targets):
                     self.errors.append(
                         f"[Assertion #{idx} Lệch Đích (Range)] Đích '{assertion.target}' (kiểu '{target_type}') "
                         f"không phải là lớp con của miền đích '{relation.target}' trong quan hệ '{relation.id}'"
@@ -422,8 +444,9 @@ class KnowledgeValidator:
             else:
                 for idx, c in enumerate(r.conclusion):
                     if isinstance(c, AttributeConclusion):
-                        if c.target_instance and c.target_instance not in self.instance_map and c.target_instance not in self.concept_map:
-                            self.warnings.append(f"[Rule #{r.id}] Kết luận #{idx} tham chiếu thực thể đích '{c.target_instance}' chưa có trong KB")
+                        valid_targets = set(self.instance_map.keys()) | set(self.concept_map.keys()) | set(self.operand_var_map.keys())
+                        if c.target_instance and c.target_instance not in valid_targets:
+                            self.warnings.append(f"[Rule #{r.id}] Kết luận #{idx} tham chiếu thực thể đích '{c.target_instance}' chưa có trong KB hoặc tập Toán hạn")
                     elif isinstance(c, RelationConclusion):
                         if c.relation_id and c.relation_id not in self.relation_map:
                             self.errors.append(f"[Rule #{r.id}] Kết luận #{idx} tham chiếu quan hệ '{c.relation_id}' không tồn tại")
@@ -438,6 +461,23 @@ class KnowledgeValidator:
                 continue
             if not f.name:
                 self.warnings.append(f"[Function] Hàm '{f.id}' thiếu trường tên 'name'")
+
+    # =========================================================================
+    # 7. KIỂM TRA TẬP TOÁN HẠN (OPERANDS VALIDATION)
+    # =========================================================================
+    def validate_operands(self):
+        for op in self.operands:
+            if not op.id:
+                self.errors.append("[Operand] Phát hiện Toán hạn không có trường 'id'")
+                continue
+            if not op.operand_type:
+                self.warnings.append(f"[Operand #{op.id}] Toán hạn thiếu kiểu 'operandType'")
+            if op.operand_type == "concept" and op.value:
+                if op.value not in self.concept_map:
+                    self.errors.append(f"[Operand #{op.id}] Giá trị khái niệm '{op.value}' không tồn tại trong concepts.json")
+            elif op.operand_type == "function" and op.value:
+                if op.value not in self.function_map:
+                    self.errors.append(f"[Operand #{op.id}] Giá trị hàm '{op.value}' không tồn tại trong functions.json")
 
     # =========================================================================
     # MAIN VALIDATION EXECUTION & REPORTING
@@ -460,6 +500,8 @@ class KnowledgeValidator:
         self.validate_rules()
         # 6. Tập hàm
         self.validate_functions()
+        # 7. Tập toán hạn
+        self.validate_operands()
         
         total_issues = len(self.errors) + len(self.warnings)
         
@@ -473,6 +515,7 @@ class KnowledgeValidator:
         print(f" • Tổng số Phán đoán (Assertions):  {len(self.assertions)}")
         print(f" • Tổng số Luật (Rules):            {len(self.rules)}")
         print(f" • Tổng số Hàm (Functions):         {len(self.functions)}")
+        print(f" • Tổng số Toán hạn (Operands):     {len(self.operands)}")
         print("-" * 80)
         
         if self.errors:
@@ -508,6 +551,7 @@ if __name__ == "__main__":
     rules = loader.load_rules()
     hierarchy = loader.load_hierarchy()
     functions = loader.load_functions()
+    operands = loader.load_operands()
     
-    validator = KnowledgeValidator(concepts, relations, instances, assertions, rules, hierarchy=hierarchy, functions=functions)
+    validator = KnowledgeValidator(concepts, relations, instances, assertions, rules, hierarchy=hierarchy, functions=functions, operands=operands)
     validator.validate()

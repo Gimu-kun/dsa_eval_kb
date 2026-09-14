@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 
 from .classes import (
     Instance, Assertion, Hierarchy, Concept, Relation, Rule,
-    Operation, Function, Invariant, Parameter
+    Operation, Function, Invariant, Parameter, Operand
 )
 
 PrimitiveType = Union[int, float, str, bool, None]
@@ -18,13 +18,14 @@ class DataLayer:
 
 @dataclass
 class Ontology:
-    """Tầng mô hình bản thể học O = <C, H, Rel, Ru, F, Op>"""
+    """Tầng mô hình bản thể học O = <C, H, Rel, Ru, F, Op, Opd>"""
     concepts: list[Concept] = field(default_factory=list)
     hierarchies: list[Hierarchy] = field(default_factory=list)
     relations: list[Relation] = field(default_factory=list)
     rules: list[Rule] = field(default_factory=list)
     functions: list[Function] = field(default_factory=list)
     operations: list[Operation] = field(default_factory=list)
+    operands: list[Operand] = field(default_factory=list)
 
 @dataclass
 class KnowledgeBase:

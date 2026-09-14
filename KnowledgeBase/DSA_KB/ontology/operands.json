@@ -1,0 +1,77 @@
+{
+    "operands": [
+        {
+            "id": "OP_ACC",
+            "operandType": "concept",
+            "variable": "acc",
+            "value": "O_C_RUBRICS"
+        },
+        {
+            "id": "OP_COMP",
+            "operandType": "concept",
+            "variable": "comp",
+            "value": "O_C_RUBRICS"
+        },
+        {
+            "id": "OP_LOG",
+            "operandType": "concept",
+            "variable": "log",
+            "value": "O_C_RUBRICS"
+        },
+        {
+            "id": "OP_INPUT",
+            "operandType": "concept",
+            "variable": "input",
+            "value": "O_C_INPUT"
+        },
+        {
+            "id": "OP_OUTPUT",
+            "operandType": "concept",
+            "variable": "output",
+            "alias": "ouput",
+            "value": "O_C_OUTPUT"
+        },
+        {
+            "id": "OP_IS_IDENTIFY",
+            "operandType": "function",
+            "variable": "isIdentify()",
+            "value": "FUN_IS_IDENTIFY"
+        },
+        {
+            "id": "OP_DEFINITENESS",
+            "operandType": "concept",
+            "variable": "def",
+            "value": "O_C_DEFINITENESS"
+        },
+        {
+            "id": "OP_FINITENESS",
+            "operandType": "concept",
+            "variable": "fin",
+            "value": "O_C_FINITENESS"
+        },
+        {
+            "id": "OP_CORRECTNESS",
+            "operandType": "concept",
+            "variable": "cor",
+            "value": "O_C_CORRECTNESS"
+        },
+        {
+            "id": "OP_EFFICIENCY",
+            "operandType": "concept",
+            "variable": "eff",
+            "value": "O_C_EFFICIENCY"
+        },
+        {
+            "id": "OP_FEASIBILITY",
+            "operandType": "concept",
+            "variable": "fea",
+            "value": "O_C_FEASIBILITY"
+        },
+        {
+            "id": "OP_ALGORITHM",
+            "operandType": "concept",
+            "variable": "algo",
+            "value": "O_C_ALGORITHM"
+        }
+    ]
+}

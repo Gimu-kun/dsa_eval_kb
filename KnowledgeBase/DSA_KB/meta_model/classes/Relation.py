@@ -12,8 +12,8 @@ if TYPE_CHECKING:
 class Relation:
     id: str
     name: str
-    source: str
+    source: str | list[str]
     cardinality: Cardinality
-    target: str
+    target: str | list[str]
     constraint: list[Condition] = field(default_factory=list)
     attributes: list[AttributeDefinition] = field(default_factory=list)

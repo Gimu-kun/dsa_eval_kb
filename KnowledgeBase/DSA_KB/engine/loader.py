@@ -22,30 +22,38 @@ from KnowledgeBase.DSA_KB.meta_model.classes.Operand import Operand
 from KnowledgeBase.DSA_KB.meta_model.classes.enums.types import ValueType, Cardinality, ConditionType
 from KnowledgeBase.DSA_KB.meta_model import Ontology, KnowledgeBase, DataLayer
 
-def parse_condition(cond_data: dict) -> Optional[Condition]:
+def parse_condition(cond_data: Union[dict, str, None]) -> Optional[Condition]:
     if not cond_data:
         return None
+    if isinstance(cond_data, str):
+        return Condition(
+            condition_type=ConditionType.LOGICAL,
+            operator="EXPR",
+            operands=[Operand(operand_type="expression", value=cond_data)]
+        )
     operator = cond_data.get("operator")
-    cond_type_str = cond_data.get("condition_type", "Domain").upper()
+    cond_type_str = str(cond_data.get("condition_type", "Domain")).upper()
     try:
         cond_type = ConditionType[cond_type_str]
     except KeyError:
-        cond_type = next((c for c in ConditionType if c.value == cond_data.get("condition_type")), ConditionType.DOMAIN)
+        cond_type = next((c for c in ConditionType if c.value.lower() == str(cond_data.get("condition_type", "")).lower()), ConditionType.DOMAIN)
         
     operands_data = cond_data.get("operands", [])
     operands = []
     for op_data in operands_data:
-        if "operator" in op_data:
+        if isinstance(op_data, dict) and ("operator" in op_data or "condition_type" in op_data):
             # Nested condition
             operands.append(parse_condition(op_data))
+        elif isinstance(op_data, dict):
+            raw_type = op_data.get("operand_type") or op_data.get("operandType") or op_data.get("type", "string")
+            operands.append(Operand(
+                id=op_data.get("id"),
+                operand_type=str(raw_type),
+                variable=op_data.get("variable"),
+                value=str(op_data.get("value", ""))
+            ))
         else:
-            raw_type = op_data.get("operand_type") or op_data.get("type", "string")
-            op_type_str = str(raw_type).upper()
-            try:
-                op_type = ValueType[op_type_str]
-            except KeyError:
-                op_type = next((v for v in ValueType if v.value == raw_type), ValueType.STRING)
-            operands.append(Operand(operand_type=op_type, value=str(op_data.get("value", ""))))
+            operands.append(Operand(operand_type="string", value=str(op_data)))
     return Condition(condition_type=cond_type, operator=operator, operands=operands)
 
 def parse_attribute_definition(attr_data: dict) -> AttributeDefinition:
@@ -274,43 +282,57 @@ class DsaKbLoader:
         return functions
 
     def load_instances(self) -> list[Instance]:
-        path = os.path.join(self.data_dir, "instances.json")
-        if not os.path.exists(path):
-            path = os.path.join(self.ontology_dir, "instances.json")
-        if not os.path.exists(path) or os.path.getsize(path) == 0:
-            return []
-        with open(path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-        instances = []
-        for i in data.get("instances", []):
-            attrs = [parse_attribute_value(a) for a in i.get("attributes", [])]
-            instance = Instance(
-                id=i.get("id"),
-                instanceOf=i.get("instanceOf"),
-                attributes=attrs
-            )
-            instances.append(instance)
-        return instances
+        instances_map = {}
+        paths = [
+            os.path.join(self.ontology_dir, "instances.json"),
+            os.path.join(self.data_dir, "instances.json")
+        ]
+        for path in paths:
+            if os.path.exists(path) and os.path.getsize(path) > 0:
+                try:
+                    with open(path, "r", encoding="utf-8") as f:
+                        data = json.load(f)
+                    for i in data.get("instances", []):
+                        iid = i.get("id")
+                        if not iid:
+                            continue
+                        attrs = [parse_attribute_value(a) for a in i.get("attributes", [])]
+                        instances_map[iid] = Instance(
+                            id=iid,
+                            instanceOf=i.get("instanceOf"),
+                            attributes=attrs
+                        )
+                except Exception:
+                    pass
+        return list(instances_map.values())
 
     def load_assertions(self) -> list[Assertion]:
-        path = os.path.join(self.data_dir, "assertions.json")
-        if not os.path.exists(path):
-            path = os.path.join(self.ontology_dir, "assertions.json")
-        if not os.path.exists(path) or os.path.getsize(path) == 0:
-            return []
-        with open(path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-        assertions = []
-        for a in data.get("assertions", []):
-            attrs = [parse_attribute_value(attr) for attr in a.get("attributes", [])]
-            assertion = Assertion(
-                source=a.get("source"),
-                relation=a.get("relation"),
-                target=a.get("target"),
-                attributes=attrs
-            )
-            assertions.append(assertion)
-        return assertions
+        all_assertions = []
+        seen = set()
+        paths = [
+            os.path.join(self.ontology_dir, "assertions.json"),
+            os.path.join(self.data_dir, "assertions.json")
+        ]
+        for path in paths:
+            if os.path.exists(path) and os.path.getsize(path) > 0:
+                try:
+                    with open(path, "r", encoding="utf-8") as f:
+                        data = json.load(f)
+                    for a in data.get("assertions", []):
+                        key = (a.get("source"), a.get("relation"), a.get("target"))
+                        if key not in seen:
+                            seen.add(key)
+                            attrs = [parse_attribute_value(attr) for attr in a.get("attributes", [])]
+                            assertion = Assertion(
+                                source=a.get("source"),
+                                relation=a.get("relation"),
+                                target=a.get("target"),
+                                attributes=attrs
+                            )
+                            all_assertions.append(assertion)
+                except Exception:
+                    pass
+        return all_assertions
 
     def load_rules(self) -> list[Rule]:
         path = os.path.join(self.ontology_dir, "rules.json")
@@ -327,10 +349,36 @@ class DsaKbLoader:
                 name=r.get("name"),
                 condition=cond,
                 conclusion=conclusions,
-                description=r.get("description")
+                description=r.get("description"),
+                expression=r.get("expression")
             )
             rules.append(rule)
         return rules
+
+    def load_operands(self) -> list[Operand]:
+        operands_map = {}
+        paths = [
+            os.path.join(self.ontology_dir, "operands.json"),
+            os.path.join(self.data_dir, "operands.json")
+        ]
+        for path in paths:
+            if os.path.exists(path) and os.path.getsize(path) > 0:
+                try:
+                    with open(path, "r", encoding="utf-8") as f:
+                        data = json.load(f)
+                    for op in data.get("operands", []):
+                        op_id = op.get("id")
+                        if not op_id:
+                            continue
+                        operands_map[op_id] = Operand(
+                            id=op_id,
+                            operand_type=op.get("operandType") or op.get("operand_type"),
+                            variable=op.get("variable"),
+                            value=op.get("value")
+                        )
+                except Exception:
+                    pass
+        return list(operands_map.values())
 
     def load_ontology(self) -> Ontology:
         concepts = self.load_concepts()
@@ -344,7 +392,8 @@ class DsaKbLoader:
             relations=self.load_relations(),
             rules=self.load_rules(),
             functions=self.load_functions(),
-            operations=all_ops
+            operations=all_ops,
+            operands=self.load_operands()
         )
 
     def load_kb(self) -> KnowledgeBase:

@@ -1,51 +1,80 @@
 {
     "rules": [
         {
-            "id": "RU_EVALUATE_ALGORITHM_VALIDITY",
-            "name": "EvaluateAlgorithmValidity",
-            "description": "Nếu thuật giải thoả mãn tính hữu hạn, tính xác định và tính hiệu quả thì thuật giải được coi là hợp lệ",
+            "id": "rul-000001",
+            "name": "rubricValidate",
+            "description": "Tổng các tiêu chí rubric bắt buộc phải bằng 1.0",
+            "expression": "acc + comp + log = 1.0",
+            "condition": {
+                "condition_type": "Comparison",
+                "operator": "EQ",
+                "operands": [
+                    {
+                        "condition_type": "Arithmetic",
+                        "operator": "ADD",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_ACC",
+                                "value": "acc"
+                            },
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_COMP",
+                                "value": "comp"
+                            },
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_LOG",
+                                "value": "log"
+                            }
+                        ]
+                    },
+                    {
+                        "operand_type": "float",
+                        "value": 1.0
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "ques",
+                    "attribute_name": "isRubricValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000002",
+            "name": "definitenessValidate",
+            "description": "Tính xác định hợp lệ khi cả dữ liệu đầu vào và đầu ra được xác định",
+            "expression": "isIdentify(input) && isIdentify(output)",
             "condition": {
                 "condition_type": "Logical",
                 "operator": "AND",
                 "operands": [
                     {
-                        "condition_type": "Existence",
-                        "operator": "EXIST",
+                        "condition_type": "FuncCall",
+                        "operator": "isIdentify",
                         "operands": [
-                            { "operand_type": "relation", "value": "REL_ALGORITHM_HAS_PROPERTY" },
-                            { "operand_type": "instance", "value": "I_PROPERTY_DEFINITENESS" }
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_INPUT",
+                                "value": "input"
+                            }
                         ]
                     },
                     {
-                        "condition_type": "Existence",
-                        "operator": "EXIST",
+                        "condition_type": "FuncCall",
+                        "operator": "isIdentify",
                         "operands": [
-                            { "operand_type": "relation", "value": "REL_ALGORITHM_HAS_PROPERTY" },
-                            { "operand_type": "instance", "value": "I_PROPERTY_FINITENESS" }
-                        ]
-                    },
-                    {
-                        "condition_type": "Existence",
-                        "operator": "EXIST",
-                        "operands": [
-                            { "operand_type": "relation", "value": "REL_ALGORITHM_HAS_PROPERTY" },
-                            { "operand_type": "instance", "value": "I_PROPERTY_EFFECTIVENESS" }
-                        ]
-                    },
-                    {
-                        "condition_type": "Existence",
-                        "operator": "EXIST",
-                        "operands": [
-                            { "operand_type": "relation", "value": "REL_ALGORITHM_HAS_PROPERTY" },
-                            { "operand_type": "instance", "value": "I_PROPERTY_INPUT" }
-                        ]
-                    },
-                    {
-                        "condition_type": "Existence",
-                        "operator": "EXIST",
-                        "operands": [
-                            { "operand_type": "relation", "value": "REL_ALGORITHM_HAS_PROPERTY" },
-                            { "operand_type": "instance", "value": "I_PROPERTY_OUTPUT" }
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_OUTPUT",
+                                "value": "output"
+                            }
                         ]
                     }
                 ]
@@ -53,42 +82,106 @@
             "conclusion": [
                 {
                     "type": "attribute",
-                    "target_instance": "I_ALGORITHM",
-                    "attribute_name": "isValidAlgorithm",
+                    "target_instance": "def",
+                    "attribute_name": "isValid",
                     "valueType": "bool",
                     "value": true
                 }
             ]
         },
         {
-            "id": "RU_INFER_RECURSIVE_FROM_DIVIDE_AND_CONQUER",
-            "name": "InferRecursiveFromDivideAndConquer",
-            "description": "Nếu thuật toán sử dụng kỹ thuật chia để trị thì suy ra thuật toán đó sử dụng đệ quy (suy diễn 1 chiều).",
+            "id": "rul-000003",
+            "name": "algorithmValidate",
+            "description": "Thoả mãn tất cả đặc trưng của thuật giải",
+            "expression": "def.isValid && cor.isValid && fin.isValid && fea.isValid && eff.isValid",
             "condition": {
-                "condition_type": "Existence",
-                "operator": "EXIST",
+                "condition_type": "Logical",
+                "operator": "AND",
                 "operands": [
                     {
-                        "operand_type": "relation",
-                        "value": "REL_ALGORITHM_USES_TECHNIQUE"
+                        "condition_type": "Comparison",
+                        "operator": "EQ",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_DEFINITENESS",
+                                "value": "def.isValid"
+                            },
+                            {
+                                "operand_type": "bool",
+                                "value": true
+                            }
+                        ]
                     },
                     {
-                        "operand_type": "variable",
-                        "value": "x"
+                        "condition_type": "Comparison",
+                        "operator": "EQ",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_CORRECTNESS",
+                                "value": "cor.isValid"
+                            },
+                            {
+                                "operand_type": "bool",
+                                "value": true
+                            }
+                        ]
                     },
                     {
-                        "operand_type": "instance",
-                        "value": "I_DIVIDE_AND_CONQUER"
+                        "condition_type": "Comparison",
+                        "operator": "EQ",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_FINITENESS",
+                                "value": "fin.isValid"
+                            },
+                            {
+                                "operand_type": "bool",
+                                "value": true
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "Comparison",
+                        "operator": "EQ",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_FEASIBILITY",
+                                "value": "fea.isValid"
+                            },
+                            {
+                                "operand_type": "bool",
+                                "value": true
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "Comparison",
+                        "operator": "EQ",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_EFFICIENCY",
+                                "value": "eff.isValid"
+                            },
+                            {
+                                "operand_type": "bool",
+                                "value": true
+                            }
+                        ]
                     }
                 ]
             },
             "conclusion": [
                 {
-                    "type": "assertion",
-                    "source_instance": "x",
-                    "relation_id": "REL_ALGORITHM_USES_TECHNIQUE",
-                    "target_instance": "I_RECURSIVE",
-                    "attributes": []
+                    "type": "attribute",
+                    "target_instance": "algo",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
                 }
             ]
         }

@@ -6,3 +6,4 @@ class Cardinality(Enum):
     ZERO_ONE = "(0..1)"
     ONE_MANY = "(1..*)"
     ZERO_MANY = "(0..*)"
+    MANY_MANY = "(*..*)"

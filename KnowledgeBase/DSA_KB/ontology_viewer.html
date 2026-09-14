@@ -1114,12 +1114,16 @@
           <span class="dataset-badge" id="badge-relations">0</span>
         </li>
         <li class="dataset-item" onclick="selectDataset('assertions')">
-          <span>📁 assertions.json (data/)</span>
+          <span>📁 assertions.json</span>
           <span class="dataset-badge" id="badge-assertions">0</span>
         </li>
         <li class="dataset-item" onclick="selectDataset('rules')">
           <span>📁 rules.json</span>
           <span class="dataset-badge" id="badge-rules">0</span>
+        </li>
+        <li class="dataset-item" onclick="selectDataset('operands')">
+          <span>📁 operands.json</span>
+          <span class="dataset-badge" id="badge-operands">0</span>
         </li>
         <li class="dataset-item" onclick="selectDataset('functions')">
           <span>📁 functions.json</span>
@@ -1387,14 +1391,18 @@
     async function fetchKBData(manualTrigger = false) {
       const t = Date.now();
       // Load all JSON files dynamically via fetch with cache-busting timestamp
-      const [cData, iData, rData, aData, ruData, hData, fData] = await Promise.all([
+      const [cData, ontIData, dataIData, rData, ontAData, dataAData, ruData, hData, fData, ontOpData, dataOpData] = await Promise.all([
         fetchJSONFile(`./ontology/concepts.json?_t=${t}`),
-        fetchFirstAvailable([`./data/instances.json?_t=${t}`, `./ontology/instances.json?_t=${t}`]),
+        fetchJSONFile(`./ontology/instances.json?_t=${t}`),
+        fetchJSONFile(`./data/instances.json?_t=${t}`),
         fetchJSONFile(`./ontology/relations.json?_t=${t}`),
-        fetchFirstAvailable([`./data/assertions.json?_t=${t}`, `./ontology/assertions.json?_t=${t}`]),
+        fetchJSONFile(`./ontology/assertions.json?_t=${t}`),
+        fetchJSONFile(`./data/assertions.json?_t=${t}`),
         fetchJSONFile(`./ontology/rules.json?_t=${t}`),
         fetchFirstAvailable([`./ontology/hierarchy.json?_t=${t}`, `./ontology/hierarchy.json?_t=${t}`]),
-        fetchJSONFile(`./ontology/functions.json?_t=${t}`)
+        fetchJSONFile(`./ontology/functions.json?_t=${t}`),
+        fetchJSONFile(`./ontology/operands.json?_t=${t}`),
+        fetchJSONFile(`./data/operands.json?_t=${t}`)
       ]);
 
       const hierarchy = (hData && (hData.hierarchy || hData.hierarchies)) ? (hData.hierarchy || hData.hierarchies) : [];
@@ -1409,14 +1417,36 @@
       concepts.forEach(c => {
         c.subclassOf = hierarchyMap[c.id] || c.subclassOf || null;
       });
-      const instances = (iData && iData.instances) ? iData.instances : [];
+
+      // Merge instances from ontology and data (keyed by id)
+      const instanceMap = new Map();
+      ((ontIData && ontIData.instances) || []).forEach(i => { if (i && i.id) instanceMap.set(i.id, i); });
+      ((dataIData && dataIData.instances) || []).forEach(i => { if (i && i.id) instanceMap.set(i.id, i); });
+      const instances = Array.from(instanceMap.values());
+
       const relations = (rData && rData.relations) ? rData.relations : [];
-      const assertions = (aData && aData.assertions) ? aData.assertions : [];
+
+      // Merge assertions from ontology and data (keyed by source + relation + target)
+      const assertionMap = new Map();
+      ((ontAData && ontAData.assertions) || []).forEach(a => {
+        if (a) assertionMap.set(`${a.source}__${a.relation}__${a.target}`, a);
+      });
+      ((dataAData && dataAData.assertions) || []).forEach(a => {
+        if (a) assertionMap.set(`${a.source}__${a.relation}__${a.target}`, a);
+      });
+      const assertions = Array.from(assertionMap.values());
+
       const rules = (ruData && ruData.rules) ? ruData.rules : [];
       const functions = (fData && fData.functions) ? fData.functions : [];
 
+      // Merge operands from ontology and data (keyed by id)
+      const operandMap = new Map();
+      ((ontOpData && ontOpData.operands) || []).forEach(op => { if (op && op.id) operandMap.set(op.id, op); });
+      ((dataOpData && dataOpData.operands) || []).forEach(op => { if (op && op.id) operandMap.set(op.id, op); });
+      const operands = Array.from(operandMap.values());
+
       // Create fingerprint to detect changes
-      const fingerprint = `${concepts.length}_${hierarchy.length}_${instances.length}_${relations.length}_${assertions.length}_${rules.length}_${functions.length}_${JSON.stringify(concepts).length}_${JSON.stringify(instances).length}`;
+      const fingerprint = `${concepts.length}_${hierarchy.length}_${instances.length}_${relations.length}_${assertions.length}_${rules.length}_${functions.length}_${operands.length}_${JSON.stringify(concepts).length}_${JSON.stringify(instances).length}`;
 
       if (fingerprint !== lastDataFingerprint || manualTrigger) {
         lastDataFingerprint = fingerprint;
@@ -1428,6 +1458,7 @@
         KB_DATA.assertions = assertions;
         KB_DATA.rules = rules;
         KB_DATA.functions = functions;
+        KB_DATA.operands = operands;
 
         // Update header & sidebar counters
         updateHeaderAndSidebarStats();
@@ -1472,13 +1503,16 @@
       const bR = document.getElementById('badge-relations');
       const bA = document.getElementById('badge-assertions');
       const bRu = document.getElementById('badge-rules');
+      const bOp = document.getElementById('badge-operands');
       const bF = document.getElementById('badge-functions');
       const fLen = (KB_DATA.functions || []).length;
+      const opLen = (KB_DATA.operands || []).length;
       if (bC) bC.innerText = cLen;
       if (bI) bI.innerText = iLen;
       if (bR) bR.innerText = rLen;
       if (bA) bA.innerText = aLen;
       if (bRu) bRu.innerText = ruLen;
+      if (bOp) bOp.innerText = opLen;
       if (bF) bF.innerText = fLen;
 
       // HUD 3D stats
@@ -1838,7 +1872,7 @@
         }
         if (item.relation && item.relation.toLowerCase().includes(query)) return true;
         if (item.source && item.source.toLowerCase().includes(query)) return true;
-        if (item.target && item.target.toLowerCase().includes(query)) return true;
+        if (item.target && String(item.target).toLowerCase().includes(query)) return true;
         if (item.subclass && item.subclass.toLowerCase().includes(query)) return true;
         if (item.superclass && item.superclass.toLowerCase().includes(query)) return true;
         return false;
@@ -1906,6 +1940,8 @@
           renderAssertionCard(card, item);
         } else if (currentDataset === 'rules') {
           renderRuleCard(card, item);
+        } else if (currentDataset === 'operands') {
+          renderOperandCard(card, item);
         } else if (currentDataset === 'functions') {
           renderFunctionCard(card, item);
         } else {
@@ -1951,6 +1987,40 @@
             <span class="info-line-label">Đầu ra (Output):</span>
             <div class="info-line-value">${outStr}</div>
           </div>
+        </div>
+      `;
+    }
+
+    function renderOperandCard(card, item) {
+      card.innerHTML = `
+        <div class="card-header">
+          <div class="card-title-group">
+            <div class="card-title-row">
+              <span class="card-id">${item.id}</span>
+              <span class="badge" style="background: #fdf2f8; color: #db2777; border: 1px solid #fbcfe8;">TOÁN HẠN (${(item.operandType || item.operand_type || 'OPERAND').toUpperCase()})</span>
+            </div>
+            <span class="card-subtitle">Biến đại diện: <code>${item.variable || ''}</code></span>
+          </div>
+        </div>
+        <div class="card-info-section">
+          <div class="info-line">
+            <span class="info-line-label">Kiểu toán hạn:</span>
+            <span class="info-line-value"><code>${item.operandType || item.operand_type || 'N/A'}</code></span>
+          </div>
+          <div class="info-line">
+            <span class="info-line-label">Tên biến (Variable):</span>
+            <span class="info-line-value"><b style="color: #2563eb;">${item.variable || 'N/A'}</b></span>
+          </div>
+          ${item.value ? `
+          <div class="info-line">
+            <span class="info-line-label">Giá trị liên kết (Value):</span>
+            <span class="info-line-value"><code style="font-weight: 700; color: var(--concept-color);">${item.value}</code></span>
+          </div>` : ''}
+          ${item.alias ? `
+          <div class="info-line">
+            <span class="info-line-label">Bí danh (Alias):</span>
+            <span class="info-line-value"><code>${item.alias}</code></span>
+          </div>` : ''}
         </div>
       `;
     }
@@ -2178,7 +2248,7 @@
           <div class="info-line">
             <span class="info-line-label">Khái niệm Đích (Target):</span>
             <div class="info-line-value">
-              <b style="color: var(--concept-color);">${item.target}</b>
+              <b style="color: var(--concept-color);">${Array.isArray(item.target) ? item.target.join(', ') : item.target}</b>
             </div>
           </div>
 
@@ -2263,15 +2333,21 @@
 
     function renderRuleCard(card, item) {
       let condListHtml = '';
-      if (item.condition && item.condition.operands) {
+      if (item.expression) {
+        condListHtml = `
+          <div style="background: var(--bg-card); padding: 0.6rem 0.85rem; border-radius: 6px; font-family: monospace; font-size: 0.95rem; color: #2563eb; font-weight: 700; border: 1px solid #bfdbfe;">
+            ${item.expression}
+          </div>
+        `;
+      } else if (item.condition && item.condition.operands) {
         condListHtml = item.condition.operands.map((op, idx) => {
-          const relVal = op.operands && op.operands[0] ? op.operands[0].value : '';
+          const relVal = op.operands && op.operands[0] ? op.operands[0].value : (op.value || '');
           const instVal = op.operands && op.operands[1] ? op.operands[1].value : '';
           return `
             <div class="info-line" style="margin-bottom: 0.35rem; background: var(--bg-card);">
               <span style="font-weight: 700; color: var(--primary-text); min-width: 30px;">#${idx + 1}</span>
               <div style="flex: 1; font-size: 0.88rem;">
-                Tồn tại quan hệ <b style="color: var(--subclass-color);">${relVal}</b> với thực thể <b style="color: var(--instance-color);">${instVal}</b>
+                ${relVal} ${instVal ? `<b style="color: var(--instance-color);">${instVal}</b>` : ''}
               </div>
             </div>
           `;
@@ -2282,7 +2358,7 @@
       if (Array.isArray(item.conclusion)) {
         conclListHtml = item.conclusion.map(c => `
           <div class="text-quote-box" style="margin-top: 0.35rem;">
-            Gán thuộc tính <b>${c.attribute_name}</b> = <span style="color: #059669; font-weight: 700;">${c.value}</span> (kiểu ${c.valueType}) cho thực thể <b style="color: var(--instance-color);">${c.target_instance}</b>
+            (attribute) Gán <b>${c.target_instance}.${c.attribute_name}</b> = <span style="color: #059669; font-weight: 700;">${c.value}</span> (kiểu ${c.valueType})
           </div>
         `).join('');
       }
@@ -2299,6 +2375,7 @@
         </div>
 
         <div class="card-info-section">
+          ${item.description ? `<div class="text-quote-box" style="margin-bottom: 0.6rem;"><b>Mô tả:</b> ${item.description}</div>` : ''}
           <div class="info-line" style="flex-direction: column; align-items: stretch; gap: 0.5rem;">
             <div style="display: flex; justify-content: space-between;">
               <span class="info-line-label">Điều kiện tiên quyết (Preconditions):</span>

@@ -1,6 +1,86 @@
 {
     "hierarchy": [
         {
+            "subclass": "O_C_BLOOM_LEVEL_R",
+            "superclass": "O_C_BLOOM_LEVEL"
+        },
+        {
+            "subclass": "O_C_BLOOM_LEVEL_U",
+            "superclass": "O_C_BLOOM_LEVEL"
+        },
+        {
+            "subclass": "O_C_BLOOM_LEVEL_AP",
+            "superclass": "O_C_BLOOM_LEVEL"
+        },
+        {
+            "subclass": "O_C_DIFFICULTY_EASY",
+            "superclass": "O_C_DIFFICULTY"
+        },
+        {
+            "subclass": "O_C_DIFFICULTY_MEDIUM",
+            "superclass": "O_C_DIFFICULTY"
+        },
+        {
+            "subclass": "O_C_DIFFICULTY_HARD",
+            "superclass": "O_C_DIFFICULTY"
+        },
+        {
+            "subclass": "O_C_RUBRIC_ACCURACY",
+            "superclass": "O_C_RUBRICS"
+        },
+        {
+            "subclass": "O_C_RUBRIC_COMPLETENESS",
+            "superclass": "O_C_RUBRICS"
+        },
+        {
+            "subclass": "O_C_RUBRIC_LOGICAL_ORDER",
+            "superclass": "O_C_RUBRICS"
+        },
+        {
+            "subclass": "O_C_QUESTION_TYPE_DESCRIPTIVE",
+            "superclass": "O_C_QUESTION_TYPE"
+        },
+        {
+            "subclass": "O_C_QUESTION_TYPE_PROCEDURE",
+            "superclass": "O_C_QUESTION_TYPE"
+        },
+        {
+            "subclass": "O_C_QUESTION_TYPE_APPLICATION",
+            "superclass": "O_C_QUESTION_TYPE"
+        },
+        {
+            "subclass": "O_C_CLOS_1",
+            "superclass": "O_C_CLOS"
+        },
+        {
+            "subclass": "O_C_CLOS_2",
+            "superclass": "O_C_CLOS"
+        },
+        {
+            "subclass": "O_C_CLOS_3",
+            "superclass": "O_C_CLOS"
+        },
+        {
+            "subclass": "O_C_CLOS_4",
+            "superclass": "O_C_CLOS"
+        },
+        {
+            "subclass": "O_C_CLOS_5",
+            "superclass": "O_C_CLOS"
+        },
+        {
+            "subclass": "O_C_CHAPTER_OVERVIEW",
+            "superclass": "O_C_CHAPTER"
+        },
+        {
+            "subclass": "O_C_CHAPTER_SEARCHING_AND_SORTING",
+            "superclass": "O_C_CHAPTER"
+        },
+        {
+            "subclass": "O_C_CHAPTER_LINKED_LIST",
+            "superclass": "O_C_CHAPTER"
+        },
+        {
             "subclass": "O_C_THEORETICAL_ANALYSIS",
             "superclass": "O_C_ALGORITHM_ANALYSIS"
         },
@@ -9,12 +89,100 @@
             "superclass": "O_C_ALGORITHM_ANALYSIS"
         },
         {
+            "subclass": "O_C_EXECUTION_TIME",
+            "superclass": "O_C_RESOURCE"
+        },
+        {
+            "subclass": "O_C_MEMORY_USAGE",
+            "superclass": "O_C_RESOURCE"
+        },
+        {
+            "subclass": "O_C_INPUT",
+            "superclass": "O_C_IO"
+        },
+        {
+            "subclass": "O_C_OUTPUT",
+            "superclass": "O_C_IO"
+        },
+        {
+            "subclass": "O_C_DEFINITENESS",
+            "superclass": "O_C_ALGORITHM_CHARACTERISTICS"
+        },
+        {
+            "subclass": "O_C_FINITENESS",
+            "superclass": "O_C_ALGORITHM_CHARACTERISTICS"
+        },
+        {
+            "subclass": "O_C_CORRECTNESS",
+            "superclass": "O_C_ALGORITHM_CHARACTERISTICS"
+        },
+        {
+            "subclass": "O_C_EFFICIENCY",
+            "superclass": "O_C_ALGORITHM_CHARACTERISTICS"
+        },
+        {
+            "subclass": "O_C_FEASIBILITY",
+            "superclass": "O_C_ALGORITHM_CHARACTERISTICS"
+        },
+        {
+            "subclass": "O_C_DIVIDE_AND_CONQUER",
+            "superclass": "O_C_ALGORITHM_DESIGN"
+        },
+        {
+            "subclass": "O_C_DYNAMIC_PROGRAMMING",
+            "superclass": "O_C_ALGORITHM_DESIGN"
+        },
+        {
+            "subclass": "O_C_GREEDY",
+            "superclass": "O_C_ALGORITHM_DESIGN"
+        },
+        {
+            "subclass": "O_C_BACKTRACKING",
+            "superclass": "O_C_ALGORITHM_DESIGN"
+        },
+        {
+            "subclass": "O_C_BRUTE_FORCE",
+            "superclass": "O_C_ALGORITHM_DESIGN"
+        },
+        {
+            "subclass": "O_C_RECURSIVE",
+            "superclass": "O_C_ALGORITHM_DESIGN"
+        },
+        {
             "subclass": "O_C_TIME_COMPLEXITY",
             "superclass": "O_C_COMPLEXITY"
         },
         {
             "subclass": "O_C_SPACE_COMPLEXITY",
             "superclass": "O_C_COMPLEXITY"
+        },
+        {
+            "subclass": "O_C_CONSTANT_TIME",
+            "superclass": "O_C_BIG_O"
+        },
+        {
+            "subclass": "O_C_LOGARITHMIC_TIME",
+            "superclass": "O_C_BIG_O"
+        },
+        {
+            "subclass": "O_C_LINEAR_TIME",
+            "superclass": "O_C_BIG_O"
+        },
+        {
+            "subclass": "O_C_LINEARITHMIC_TIME",
+            "superclass": "O_C_BIG_O"
+        },
+        {
+            "subclass": "O_C_QUADRATIC_TIME",
+            "superclass": "O_C_BIG_O"
+        },
+        {
+            "subclass": "O_C_EXPONENTIAL_TIME",
+            "superclass": "O_C_BIG_O"
+        },
+        {
+            "subclass": "O_C_FACTORIAL_TIME",
+            "superclass": "O_C_BIG_O"
         },
         {
             "subclass": "O_C_DATA_STRUCTURE",
@@ -29,28 +197,40 @@
             "superclass": "O_C_DATA_STRUCTURE"
         },
         {
-            "subclass": "O_C_LINEAR_DATA_STRUCTURE",
-            "superclass": "O_C_NON_PRIMITIVE_DATA_STRUCTURE"
+            "subclass": "O_C_INTEGER",
+            "superclass": "O_C_PRIMITIVE_DATA_STRUCTURE"
         },
         {
-            "subclass": "O_C_NON_LINEAR_DATA_STRUCTURE",
-            "superclass": "O_C_NON_PRIMITIVE_DATA_STRUCTURE"
+            "subclass": "O_C_FLOAT",
+            "superclass": "O_C_PRIMITIVE_DATA_STRUCTURE"
+        },
+        {
+            "subclass": "O_C_BOOLEAN",
+            "superclass": "O_C_PRIMITIVE_DATA_STRUCTURE"
+        },
+        {
+            "subclass": "O_C_CHARACTER",
+            "superclass": "O_C_PRIMITIVE_DATA_STRUCTURE"
         },
         {
             "subclass": "O_C_DIRECT_ACCESS_DATA_STRUCTURE",
-            "superclass": "O_C_LINEAR_DATA_STRUCTURE"
+            "superclass": "O_C_NON_PRIMITIVE_DATA_STRUCTURE"
+        },
+        {
+            "subclass": "O_C_SEQUENTIAL_ACCESS_DATA_STRUCTURE",
+            "superclass": "O_C_NON_PRIMITIVE_DATA_STRUCTURE"
         },
         {
             "subclass": "O_C_ARRAY",
             "superclass": "O_C_DIRECT_ACCESS_DATA_STRUCTURE"
         },
         {
-            "subclass": "O_C_MATRIX",
-            "superclass": "O_C_DIRECT_ACCESS_DATA_STRUCTURE"
+            "subclass": "O_C_1D_ARRAY",
+            "superclass": "O_C_ARRAY"
         },
         {
-            "subclass": "O_C_SEQUENTIAL_ACCESS_DATA_STRUCTURE",
-            "superclass": "O_C_LINEAR_DATA_STRUCTURE"
+            "subclass": "O_C_2D_ARRAY",
+            "superclass": "O_C_ARRAY"
         },
         {
             "subclass": "O_C_LINKED_LIST",
@@ -65,20 +245,20 @@
             "superclass": "O_C_SEQUENTIAL_ACCESS_DATA_STRUCTURE"
         },
         {
-            "subclass": "O_C_HIERARCHICAL_DATA_STRUCTURE",
-            "superclass": "O_C_NON_LINEAR_DATA_STRUCTURE"
-        },
-        {
             "subclass": "O_C_TREE",
-            "superclass": "O_C_HIERARCHICAL_DATA_STRUCTURE"
+            "superclass": "O_C_SEQUENTIAL_ACCESS_DATA_STRUCTURE"
         },
         {
-            "subclass": "O_C_UNORDERED_DATA_STRUCTURE",
-            "superclass": "O_C_NON_LINEAR_DATA_STRUCTURE"
+            "subclass": "O_C_SINGLY_LINKED_LIST",
+            "superclass": "O_C_LINKED_LIST"
         },
         {
-            "subclass": "O_C_GRAPH",
-            "superclass": "O_C_UNORDERED_DATA_STRUCTURE"
+            "subclass": "O_C_DOUBLY_LINKED_LIST",
+            "superclass": "O_C_LINKED_LIST"
+        },
+        {
+            "subclass": "O_C_CIRCULAR_LINKED_LIST",
+            "superclass": "O_C_LINKED_LIST"
         },
         {
             "subclass": "O_C_SEARCHING_ALGORITHM",
@@ -89,12 +269,52 @@
             "superclass": "O_C_ALGORITHM"
         },
         {
+            "subclass": "O_C_LINEAR_SEARCH",
+            "superclass": "O_C_SEARCHING_ALGORITHM"
+        },
+        {
+            "subclass": "O_C_BINARY_SEARCH",
+            "superclass": "O_C_SEARCHING_ALGORITHM"
+        },
+        {
             "subclass": "O_C_COMPARISON_BASED_SORTING_ALGORITHM",
             "superclass": "O_C_SORTING_ALGORITHM"
         },
         {
             "subclass": "O_C_NON_COMPARISON_BASED_SORTING_ALGORITHM",
             "superclass": "O_C_SORTING_ALGORITHM"
+        },
+        {
+            "subclass": "O_C_SELECTION_SORT",
+            "superclass": "O_C_COMPARISON_BASED_SORTING_ALGORITHM"
+        },
+        {
+            "subclass": "O_C_BUBBLE_SORT",
+            "superclass": "O_C_COMPARISON_BASED_SORTING_ALGORITHM"
+        },
+        {
+            "subclass": "O_C_INSERTION_SORT",
+            "superclass": "O_C_COMPARISON_BASED_SORTING_ALGORITHM"
+        },
+        {
+            "subclass": "O_C_QUICK_SORT",
+            "superclass": "O_C_COMPARISON_BASED_SORTING_ALGORITHM"
+        },
+        {
+            "subclass": "O_C_MERGE_SORT",
+            "superclass": "O_C_COMPARISON_BASED_SORTING_ALGORITHM"
+        },
+        {
+            "subclass": "O_C_HEAP_SORT",
+            "superclass": "O_C_COMPARISON_BASED_SORTING_ALGORITHM"
+        },
+        {
+            "subclass": "O_C_BUCKET_SORT",
+            "superclass": "O_C_NON_COMPARISON_BASED_SORTING_ALGORITHM"
+        },
+        {
+            "subclass": "O_C_RADIX_SORT",
+            "superclass": "O_C_NON_COMPARISON_BASED_SORTING_ALGORITHM"
         }
     ]
 }

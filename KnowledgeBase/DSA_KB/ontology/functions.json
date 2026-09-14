@@ -1,51 +1,19 @@
 {
     "functions": [
         {
-            "id": "FUN_0001",
-            "name": "CountNodes",
-            "description": "Đếm và trả về số lượng node trong danh sách liên kết",
+            "id": "FUN_IS_IDENTIFY",
+            "name": "isIdentify",
+            "description": "Kiểm tra dữ liệu đầu vào hoặc đầu ra đã được xác định cụ thể và rõ ràng hay chưa",
             "input": [
                 {
-                    "name": "head",
-                    "valueType": "O_C_NODE",
-                    "required": true
-                }
-            ],
-            "output": {
-                "name": "count",
-                "valueType": "int"
-            }
-        },
-        {
-            "id": "FUN_0002",
-            "name": "CycleExists",
-            "description": "Kiểm tra danh sách liên kết có tạo thành liên kết vòng không",
-            "input": [
-                {
-                    "name": "head",
-                    "valueType": "O_C_NODE",
-                    "required": true
-                }
-            ],
-            "output": {
-                "name": "hasCycle",
-                "valueType": "bool"
-            }
-        },
-        {
-            "id": "FUN_0003",
-            "name": "SUM",
-            "description": "Tính tổng các tham số và trả về kết quả số thực",
-            "input": [
-                {
-                    "name": "values",
-                    "valueType": "O_C_ARRAY",
+                    "name": "data",
+                    "valueType": "O_C_IO",
                     "required": true
                 }
             ],
             "output": {
                 "name": "result",
-                "valueType": "float"
+                "valueType": "bool"
             }
         }
     ]

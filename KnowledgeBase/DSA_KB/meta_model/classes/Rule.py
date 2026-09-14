@@ -44,3 +44,4 @@ class Rule:
     condition: Condition
     conclusion: list[ConclusionTypeAlias]
     description: Optional[str] = None
+    expression: Optional[str] = None
