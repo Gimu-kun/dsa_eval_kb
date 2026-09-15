@@ -2093,6 +2093,42 @@
                     "value": true
                 }
             ]
+        },
+        {
+            "id": "rul-000053",
+            "name": "expectedRuleWeightValidate",
+            "description": "Tổng trọng số các luật chấm của một lời giải mong đợi phải bằng 1.0",
+            "expression": "expectedRuleWeightSum(ea) = 1.0",
+            "condition": {
+                "condition_type": "Comparison",
+                "operator": "EQ",
+                "operands": [
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "expectedRuleWeightSum",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_EXPECTED_ANSWER",
+                                "value": "ea"
+                            }
+                        ]
+                    },
+                    {
+                        "operand_type": "float",
+                        "value": 1.0
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "ea",
+                    "attribute_name": "isExpectedRuleValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
         }
     ]
 }

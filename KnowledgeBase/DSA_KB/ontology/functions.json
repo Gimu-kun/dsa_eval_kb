@@ -1352,6 +1352,24 @@
             }
         },
         {
+            "id": "FUN_EXPECTED_RULE_WEIGHT_SUM",
+            "name": "expectedRuleWeightSum",
+            "description": "Tổng trọng số các luật chấm (ExpectedRule) gắn với một lời giải mong đợi",
+            "input": [
+                {
+                    "name": "expectedAnswer",
+                    "valueType": "O_C_EXPECTED_ANSWER",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "total",
+                "valueType": "float",
+                "cardinality": "(1..1)"
+            }
+        },
+        {
             "id": "FUN_BEST_RANK",
             "name": "bestCaseRank",
             "description": "Trả về rank Big-O của trường hợp tốt nhất",

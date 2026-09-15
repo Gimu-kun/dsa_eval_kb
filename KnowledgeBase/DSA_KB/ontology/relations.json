@@ -77,6 +77,41 @@
             "attributes": []
         },
         {
+            "id": "REL_EXPECTED_ANSWER_HAS_SCORING_RULE",
+            "name": "hasScoringRule",
+            "source": "O_C_EXPECTED_ANSWER",
+            "cardinality": "(1..*)",
+            "target": "O_C_EXPECTED_RULE",
+            "constraint": [],
+            "attributes": []
+        },
+        {
+            "id": "REL_EXPECTED_RULE_REQUIRES_CONCEPT",
+            "name": "requiresConcept",
+            "source": "O_C_EXPECTED_RULE",
+            "cardinality": "(0..*)",
+            "target": [
+                "O_C_ALGORITHM",
+                "O_C_ALGORITHM_ANALYSIS",
+                "O_C_ALGORITHM_DESIGN",
+                "O_C_COMPLEXITY",
+                "O_C_DATA",
+                "O_C_PROGRAM",
+                "O_C_ALGORITHM_REPRESENTATION",
+                "O_C_NODE",
+                "O_C_POINTER",
+                "O_C_IO",
+                "O_C_ALGORITHM_CHARACTERISTICS",
+                "O_C_BIG_O",
+                "O_C_PROBLEM_SOLVING",
+                "O_C_STRUCTURE_CLASSIFICATION",
+                "O_C_SORTING_MECHANISM",
+                "O_C_RESOURCE"
+            ],
+            "constraint": [],
+            "attributes": []
+        },
+        {
             "id": "REL_PROGRAM_INCLUDES",
             "name": "includes",
             "source": "O_C_PROGRAM",

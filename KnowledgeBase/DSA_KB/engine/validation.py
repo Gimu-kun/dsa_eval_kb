@@ -532,6 +532,63 @@ class KnowledgeValidator:
                 if op.value not in self.function_map:
                     self.errors.append(f"[Operand #{op.id}] Giá trị hàm '{op.value}' không tồn tại trong functions.json")
 
+    def validate_expected_answer_models(self):
+        """Kiểm tra ExpectedRule: domainRuleId/functionId tồn tại; tổng weight mỗi ExpectedAnswer = 1.0."""
+        if "O_C_EXPECTED_RULE" not in self.concept_map:
+            return
+
+        expected_rules = {i.id: i for i in self.instances if i.instanceOf == "O_C_EXPECTED_RULE"}
+        expected_answers = [i.id for i in self.instances if i.instanceOf == "O_C_EXPECTED_ANSWER"]
+
+        for inst in expected_rules.values():
+            attrs = {a.name: a.value for a in inst.attributes}
+            rid = attrs.get("domainRuleId")
+            if rid not in (None, ""):
+                if rid not in self.rule_map:
+                    self.errors.append(
+                        f"[ExpectedRule] '{inst.id}' tham chiếu domainRuleId '{rid}' không tồn tại trong rules.json"
+                    )
+            fid = attrs.get("functionId")
+            if fid not in (None, ""):
+                if fid not in self.function_map:
+                    self.errors.append(
+                        f"[ExpectedRule] '{inst.id}' tham chiếu functionId '{fid}' không tồn tại trong functions.json"
+                    )
+
+        scoring_rel = "REL_EXPECTED_ANSWER_HAS_SCORING_RULE"
+        for ea_id in expected_answers:
+            rule_ids = [
+                a.target for a in self.assertions
+                if a.source == ea_id and a.relation == scoring_rel
+            ]
+            if not rule_ids:
+                self.errors.append(
+                    f"[ExpectedAnswer] '{ea_id}' chưa gắn luật chấm nào qua {scoring_rel}"
+                )
+                continue
+            total = 0.0
+            missing = []
+            for rid in rule_ids:
+                er = expected_rules.get(rid)
+                if not er:
+                    missing.append(rid)
+                    continue
+                w = next((a.value for a in er.attributes if a.name == "weight"), None)
+                try:
+                    total += float(w)
+                except (TypeError, ValueError):
+                    self.errors.append(
+                        f"[ExpectedRule] '{rid}' có weight không phải số: '{w}'"
+                    )
+            if missing:
+                self.errors.append(
+                    f"[ExpectedAnswer] '{ea_id}' trỏ tới ExpectedRule không tồn tại: {', '.join(missing)}"
+                )
+            if abs(total - 1.0) > 1e-6:
+                self.errors.append(
+                    f"[ExpectedAnswer] '{ea_id}' tổng trọng số luật chấm = {total:.4f}, phải bằng 1.0"
+                )
+
     # =========================================================================
     # MAIN VALIDATION EXECUTION & REPORTING
     # =========================================================================
@@ -555,6 +612,8 @@ class KnowledgeValidator:
         self.validate_functions()
         # 7. Tập toán hạn
         self.validate_operands()
+        # 8. Mô hình lời giải mong đợi
+        self.validate_expected_answer_models()
         
         total_issues = len(self.errors) + len(self.warnings)
         

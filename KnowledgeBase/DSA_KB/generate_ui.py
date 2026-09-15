@@ -12,7 +12,7 @@ html_content = '''<!DOCTYPE html>
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   
   <!-- Three.js and OrbitControls -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -70,7 +70,15 @@ html_content = '''<!DOCTYPE html>
       --radius-lg: 18px;
       --shadow-soft: 0 1px 2px rgba(44, 36, 24, 0.04), 0 8px 24px rgba(44, 36, 24, 0.05);
       --shadow-lift: 0 10px 28px rgba(44, 36, 24, 0.08);
-      --header-h: 72px;
+      --header-h: 64px;
+      --font-ui: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif;
+      --font-mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+      --fs-xs: 12px;
+      --fs-sm: 13px;
+      --fs-md: 14px;
+      --fs-base: 15px;
+      --fs-lg: 16px;
+      --fs-xl: 18px;
     }
 
     * {
@@ -81,18 +89,21 @@ html_content = '''<!DOCTYPE html>
 
     html {
       color-scheme: light;
+      font-size: 16px;
     }
 
     body {
-      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      font-family: var(--font-ui);
+      font-size: var(--fs-base);
       background-color: var(--bg-body);
       color: var(--text-main);
-      overflow-x: hidden;
+      overflow: hidden;
+      height: 100vh;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      letter-spacing: 0.01em;
-      line-height: 1.5;
+      letter-spacing: 0;
+      line-height: 1.45;
       transition: background-color 0.25s ease, color 0.25s ease;
     }
 
@@ -190,18 +201,17 @@ html_content = '''<!DOCTYPE html>
     }
 
     .brand-kicker {
-      font-size: 0.68rem;
+      font-size: var(--fs-xs);
       font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
+      letter-spacing: 0.02em;
       color: var(--text-muted);
     }
 
     .brand-title {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.28rem;
-      font-weight: 600;
-      letter-spacing: 0.01em;
+      font-family: var(--font-ui);
+      font-size: var(--fs-lg);
+      font-weight: 650;
+      letter-spacing: 0;
       color: var(--text-heading);
     }
 
@@ -221,7 +231,7 @@ html_content = '''<!DOCTYPE html>
       border-bottom: 2px solid transparent;
       background: transparent;
       color: var(--text-muted);
-      font-size: 0.92rem;
+      font-size: var(--fs-md);
       font-weight: 600;
       cursor: pointer;
       display: flex;
@@ -254,9 +264,9 @@ html_content = '''<!DOCTYPE html>
       border: 1px solid var(--border-color);
       padding: 0.38rem 0.8rem;
       border-radius: 999px;
-      font-size: 0.76rem;
+      font-size: var(--fs-xs);
       font-weight: 600;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.02em;
       display: flex;
       align-items: center;
       gap: 0.45rem;
@@ -295,7 +305,7 @@ html_content = '''<!DOCTYPE html>
       display: flex;
       align-items: stretch;
       gap: 0;
-      font-size: 0.78rem;
+      font-size: var(--fs-sm);
       color: var(--text-muted);
       border: 1px solid var(--border-color);
       border-radius: 12px;
@@ -322,14 +332,14 @@ html_content = '''<!DOCTYPE html>
       color: var(--text-heading);
       font-weight: 700;
       font-variant-numeric: tabular-nums;
-      font-size: 0.92rem;
+      font-size: var(--fs-md);
     }
 
     .btn-theme {
       background: var(--bg-card);
       color: var(--text-sub);
       border: 1px solid var(--border-color);
-      font-size: 0.8rem;
+      font-size: var(--fs-sm);
       padding: 0.42rem 0.85rem;
       border-radius: 999px;
       font-weight: 600;
@@ -382,11 +392,10 @@ html_content = '''<!DOCTYPE html>
     }
 
     .sidebar-title {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
+      font-size: var(--fs-xs);
+      letter-spacing: 0.02em;
       color: var(--text-muted);
-      font-weight: 700;
+      font-weight: 650;
     }
 
     .dataset-list {
@@ -405,7 +414,7 @@ html_content = '''<!DOCTYPE html>
       cursor: pointer;
       margin-bottom: 0.18rem;
       color: var(--text-sub);
-      font-size: 0.88rem;
+      font-size: var(--fs-md);
       font-weight: 500;
       transition: background 0.15s ease, color 0.15s ease;
       border: 1px solid transparent;
@@ -428,7 +437,7 @@ html_content = '''<!DOCTYPE html>
       background: var(--bg-subtle);
       padding: 0.12rem 0.48rem;
       border-radius: 999px;
-      font-size: 0.7rem;
+      font-size: var(--fs-xs);
       font-weight: 650;
       font-variant-numeric: tabular-nums;
       color: var(--text-muted);
@@ -440,9 +449,9 @@ html_content = '''<!DOCTYPE html>
     }
 
     .dataset-item > span:first-child {
-      font-family: 'IBM Plex Mono', ui-monospace, monospace;
-      font-size: 0.78rem;
-      letter-spacing: -0.01em;
+      font-family: var(--font-ui);
+      font-size: var(--fs-md);
+      letter-spacing: 0;
     }
 
     .main-content {
@@ -496,7 +505,7 @@ html_content = '''<!DOCTYPE html>
       border: none;
       outline: none;
       color: var(--text-main);
-      font-size: 0.92rem;
+      font-size: var(--fs-md);
       width: 100%;
       font-family: inherit;
     }
@@ -516,7 +525,7 @@ html_content = '''<!DOCTYPE html>
       display: flex;
       align-items: center;
       gap: 0.45rem;
-      font-size: 0.82rem;
+      font-size: var(--fs-sm);
       color: var(--text-muted);
     }
 
@@ -526,7 +535,7 @@ html_content = '''<!DOCTYPE html>
       border: 1px solid var(--border-color);
       background: var(--bg-card);
       color: var(--text-main);
-      font-size: 0.82rem;
+      font-size: var(--fs-sm);
       font-weight: 500;
       font-family: inherit;
       outline: none;
@@ -544,7 +553,7 @@ html_content = '''<!DOCTYPE html>
       border: 1px solid var(--border-color);
       background: var(--bg-card);
       color: var(--text-main);
-      font-size: 0.82rem;
+      font-size: var(--fs-sm);
       font-weight: 600;
       cursor: pointer;
       display: inline-flex;
@@ -573,10 +582,10 @@ html_content = '''<!DOCTYPE html>
 
     .count-indicator {
       margin-left: auto;
-      font-size: 0.8rem;
+      font-size: var(--fs-sm);
       color: var(--text-muted);
       font-weight: 500;
-      letter-spacing: 0.02em;
+      letter-spacing: 0;
     }
 
     .data-cards-container {
@@ -644,31 +653,30 @@ html_content = '''<!DOCTYPE html>
     }
 
     .card-id {
-      font-family: 'IBM Plex Mono', ui-monospace, monospace;
-      font-size: 0.98rem;
+      font-family: var(--font-mono);
+      font-size: var(--fs-md);
       font-weight: 500;
       color: var(--text-heading);
-      letter-spacing: -0.01em;
+      letter-spacing: 0;
     }
 
     .card-subtitle {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.12rem;
+      font-family: var(--font-ui);
+      font-size: var(--fs-md);
       color: var(--text-sub);
       font-weight: 500;
-      font-style: italic;
+      font-style: normal;
     }
 
     .badge {
       display: inline-flex;
       align-items: center;
       gap: 0.3rem;
-      padding: 0.18rem 0.55rem;
+      padding: 0.14rem 0.48rem;
       border-radius: 999px;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      letter-spacing: 0.01em;
     }
 
     .badge-concept {
@@ -699,7 +707,7 @@ html_content = '''<!DOCTYPE html>
       background: transparent;
       color: var(--primary-text);
       border: 1px solid var(--primary-border);
-      font-size: 0.78rem;
+      font-size: var(--fs-sm);
       padding: 0.35rem 0.75rem;
       border-radius: 999px;
       cursor: pointer;
@@ -732,7 +740,7 @@ html_content = '''<!DOCTYPE html>
       background: rgba(243, 238, 230, 0.55);
       border-radius: var(--radius-sm);
       border: 1px solid var(--border-color);
-      font-size: 0.88rem;
+      font-size: var(--fs-md);
     }
 
     .info-line-label {
@@ -740,7 +748,7 @@ html_content = '''<!DOCTYPE html>
       color: var(--text-muted);
       min-width: 140px;
       flex-shrink: 0;
-      letter-spacing: 0.02em;
+      letter-spacing: 0;
     }
 
     .info-line-value {
@@ -759,11 +767,10 @@ html_content = '''<!DOCTYPE html>
     .attributes-header {
       background: var(--bg-subtle);
       padding: 0.48rem 0.85rem;
-      font-size: 0.72rem;
-      font-weight: 700;
+      font-size: var(--fs-xs);
+      font-weight: 650;
       color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.02em;
       border-bottom: 1px solid var(--border-color);
       display: flex;
       justify-content: space-between;
@@ -774,7 +781,7 @@ html_content = '''<!DOCTYPE html>
       align-items: flex-start;
       padding: 0.55rem 0.85rem;
       border-bottom: 1px solid var(--border-color);
-      font-size: 0.88rem;
+      font-size: var(--fs-md);
       background: var(--bg-card);
       gap: 1rem;
     }
@@ -786,7 +793,7 @@ html_content = '''<!DOCTYPE html>
     }
 
     .attr-name {
-      font-family: 'IBM Plex Mono', ui-monospace, monospace;
+      font-family: var(--font-mono);
       font-weight: 500;
       color: var(--primary-text);
       min-width: 150px;
@@ -797,8 +804,8 @@ html_content = '''<!DOCTYPE html>
       display: inline-block;
       padding: 0.12rem 0.42rem;
       border-radius: 999px;
-      font-size: 0.72rem;
-      font-family: 'IBM Plex Mono', ui-monospace, monospace;
+      font-size: var(--fs-xs);
+      font-family: var(--font-mono);
       font-weight: 500;
       background: var(--bg-subtle);
       color: var(--text-sub);
@@ -817,7 +824,7 @@ html_content = '''<!DOCTYPE html>
       padding: 0.55rem 0.9rem;
       border-radius: 0 8px 8px 0;
       color: var(--text-sub);
-      font-size: 0.88rem;
+      font-size: var(--fs-md);
       line-height: 1.6;
       margin-top: 0.25rem;
     }
@@ -875,9 +882,9 @@ html_content = '''<!DOCTYPE html>
     }
 
     .theme-modal-title {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.35rem;
-      font-weight: 600;
+      font-family: var(--font-ui);
+      font-size: var(--fs-lg);
+      font-weight: 650;
       color: var(--text-heading);
       display: flex;
       align-items: center;
@@ -907,13 +914,13 @@ html_content = '''<!DOCTYPE html>
     }
 
     .color-label {
-      font-size: 0.88rem;
+      font-size: var(--fs-md);
       font-weight: 700;
       color: var(--text-heading);
     }
 
     .color-desc {
-      font-size: 0.76rem;
+      font-size: var(--fs-xs);
       color: var(--text-muted);
     }
 
@@ -943,8 +950,8 @@ html_content = '''<!DOCTYPE html>
     }
 
     .color-hex-text {
-      font-family: 'IBM Plex Mono', ui-monospace, monospace;
-      font-size: 0.78rem;
+      font-family: var(--font-mono);
+      font-size: var(--fs-xs);
       color: var(--text-sub);
       width: 78px;
     }
@@ -956,11 +963,10 @@ html_content = '''<!DOCTYPE html>
     }
 
     .preset-title {
-      font-size: 0.82rem;
+      font-size: var(--fs-xs);
       font-weight: 700;
       color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.02em;
     }
 
     .preset-list {
@@ -978,7 +984,7 @@ html_content = '''<!DOCTYPE html>
       border: 1px solid var(--border-color);
       background: var(--bg-body);
       color: var(--text-heading);
-      font-size: 0.84rem;
+      font-size: var(--fs-sm);
       font-weight: 600;
       cursor: pointer;
       transition: all 0.15s ease;
@@ -1046,21 +1052,21 @@ html_content = '''<!DOCTYPE html>
     }
 
     .hud-card h3 {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.12rem;
+      font-family: var(--font-ui);
+      font-size: var(--fs-md);
       margin-bottom: 0.75rem;
       display: flex;
       align-items: center;
       gap: 0.45rem;
       color: var(--text-heading);
-      font-weight: 600;
+      font-weight: 650;
     }
 
     .legend-item {
       display: flex;
       align-items: center;
       gap: 0.65rem;
-      font-size: 0.84rem;
+      font-size: var(--fs-sm);
       margin-bottom: 0.45rem;
       color: var(--text-sub);
       font-weight: 500;
@@ -1126,7 +1132,7 @@ html_content = '''<!DOCTYPE html>
       border: none;
       color: var(--text-muted);
       cursor: pointer;
-      font-size: 1.4rem;
+      font-size: var(--fs-xl);
       line-height: 1;
       padding: 0.2rem;
     }
@@ -1141,7 +1147,7 @@ html_content = '''<!DOCTYPE html>
       color: #FFFcf7;
       padding: 0.38rem 0.7rem;
       border-radius: 8px;
-      font-size: 0.78rem;
+      font-size: var(--fs-xs);
       font-weight: 500;
       pointer-events: none;
       z-index: 50;
@@ -1161,7 +1167,7 @@ html_content = '''<!DOCTYPE html>
       border: 1px solid var(--border-color);
       border-radius: 999px;
       padding: 0.48rem 1.25rem;
-      font-size: 0.78rem;
+      font-size: var(--fs-xs);
       font-weight: 500;
       color: var(--text-sub);
       display: flex;
@@ -1187,6 +1193,566 @@ html_content = '''<!DOCTYPE html>
       .data-cards-container,
       .filter-bar { padding-left: 1rem; padding-right: 1rem; }
     }
+
+    /* ========================================= */
+    /* VIEW 3: QUESTION + EXPECTED ANSWER        */
+    /* ========================================= */
+    #questions-view {
+      flex-direction: row;
+      height: calc(100vh - var(--header-h));
+      overflow: hidden;
+    }
+
+    .q-sidebar {
+      width: 348px;
+      min-width: 348px;
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      background: transparent;
+    }
+
+    .q-sidebar-head {
+      padding: 1.1rem 1.1rem 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .q-sidebar-head h2 {
+      font-family: var(--font-ui);
+      font-size: var(--fs-lg);
+      font-weight: 650;
+      color: var(--text-heading);
+    }
+
+    .q-search {
+      width: 100%;
+      padding: 0.42rem 0.65rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      background: var(--bg-input);
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: var(--fs-md);
+    }
+
+    .q-search:focus {
+      outline: none;
+      border-color: var(--border-focus);
+    }
+
+    .q-filters {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.4rem;
+    }
+
+    .q-filters select {
+      width: 100%;
+      padding: 0.38rem 0.45rem;
+      border: 1px solid var(--border-color);
+      border-radius: 7px;
+      background: var(--bg-input);
+      color: var(--text-sub);
+      font-size: var(--fs-md);
+      font-family: inherit;
+    }
+
+    .q-filters select.span-2,
+    .q-retrieve-row {
+      grid-column: 1 / -1;
+    }
+
+    .q-retrieve-row {
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .q-retrieve-row button {
+      flex: 1;
+      padding: 0.42rem 0.5rem;
+      border: 1px solid var(--border-color);
+      border-radius: 7px;
+      background: var(--bg-card);
+      color: var(--text-sub);
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .q-retrieve-row button.primary {
+      background: var(--primary);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .q-branch {
+      margin-top: 0.15rem;
+      padding: 0.55rem 0.65rem;
+      border: 1px dashed var(--border-color);
+      border-radius: 8px;
+      background: var(--bg-subtle);
+      font-size: var(--fs-sm);
+      color: var(--text-sub);
+      line-height: 1.45;
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      font-family: inherit;
+    }
+
+    .q-branch:hover {
+      background: var(--bg-card);
+      border-style: solid;
+    }
+
+    .q-branch.active {
+      background: var(--bg-card);
+      border-style: solid;
+      border-color: var(--border-color);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .q-branch b {
+      color: var(--text-heading);
+    }
+
+    .q-branch code {
+      font-size: 12px;
+    }
+
+    .q-branch-hint {
+      margin-top: 0.2rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .q-tree-wrap {
+      overflow: auto;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 0.55rem 0.45rem 0.35rem;
+      max-height: min(62vh, 580px);
+    }
+
+    .q-tree-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem 0.9rem;
+      padding: 0.45rem 0.2rem 0.15rem;
+      font-size: var(--fs-xs);
+      color: var(--text-muted);
+    }
+
+    .q-tree-legend i {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      margin-right: 0.3rem;
+      vertical-align: -1px;
+      border: 1px solid var(--border-color);
+    }
+
+    .q-tree-node { cursor: pointer; }
+    .q-tree-node rect {
+      fill: var(--bg-card);
+      stroke: var(--border-color);
+      stroke-width: 1.2;
+    }
+    .q-tree-node.ancestor rect { fill: var(--subclass-bg); stroke: var(--subclass-border); }
+    .q-tree-node.descendant rect { fill: var(--concept-bg); stroke: var(--concept-border); }
+    .q-tree-node.topic rect {
+      fill: color-mix(in srgb, var(--primary) 16%, var(--bg-card));
+      stroke: var(--primary);
+    }
+    .q-tree-node.selected rect { stroke-width: 2.5; }
+    .q-tree-node text {
+      font-family: var(--font-mono);
+      pointer-events: none;
+    }
+    .q-tree-node .nm {
+      font-family: var(--font-ui);
+      font-weight: 650;
+      font-size: 13px;
+      fill: var(--text-heading);
+    }
+    .q-tree-node .id {
+      font-size: 11px;
+      fill: var(--text-muted);
+    }
+    .q-tree-edge {
+      fill: none;
+      stroke: var(--subclass-color);
+      stroke-width: 1.55;
+    }
+
+    .q-fact {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-soft);
+      padding: 0.9rem 1rem 1rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .q-fact-row {
+      display: flex;
+      gap: 0.65rem;
+      padding: 0.32rem 0;
+      border-bottom: 1px dashed var(--border-color);
+      font-size: var(--fs-md);
+    }
+
+    .q-fact-row:last-child { border-bottom: none; }
+
+    .q-fact-k {
+      flex: 0 0 7.2rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .q-fact-v {
+      flex: 1;
+      color: var(--text-main);
+      min-width: 0;
+    }
+
+    .q-rel-line {
+      font-family: var(--font-ui);
+      font-size: var(--fs-sm);
+      color: var(--text-sub);
+      padding: 0.2rem 0;
+      line-height: 1.45;
+    }
+
+    .q-rel-line b { color: var(--relation-color); font-weight: 700; }
+
+    .q-item-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.4rem;
+    }
+
+    .q-score {
+      flex-shrink: 0;
+      font-family: var(--font-mono);
+      font-size: var(--fs-xs);
+      font-weight: 650;
+      color: var(--primary);
+      background: color-mix(in srgb, var(--primary) 12%, transparent);
+      border-radius: 999px;
+      padding: 0.08rem 0.42rem;
+    }
+
+    .q-list {
+      overflow-y: auto;
+      padding: 0.2rem 0.75rem 1.2rem;
+      flex: 1;
+    }
+
+    .q-group-title {
+      font-size: var(--fs-xs);
+      letter-spacing: 0.02em;
+      color: var(--text-muted);
+      font-weight: 650;
+      padding: 0.55rem 0.35rem 0.3rem;
+    }
+
+    .q-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.12rem;
+      padding: 0.55rem 0.7rem;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      margin-bottom: 0.18rem;
+    }
+
+    .q-item:hover {
+      background: rgba(255, 252, 247, 0.7);
+    }
+
+    .q-item.active {
+      background: var(--bg-card);
+      border-color: var(--border-color);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .q-item-id {
+      font-family: var(--font-mono);
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: var(--text-heading);
+    }
+
+    .q-item-meta {
+      font-size: var(--fs-xs);
+      color: var(--text-muted);
+    }
+
+    .q-main {
+      flex: 1;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .q-detail {
+      overflow-y: auto;
+      padding: 1.15rem 1.6rem 2.2rem;
+      flex: 1;
+    }
+
+    .q-empty {
+      color: var(--text-muted);
+      font-family: var(--font-ui);
+      font-size: var(--fs-md);
+      font-style: normal;
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+
+    .q-hero {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.15rem 1.25rem 1.05rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .q-kicker {
+      font-size: var(--fs-xs);
+      letter-spacing: 0.02em;
+      color: var(--text-muted);
+      font-weight: 650;
+    }
+
+    .q-hero-id {
+      font-family: var(--font-ui);
+      font-size: var(--fs-lg);
+      font-weight: 650;
+      color: var(--text-heading);
+      margin: 0.2rem 0 0.55rem;
+    }
+
+    .q-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .q-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.14rem 0.48rem;
+      border-radius: 999px;
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      border: 1px solid var(--border-color);
+      background: var(--bg-subtle);
+      color: var(--text-sub);
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .q-pill code {
+      font-family: var(--font-mono);
+      font-size: var(--fs-xs);
+    }
+
+    .q-pill.concept { background: var(--concept-bg); border-color: var(--concept-border); color: var(--concept-color); }
+    .q-pill.instance { background: var(--instance-bg); border-color: var(--instance-border); color: var(--instance-color); }
+    .q-pill.relation { background: var(--relation-bg); border-color: var(--relation-border); color: var(--relation-color); }
+    .q-pill.rule { background: var(--assertion-bg); border-color: var(--assertion-border); color: var(--assertion-color); }
+    .q-pill.fn { background: var(--subclass-bg); border-color: var(--subclass-border); color: var(--subclass-color); }
+
+    .q-content {
+      font-size: var(--fs-base);
+      color: var(--text-main);
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    .q-section-label {
+      font-size: var(--fs-xs);
+      letter-spacing: 0.02em;
+      color: var(--text-muted);
+      font-weight: 650;
+      margin: 0.7rem 0 0.4rem;
+    }
+
+    .flow-rel {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.35rem 0 0.35rem 1.1rem;
+      color: var(--relation-color);
+      font-family: var(--font-ui);
+      font-size: var(--fs-xs);
+      font-weight: 600;
+    }
+
+    .flow-rel::before {
+      content: '';
+      width: 2px;
+      height: 18px;
+      background: var(--relation-color);
+      opacity: 0.45;
+    }
+
+    .ea-card, .er-card, .rubric-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .ea-card { padding: 1rem 1.15rem; }
+
+    .weight-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.75rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .weight-sum {
+      font-family: var(--font-mono);
+      font-size: var(--fs-sm);
+      font-weight: 700;
+    }
+
+    .weight-sum.ok { color: var(--instance-color); }
+    .weight-sum.bad { color: #b45309; }
+
+    .weight-stack {
+      display: flex;
+      height: 11px;
+      border-radius: 99px;
+      overflow: hidden;
+      background: var(--bg-subtle);
+      margin-bottom: 0.65rem;
+    }
+
+    .weight-seg { height: 100%; }
+
+    .ea-desc {
+      font-size: var(--fs-sm);
+      color: var(--text-sub);
+      line-height: 1.5;
+      white-space: pre-wrap;
+      max-height: 7.5rem;
+      overflow: auto;
+      padding: 0.55rem 0.7rem;
+      background: var(--bg-subtle);
+      border-radius: 8px;
+    }
+
+    .er-card {
+      padding: 0.85rem 1rem 0.9rem;
+      margin-bottom: 0.65rem;
+      border-left: 4px solid var(--primary);
+    }
+
+    .er-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .er-name {
+      font-weight: 650;
+      color: var(--text-heading);
+      font-size: var(--fs-md);
+    }
+
+    .er-id {
+      font-family: var(--font-mono);
+      font-size: var(--fs-xs);
+      color: var(--text-muted);
+    }
+
+    .er-weight {
+      font-family: var(--font-mono);
+      font-weight: 650;
+      font-size: var(--fs-md);
+      color: var(--primary-text);
+      white-space: nowrap;
+    }
+
+    .er-explain {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      margin-top: 0.65rem;
+    }
+
+    .er-explain div {
+      background: var(--bg-subtle);
+      border-radius: 8px;
+      padding: 0.5rem 0.65rem;
+      font-size: var(--fs-sm);
+      color: var(--text-sub);
+      line-height: 1.45;
+    }
+
+    .er-explain b {
+      display: block;
+      font-size: var(--fs-xs);
+      letter-spacing: 0.02em;
+      margin-bottom: 0.2rem;
+      color: var(--text-muted);
+    }
+
+    .rubric-box {
+      display: flex;
+      gap: 0.55rem;
+      padding: 0.65rem 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .rubric-item {
+      flex: 1;
+      min-width: 140px;
+    }
+
+    .rubric-item span {
+      display: flex;
+      justify-content: space-between;
+      font-size: var(--fs-xs);
+      color: var(--text-sub);
+      margin-bottom: 0.25rem;
+    }
+
+    .mini-bar {
+      height: 7px;
+      background: var(--bg-subtle);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .mini-bar i {
+      display: block;
+      height: 100%;
+      background: var(--primary);
+    }
+
+    @media (max-width: 980px) {
+      .q-sidebar { width: 250px; min-width: 250px; }
+      .er-explain { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -1204,6 +1770,9 @@ html_content = '''<!DOCTYPE html>
     <nav class="nav-tabs">
       <button id="tab-inspector" class="nav-tab active" onclick="switchView('inspector')">
         Kiểm tra dữ liệu
+      </button>
+      <button id="tab-questions" class="nav-tab" onclick="switchView('questions')">
+        Câu hỏi &amp; lời giải
       </button>
       <button id="tab-graph" class="nav-tab" onclick="switchView('graph')">
         Mô hình 3D
@@ -1278,9 +1847,9 @@ html_content = '''<!DOCTYPE html>
         <!-- Row 1: Search -->
         <div class="filter-row-primary">
           <div class="search-box">
-            <span style="font-size: 0.78rem; color: var(--text-light); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600;">Tìm</span>
+            <span style="font-size: var(--fs-sm); color: var(--text-muted); font-weight: 600;">Tìm</span>
             <input type="text" id="searchInput" placeholder="ID, tên, thuộc tính, mô tả…" oninput="handleSearch()">
-            <button class="btn" id="clearSearchBtn" style="display: none; padding: 0.2rem 0.5rem; font-size: 0.75rem;" onclick="clearSearch()">✕</button>
+            <button class="btn" id="clearSearchBtn" style="display: none; padding: 0.2rem 0.5rem; font-size: var(--fs-xs);" onclick="clearSearch()">✕</button>
           </div>
 
           <div class="toolbar-actions" style="display: flex; gap: 0.5rem;">
@@ -1316,7 +1885,7 @@ html_content = '''<!DOCTYPE html>
 
       <!-- Single Column Full Width Cards Container -->
       <div class="data-cards-container" id="cardsContainer">
-        <div style="text-align: center; padding: 4rem 1rem; color: var(--text-muted); font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.25rem; font-style: italic;">
+        <div style="text-align: center; padding: 4rem 1rem; color: var(--text-muted); font-family: var(--font-ui); font-size: 15px;">
           Đang đọc các tập tin ontology…
         </div>
       </div>
@@ -1363,7 +1932,7 @@ html_content = '''<!DOCTYPE html>
       <div class="drawer-header">
         <div>
           <span class="badge" id="drawerBadge">CONCEPT</span>
-          <h2 class="card-id" id="drawerId" style="font-size: 1.15rem; margin-top: 0.35rem;">Id</h2>
+          <h2 class="card-id" id="drawerId" style="font-size: 15px; margin-top: 0.35rem;">Id</h2>
         </div>
         <button class="drawer-close" onclick="closeDrawer()">&times;</button>
       </div>
@@ -1382,6 +1951,56 @@ html_content = '''<!DOCTYPE html>
       <span>Cuộn: phóng to</span>
       <span>Nhấp node: chi tiết</span>
     </div>
+  </div>
+
+  <!-- VIEW 3: QUESTION + EXPECTED ANSWER -->
+  <div id="questions-view" class="view-container">
+    <aside class="q-sidebar">
+      <div class="q-sidebar-head">
+        <h2>Câu hỏi</h2>
+        <input class="q-search" id="qSearchInput" type="text" placeholder="Tìm ID, nội dung, chủ đề…" oninput="filterQuestionList()">
+        <div class="q-filters">
+          <select id="qFilterChapter" onchange="filterQuestionList()">
+            <option value="all">Mọi chương</option>
+            <option value="C1">Chương 1</option>
+            <option value="C2">Chương 2</option>
+            <option value="C3">Chương 3</option>
+          </select>
+          <select id="qFilterBloom" onchange="filterQuestionList()">
+            <option value="all">Mọi Bloom</option>
+            <option value="R">Remember</option>
+            <option value="U">Understand</option>
+            <option value="AP">Apply</option>
+          </select>
+          <select id="qFilterType" onchange="filterQuestionList()">
+            <option value="all">Mọi dạng</option>
+            <option value="DES">Descriptive</option>
+            <option value="PRO">Procedure</option>
+            <option value="APP">Application</option>
+          </select>
+          <select id="qFilterDiff" onchange="filterQuestionList()">
+            <option value="all">Mọi độ khó</option>
+            <option value="E">Easy</option>
+            <option value="M">Medium</option>
+            <option value="H">Hard</option>
+          </select>
+          <select id="qFilterTopic" class="span-2" onchange="onTopicFilterChange()">
+            <option value="all">Mọi topic</option>
+          </select>
+          <div class="q-retrieve-row">
+            <button class="primary" type="button" onclick="runQuestionRetrieval()">Truy hồi top 10</button>
+            <button type="button" onclick="clearQuestionRetrieval()">Duyệt tất cả</button>
+          </div>
+        </div>
+        <button type="button" class="q-branch" id="qBranchBox" hidden onclick="selectBranchView()"></button>
+      </div>
+      <div class="q-list" id="qList"></div>
+    </aside>
+    <main class="q-main">
+      <div class="q-detail" id="qDetail">
+        <div class="q-empty">Chọn một câu hỏi bên trái để xem lời giải mong đợi.</div>
+      </div>
+    </main>
   </div>
 
   <!-- THEME CUSTOMIZER MODAL -->
@@ -1604,6 +2223,8 @@ html_content = '''<!DOCTYPE html>
         // Refresh dropdown filter options and cards
         setupFilterDropdown();
         applyFilters();
+        populateTopicFilter();
+        renderQuestionExplorer();
 
         // If 3D graph is already active, refresh nodes
         if (graphInitialized) {
@@ -1885,18 +2506,27 @@ html_content = '''<!DOCTYPE html>
     function switchView(viewName) {
       const inspectorView = document.getElementById('inspector-view');
       const graphView = document.getElementById('graph-view');
+      const questionsView = document.getElementById('questions-view');
       const tabInspector = document.getElementById('tab-inspector');
       const tabGraph = document.getElementById('tab-graph');
+      const tabQuestions = document.getElementById('tab-questions');
+
+      inspectorView.classList.remove('active');
+      graphView.classList.remove('active');
+      questionsView.classList.remove('active');
+      tabInspector.classList.remove('active');
+      tabGraph.classList.remove('active');
+      tabQuestions.classList.remove('active');
 
       if (viewName === 'inspector') {
         inspectorView.classList.add('active');
-        graphView.classList.remove('active');
         tabInspector.classList.add('active');
-        tabGraph.classList.remove('active');
+      } else if (viewName === 'questions') {
+        questionsView.classList.add('active');
+        tabQuestions.classList.add('active');
+        renderQuestionExplorer();
       } else {
-        inspectorView.classList.remove('active');
         graphView.classList.add('active');
-        tabInspector.classList.remove('active');
         tabGraph.classList.add('active');
         if (!graphInitialized) {
           init3DGraph();
@@ -1911,12 +2541,15 @@ html_content = '''<!DOCTYPE html>
       currentDataset = name;
       document.querySelectorAll('.dataset-item').forEach(el => {
         el.classList.remove('active');
+        const oc = el.getAttribute('onclick') || '';
+        if (oc.includes("'" + name + "'")) el.classList.add('active');
       });
-      event.currentTarget.classList.add('active');
-      
+
       setupFilterDropdown();
-      document.getElementById('searchInput').value = '';
-      document.getElementById('sortSelect').value = 'default';
+      const search = document.getElementById('searchInput');
+      const sort = document.getElementById('sortSelect');
+      if (search) search.value = '';
+      if (sort) sort.value = 'default';
       applyFilters();
     }
 
@@ -2056,8 +2689,8 @@ html_content = '''<!DOCTYPE html>
         container.innerHTML = `
           <div style="background: var(--bg-card); border: 1px dashed var(--border-color); border-radius: 12px; text-align: center; padding: 3.5rem 2rem; color: var(--text-muted); width: 100%;">
             <div style="font-size: 2.8rem; margin-bottom: 0.65rem;">🔍</div>
-            <div style="font-weight: 700; font-size: 1.1rem; color: var(--text-heading);">Không tìm thấy dữ liệu phù hợp</div>
-            <div style="font-size: 0.9rem; margin-top: 0.35rem; color: var(--text-muted);">Hãy thử nhập từ khoá khác hoặc bấm "Đặt lại bộ lọc" để xem toàn bộ danh sách.</div>
+            <div style="font-weight: 650; font-size: 15px; color: var(--text-heading);">Không tìm thấy dữ liệu phù hợp</div>
+            <div style="font-size: 14px; margin-top: 0.35rem; color: var(--text-muted);">Hãy thử nhập từ khoá khác hoặc bấm "Đặt lại bộ lọc" để xem toàn bộ danh sách.</div>
           </div>
         `;
         return;
@@ -2121,7 +2754,7 @@ html_content = '''<!DOCTYPE html>
           <div class="card-title-group">
             <div class="card-title-row">
               <span class="card-id">${item.name || item.id}</span>
-              <span class="badge" style="background: #ecfdf5; color: #059669; border: 1px solid #a7f3d0;">HÀM (FUNCTION)</span>
+              <span class="badge" style="background: #ecfdf5; color: #059669; border: 1px solid #a7f3d0;">Hàm</span>
             </div>
             <span class="card-subtitle">Mã định danh: <code>${item.id}</code></span>
           </div>
@@ -2146,7 +2779,7 @@ html_content = '''<!DOCTYPE html>
           <div class="card-title-group">
             <div class="card-title-row">
               <span class="card-id">${item.id}</span>
-              <span class="badge" style="background: #fdf2f8; color: #db2777; border: 1px solid #fbcfe8;">TOÁN HẠN (${(item.operandType || item.operand_type || 'OPERAND').toUpperCase()})</span>
+              <span class="badge" style="background: #fdf2f8; color: #db2777; border: 1px solid #fbcfe8;">Toán hạng (${(item.operandType || item.operand_type || 'operand')})</span>
             </div>
             <span class="card-subtitle">Biến đại diện: <code>${item.variable || ''}</code></span>
           </div>
@@ -2184,13 +2817,13 @@ html_content = '''<!DOCTYPE html>
         </div>
         <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin: 1rem 0; background: var(--bg-subtle); padding: 0.85rem 1rem; border-radius: 8px;">
           <div style="flex: 1; text-align: center;">
-            <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.25rem;">Lớp con (Subclass)</div>
-            <a href="#" onclick="filterConcept('${sub}'); return false;" style="font-weight: 700; color: var(--concept-color); text-decoration: none; font-size: 0.95rem;">${sub} ↗</a>
+            <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 0.25rem;">Lớp con (Subclass)</div>
+            <a href="#" onclick="filterConcept('${sub}'); return false;" style="font-weight: 700; color: var(--concept-color); text-decoration: none; font-size: 14px;">${sub} ↗</a>
           </div>
-          <div style="color: var(--subclass-color); font-weight: 800; font-size: 1.2rem;">➔</div>
+          <div style="color: var(--subclass-color); font-weight: 800; font-size: 16px;">➔</div>
           <div style="flex: 1; text-align: center;">
-            <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.25rem;">Lớp cha (Superclass)</div>
-            <a href="#" onclick="filterConcept('${sup}'); return false;" style="font-weight: 700; color: var(--subclass-color); text-decoration: none; font-size: 0.95rem;">${sup} ↗</a>
+            <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 0.25rem;">Lớp cha (Superclass)</div>
+            <a href="#" onclick="filterConcept('${sup}'); return false;" style="font-weight: 700; color: var(--subclass-color); text-decoration: none; font-size: 14px;">${sup} ↗</a>
           </div>
         </div>
       `;
@@ -2206,11 +2839,11 @@ html_content = '''<!DOCTYPE html>
         attrRowsHtml = item.attributes.map(attr => {
           let constraintStr = '';
           if (attr.constraint && attr.constraint.length > 0) {
-            constraintStr = ` <span style="font-size: 0.78rem; color: var(--text-muted);">(Ràng buộc: ${JSON.stringify(attr.constraint)})</span>`;
+            constraintStr = ` <span style="font-size: 13px; color: var(--text-muted);">(Ràng buộc: ${JSON.stringify(attr.constraint)})</span>`;
           }
           const reqBadge = attr.required 
-            ? `<span style="font-size: 0.72rem; color: #ef4444; font-weight: 700; margin-left: 0.4rem;">*Bắt buộc</span>` 
-            : `<span style="font-size: 0.72rem; color: var(--text-muted); margin-left: 0.4rem;">(Tuỳ chọn)</span>`;
+            ? `<span style="font-size: 12px; color: #ef4444; font-weight: 700; margin-left: 0.4rem;">*Bắt buộc</span>` 
+            : `<span style="font-size: 12px; color: var(--text-muted); margin-left: 0.4rem;">(Tuỳ chọn)</span>`;
           return `
             <div class="attr-row">
               <span class="attr-name">${attr.name || 'attr'}${reqBadge}</span>
@@ -2228,12 +2861,12 @@ html_content = '''<!DOCTYPE html>
       if (Array.isArray(item.operation) && item.operation.length > 0) {
         opHtml = `<div style="display: flex; flex-direction: column; gap: 0.35rem; margin-top: 0.35rem;">` + 
           item.operation.map(op => {
-            if (typeof op === 'string') return `<div style="font-family: 'IBM Plex Mono'; font-size: 0.85rem; color: var(--concept-color);">• ${op}</div>`;
+            if (typeof op === 'string') return `<div style="font-family: var(--font-mono); font-size: 13px; color: var(--concept-color);">• ${op}</div>`;
             const inputs = (op.input || []).map(p => formatParam(p)).join(', ');
             const out = op.output
               ? (Array.isArray(op.output) ? op.output.map(formatParam).join(', ') : formatParam(op.output))
               : 'void';
-            return `<div style="font-family: 'IBM Plex Mono'; font-size: 0.85rem; color: var(--concept-color);">• <b>${op.name}</b>(${inputs}) ➔ ${out}${op.description ? ` <span style="color: var(--text-muted); font-family: sans-serif;">(${op.description})</span>` : ''}</div>`;
+            return `<div style="font-family: var(--font-mono); font-size: 13px; color: var(--concept-color);">• <b>${op.name}</b>(${inputs}) ➔ ${out}${op.description ? ` <span style="color: var(--text-muted); font-family: var(--font-ui);">(${op.description})</span>` : ''}</div>`;
           }).join('') +
           `</div>`;
       }
@@ -2243,7 +2876,7 @@ html_content = '''<!DOCTYPE html>
         invHtml = `<div style="display: flex; flex-direction: column; gap: 0.35rem; margin-top: 0.35rem;">` +
           item.invariant.map(inv => {
             if (typeof inv === 'string') return `<div class="text-quote-box">${inv}</div>`;
-            return `<div class="text-quote-box"><b>${inv.name}</b>: ${inv.description || ''} <code style="font-size: 0.8rem;">[${inv.condition ? inv.condition.operator : ''}]</code></div>`;
+            return `<div class="text-quote-box"><b>${inv.name}</b>: ${inv.description || ''} <code style="font-size: 13px;">[${inv.condition ? inv.condition.operator : ''}]</code></div>`;
           }).join('') +
           `</div>`;
       }
@@ -2253,7 +2886,7 @@ html_content = '''<!DOCTYPE html>
           <div class="card-title-group">
             <div class="card-title-row">
               <span class="card-id">${item.id}</span>
-              <span class="badge badge-concept">KHÁI NIỆM (CONCEPT)</span>
+              <span class="badge badge-concept">Khái niệm</span>
               ${item.domain ? `<span class="badge" style="background: var(--bg-subtle); color: var(--text-sub); border: 1px solid var(--border-color);">Miền: ${item.domain}</span>` : ''}
             </div>
             <span class="card-subtitle">${conceptLabel(item)}</span>
@@ -2273,7 +2906,7 @@ html_content = '''<!DOCTYPE html>
           <div class="info-line" style="flex-direction: column; align-items: stretch; gap: 0.4rem;">
             <div style="display: flex; justify-content: space-between; align-items: center;">
               <span class="info-line-label">Danh sách thuộc tính:</span>
-              <span style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted);">${item.attributes ? item.attributes.length : 0} thuộc tính</span>
+              <span style="font-size: 13px; font-weight: 600; color: var(--text-muted);">${item.attributes ? item.attributes.length : 0} thuộc tính</span>
             </div>
 
             ${attrRowsHtml ? `
@@ -2315,7 +2948,7 @@ html_content = '''<!DOCTYPE html>
               <div class="attr-value">
                 ${isDesc 
                   ? `<div class="text-quote-box">${attr.value}</div>` 
-                  : `<b style="color: var(--text-heading); font-family: 'IBM Plex Mono'; font-size: 0.92rem;">${attr.value}</b>`
+                  : `<b style="color: var(--text-heading); font-family: var(--font-mono); font-size: 13px;">${attr.value}</b>`
                 }
               </div>
             </div>
@@ -2328,26 +2961,28 @@ html_content = '''<!DOCTYPE html>
           <div class="card-title-group">
             <div class="card-title-row">
               <span class="card-id">${item.id}</span>
-              <span class="badge badge-instance">ĐỐI TƯỢNG (INSTANCE)</span>
+              <span class="badge badge-instance">Đối tượng</span>
             </div>
             <span class="card-subtitle">Thể hiện thực tế của mô hình dữ liệu</span>
           </div>
 
-          <button class="btn-3d-jump" onclick="jumpTo3D('${item.id}')">
-            Xem 3D
-          </button>
+          <div style="display:flex;flex-direction:column;gap:0.35rem;align-items:flex-end;">
+            <button class="btn-3d-jump" onclick="jumpTo3D('${item.id}')">
+              Xem 3D
+            </button>
+            ${['O_C_QUESTION','O_C_EXPECTED_ANSWER','O_C_EXPECTED_RULE'].includes(item.instanceOf) ? `
+            <button class="btn-3d-jump" onclick="openQuestionFromInstance('${item.id}')">
+              Xem lời giải
+            </button>` : ''}
+          </div>
         </div>
-
-        <div class="card-info-section">
-          <div class="info-line">
-            <span class="info-line-label">Thuộc khái niệm:</span>
             <div class="info-line-value">${instanceOfHtml}</div>
           </div>
 
           <div class="info-line" style="flex-direction: column; align-items: stretch; gap: 0.4rem;">
             <div style="display: flex; justify-content: space-between; align-items: center;">
               <span class="info-line-label">Dữ liệu thuộc tính chi tiết:</span>
-              <span style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted);">${item.attributes ? item.attributes.length : 0} trường</span>
+              <span style="font-size: 13px; font-weight: 600; color: var(--text-muted);">${item.attributes ? item.attributes.length : 0} trường</span>
             </div>
 
             ${attrRowsHtml ? `
@@ -2372,7 +3007,7 @@ html_content = '''<!DOCTYPE html>
             <span class="attr-name">${attr.name}:</span>
             <div class="attr-value">
               <span class="attr-type-pill">${attr.value_type}</span>
-              ${attr.constraint ? `<span style="font-size: 0.8rem; color: var(--text-muted);">(Ràng buộc: ${JSON.stringify(attr.constraint)})</span>` : ''}
+              ${attr.constraint ? `<span style="font-size: 13px; color: var(--text-muted);">(Ràng buộc: ${JSON.stringify(attr.constraint)})</span>` : ''}
             </div>
           </div>
         `).join('');
@@ -2383,7 +3018,7 @@ html_content = '''<!DOCTYPE html>
           <div class="card-title-group">
             <div class="card-title-row">
               <span class="card-id">${item.name || item.id}</span>
-              <span class="badge badge-relation">QUAN HỆ (RELATION)</span>
+              <span class="badge badge-relation">Quan hệ</span>
             </div>
             <span class="card-subtitle">Mã định danh: <code>${item.id}</code></span>
           </div>
@@ -2441,7 +3076,7 @@ html_content = '''<!DOCTYPE html>
           <div class="card-title-group">
             <div class="card-title-row">
               <span class="card-id" style="color: var(--primary-text);">${item.relation}</span>
-              <span class="badge badge-assertion">PHÁN ĐOÁN (ASSERTION)</span>
+              <span class="badge badge-assertion">Phán đoán</span>
             </div>
             <span class="card-subtitle">Mối liên kết thực tế giữa 2 đối tượng</span>
           </div>
@@ -2460,21 +3095,21 @@ html_content = '''<!DOCTYPE html>
           <div class="info-line">
             <span class="info-line-label">Chủ thể (Source / Subject):</span>
             <div class="info-line-value">
-              <b style="color: var(--instance-color); font-family: 'IBM Plex Mono'; font-size: 0.95rem;">${item.source}</b>
+              <b style="color: var(--instance-color); font-family: var(--font-mono); font-size: 13px;">${item.source}</b>
             </div>
           </div>
 
           <div class="info-line">
             <span class="info-line-label">Vị từ (Relation / Predicate):</span>
             <div class="info-line-value">
-              <span class="badge badge-assertion" style="font-size: 0.84rem;">${item.relation}</span>
+              <span class="badge badge-assertion">${item.relation}</span>
             </div>
           </div>
 
           <div class="info-line">
             <span class="info-line-label">Đối tượng (Target / Object):</span>
             <div class="info-line-value">
-              <b style="color: var(--instance-color); font-family: 'IBM Plex Mono'; font-size: 0.95rem;">${item.target}</b>
+              <b style="color: var(--instance-color); font-family: var(--font-mono); font-size: 13px;">${item.target}</b>
             </div>
           </div>
 
@@ -2487,7 +3122,7 @@ html_content = '''<!DOCTYPE html>
       let condListHtml = '';
       if (item.expression) {
         condListHtml = `
-          <div style="background: var(--bg-card); padding: 0.6rem 0.85rem; border-radius: 6px; font-family: monospace; font-size: 0.95rem; color: #2563eb; font-weight: 700; border: 1px solid #bfdbfe;">
+          <div style="background: var(--bg-card); padding: 0.6rem 0.85rem; border-radius: 6px; font-family: var(--font-mono); font-size: 14px; color: #2563eb; font-weight: 700; border: 1px solid #bfdbfe;">
             ${item.expression}
           </div>
         `;
@@ -2498,7 +3133,7 @@ html_content = '''<!DOCTYPE html>
           return `
             <div class="info-line" style="margin-bottom: 0.35rem; background: var(--bg-card);">
               <span style="font-weight: 700; color: var(--primary-text); min-width: 30px;">#${idx + 1}</span>
-              <div style="flex: 1; font-size: 0.88rem;">
+              <div style="flex: 1; font-size: 14px;">
                 ${relVal} ${instVal ? `<b style="color: var(--instance-color);">${instVal}</b>` : ''}
               </div>
             </div>
@@ -2520,7 +3155,7 @@ html_content = '''<!DOCTYPE html>
           <div class="card-title-group">
             <div class="card-title-row">
               <span class="card-id">${item.name || item.id}</span>
-              <span class="badge" style="background: #f5f3ff; color: #7c3aed; border: 1px solid #ddd6fe;">LUẬT SUY DIỄN (RULE)</span>
+              <span class="badge" style="background: #f5f3ff; color: #7c3aed; border: 1px solid #ddd6fe;">Luật</span>
             </div>
             <span class="card-subtitle">Mã luật: <code>${item.id}</code></span>
           </div>
@@ -2855,7 +3490,7 @@ html_content = '''<!DOCTYPE html>
       const body = document.getElementById('drawerBody');
       const jumpBtn = document.getElementById('drawerJumpBtn');
 
-      badge.innerText = node.type === 'concept' ? 'KHÁI NIỆM' : 'ĐỐI TƯỢNG';
+      badge.innerText = node.type === 'concept' ? 'Khái niệm' : 'Đối tượng';
       badge.className = 'badge ' + (node.type === 'concept' ? 'badge-concept' : 'badge-instance');
       idEl.innerText = node.id;
 
@@ -2863,12 +3498,12 @@ html_content = '''<!DOCTYPE html>
       const data = node.data || {};
 
       if (node.type === 'concept') {
-        html += `<div style="color: var(--text-muted); font-size: 0.88rem; font-weight: 600;">${data.name || ''}</div>`;
+        html += `<div style="color: var(--text-muted); font-size: 14px; font-weight: 600;">${data.name || ''}</div>`;
         if (data.domain) html += `<div class="info-line"><span class="info-line-label">Miền dữ liệu:</span><div class="info-line-value">${data.domain}</div></div>`;
         if (data.subclassOf) html += `<div class="info-line"><span class="info-line-label">Kế thừa:</span><div class="info-line-value"><b style="color: var(--subclass-color);">${data.subclassOf}</b></div></div>`;
         
         if (Array.isArray(data.attributes) && data.attributes.length > 0) {
-          html += '<div style="margin-top: 0.35rem; font-weight: 700; font-size: 0.84rem; color: var(--text-sub);">Thuộc tính định nghĩa:</div>';
+          html += '<div style="margin-top: 0.35rem; font-weight: 700; font-size: 13px; color: var(--text-sub);">Thuộc tính định nghĩa:</div>';
           html += '<div class="attributes-box">';
           data.attributes.forEach(attr => {
             html += `<div class="attr-row"><span class="attr-name">${attr.name}</span><span class="attr-type-pill">${attr.value_type}</span></div>`;
@@ -2878,7 +3513,7 @@ html_content = '''<!DOCTYPE html>
       } else {
         html += `<div class="info-line"><span class="info-line-label">Thuộc khái niệm:</span><div class="info-line-value"><b style="color: var(--concept-color);">${data.instanceOf || 'N/A'}</b></div></div>`;
         if (Array.isArray(data.attributes) && data.attributes.length > 0) {
-          html += '<div style="margin-top: 0.35rem; font-weight: 700; font-size: 0.84rem; color: var(--text-sub);">Giá trị thuộc tính:</div>';
+          html += '<div style="margin-top: 0.35rem; font-weight: 700; font-size: 13px; color: var(--text-sub);">Giá trị thuộc tính:</div>';
           html += '<div class="attributes-box">';
           data.attributes.forEach(attr => {
             const isDesc = attr.name === 'description' || (typeof attr.value === 'string' && attr.value.length > 60);
@@ -2944,6 +3579,854 @@ html_content = '''<!DOCTYPE html>
 
       controls.update();
       renderer.render(scene, camera);
+    }
+
+    // =========================================================================
+    // QUESTION + EXPECTED ANSWER EXPLORER
+    // =========================================================================
+    let selectedQuestionId = null;
+    let qRetrievalActive = false;
+    let qPanelMode = 'question';
+    let selectedBranchNodeId = null;
+    const RETRIEVE_LIMIT = 10;
+    const RETRIEVE_MIN_SCORE = 0.70;
+    const RETRIEVE_CONCEPT_W = 0.62;
+    const RETRIEVE_TEXT_W = 0.38;
+    const WEIGHT_PALETTE = ['#6B7F6E', '#4A6FA5', '#A07840', '#6B5B8A', '#8B5E4A', '#4F7A62'];
+    const Q_CHAPTER = {
+      C1: 'Chương 1 · Tổng quan CTDL&GT',
+      C2: 'Chương 2 · Tìm kiếm và sắp xếp',
+      C3: 'Chương 3 · Danh sách liên kết'
+    };
+    const Q_CHAPTER_CONCEPT = {
+      C1: 'O_C_CHAPTER_OVERVIEW',
+      C2: 'O_C_CHAPTER_SEARCHING_AND_SORTING',
+      C3: 'O_C_CHAPTER_LINKED_LIST'
+    };
+    const Q_BLOOM = { R: 'remember', U: 'understand', AP: 'apply' };
+    const Q_TYPE = { DES: 'descriptive', PRO: 'procedure', APP: 'application' };
+    const Q_DIFF = { E: 'easy', M: 'medium', H: 'hard' };
+    const Q_STOPWORDS = new Set(['la','cua','va','mot','cac','trong','voi','khi','thi','cho','den','tu','nay','do','duoc','co','khong','hay','mo','ta','the','nao','ve','nhung','neu','hoac','tren','duoi','sau','truoc','bang','deu','a','an','of','and','or','to','in','on','for','is','are','be','by','with','from']);
+
+    function escapeHtml(s) {
+      if (s == null) return '';
+      return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function instById(id) {
+      return (KB_DATA.instances || []).find(i => i.id === id) || null;
+    }
+
+    function conceptById(id) {
+      return (KB_DATA.concepts || []).find(c => c.id === id) || null;
+    }
+
+    function ruleById(id) {
+      return (KB_DATA.rules || []).find(r => r.id === id) || null;
+    }
+
+    function fnById(id) {
+      return (KB_DATA.functions || []).find(f => f.id === id) || null;
+    }
+
+    function attrVal(obj, name) {
+      if (!obj || !Array.isArray(obj.attributes)) return null;
+      const a = obj.attributes.find(x => x && x.name === name);
+      return a ? (a.value != null ? a.value : a.default) : null;
+    }
+
+    function assertionsOf(source, rel) {
+      return (KB_DATA.assertions || []).filter(a => a.source === source && (!rel || a.relation === rel));
+    }
+
+    function parseQuestionCode(qid) {
+      const m = String(qid || '').match(/^Q_(C[123])_(R|U|AP)_(DES|PRO|APP)_(E|M|H)$/);
+      if (!m) return { chapter: '', bloom: '', type: '', diff: '' };
+      return { chapter: m[1], bloom: m[2], type: m[3], diff: m[4] };
+    }
+
+    function foldText(s) {
+      return String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    }
+
+    function questionTokens(text) {
+      const toks = new Set();
+      const matches = String(text || '').match(/[0-9a-zA-Z_àáảãạăằắẳẵặâầấẩẫậèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵđ]+/gi) || [];
+      matches.forEach(raw => {
+        const folded = foldText(raw);
+        if (folded.length >= 2 && !Q_STOPWORDS.has(folded)) toks.add(folded);
+      });
+      return toks;
+    }
+
+    function hierarchyIndex() {
+      const parentOf = {};
+      const childrenOf = {};
+      (KB_DATA.hierarchy || []).forEach(h => {
+        const sub = h.subclass || h.subclassOf;
+        const sup = h.superclass || h.parent;
+        if (!sub || !sup) return;
+        parentOf[sub] = sup;
+        if (!childrenOf[sup]) childrenOf[sup] = [];
+        childrenOf[sup].push(sub);
+      });
+      return { parentOf, childrenOf };
+    }
+
+    function conceptTextBlob(cid) {
+      const c = conceptById(cid);
+      return [cid, conceptLabel(c) || '', attrVal(c, 'description') || ''].join(' ');
+    }
+
+    function topicBranchFrom(topicId) {
+      if (!topicId) return null;
+      const { parentOf, childrenOf } = hierarchyIndex();
+      const ancestors = [];
+      const descendants = [];
+      const seen = new Set([topicId]);
+      let cur = parentOf[topicId];
+      let depth = 1;
+      while (cur && !seen.has(cur)) {
+        seen.add(cur);
+        ancestors.push({ id: cur, name: conceptLabel(conceptById(cur)) || cur, depth });
+        cur = parentOf[cur];
+        depth += 1;
+      }
+      const stack = (childrenOf[topicId] || []).slice();
+      while (stack.length) {
+        const node = stack.pop();
+        if (seen.has(node)) continue;
+        seen.add(node);
+        descendants.push({
+          id: node,
+          name: conceptLabel(conceptById(node)) || node,
+          parent: parentOf[node] || ''
+        });
+        (childrenOf[node] || []).forEach(ch => stack.push(ch));
+      }
+      descendants.sort((a, b) => a.id.localeCompare(b.id));
+      return {
+        topic_id: topicId,
+        topic_name: conceptLabel(conceptById(topicId)) || topicId,
+        ancestors,
+        descendants,
+        branch_ids: [topicId].concat(ancestors.map(a => a.id), descendants.map(d => d.id))
+      };
+    }
+
+    function populateTopicFilter() {
+      const sel = document.getElementById('qFilterTopic');
+      if (!sel) return;
+      const prev = sel.value || 'all';
+      const grouped = { C1: [], C2: [], C3: [], other: [] };
+      const seen = new Set();
+      const { childrenOf } = hierarchyIndex();
+      function walkDesc(id, acc) {
+        (childrenOf[id] || []).forEach(ch => {
+          if (acc.has(ch)) return;
+          acc.add(ch);
+          walkDesc(ch, acc);
+        });
+      }
+      (KB_DATA.assertions || []).forEach(a => {
+        if (a.relation !== 'REL_CHAPTER_HAS_TOPIC' || !a.target) return;
+        const chKey = Object.keys(Q_CHAPTER_CONCEPT).find(k => Q_CHAPTER_CONCEPT[k] === a.source) || 'other';
+        const ids = new Set([a.target]);
+        walkDesc(a.target, ids);
+        ids.forEach(cid => {
+          if (seen.has(cid)) return;
+          seen.add(cid);
+          (grouped[chKey] || grouped.other).push(cid);
+        });
+      });
+      let html = '<option value="all">Mọi topic</option>';
+      [['C1', 'Chương 1'], ['C2', 'Chương 2'], ['C3', 'Chương 3'], ['other', 'Khác']].forEach(([key, label]) => {
+        const arr = grouped[key] || [];
+        if (!arr.length) return;
+        arr.sort((a, b) => (conceptLabel(conceptById(a)) || a).localeCompare(conceptLabel(conceptById(b)) || b, 'vi'));
+        html += `<optgroup label="${label}">`;
+        arr.forEach(cid => {
+          const name = conceptLabel(conceptById(cid)) || cid;
+          html += `<option value="${escapeHtml(cid)}">${escapeHtml(name)}</option>`;
+        });
+        html += '</optgroup>';
+      });
+      sel.innerHTML = html;
+      if ([...sel.options].some(o => o.value === prev)) sel.value = prev;
+    }
+
+    function scoreQuestionAgainstBranch(q, branch) {
+      if (!branch) {
+        return { score: 1, concept_score: 1, text_score: 1, matched_concepts: q.concepts || [] };
+      }
+      const topic = branch.topic_id;
+      const ancestors = new Set(branch.ancestors.map(a => a.id));
+      const descendants = new Set(branch.descendants.map(d => d.id));
+      const concepts = q.concepts || [];
+      let best = 0;
+      const matched = [];
+      concepts.forEach(cid => {
+        if (cid === topic) { best = Math.max(best, 1); matched.push(cid); }
+        else if (descendants.has(cid)) { best = Math.max(best, 0.88); matched.push(cid); }
+        else if (ancestors.has(cid)) { best = Math.max(best, 0.58); matched.push(cid); }
+      });
+      const overlap = matched.length ? (new Set(matched).size / Math.max(new Set(concepts).size, 1)) : 0;
+      const conceptScore = matched.length ? (0.85 * best) + (0.15 * overlap) : 0;
+
+      const topicTokens = new Set();
+      branch.branch_ids.forEach(cid => {
+        questionTokens(conceptTextBlob(cid)).forEach(t => topicTokens.add(t));
+      });
+      const qTokens = q.tokens || new Set();
+      let textScore = 0;
+      if (qTokens.size && topicTokens.size) {
+        let inter = 0;
+        qTokens.forEach(t => { if (topicTokens.has(t)) inter += 1; });
+        const union = qTokens.size + topicTokens.size - inter;
+        const jaccard = inter / Math.max(union, 1);
+        const overlap = inter / Math.max(topicTokens.size, 1);
+        textScore = (0.55 * jaccard) + (0.45 * overlap);
+      }
+      return {
+        score: (RETRIEVE_CONCEPT_W * conceptScore) + (RETRIEVE_TEXT_W * textScore),
+        concept_score: conceptScore,
+        text_score: textScore,
+        matched_concepts: matched
+      };
+    }
+
+    function questionIdFromInstance(instId) {
+      const s = String(instId || '');
+      if (s.startsWith('I_Q_')) return s.slice(2);
+      const er = s.match(/^I_ER_(Q_.+)_(\\d+)$/);
+      if (er) return er[1];
+      if (s.startsWith('I_EA_')) return s.replace(/^I_EA_/, '');
+      return null;
+    }
+
+    function jumpToInspector(dataset, query) {
+      switchView('inspector');
+      selectDataset(dataset);
+      if (query) {
+        const search = document.getElementById('searchInput');
+        if (search) search.value = query;
+        applyFilters();
+      }
+    }
+
+    function openQuestionFromInstance(instId) {
+      const qid = questionIdFromInstance(instId);
+      selectedQuestionId = qid;
+      switchView('questions');
+    }
+
+    function collectQuestions() {
+      return (KB_DATA.instances || [])
+        .filter(i => i.instanceOf === 'O_C_QUESTION')
+        .map(inst => {
+          const qid = attrVal(inst, 'name') || inst.id.replace(/^I_/, '');
+          const meta = parseQuestionCode(qid);
+          const typeA = assertionsOf(inst.id, 'REL_QUESTION_HAS_QUESTION_TYPE')[0];
+          const diffA = assertionsOf(inst.id, 'REL_QUESTION_HAS_DIFFICULTY')[0];
+          const bloomA = assertionsOf(inst.id, 'REL_QUESTION_HAS_BLOOM_LEVEL')[0];
+          const eaA = assertionsOf(inst.id, 'REL_QUESTION_HAS_EXPECTED_ANSWER')[0];
+          const typeC = typeA ? conceptById(typeA.target) : null;
+          const diffC = diffA ? conceptById(diffA.target) : null;
+          const bloomC = bloomA ? conceptById(bloomA.target) : null;
+          const concepts = [];
+          const erText = [];
+          if (eaA && eaA.target) {
+            assertionsOf(eaA.target, 'REL_EXPECTED_ANSWER_HAS_SCORING_RULE').forEach(scoreA => {
+              const er = instById(scoreA.target);
+              if (er) {
+                erText.push(attrVal(er, 'name') || '');
+                erText.push(attrVal(er, 'missExplanation') || '');
+              }
+              assertionsOf(scoreA.target, 'REL_EXPECTED_RULE_REQUIRES_CONCEPT').forEach(req => {
+                if (req.target) concepts.push(req.target);
+              });
+            });
+          }
+          const uniqConcepts = [...new Set(concepts)];
+          const eaInst = eaA ? instById(eaA.target) : null;
+          const content = attrVal(inst, 'content') || '';
+          const blob = [qid, content, attrVal(eaInst, 'description') || '', ...erText, ...uniqConcepts.map(cid => conceptLabel(conceptById(cid)) || cid)].join(' ');
+          return {
+            inst,
+            qid,
+            content,
+            chapter: meta.chapter,
+            bloom: meta.bloom,
+            type: meta.type,
+            diff: meta.diff,
+            typeLabel: attrVal(typeC, 'name') || Q_TYPE[meta.type] || '',
+            diffLabel: attrVal(diffC, 'name') || Q_DIFF[meta.diff] || '',
+            bloomLabel: attrVal(bloomC, 'name') || Q_BLOOM[meta.bloom] || '',
+            typeId: typeA ? typeA.target : '',
+            diffId: diffA ? diffA.target : '',
+            bloomId: bloomA ? bloomA.target : '',
+            eaId: eaA ? eaA.target : null,
+            concepts: uniqConcepts,
+            tokens: questionTokens(blob)
+          };
+        })
+        .sort((a, b) => {
+          const ch = { C1: 0, C2: 1, C3: 2 };
+          const bl = { R: 0, U: 1, AP: 2 };
+          const ty = { DES: 0, PRO: 1, APP: 2 };
+          const df = { E: 0, M: 1, H: 2 };
+          return (ch[a.chapter] - ch[b.chapter])
+            || (bl[a.bloom] - bl[b.bloom])
+            || (ty[a.type] - ty[b.type])
+            || (df[a.diff] - df[b.diff])
+            || a.qid.localeCompare(b.qid);
+        });
+    }
+
+    function filterQuestionList() {
+      renderQuestionExplorer(true);
+    }
+
+    function onTopicFilterChange() {
+      const topic = document.getElementById('qFilterTopic')?.value || 'all';
+      qRetrievalActive = topic !== 'all';
+      selectedBranchNodeId = (topic !== 'all') ? topic : null;
+      if (topic === 'all') qPanelMode = 'question';
+      renderQuestionExplorer(true);
+    }
+
+    function runQuestionRetrieval() {
+      qRetrievalActive = true;
+      const topic = document.getElementById('qFilterTopic')?.value || 'all';
+      if (topic !== 'all') selectedBranchNodeId = topic;
+      renderQuestionExplorer(true);
+    }
+
+    function clearQuestionRetrieval() {
+      qRetrievalActive = false;
+      qPanelMode = 'question';
+      selectedBranchNodeId = null;
+      const topic = document.getElementById('qFilterTopic');
+      if (topic) topic.value = 'all';
+      renderQuestionExplorer(true);
+    }
+
+    function selectBranchView() {
+      const topic = document.getElementById('qFilterTopic')?.value || 'all';
+      if (!qRetrievalActive || topic === 'all') return;
+      qPanelMode = 'branch';
+      if (!selectedBranchNodeId) selectedBranchNodeId = topic;
+      renderQuestionExplorer(true);
+    }
+
+    function selectBranchNode(cid) {
+      qPanelMode = 'branch';
+      selectedBranchNodeId = cid;
+      renderQuestionExplorer(true);
+    }
+
+    function relationById(id) {
+      return (KB_DATA.relations || []).find(r => r.id === id) || null;
+    }
+
+    function formatOpSignature(op) {
+      if (!op) return '';
+      if (typeof op === 'string') return op;
+      const fmt = (p) => {
+        if (!p) return '';
+        const t = p.valueType || p.value_type || 'any';
+        return `${p.name}: ${t}`;
+      };
+      const inputs = (op.input || []).map(fmt).join(', ');
+      const out = op.output
+        ? (Array.isArray(op.output) ? op.output.map(fmt).join(', ') : fmt(op.output))
+        : 'void';
+      return `${op.name || 'op'}(${inputs}) → ${out}`;
+    }
+
+    function ellipsize(s, n) {
+      const t = String(s || '');
+      return t.length > n ? t.slice(0, n - 1) + '…' : t;
+    }
+
+    function layoutTopicTree(branch) {
+      const { parentOf, childrenOf } = hierarchyIndex();
+      const branchSet = new Set(branch.branch_ids);
+      const topic = branch.topic_id;
+      const ancestorChain = branch.ancestors.slice().reverse().map(a => a.id);
+      const levels = ancestorChain.map(id => [id]);
+      levels.push([topic]);
+      const depthOf = {};
+      ancestorChain.forEach((id, i) => { depthOf[id] = i; });
+      depthOf[topic] = ancestorChain.length;
+      const queue = [topic];
+      while (queue.length) {
+        const n = queue.shift();
+        (childrenOf[n] || []).filter(c => branchSet.has(c)).forEach(c => {
+          if (depthOf[c] != null) return;
+          depthOf[c] = depthOf[n] + 1;
+          queue.push(c);
+        });
+      }
+      const maxD = Math.max.apply(null, Object.values(depthOf));
+      for (let d = ancestorChain.length + 1; d <= maxD; d++) {
+        const row = branch.branch_ids.filter(id => depthOf[id] === d);
+        if (row.length) levels.push(row);
+      }
+      const NODE_W = 168, NODE_H = 46, GAP_X = 18, GAP_Y = 50, PAD = 18;
+      const maxCols = Math.max.apply(null, levels.map(l => l.length).concat([1]));
+      const width = Math.max(PAD * 2 + maxCols * NODE_W + (maxCols - 1) * GAP_X, 380);
+      const height = PAD * 2 + levels.length * NODE_H + Math.max(levels.length - 1, 0) * GAP_Y;
+      const pos = {};
+      levels.forEach((ids, li) => {
+        const rowW = ids.length * NODE_W + Math.max(ids.length - 1, 0) * GAP_X;
+        let x = (width - rowW) / 2;
+        const y = PAD + li * (NODE_H + GAP_Y);
+        ids.forEach(id => {
+          pos[id] = { x, y, w: NODE_W, h: NODE_H };
+          x += NODE_W + GAP_X;
+        });
+      });
+      const edges = [];
+      branch.branch_ids.forEach(id => {
+        const p = parentOf[id];
+        if (p && branchSet.has(p) && pos[p] && pos[id]) edges.push({ from: p, to: id });
+      });
+      return { width, height, pos, edges, NODE_W, NODE_H, ancestorChain };
+    }
+
+    function renderTopicTreeSvg(branch) {
+      const layout = layoutTopicTree(branch);
+      const topic = branch.topic_id;
+      const ancestorIds = new Set(branch.ancestors.map(a => a.id));
+      const descendantIds = new Set(branch.descendants.map(d => d.id));
+      const selected = selectedBranchNodeId && layout.pos[selectedBranchNodeId]
+        ? selectedBranchNodeId
+        : topic;
+      const marker = `
+        <defs>
+          <marker id="qTreeArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"></path>
+          </marker>
+        </defs>`;
+      const edgeHtml = layout.edges.map(e => {
+        const a = layout.pos[e.from], b = layout.pos[e.to];
+        const x1 = a.x + a.w / 2, y1 = a.y + a.h;
+        const x2 = b.x + b.w / 2, y2 = b.y;
+        const mid = (y1 + y2) / 2;
+        return `<path class="q-tree-edge" d="M ${x1} ${y1} C ${x1} ${mid}, ${x2} ${mid}, ${x2} ${y2}" marker-end="url(#qTreeArrow)"></path>`;
+      }).join('');
+      const nodeHtml = Object.keys(layout.pos).map(id => {
+        const p = layout.pos[id];
+        const c = conceptById(id);
+        const name = conceptLabel(c) || id;
+        let role = 'node';
+        if (id === topic) role = 'topic';
+        else if (ancestorIds.has(id)) role = 'ancestor';
+        else if (descendantIds.has(id)) role = 'descendant';
+        const sel = id === selected ? ' selected' : '';
+        return `
+          <g class="q-tree-node ${role}${sel}" onclick="selectBranchNode('${id}')">
+            <title>${escapeHtml(name)} · ${escapeHtml(id)}</title>
+            <rect x="${p.x}" y="${p.y}" rx="9" ry="9" width="${p.w}" height="${p.h}"></rect>
+            <text class="nm" x="${p.x + p.w / 2}" y="${p.y + 19}" text-anchor="middle">${escapeHtml(ellipsize(name, 22))}</text>
+            <text class="id" x="${p.x + p.w / 2}" y="${p.y + 34}" text-anchor="middle">${escapeHtml(ellipsize(id.replace(/^O_C_/, ''), 20))}</text>
+          </g>`;
+      }).join('');
+      return `
+        <div class="q-tree-wrap">
+          <svg viewBox="0 0 ${layout.width} ${layout.height}" width="${layout.width}" height="${layout.height}" style="color: var(--subclass-color); display: block; margin: 0 auto;">
+            ${marker}${edgeHtml}${nodeHtml}
+          </svg>
+        </div>
+        <div class="q-tree-legend">
+          <span><i style="background: var(--subclass-bg); border-color: var(--subclass-border);"></i>Lớp cha (truy hồi ngược)</span>
+          <span><i style="background: color-mix(in srgb, var(--primary) 16%, var(--bg-card)); border-color: var(--primary);"></i>Topic đang chọn</span>
+          <span><i style="background: var(--concept-bg); border-color: var(--concept-border);"></i>Lớp con</span>
+          <span>Cạnh = subclassOf · nhấp node để xem chi tiết</span>
+        </div>`;
+    }
+
+    function renderBranchConceptFacts(cid, branch) {
+      const c = conceptById(cid);
+      const name = conceptLabel(c) || cid;
+      const desc = attrVal(c, 'description') || '';
+      const parent = c && (c.subclassOf || c.subclass_of);
+      const attrs = (c && Array.isArray(c.attributes)) ? c.attributes : [];
+      const ops = (c && Array.isArray(c.operation)) ? c.operation : [];
+      const invs = (c && Array.isArray(c.invariant)) ? c.invariant : [];
+      const branchSet = new Set(branch.branch_ids);
+      const isConceptId = (id) => !!(id && conceptById(id));
+      const outgoing = (KB_DATA.assertions || []).filter(a => a.source === cid && isConceptId(a.target));
+      const incoming = (KB_DATA.assertions || []).filter(a => a.target === cid && a.source !== cid && isConceptId(a.source));
+      const attrHtml = attrs.length
+        ? attrs.map(a => {
+            const val = (a.value != null && a.value !== '') ? a.value : a.default;
+            const extra = val != null && val !== '' ? ` = ${val}` : '';
+            return `<div class="q-rel-line"><b>${escapeHtml(a.name || '')}</b> : ${escapeHtml(a.value_type || 'any')}${escapeHtml(String(extra))}${a.required ? ' · bắt buộc' : ''}</div>`;
+          }).join('')
+        : '<span class="q-item-meta">Không khai báo thuộc tính.</span>';
+      const opHtml = ops.length
+        ? ops.map(op => `<div class="q-rel-line">${escapeHtml(formatOpSignature(op))}${op && op.description ? `<div class="q-item-meta">${escapeHtml(op.description)}</div>` : ''}</div>`).join('')
+        : '<span class="q-item-meta">Không có operation.</span>';
+      const invHtml = invs.length
+        ? invs.map(inv => `<div class="q-rel-line">${typeof inv === 'string' ? escapeHtml(inv) : escapeHtml(inv.name || '') + (inv.description ? ' — ' + escapeHtml(inv.description) : '')}</div>`).join('')
+        : '';
+      const relLine = (a, dir) => {
+        const rel = relationById(a.relation);
+        const relName = (rel && rel.name) || a.relation;
+        const other = dir === 'out' ? a.target : a.source;
+        const otherC = conceptById(other);
+        const otherName = conceptLabel(otherC) || other;
+        const inBranch = branchSet.has(other);
+        const otherClick = inBranch
+          ? `selectBranchNode('${other}')`
+          : `jumpToInspector('concepts','${other}')`;
+        const selfName = conceptLabel(conceptById(cid)) || cid;
+        return `<div class="q-rel-line">${dir === 'out' ? escapeHtml(selfName) : escapeHtml(otherName)} <b>${escapeHtml(relName)}</b> ${dir === 'out' ? escapeHtml(otherName) : escapeHtml(selfName)}${inBranch ? ' · trong nhánh' : ''} ${pill('relation', `<code>${escapeHtml(a.relation)}</code>`, `jumpToInspector('relations','${a.relation}')`)} ${pill('concept', `<code>${escapeHtml(other)}</code>`, otherClick)}</div>`;
+      };
+      const outHtml = outgoing.length
+        ? outgoing.map(a => relLine(a, 'out')).join('')
+        : '<span class="q-item-meta">Không có assertion đi ra.</span>';
+      const inHtml = incoming.length
+        ? incoming.slice(0, 24).map(a => relLine(a, 'in')).join('') + (incoming.length > 24 ? `<div class="q-item-meta">… còn ${incoming.length - 24} assertion</div>` : '')
+        : '<span class="q-item-meta">Không có assertion đi vào.</span>';
+      const role = cid === branch.topic_id ? 'Topic' : (branch.ancestors.some(a => a.id === cid) ? 'Lớp cha' : 'Lớp con');
+      return `
+        <section class="q-hero">
+          <div class="q-kicker">Thực thể trong nhánh · ${escapeHtml(role)}</div>
+          <div class="q-hero-id">${escapeHtml(name)}</div>
+          <div class="q-pills">
+            ${pill('concept', `<code>${escapeHtml(cid)}</code>`, `jumpToInspector('concepts','${cid}')`)}
+            ${c && c.domain ? pill('instance', `miền ${escapeHtml(c.domain)}`) : ''}
+            ${parent ? pill('fn', `subclassOf ${escapeHtml(parent)}`, `selectBranchNode('${parent}')`) : pill('fn', 'lớp gốc')}
+          </div>
+          ${desc ? `<div class="q-content">${escapeHtml(desc)}</div>` : ''}
+        </section>
+        <div class="q-section-label">Thuộc tính (${attrs.length})</div>
+        <div class="q-fact">${attrHtml}</div>
+        <div class="q-section-label">Operation (${ops.length})</div>
+        <div class="q-fact">${opHtml}</div>
+        ${invHtml ? `<div class="q-section-label">Invariant</div><div class="q-fact">${invHtml}</div>` : ''}
+        <div class="q-section-label">Quan hệ đi ra (${outgoing.length})</div>
+        <div class="q-fact">${outHtml}</div>
+        <div class="q-section-label">Quan hệ đi vào (${incoming.length})</div>
+        <div class="q-fact">${inHtml}</div>`;
+    }
+
+    function renderBranchDetail(branch) {
+      if (!branch) {
+        return '<div class="q-empty">Chọn một topic rồi truy hồi để xem nhánh cây con.</div>';
+      }
+      const nodeId = (selectedBranchNodeId && branch.branch_ids.includes(selectedBranchNodeId))
+        ? selectedBranchNodeId
+        : branch.topic_id;
+      const internal = (KB_DATA.assertions || []).filter(a =>
+        branch.branch_ids.includes(a.source) && branch.branch_ids.includes(a.target)
+        && conceptById(a.source) && conceptById(a.target)
+      );
+      const internalHtml = internal.length
+        ? internal.map(a => {
+            const rel = relationById(a.relation);
+            const relName = (rel && rel.name) || a.relation;
+            const src = conceptLabel(conceptById(a.source)) || a.source;
+            const tgt = conceptLabel(conceptById(a.target)) || a.target;
+            return `<div class="q-rel-line">${escapeHtml(src)} <b>${escapeHtml(relName)}</b> ${escapeHtml(tgt)}</div>`;
+          }).join('')
+        : '<span class="q-item-meta">Không có assertion nội bộ giữa các thực thể trong nhánh (ngoài cạnh subclassOf trên sơ đồ).</span>';
+      return `
+        <section class="q-hero">
+          <div class="q-kicker">Nhánh ontology đã truy hồi</div>
+          <div class="q-hero-id">${escapeHtml(branch.topic_name)}</div>
+          <div class="q-pills">
+            ${pill('concept', `<code>${escapeHtml(branch.topic_id)}</code>`, `jumpToInspector('concepts','${branch.topic_id}')`)}
+            ${pill('fn', `${branch.ancestors.length} lớp cha`)}
+            ${pill('relation', `${branch.descendants.length} lớp con`)}
+            ${pill('instance', `${branch.branch_ids.length} thực thể`)}
+          </div>
+        </section>
+        <div class="q-section-label">Sơ đồ nhánh (subclassOf) — nhấp node để xem chi tiết</div>
+        ${renderTopicTreeSvg(branch)}
+        ${renderBranchConceptFacts(nodeId, branch)}
+        <div class="q-section-label">Quan hệ nội bộ nhánh (${internal.length})</div>
+        <div class="q-fact">${internalHtml}</div>
+      `;
+    }
+
+    function renderBranchBox(branch, candidateCount, shownCount) {
+      const box = document.getElementById('qBranchBox');
+      if (!box) return;
+      if (!qRetrievalActive) {
+        box.hidden = true;
+        box.innerHTML = '';
+        box.classList.remove('active');
+        return;
+      }
+      const lines = [];
+      if (branch) {
+        lines.push(`<b>Nhánh topic</b> ${escapeHtml(branch.topic_name)} <code>${escapeHtml(branch.topic_id)}</code>`);
+        lines.push(`${branch.branch_ids.length} thực thể · ↑ ${branch.ancestors.length} cha · ↓ ${branch.descendants.length} lớp con`);
+        lines.push(`Ứng viên: ${candidateCount} · ≥ ${Math.round(RETRIEVE_MIN_SCORE * 100)}%: ${shownCount}/${RETRIEVE_LIMIT}`);
+        lines.push('<div class="q-branch-hint">Nhấn để xem sơ đồ nhánh →</div>');
+      } else {
+        lines.push('<b>Không chọn topic</b> — chưa có cây con để vẽ.');
+        lines.push(`Ứng viên sau lọc: ${candidateCount} · trả về: ${shownCount}/${RETRIEVE_LIMIT}`);
+      }
+      box.innerHTML = lines.join('<br>');
+      box.hidden = false;
+      box.classList.toggle('active', qPanelMode === 'branch' && !!branch);
+      box.disabled = !branch;
+    }
+
+    function renderQuestionExplorer(keepSelection) {
+      const listEl = document.getElementById('qList');
+      const detailEl = document.getElementById('qDetail');
+      if (!listEl || !detailEl) return;
+
+      const qAll = collectQuestions();
+      const qSearch = (document.getElementById('qSearchInput')?.value || '').trim().toLowerCase();
+      const fCh = document.getElementById('qFilterChapter')?.value || 'all';
+      const fBl = document.getElementById('qFilterBloom')?.value || 'all';
+      const fTy = document.getElementById('qFilterType')?.value || 'all';
+      const fDf = document.getElementById('qFilterDiff')?.value || 'all';
+      const fTopic = document.getElementById('qFilterTopic')?.value || 'all';
+      const branch = (qRetrievalActive && fTopic !== 'all') ? topicBranchFrom(fTopic) : null;
+
+      const candidates = qAll.filter(q => {
+        if (fCh !== 'all' && q.chapter !== fCh) return false;
+        if (fBl !== 'all' && q.bloom !== fBl) return false;
+        if (fTy !== 'all' && q.type !== fTy) return false;
+        if (fDf !== 'all' && q.diff !== fDf) return false;
+        if (qSearch) {
+          const hay = `${q.qid} ${q.content} ${q.typeLabel} ${q.bloomLabel} ${q.diffLabel} ${(q.concepts || []).join(' ')}`.toLowerCase();
+          if (!hay.includes(qSearch)) return false;
+        }
+        return true;
+      });
+
+      let filtered = candidates;
+      if (qRetrievalActive) {
+        filtered = candidates.map(q => {
+          const scored = scoreQuestionAgainstBranch(q, branch);
+          return Object.assign({}, q, scored);
+        }).sort((a, b) => (b.score - a.score) || a.qid.localeCompare(b.qid));
+        if (branch) {
+          filtered = filtered.filter(q => (q.score || 0) >= RETRIEVE_MIN_SCORE);
+        }
+        filtered = filtered.slice(0, RETRIEVE_LIMIT);
+      }
+
+      renderBranchBox(branch, candidates.length, filtered.length);
+
+      if (qPanelMode === 'branch' && branch) {
+        if (!selectedBranchNodeId || !branch.branch_ids.includes(selectedBranchNodeId)) {
+          selectedBranchNodeId = branch.topic_id;
+        }
+      } else if (!keepSelection || !filtered.some(q => q.qid === selectedQuestionId)) {
+        if (selectedQuestionId && filtered.some(q => q.qid === selectedQuestionId)) {
+          /* keep */
+        } else if (!filtered.some(q => q.qid === selectedQuestionId)) {
+          selectedQuestionId = filtered[0] ? filtered[0].qid : null;
+        }
+      }
+
+      let html = '';
+      if (qRetrievalActive) {
+        if (branch) {
+          const branchActive = qPanelMode === 'branch' ? ' active' : '';
+          html += `<div class="q-group-title">Nhánh ontology</div>`;
+          html += `
+            <div class="q-item${branchActive}" onclick="selectBranchView()">
+              <div class="q-item-top">
+                <div class="q-item-id">${escapeHtml(branch.topic_name)}</div>
+              </div>
+              <div class="q-item-meta">${branch.branch_ids.length} thực thể · ↑ ${branch.ancestors.length} cha · ↓ ${branch.descendants.length} lớp con</div>
+            </div>`;
+        }
+        html += `<div class="q-group-title">Top ${filtered.length} · tương đồng ≥ ${Math.round(RETRIEVE_MIN_SCORE * 100)}%</div>`;
+        filtered.forEach((q, idx) => {
+          const active = (qPanelMode !== 'branch' && q.qid === selectedQuestionId) ? ' active' : '';
+          const pct = Math.round((q.score || 0) * 100);
+          html += `
+            <div class="q-item${active}" onclick="selectQuestion('${q.qid}')">
+              <div class="q-item-top">
+                <div class="q-item-id">${idx + 1}. ${escapeHtml(q.qid)}</div>
+                <span class="q-score">${pct}%</span>
+              </div>
+              <div class="q-item-meta">${escapeHtml(q.bloomLabel)} · ${escapeHtml(q.typeLabel)} · ${escapeHtml(q.diffLabel)}</div>
+            </div>`;
+        });
+        if (!filtered.length) {
+          html += `<div class="q-empty" style="padding:1.1rem 0.5rem;">Không có câu ≥ ${Math.round(RETRIEVE_MIN_SCORE * 100)}% tương đồng.</div>`;
+        }
+      } else {
+        const groups = { C1: [], C2: [], C3: [], other: [] };
+        filtered.forEach(q => {
+          (groups[q.chapter] || groups.other).push(q);
+        });
+        Object.keys(groups).forEach(key => {
+          const arr = groups[key];
+          if (!arr.length) return;
+          const title = Q_CHAPTER[key] || 'Khác';
+          html += `<div class="q-group-title">${escapeHtml(title)} (${arr.length})</div>`;
+          arr.forEach(q => {
+            const active = q.qid === selectedQuestionId ? ' active' : '';
+            html += `
+              <div class="q-item${active}" onclick="selectQuestion('${q.qid}')">
+                <div class="q-item-id">${escapeHtml(q.qid)}</div>
+                <div class="q-item-meta">${escapeHtml(q.bloomLabel)} · ${escapeHtml(q.typeLabel)} · ${escapeHtml(q.diffLabel)}</div>
+              </div>`;
+          });
+        });
+      }
+      if (!html) html = '<div class="q-empty" style="padding:1.5rem 0.5rem;">Không có câu hỏi khớp bộ lọc.</div>';
+      listEl.innerHTML = html;
+
+      if (qPanelMode === 'branch' && branch) {
+        detailEl.innerHTML = renderBranchDetail(branch);
+        requestAnimationFrame(() => {
+          const wrap = document.querySelector('.q-tree-wrap');
+          const node = document.querySelector('.q-tree-node.selected') || document.querySelector('.q-tree-node.topic');
+          if (!wrap || !node) return;
+          const nr = node.getBoundingClientRect();
+          const wr = wrap.getBoundingClientRect();
+          wrap.scrollTop += (nr.top + nr.height / 2) - (wr.top + wr.height / 2);
+          wrap.scrollLeft += (nr.left + nr.width / 2) - (wr.left + wr.width / 2);
+        });
+      } else {
+        const selected = (qRetrievalActive ? filtered : qAll).find(q => q.qid === selectedQuestionId) || qAll.find(q => q.qid === selectedQuestionId);
+        detailEl.innerHTML = selected ? renderQuestionDetail(selected) : '<div class="q-empty">Chọn một câu hỏi bên trái để xem lời giải mong đợi.</div>';
+      }
+    }
+
+    function selectQuestion(qid) {
+      qPanelMode = 'question';
+      selectedQuestionId = qid;
+      renderQuestionExplorer(true);
+    }
+
+    function pill(kind, label, onclick) {
+      const oc = onclick ? ` onclick="${onclick}; event.stopPropagation();"` : '';
+      return `<button class="q-pill ${kind}"${oc}>${label}</button>`;
+    }
+
+    function renderQuestionDetail(q) {
+      const rubrics = assertionsOf(q.inst.id, 'REL_QUESTION_HAS_RUBRICS').map(a => {
+        const c = conceptById(a.target);
+        const w = (a.attributes || []).find(x => x.name === 'weight');
+        return {
+          id: a.target,
+          name: attrVal(c, 'name') || a.target,
+          weight: w ? Number(w.value) : 0
+        };
+      });
+
+      const ea = q.eaId ? instById(q.eaId) : null;
+      const scoring = ea ? assertionsOf(ea.id, 'REL_EXPECTED_ANSWER_HAS_SCORING_RULE') : [];
+      const rules = scoring.map((a, idx) => {
+        const er = instById(a.target);
+        const concepts = assertionsOf(a.target, 'REL_EXPECTED_RULE_REQUIRES_CONCEPT').map(x => x.target);
+        return {
+          idx,
+          id: a.target,
+          inst: er,
+          name: attrVal(er, 'name') || a.target,
+          weight: Number(attrVal(er, 'weight') || 0),
+          miss: attrVal(er, 'missExplanation') || '',
+          wrong: attrVal(er, 'wrongExplanation') || '',
+          domainRuleId: attrVal(er, 'domainRuleId'),
+          functionId: attrVal(er, 'functionId'),
+          concepts
+        };
+      });
+      const weightSum = rules.reduce((s, r) => s + (Number.isFinite(r.weight) ? r.weight : 0), 0);
+      const sumOk = Math.abs(weightSum - 1) < 1e-6;
+
+      let stack = '';
+      rules.forEach((r, i) => {
+        const pct = Math.max(0, r.weight) * 100;
+        const color = WEIGHT_PALETTE[i % WEIGHT_PALETTE.length];
+        stack += `<div class="weight-seg" style="width:${pct}%;background:${color};" title="${escapeHtml(r.name)} ${pct.toFixed(0)}%"></div>`;
+      });
+
+      const rubricHtml = rubrics.length ? `
+        <div class="q-section-label">Rubric đánh giá (evaluatedBy)</div>
+        <div class="rubric-box">
+          ${rubrics.map(r => `
+            <div class="rubric-item">
+              <span><b>${escapeHtml(r.name)}</b><code>${Math.round(r.weight * 100)}%</code></span>
+              <div class="mini-bar"><i style="width:${Math.round(r.weight * 100)}%"></i></div>
+            </div>`).join('')}
+        </div>` : '';
+
+      const ruleCards = rules.map((r, i) => {
+        const color = WEIGHT_PALETTE[i % WEIGHT_PALETTE.length];
+        const domain = r.domainRuleId ? ruleById(r.domainRuleId) : null;
+        const fn = r.functionId ? fnById(r.functionId) : null;
+        const conceptPills = r.concepts.map(cid => {
+          const c = conceptById(cid);
+          const label = conceptLabel(c) || cid;
+          return pill('concept', `<code>${escapeHtml(cid)}</code> ${escapeHtml(label)}`, `jumpToInspector('concepts','${cid}')`);
+        }).join('');
+        return `
+          <div class="flow-rel">hasScoringRule · ${Math.round(r.weight * 100)}%</div>
+          <article class="er-card" style="border-left-color:${color};">
+            <div class="er-top">
+              <div>
+                <div class="er-name">${escapeHtml(r.name)}</div>
+                <div class="er-id">${escapeHtml(r.id)}</div>
+              </div>
+              <div class="er-weight">${Number(r.weight).toFixed(2)}</div>
+            </div>
+            <div class="q-pills">
+              ${conceptPills || '<span class="q-item-meta">Không gắn khái niệm</span>'}
+              ${r.domainRuleId ? pill('rule', `luật ${escapeHtml(r.domainRuleId)}${domain && domain.name ? ' · ' + escapeHtml(domain.name) : ''}`, `jumpToInspector('rules','${r.domainRuleId}')`) : ''}
+              ${r.functionId ? pill('fn', `hàm ${escapeHtml(r.functionId)}${fn && fn.name ? ' · ' + escapeHtml(fn.name) : ''}`, `jumpToInspector('functions','${r.functionId}')`) : ''}
+            </div>
+            <div class="er-explain">
+              <div><b>Thiếu</b>${escapeHtml(r.miss)}</div>
+              <div><b>Sai</b>${escapeHtml(r.wrong)}</div>
+            </div>
+          </article>`;
+      }).join('');
+
+      return `
+        <section class="q-hero">
+          <div class="q-kicker">Câu hỏi</div>
+          <div class="q-hero-id">${escapeHtml(q.qid)}</div>
+          <div class="q-pills">
+            ${pill('instance', `<code>${escapeHtml(q.inst.id)}</code>`, `jumpToInspector('instances','${q.inst.id}')`)}
+            ${q.bloomId ? pill('concept', `Bloom · ${escapeHtml(q.bloomLabel)}`, `jumpToInspector('concepts','${q.bloomId}')`) : ''}
+            ${q.typeId ? pill('concept', `Dạng · ${escapeHtml(q.typeLabel)}`, `jumpToInspector('concepts','${q.typeId}')`) : ''}
+            ${q.diffId ? pill('concept', `Độ khó · ${escapeHtml(q.diffLabel)}`, `jumpToInspector('concepts','${q.diffId}')`) : ''}
+            ${pill('relation', escapeHtml(Q_CHAPTER[q.chapter] || q.chapter))}
+            ${q.score != null && qRetrievalActive ? pill('fn', `tương đồng ${(q.score * 100).toFixed(0)}% · khái niệm ${((q.concept_score || 0) * 100).toFixed(0)}% · văn bản ${((q.text_score || 0) * 100).toFixed(0)}%`) : ''}
+          </div>
+          <div class="q-content">${escapeHtml(q.content)}</div>
+        </section>
+
+        ${rubricHtml}
+
+        <div class="flow-rel">hasExpectedAnswer</div>
+        <section class="ea-card">
+          <div class="weight-head">
+            <div>
+              <div class="q-kicker">Lời giải mong đợi</div>
+              <div class="er-id" style="margin-top:0.2rem;">${ea ? escapeHtml(ea.id) : 'Chưa gắn Expected Answer'}</div>
+            </div>
+            <div class="weight-sum ${sumOk ? 'ok' : 'bad'}">Σ luật = ${weightSum.toFixed(2)}${sumOk ? ' ✓' : ''}</div>
+          </div>
+          <div class="weight-stack">${stack || '<div class="weight-seg" style="width:100%;background:#ddd;"></div>'}</div>
+          ${ea && attrVal(ea, 'description') ? `<div class="ea-desc">${escapeHtml(attrVal(ea, 'description'))}</div>` : ''}
+        </section>
+
+        <div class="q-section-label">Luật chấm (${rules.length})</div>
+        ${ruleCards || '<div class="q-empty" style="padding:1.5rem 0;">Chưa có ExpectedRule.</div>'}
+      `;
     }
 
     // Window focus triggers immediate data check

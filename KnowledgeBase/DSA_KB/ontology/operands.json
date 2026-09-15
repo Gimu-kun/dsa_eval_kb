@@ -489,6 +489,18 @@
             "operandType": "function",
             "variable": "bestCaseRank()",
             "value": "FUN_BEST_RANK"
+        },
+        {
+            "id": "OP_EXPECTED_ANSWER",
+            "operandType": "concept",
+            "variable": "ea",
+            "value": "O_C_EXPECTED_ANSWER"
+        },
+        {
+            "id": "OP_EXPECTED_RULE_WEIGHT_SUM",
+            "operandType": "function",
+            "variable": "expectedRuleWeightSum()",
+            "value": "FUN_EXPECTED_RULE_WEIGHT_SUM"
         }
     ]
 }

@@ -70,6 +70,79 @@
                     "value_type": "str",
                     "constraint": [],
                     "default": "Expected Answer"
+                },
+                {
+                    "name": "description",
+                    "required": false,
+                    "value_type": "str",
+                    "constraint": []
+                },
+                {
+                    "name": "isExpectedRuleValid",
+                    "required": true,
+                    "value_type": "bool",
+                    "constraint": [],
+                    "default": true
+                }
+            ],
+            "invariant": [],
+            "operation": []
+        },
+        {
+            "id": "O_C_EXPECTED_RULE",
+            "domain": "Assessment",
+            "attributes": [
+                {
+                    "name": "name",
+                    "required": true,
+                    "value_type": "str",
+                    "constraint": [],
+                    "default": "Expected Rule"
+                },
+                {
+                    "name": "weight",
+                    "required": true,
+                    "value_type": "float",
+                    "constraint": [
+                        {
+                            "condition_type": "Domain",
+                            "operator": "RANGE",
+                            "operands": [
+                                {
+                                    "operand_type": "float",
+                                    "value": "0"
+                                },
+                                {
+                                    "operand_type": "float",
+                                    "value": "1"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "missExplanation",
+                    "required": true,
+                    "value_type": "str",
+                    "constraint": []
+                },
+                {
+                    "name": "wrongExplanation",
+                    "required": true,
+                    "value_type": "str",
+                    "constraint": []
+                },
+                {
+                    "name": "domainRuleId",
+                    "required": false,
+                    "value_type": "str",
+                    "constraint": []
+                },
+                {
+                    "name": "functionId",
+                    "required": false,
+                    "value_type": "str",
+                    "constraint": []
                 }
             ],
             "invariant": [],
