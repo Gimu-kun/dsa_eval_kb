@@ -1,1092 +1,1811 @@
 {
-    "concepts": [
-        {
-            "id": "O_C_EXAM",
-            "name": "Exam",
-            "domain": "Assessment",
-            "attributes": [
-                {
-                    "name": "title",
-                    "required": true,
-                    "value_type": "str",
-                    "constraint": []
-                },
-                {
-                    "name": "duration",
-                    "required": true,
-                    "value_type": "int",
-                    "constraint": []
-                },
-                {
-                    "name": "weight",
-                    "required": true,
-                    "value_type": "int",
-                    "constraint": []
-                }
-            ],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_QUESTION",
-            "name": "Question",
-            "domain": "Assessment",
-            "attributes": [
-                {
-                    "name": "content",
-                    "required": true,
-                    "value_type": "str",
-                    "constraint": []
-                },
-                {
-                    "name": "isRubricValid",
-                    "required": true,
-                    "value_type": "bool",
-                    "constraint": []
-                }
-            ],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_EXPECTED_ANSWER",
-            "name": "Expected Answer",
-            "domain": "Assessment",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_BLOOM_LEVEL",
-            "name": "BloomLevel",
-            "domain": "Assessment",
-            "attributes": [
-                {
-                    "name": "name",
-                    "required": true,
-                    "value_type": "str",
-                    "constraint": []
-                },
-                {
-                    "name": "weight",
-                    "required": true,
-                    "value_type": "int",
-                    "constraint": []
-                }
-            ],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_BLOOM_LEVEL_R",
-            "name": "Remember",
-            "domain": "Assessment",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_BLOOM_LEVEL_U",
-            "name": "Understand",
-            "domain": "Assessment",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_BLOOM_LEVEL_AP",
-            "name": "Apply",
-            "domain": "Assessment",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_DIFFICULTY",
-            "name": "Difficulty",
-            "domain": "Assessment",
-            "attributes": [
-                {
-                    "name": "name",
-                    "required": true,
-                    "value_type": "str",
-                    "constraint": []
-                },
-                {
-                    "name": "weight",
-                    "required": true,
-                    "value_type": "int",
-                    "constraint": []
-                }
-            ],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_DIFFICULTY_EASY",
-            "name": "Easy",
-            "domain": "Assessment",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_DIFFICULTY_MEDIUM",
-            "name": "Medium",
-            "domain": "Assessment",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_DIFFICULTY_HARD",
-            "name": "Hard",
-            "domain": "Assessment",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_RUBRICS",
-            "name": "Rubrics",
-            "domain": "Assessment",
-            "attributes": [
-                {
-                    "name": "name",
-                    "required": true,
-                    "value_type": "str",
-                    "constraint": []
-                },
-                {
-                    "name": "description",
-                    "required": false,
-                    "value_type": "str",
-                    "constraint": []
-                }
-            ],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_RUBRIC_ACCURACY",
-            "name": "Accuracy",
-            "domain": "Assessment",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_RUBRIC_COMPLETENESS",
-            "name": "Completeness",
-            "domain": "Assessment",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_RUBRIC_LOGICAL_ORDER",
-            "name": "Logical Order",
-            "domain": "Assessment",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_QUESTION_TYPE",
-            "name": "Question Type",
-            "domain": "Assessment",
-            "attributes": [
-                {
-                    "name": "name",
-                    "required": true,
-                    "value_type": "str",
-                    "constraint": []
-                },
-                {
-                    "name": "weight",
-                    "required": true,
-                    "value_type": "int",
-                    "constraint": []
-                },
-                {
-                    "name": "description",
-                    "required": false,
-                    "value_type": "str",
-                    "constraint": []
-                }
-            ],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_QUESTION_TYPE_DESCRIPTIVE",
-            "name": "Descriptive",
-            "domain": "Assessment",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_QUESTION_TYPE_PROCEDURE",
-            "name": "Procedure",
-            "domain": "Assessment",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_QUESTION_TYPE_APPLICATION",
-            "name": "Application",
-            "domain": "Assessment",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_CLOS",
-            "name": "CLOs",
-            "domain": "Assessment",
-            "attributes": [
-                {
-                    "name": "name",
-                    "required": true,
-                    "value_type": "str",
-                    "constraint": []
-                },
-                {
-                    "name": "description",
-                    "required": false,
-                    "value_type": "str",
-                    "constraint": []
-                }
-            ],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_CLOS_1",
-            "name": "CLO1",
-            "domain": "Assessment",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_CLOS_2",
-            "name": "CLO2",
-            "domain": "Assessment",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_CLOS_3",
-            "name": "CLO3",
-            "domain": "Assessment",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_CLOS_4",
-            "name": "CLO4",
-            "domain": "Assessment",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_CLOS_5",
-            "name": "CLO5",
-            "domain": "Assessment",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_CHAPTER",
-            "name": "Chapter",
-            "domain": "DSA",
-            "attributes": [
-                {
-                    "name": "chapterNumber",
-                    "required": true,
-                    "value_type": "int",
-                    "constraint": []
-                },
-                {
-                    "name": "title",
-                    "required": true,
-                    "value_type": "str",
-                    "constraint": []
-                },
-                {
-                    "name": "description",
-                    "required": false,
-                    "value_type": "str",
-                    "constraint": []
-                }
-            ],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_CHAPTER_OVERVIEW",
-            "name": "Overview",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_CHAPTER_SEARCHING_AND_SORTING",
-            "name": "Searching And Sorting",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_CHAPTER_LINKED_LIST",
-            "name": "Linked List",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_PROGRAM",
-            "name": "Program",
-            "domain": "DSA",
-            "attributes": [
-                {
-                    "name": "name",
-                    "required": true,
-                    "value_type": "str",
-                    "constraint": []
-                }
-            ],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_ALGORITHM",
-            "name": "Algorithm",
-            "domain": "DSA",
-            "attributes": [
-                {
-                    "name": "name",
-                    "required": true,
-                    "value_type": "str",
-                    "constraint": []
-                },
-                {
-                    "name": "isValid",
-                    "required": false,
-                    "value_type": "bool",
-                    "constraint": []
-                }
-            ],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_PROBLEM_SOLVING",
-            "name": "Problem solving",
-            "domain": "DSA",
-            "attributes": [
-                {
-                    "name": "name",
-                    "required": true,
-                    "value_type": "str",
-                    "constraint": []
-                }
-            ],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_ALGORITHM_CHARACTERISTICS",
-            "name": "Algorithm characteristic",
-            "domain": "DSA",
-            "attributes": [
-                {
-                    "name": "name",
-                    "required": true,
-                    "value_type": "str",
-                    "constraint": []
-                },
-                {
-                    "name": "isValid",
-                    "required": false,
-                    "value_type": "bool",
-                    "constraint": []
-                }
-            ],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_DEFINITENESS",
-            "name": "Definiteness",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_FINITENESS",
-            "name": "Finiteness",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_CORRECTNESS",
-            "name": "Correctness",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_EFFICIENCY",
-            "name": "Efficiency",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_FEASIBILITY",
-            "name": "Feasibility",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_IO",
-            "name": "IO",
-            "domain": "DSA",
-            "attributes": [
-                {
-                    "name": "name",
-                    "required": true,
-                    "value_type": "str",
-                    "constraint": []
-                }
-            ],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_INPUT",
-            "name": "Input",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_OUTPUT",
-            "name": "Output",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_ALGORITHM_ANALYSIS",
-            "name": "Algorithm Analysis",
-            "domain": "DSA",
-            "attributes": [
-                {
-                    "name": "name",
-                    "required": true,
-                    "value_type": "str",
-                    "constraint": []
-                }
-            ],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_THEORETICAL_ANALYSIS",
-            "name": "Theoretical Analysis",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_EXPERIMENTAL_ANALYSIS",
-            "name": "Experimental Analysis",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_ALGORITHM_DESIGN",
-            "name": "Algorithm Design",
-            "domain": "DSA",
-            "attributes": [
-                {
-                    "name": "name",
-                    "required": true,
-                    "value_type": "str",
-                    "constraint": []
-                }
-            ],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_DIVIDE_AND_CONQUER",
-            "name": "Divide And Conquer",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_DYNAMIC_PROGRAMMING",
-            "name": "Dynamic Programming",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_GREEDY",
-            "name": "Greedy",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_BACKTRACKING",
-            "name": "Back tracking",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_BRUTE_FORCE",
-            "name": "Brute Force",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_RECURSIVE",
-            "name": "Recursive",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_COMPLEXITY",
-            "name": "Complexity",
-            "domain": "DSA",
-            "attributes": [
-                {
-                    "name": "name",
-                    "required": true,
-                    "value_type": "str",
-                    "constraint": []
-                }
-            ],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_TIME_COMPLEXITY",
-            "name": "Time Complexity",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_SPACE_COMPLEXITY",
-            "name": "Space Complexity",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_RESOURCE",
-            "name": "Resource",
-            "domain": "DSA",
-            "attributes": [
-                {
-                    "name": "name",
-                    "required": true,
-                    "value_type": "str",
-                    "constraint": []
-                }
-            ],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_EXECUTION_TIME",
-            "name": "Execution Time",
-            "domain": "DSA",
-            "attributes": [
-                {
-                    "name": "name",
-                    "required": true,
-                    "value_type": "str",
-                    "constraint": []
-                }
-            ],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_MEMORY_USAGE",
-            "name": "Memory Usage",
-            "domain": "DSA",
-            "attributes": [
-                {
-                    "name": "name",
-                    "required": true,
-                    "value_type": "str",
-                    "constraint": []
-                }
-            ],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_BIG_O",
-            "name": "BigO",
-            "domain": "DSA",
-            "attributes": [
-                {
-                    "name": "name",
-                    "required": true,
-                    "value_type": "str",
-                    "constraint": []
-                },
-                {
-                    "name": "notation",
-                    "required": true,
-                    "value_type": "str",
-                    "constraint": []
-                },
-                {
-                    "name": "rank",
-                    "required": false,
-                    "value_type": "int",
-                    "constraint": [
-                        {
-                            "condition_type": "Comparison",
-                            "operator": "GT",
-                            "operands": [
-                                {
-                                    "operand_type": "variable",
-                                    "value": "x"
-                                },
-                                {
-                                    "operand_type": "int",
-                                    "value": "0"
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_CONSTANT_TIME",
-            "name": "Constant Time",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_LOGARITHMIC_TIME",
-            "name": "Logarithmic Time",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_LINEAR_TIME",
-            "name": "Linear Time",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_LINEARITHMIC_TIME",
-            "name": "Linearithmic Time",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_QUADRATIC_TIME",
-            "name": "Quadratic Time",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_EXPONENTIAL_TIME",
-            "name": "Exponential Time",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_FACTORIAL_TIME",
-            "name": "Factorial Time",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_DATA",
-            "name": "Data",
-            "domain": "DSA",
-            "attributes": [
-                {
-                    "name": "name",
-                    "required": true,
-                    "value_type": "str",
-                    "constraint": []
-                }
-            ],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_DATA_STRUCTURE",
-            "name": "Data Structure",
-            "domain": "DSA",
-            "attributes": [
-                {
-                    "name": "name",
-                    "required": true,
-                    "value_type": "str",
-                    "constraint": []
-                }
-            ],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_PRIMITIVE_DATA_STRUCTURE",
-            "name": "Primitive Data Structure",
-            "domain": "DSA",
-            "attributes": [
-                {
-                    "name": "notation",
-                    "required": true,
-                    "value_type": "str",
-                    "constraint": []
-                }
-            ],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_INTEGER",
-            "name": "Integer",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_FLOAT",
-            "name": "Float",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_BOOLEAN",
-            "name": "Boolean",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_CHARACTER",
-            "name": "Character",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_NON_PRIMITIVE_DATA_STRUCTURE",
-            "name": "Non Primitive Data Structure",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_DIRECT_ACCESS_DATA_STRUCTURE",
-            "name": "Direct Access Data Structure",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_ARRAY",
-            "name": "Array",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_1D_ARRAY",
-            "name": "1D Array",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_2D_ARRAY",
-            "name": "2D Array",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_SEQUENTIAL_ACCESS_DATA_STRUCTURE",
-            "name": "Sequential Access Data Structure",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_LINKED_LIST",
-            "name": "Linked List",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_SINGLY_LINKED_LIST",
-            "name": "Singly Linked List",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_DOUBLY_LINKED_LIST",
-            "name": "Doubly Linked List",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_CIRCULAR_LINKED_LIST",
-            "name": "Circular Linked List",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_STACK",
-            "name": "Stack",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_QUEUE",
-            "name": "Queue",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_TREE",
-            "name": "Tree",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_POINTER",
-            "name": "Pointer",
-            "domain": "DSA",
-            "attributes": [
-                {
-                    "name": "name",
-                    "required": true,
-                    "value_type": "str",
-                    "constraint": []
-                }
-            ],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_NODE",
-            "name": "Node",
-            "domain": "DSA",
-            "attributes": [
-                {
-                    "name": "name",
-                    "required": true,
-                    "value_type": "str",
-                    "constraint": []
-                }
-            ],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_SEARCHING_ALGORITHM",
-            "name": "Search Algorithm",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_LINEAR_SEARCH",
-            "name": "Linear Search",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_BINARY_SEARCH",
-            "name": "Binary Search",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_SORTING_ALGORITHM",
-            "name": "Sorting Algorithm",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_COMPARISON_BASED_SORTING_ALGORITHM",
-            "name": "Comparison Base Sorting Algorithm",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_SELECTION_SORT",
-            "name": "Selection Sort",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_BUBBLE_SORT",
-            "name": "Bubble Sort",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_INSERTION_SORT",
-            "name": "Insertion Sort",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_QUICK_SORT",
-            "name": "Quick Sort",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_MERGE_SORT",
-            "name": "Merge Sort",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_HEAP_SORT",
-            "name": "Heap Sort",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_NON_COMPARISON_BASED_SORTING_ALGORITHM",
-            "name": "Non Comparison Base Sorting Algorithm",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_BUCKET_SORT",
-            "name": "Bucket Sort",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
-        },
-        {
-            "id": "O_C_RADIX_SORT",
-            "name": "Radix Sort",
-            "domain": "DSA",
-            "attributes": [],
-            "invariant": [],
-            "operation": []
+  "concepts": [
+    {
+      "id": "O_C_EXAM",
+      "name": "Exam",
+      "domain": "Assessment",
+      "attributes": [
+        {
+          "name": "title",
+          "required": true,
+          "value_type": "str",
+          "constraint": []
+        },
+        {
+          "name": "duration",
+          "required": true,
+          "value_type": "int",
+          "constraint": []
+        },
+        {
+          "name": "weight",
+          "required": true,
+          "value_type": "int",
+          "constraint": []
         }
-    ]
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_QUESTION",
+      "name": "Question",
+      "domain": "Assessment",
+      "attributes": [
+        {
+          "name": "content",
+          "required": true,
+          "value_type": "str",
+          "constraint": []
+        },
+        {
+          "name": "isRubricValid",
+          "required": true,
+          "value_type": "bool",
+          "constraint": []
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_EXPECTED_ANSWER",
+      "name": "Expected Answer",
+      "domain": "Assessment",
+      "attributes": [],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_BLOOM_LEVEL",
+      "name": "BloomLevel",
+      "domain": "Assessment",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": []
+        },
+        {
+          "name": "weight",
+          "required": true,
+          "value_type": "int",
+          "constraint": []
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_BLOOM_LEVEL_R",
+      "name": "Remember",
+      "domain": "Assessment",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "remember"
+        },
+        {
+          "name": "weight",
+          "required": true,
+          "value_type": "int",
+          "constraint": [],
+          "default": 1
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_BLOOM_LEVEL_U",
+      "name": "Understand",
+      "domain": "Assessment",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "understand"
+        },
+        {
+          "name": "weight",
+          "required": true,
+          "value_type": "int",
+          "constraint": [],
+          "default": 2
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_BLOOM_LEVEL_AP",
+      "name": "Apply",
+      "domain": "Assessment",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "apply"
+        },
+        {
+          "name": "weight",
+          "required": true,
+          "value_type": "int",
+          "constraint": [],
+          "default": 3
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_DIFFICULTY",
+      "name": "Difficulty",
+      "domain": "Assessment",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": []
+        },
+        {
+          "name": "weight",
+          "required": true,
+          "value_type": "int",
+          "constraint": []
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_DIFFICULTY_EASY",
+      "name": "Easy",
+      "domain": "Assessment",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "easy"
+        },
+        {
+          "name": "weight",
+          "required": true,
+          "value_type": "int",
+          "constraint": [],
+          "default": 1
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_DIFFICULTY_MEDIUM",
+      "name": "Medium",
+      "domain": "Assessment",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "medium"
+        },
+        {
+          "name": "weight",
+          "required": true,
+          "value_type": "int",
+          "constraint": [],
+          "default": 2
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_DIFFICULTY_HARD",
+      "name": "Hard",
+      "domain": "Assessment",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "hard"
+        },
+        {
+          "name": "weight",
+          "required": true,
+          "value_type": "int",
+          "constraint": [],
+          "default": 3
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_RUBRICS",
+      "name": "Rubrics",
+      "domain": "Assessment",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": []
+        },
+        {
+          "name": "description",
+          "required": false,
+          "value_type": "str",
+          "constraint": []
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_RUBRIC_ACCURACY",
+      "name": "Accuracy",
+      "domain": "Assessment",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "accuracy"
+        },
+        {
+          "name": "description",
+          "required": false,
+          "value_type": "str",
+          "constraint": [],
+          "default": "Đánh giá về độ chính xác của câu trả lời"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_RUBRIC_COMPLETENESS",
+      "name": "Completeness",
+      "domain": "Assessment",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "completeness"
+        },
+        {
+          "name": "description",
+          "required": false,
+          "value_type": "str",
+          "constraint": [],
+          "default": "Đánh giá về mức độ đầy đủ của câu trả lời"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_RUBRIC_LOGICAL_ORDER",
+      "name": "Logical Order",
+      "domain": "Assessment",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "logical order"
+        },
+        {
+          "name": "description",
+          "required": false,
+          "value_type": "str",
+          "constraint": [],
+          "default": "Đánh giá về tính hợp lý và thứ tự logic của câu trả lời"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_QUESTION_TYPE",
+      "name": "Question Type",
+      "domain": "Assessment",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": []
+        },
+        {
+          "name": "weight",
+          "required": true,
+          "value_type": "int",
+          "constraint": []
+        },
+        {
+          "name": "description",
+          "required": false,
+          "value_type": "str",
+          "constraint": []
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_QUESTION_TYPE_DESCRIPTIVE",
+      "name": "Descriptive",
+      "domain": "Assessment",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "descriptive"
+        },
+        {
+          "name": "weight",
+          "required": true,
+          "value_type": "int",
+          "constraint": [],
+          "default": 1
+        },
+        {
+          "name": "description",
+          "required": false,
+          "value_type": "str",
+          "constraint": [],
+          "default": "Câu hỏi yêu cầu sinh viên trình bày và giải thích ý tưởng"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_QUESTION_TYPE_PROCEDURE",
+      "name": "Procedure",
+      "domain": "Assessment",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "procedure"
+        },
+        {
+          "name": "weight",
+          "required": true,
+          "value_type": "int",
+          "constraint": [],
+          "default": 2
+        },
+        {
+          "name": "description",
+          "required": false,
+          "value_type": "str",
+          "constraint": [],
+          "default": "Câu hỏi thủ tục yêu cầu sinh viên trình bày các bước của thuật toán"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_QUESTION_TYPE_APPLICATION",
+      "name": "Application",
+      "domain": "Assessment",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "application"
+        },
+        {
+          "name": "weight",
+          "required": true,
+          "value_type": "int",
+          "constraint": [],
+          "default": 3
+        },
+        {
+          "name": "description",
+          "required": false,
+          "value_type": "str",
+          "constraint": [],
+          "default": "Câu hỏi yêu cầu sinh viên trình bày ý tưởng thuật giải bằng mã giả"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_CLOS",
+      "name": "CLOs",
+      "domain": "Assessment",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": []
+        },
+        {
+          "name": "description",
+          "required": false,
+          "value_type": "str",
+          "constraint": []
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_CLOS_1",
+      "name": "CLO1",
+      "domain": "Assessment",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "CLO1"
+        },
+        {
+          "name": "description",
+          "required": false,
+          "value_type": "str",
+          "constraint": [],
+          "default": "Hiểu được các khái niệm cơ bản về thuật toán, độ phức tạp và phương pháp biểu diễn thuật toán"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_CLOS_2",
+      "name": "CLO2",
+      "domain": "Assessment",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "CLO2"
+        },
+        {
+          "name": "description",
+          "required": false,
+          "value_type": "str",
+          "constraint": [],
+          "default": "Phân tích bài toán tìm kiếm, xác định ràng buộc và đánh giá các giải pháp thuật toán phù hợp"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_CLOS_3",
+      "name": "CLO3",
+      "domain": "Assessment",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "CLO3"
+        },
+        {
+          "name": "description",
+          "required": false,
+          "value_type": "str",
+          "constraint": [],
+          "default": "Phân tích bài toán sắp xếp, xác định ràng buộc và đánh giá giải pháp sắp xếp hiệu quả"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_CLOS_4",
+      "name": "CLO4",
+      "domain": "Assessment",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "CLO4"
+        },
+        {
+          "name": "description",
+          "required": false,
+          "value_type": "str",
+          "constraint": [],
+          "default": "Mô tả và phân tích các cấu trúc dữ liệu cơ bản"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_CLOS_5",
+      "name": "CLO5",
+      "domain": "Assessment",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "CLO5"
+        },
+        {
+          "name": "description",
+          "required": false,
+          "value_type": "str",
+          "constraint": [],
+          "default": "Thiết kế và mô tả giải pháp sử dụng cấu trúc dữ liệu và thuật toán để giải quyết các bài toán đơn giản"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_CHAPTER",
+      "name": "Chapter",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "chapterNumber",
+          "required": true,
+          "value_type": "int",
+          "constraint": []
+        },
+        {
+          "name": "title",
+          "required": true,
+          "value_type": "str",
+          "constraint": []
+        },
+        {
+          "name": "description",
+          "required": false,
+          "value_type": "str",
+          "constraint": []
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_CHAPTER_OVERVIEW",
+      "name": "Overview",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "chapterNumber",
+          "required": true,
+          "value_type": "int",
+          "constraint": [],
+          "default": 1
+        },
+        {
+          "name": "title",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "overview"
+        },
+        {
+          "name": "description",
+          "required": false,
+          "value_type": "str",
+          "constraint": [],
+          "default": "Giới thiệu về môn học, mục tiêu học tập, phương pháp học tập và các cấu trúc dữ liệu, giải thuật cơ bản."
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_CHAPTER_SEARCHING_AND_SORTING",
+      "name": "Searching And Sorting",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "chapterNumber",
+          "required": true,
+          "value_type": "int",
+          "constraint": [],
+          "default": 2
+        },
+        {
+          "name": "title",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "searching and sorting"
+        },
+        {
+          "name": "description",
+          "required": false,
+          "value_type": "str",
+          "constraint": [],
+          "default": "Giới thiệu về các thuật toán tìm kiếm và sắp xếp. Các thuật toán tìm kiếm cơ bản được giới thiệu bao gồm tìm kiếm tuyến tính và tìm kiếm nhị phân. Các thuật toán sắp xếp cơ bản được giới thiệu bao gồm sắp xếp nổi bọt, sắp xếp chọn và sắp xếp chèn. Ngoài ra, chương này còn giới thiệu về độ phức tạp của các thuật toán tìm kiếm và sắp xếp."
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_CHAPTER_LINKED_LIST",
+      "name": "Linked List",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "chapterNumber",
+          "required": true,
+          "value_type": "int",
+          "constraint": [],
+          "default": 3
+        },
+        {
+          "name": "title",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "link list"
+        },
+        {
+          "name": "description",
+          "required": false,
+          "value_type": "str",
+          "constraint": [],
+          "default": "Giới thiệu về danh sách liên kết, một cấu trúc dữ liệu cho phép lưu trữ và thao tác với dữ liệu động. Sinh viên sẽ được tìm hiểu về khái niệm node, con trỏ và các loại danh sách liên kết khác nhau, bao gồm danh sách liên kết đơn, danh sách liên kết đôi và danh sách liên kết vòng. Chương này bao gồm các thao tác chèn, xóa và duyệt danh sách, cung cấp nền tảng vững chắc cho việc hiểu các cấu trúc dữ liệu phức tạp hơn."
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_PROGRAM",
+      "name": "Program",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "program"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_ALGORITHM",
+      "name": "Algorithm",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "algorithm"
+        },
+        {
+          "name": "isValid",
+          "required": false,
+          "value_type": "bool",
+          "constraint": [],
+          "default": false
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_PROBLEM_SOLVING",
+      "name": "Problem solving",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "problem solving"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_ALGORITHM_CHARACTERISTICS",
+      "name": "Algorithm characteristic",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": []
+        },
+        {
+          "name": "isValid",
+          "required": false,
+          "value_type": "bool",
+          "constraint": []
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_DEFINITENESS",
+      "name": "Definiteness",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "definiteness"
+        },
+        {
+          "name": "isValid",
+          "required": false,
+          "value_type": "bool",
+          "constraint": [],
+          "default": false
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_FINITENESS",
+      "name": "Finiteness",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "finiteness"
+        },
+        {
+          "name": "isValid",
+          "required": false,
+          "value_type": "bool",
+          "constraint": [],
+          "default": false
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_CORRECTNESS",
+      "name": "Correctness",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "correctness"
+        },
+        {
+          "name": "isValid",
+          "required": false,
+          "value_type": "bool",
+          "constraint": [],
+          "default": false
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_EFFICIENCY",
+      "name": "Efficiency",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "efficiency"
+        },
+        {
+          "name": "isValid",
+          "required": false,
+          "value_type": "bool",
+          "constraint": [],
+          "default": false
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_FEASIBILITY",
+      "name": "Feasibility",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "feasibility"
+        },
+        {
+          "name": "isValid",
+          "required": false,
+          "value_type": "bool",
+          "constraint": [],
+          "default": false
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_IO",
+      "name": "IO",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": []
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_INPUT",
+      "name": "Input",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "input"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_OUTPUT",
+      "name": "Output",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "output"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_ALGORITHM_ANALYSIS",
+      "name": "Algorithm Analysis",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "algorithm analysis"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_THEORETICAL_ANALYSIS",
+      "name": "Theoretical Analysis",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "theoretical analysis"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_EXPERIMENTAL_ANALYSIS",
+      "name": "Experimental Analysis",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "experimental analysis"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_ALGORITHM_DESIGN",
+      "name": "Algorithm Design",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "algorithm design"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_DIVIDE_AND_CONQUER",
+      "name": "Divide And Conquer",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "divide and conquer"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_DYNAMIC_PROGRAMMING",
+      "name": "Dynamic Programming",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "dynamic programming"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_GREEDY",
+      "name": "Greedy",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "greedy"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_BACKTRACKING",
+      "name": "Back tracking",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "backtracking"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_BRUTE_FORCE",
+      "name": "Brute Force",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "brute force"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_RECURSIVE",
+      "name": "Recursive",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "recursive"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_COMPLEXITY",
+      "name": "Complexity",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "complexity"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_TIME_COMPLEXITY",
+      "name": "Time Complexity",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "time complexity"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_SPACE_COMPLEXITY",
+      "name": "Space Complexity",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "space complexity"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_RESOURCE",
+      "name": "Resource",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "resource"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_EXECUTION_TIME",
+      "name": "Execution Time",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "execution time"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_MEMORY_USAGE",
+      "name": "Memory Usage",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "memory usage"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_BIG_O",
+      "name": "BigO",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "BigO"
+        },
+        {
+          "name": "notation",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "O"
+        },
+        {
+          "name": "rank",
+          "required": false,
+          "value_type": "int",
+          "constraint": [
+            {
+              "condition_type": "Comparison",
+              "operator": "GT",
+              "operands": [
+                {
+                  "operand_type": "variable",
+                  "value": "x"
+                },
+                {
+                  "operand_type": "int",
+                  "value": "0"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_CONSTANT_TIME",
+      "name": "Constant Time",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "constant time"
+        },
+        {
+          "name": "notation",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "O(1)"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_LOGARITHMIC_TIME",
+      "name": "Logarithmic Time",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "logarithmic time"
+        },
+        {
+          "name": "notation",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "O(logn)"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_LINEAR_TIME",
+      "name": "Linear Time",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "linear time"
+        },
+        {
+          "name": "notation",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "O(n)"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_LINEARITHMIC_TIME",
+      "name": "Linearithmic Time",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "linearithmic time"
+        },
+        {
+          "name": "notation",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "O(nlogn)"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_QUADRATIC_TIME",
+      "name": "Quadratic Time",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "quadratic time"
+        },
+        {
+          "name": "notation",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "O(n^2)"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_EXPONENTIAL_TIME",
+      "name": "Exponential Time",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "exponential time"
+        },
+        {
+          "name": "notation",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "O(2^n)"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_FACTORIAL_TIME",
+      "name": "Factorial Time",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "factorial time"
+        },
+        {
+          "name": "notation",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "O(n!)"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_DATA",
+      "name": "Data",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "data"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_DATA_STRUCTURE",
+      "name": "Data Structure",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": []
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_PRIMITIVE_DATA_STRUCTURE",
+      "name": "Primitive Data Structure",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "notation",
+          "required": true,
+          "value_type": "str",
+          "constraint": []
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_INTEGER",
+      "name": "Integer",
+      "domain": "DSA",
+      "attributes": [],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_FLOAT",
+      "name": "Float",
+      "domain": "DSA",
+      "attributes": [],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_BOOLEAN",
+      "name": "Boolean",
+      "domain": "DSA",
+      "attributes": [],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_CHARACTER",
+      "name": "Character",
+      "domain": "DSA",
+      "attributes": [],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_NON_PRIMITIVE_DATA_STRUCTURE",
+      "name": "Non Primitive Data Structure",
+      "domain": "DSA",
+      "attributes": [],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_DIRECT_ACCESS_DATA_STRUCTURE",
+      "name": "Direct Access Data Structure",
+      "domain": "DSA",
+      "attributes": [],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_ARRAY",
+      "name": "Array",
+      "domain": "DSA",
+      "attributes": [],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_1D_ARRAY",
+      "name": "1D Array",
+      "domain": "DSA",
+      "attributes": [],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_2D_ARRAY",
+      "name": "2D Array",
+      "domain": "DSA",
+      "attributes": [],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_SEQUENTIAL_ACCESS_DATA_STRUCTURE",
+      "name": "Sequential Access Data Structure",
+      "domain": "DSA",
+      "attributes": [],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_LINKED_LIST",
+      "name": "Linked List",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "linked list"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_SINGLY_LINKED_LIST",
+      "name": "Singly Linked List",
+      "domain": "DSA",
+      "attributes": [],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_DOUBLY_LINKED_LIST",
+      "name": "Doubly Linked List",
+      "domain": "DSA",
+      "attributes": [],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_CIRCULAR_LINKED_LIST",
+      "name": "Circular Linked List",
+      "domain": "DSA",
+      "attributes": [],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_STACK",
+      "name": "Stack",
+      "domain": "DSA",
+      "attributes": [],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_QUEUE",
+      "name": "Queue",
+      "domain": "DSA",
+      "attributes": [],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_TREE",
+      "name": "Tree",
+      "domain": "DSA",
+      "attributes": [],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_POINTER",
+      "name": "Pointer",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": []
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_NODE",
+      "name": "Node",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": []
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_SEARCHING_ALGORITHM",
+      "name": "Search Algorithm",
+      "domain": "DSA",
+      "attributes": [],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_LINEAR_SEARCH",
+      "name": "Linear Search",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "linear search"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_BINARY_SEARCH",
+      "name": "Binary Search",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "binary search"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_SORTING_ALGORITHM",
+      "name": "Sorting Algorithm",
+      "domain": "DSA",
+      "attributes": [],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_COMPARISON_BASED_SORTING_ALGORITHM",
+      "name": "Comparison Base Sorting Algorithm",
+      "domain": "DSA",
+      "attributes": [],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_SELECTION_SORT",
+      "name": "Selection Sort",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "selection sort"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_BUBBLE_SORT",
+      "name": "Bubble Sort",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "bubble sort"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_INSERTION_SORT",
+      "name": "Insertion Sort",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "insertion sort"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_QUICK_SORT",
+      "name": "Quick Sort",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "quick sort"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_MERGE_SORT",
+      "name": "Merge Sort",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "merge sort"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_HEAP_SORT",
+      "name": "Heap Sort",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "heap sort"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_NON_COMPARISON_BASED_SORTING_ALGORITHM",
+      "name": "Non Comparison Base Sorting Algorithm",
+      "domain": "DSA",
+      "attributes": [],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_BUCKET_SORT",
+      "name": "Bucket Sort",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "bucket sort"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    },
+    {
+      "id": "O_C_RADIX_SORT",
+      "name": "Radix Sort",
+      "domain": "DSA",
+      "attributes": [
+        {
+          "name": "name",
+          "required": true,
+          "value_type": "str",
+          "constraint": [],
+          "default": "radix sort"
+        }
+      ],
+      "invariant": [],
+      "operation": []
+    }
+  ]
 }

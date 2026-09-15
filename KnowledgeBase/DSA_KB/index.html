@@ -2062,11 +2062,15 @@
           const reqBadge = attr.required 
             ? `<span style="font-size: 0.72rem; color: #ef4444; font-weight: 700; margin-left: 0.4rem;">*Bắt buộc</span>` 
             : `<span style="font-size: 0.72rem; color: var(--text-muted); margin-left: 0.4rem;">(Tuỳ chọn)</span>`;
+          const defaultStr = (attr.default !== undefined && attr.default !== null)
+            ? ` <span style="font-size: 0.78rem; color: var(--text-sub);">default: <code>${typeof attr.default === 'string' ? attr.default : JSON.stringify(attr.default)}</code></span>`
+            : '';
           return `
             <div class="attr-row">
               <span class="attr-name">${attr.name || 'attr'}${reqBadge}</span>
               <div class="attr-value">
                 <span class="attr-type-pill">${attr.value_type || 'any'}</span>
+                ${defaultStr}
                 ${constraintStr}
               </div>
             </div>
@@ -2719,7 +2723,10 @@
           html += '<div style="margin-top: 0.35rem; font-weight: 700; font-size: 0.84rem; color: var(--text-sub);">Thuộc tính định nghĩa:</div>';
           html += '<div class="attributes-box">';
           data.attributes.forEach(attr => {
-            html += `<div class="attr-row"><span class="attr-name">${attr.name}</span><span class="attr-type-pill">${attr.value_type}</span></div>`;
+            const defPart = (attr.default !== undefined && attr.default !== null)
+              ? ` <span style="font-size: 0.78rem; color: var(--text-sub);">= ${typeof attr.default === 'string' ? attr.default : JSON.stringify(attr.default)}</span>`
+              : '';
+            html += `<div class="attr-row"><span class="attr-name">${attr.name}</span><span class="attr-type-pill">${attr.value_type}</span>${defPart}</div>`;
           });
           html += '</div>';
         }

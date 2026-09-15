@@ -128,6 +128,23 @@ class KnowledgeValidator:
                     self.errors.append(f"[Concept] Khái niệm '{c.id}' có thuộc tính không có tên 'name'")
                 if not isinstance(attr.value_type, ValueType):
                     self.errors.append(f"[Concept] Khái niệm '{c.id}' thuộc tính '{attr.name}' có kiểu dữ liệu không hợp lệ: {attr.value_type}")
+                if attr.default is not None:
+                    default_val = AttributeValue(name=attr.name, value=attr.default)
+                    if not self.validate_type(default_val, attr.value_type):
+                        self.errors.append(
+                            f"[Concept] Khái niệm '{c.id}' thuộc tính '{attr.name}' có default "
+                            f"sai kiểu. Kỳ vọng {attr.value_type.value}, nhận được '{attr.default}'"
+                        )
+                    else:
+                        attr.default = default_val.value
+                    if attr.constraint:
+                        constraints = attr.constraint if isinstance(attr.constraint, list) else [attr.constraint]
+                        for cond in constraints:
+                            if not self.evaluate_condition(attr.default, cond):
+                                self.errors.append(
+                                    f"[Concept] Khái niệm '{c.id}' thuộc tính '{attr.name}' default "
+                                    f"vi phạm ràng buộc '{cond.operator}' với giá trị '{attr.default}'"
+                                )
 
     def validate_hierarchy(self):
         """Kiểm tra tính hợp lệ của quan hệ kế thừa trong file hierarchy.json / hierarchy.json."""
@@ -154,6 +171,24 @@ class KnowledgeValidator:
                     attrs[attr.name] = attr
             current_id = concept.subclass_of
         return attrs
+
+    def has_effective_value(self, attr_def: AttributeDefinition, actual_attrs: Dict[str, AttributeValue]) -> bool:
+        """Required is satisfied by an instance value or by a class-side default after merge."""
+        if attr_def.name in actual_attrs and actual_attrs[attr_def.name].value not in (None, ""):
+            return True
+        return attr_def.default not in (None, "")
+
+    def merge_instance_attributes(self, instance) -> Dict[str, AttributeValue]:
+        """Merge concept defaults with instance overrides (instance wins)."""
+        expected = self.get_all_attributes_for_concept(instance.instanceOf)
+        merged: Dict[str, AttributeValue] = {}
+        for name, attr_def in expected.items():
+            if attr_def.default not in (None,):
+                merged[name] = AttributeValue(name=name, value=attr_def.default)
+        for attr_val in instance.attributes:
+            if attr_val.name:
+                merged[attr_val.name] = attr_val
+        return merged
 
     def is_subclass_or_self(self, concept_id: str, target_id: str) -> bool:
         """Kiểm tra xem concept_id có phải là subclass của target_id không (có chống lặp vô hạn)."""
@@ -280,16 +315,15 @@ class KnowledgeValidator:
             expected_attrs = self.get_all_attributes_for_concept(instance.instanceOf)
             actual_attrs = {a.name: a for a in instance.attributes if a.name}
             
-            # Kiểm tra thuộc tính bắt buộc (required: True)
+            # Kiểm tra thuộc tính bắt buộc (required: True) — thỏa nếu có trên Instance hoặc default lớp
             for attr_name, attr_def in expected_attrs.items():
-                if attr_def.required:
-                    if attr_name not in actual_attrs or actual_attrs[attr_name].value in (None, ""):
-                        self.errors.append(
-                            f"[Instance Thiếu Thuộc Tính Bắt Buộc] Đối tượng '{instance.id}' thiếu giá trị cho thuộc tính bắt buộc '{attr_name}' "
-                            f"(định nghĩa bởi Khái niệm '{instance.instanceOf}')"
-                        )
+                if attr_def.required and not self.has_effective_value(attr_def, actual_attrs):
+                    self.errors.append(
+                        f"[Instance Thiếu Thuộc Tính Bắt Buộc] Đối tượng '{instance.id}' thiếu giá trị cho thuộc tính bắt buộc '{attr_name}' "
+                        f"(định nghĩa bởi Khái niệm '{instance.instanceOf}', kể cả sau khi merge default)"
+                    )
                     
-            # Kiểm tra kiểu dữ liệu và ràng buộc của các giá trị thực tế
+            # Kiểm tra kiểu dữ liệu và ràng buộc của các giá trị thực tế (override) và giá trị merge
             for attr_name, attr_val in actual_attrs.items():
                 if attr_name not in expected_attrs:
                     self.warnings.append(
@@ -313,6 +347,15 @@ class KnowledgeValidator:
                                 f"[Instance Vi Phạm Ràng Buộc] Đối tượng '{instance.id}' thuộc tính '{attr_name}' "
                                 f"vi phạm ràng buộc '{c.operator}' với giá trị '{attr_val.value}'"
                             )
+
+            # Delta-only hygiene: warn when Instance repeats a value identical to class default
+            for attr_name, attr_val in actual_attrs.items():
+                attr_def = expected_attrs.get(attr_name)
+                if attr_def is not None and attr_def.default not in (None,) and attr_val.value == attr_def.default:
+                    self.warnings.append(
+                        f"[Instance Trùng Default] Đối tượng '{instance.id}' thuộc tính '{attr_name}' "
+                        f"trùng default của lớp '{instance.instanceOf}' — nên bỏ khỏi Instance (chỉ giữ delta)"
+                    )
 
     # =========================================================================
     # 4. KIỂM TRA QUAN HỆ & PHÁN ĐOÁN (RELATIONS & ASSERTIONS VALIDATION)

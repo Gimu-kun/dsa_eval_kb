@@ -12,6 +12,7 @@ class AttributeDefinition:
     value_type: ValueType
     required: bool
     constraint: list[Condition] = field(default_factory=list)
+    default: int | bool | str | float | None = None
 
 @dataclass
 class AttributeValue:

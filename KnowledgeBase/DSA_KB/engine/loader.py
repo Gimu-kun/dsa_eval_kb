@@ -79,7 +79,8 @@ def parse_attribute_definition(attr_data: dict) -> AttributeDefinition:
         name=attr_data.get("name"),
         value_type=val_type,
         required=bool(attr_data.get("required", False)),
-        constraint=constraints
+        constraint=constraints,
+        default=attr_data.get("default"),
     )
 
 def parse_attribute_value(attr_data: dict) -> AttributeValue:
