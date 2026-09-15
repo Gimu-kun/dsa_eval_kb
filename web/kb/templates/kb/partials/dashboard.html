@@ -1,0 +1,31 @@
+<!-- VIEW 4: DASHBOARD + T-BOX OVERVIEW -->
+  <div id="dashboard-view" class="view-container active">
+    <div class="dash-head">
+      <div>
+        <h2>Tổng quan tri thức</h2>
+        <p>Thống kê toàn bộ dữ liệu đang nạp, và sơ đồ T-Box (không gồm instance câu hỏi / lời giải mong đợi).</p>
+      </div>
+    </div>
+    <div class="dash-kpis" id="dashKpis"></div>
+    <div class="dash-charts" id="dashCharts"></div>
+    <div class="dash-card">
+      <h3>Sơ đồ T-Box · khái niệm và quan hệ gốc</h3>
+      <div class="dash-cap">Cây subclassOf của thực thể tri thức. Quan hệ gốc là định nghĩa REL_* giữa các khái niệm, không gồm I_Q_ / I_EA_ / I_ER_.</div>
+      <div class="dash-tree-toolbar">
+        <button type="button" class="dash-seg active" id="dashFilterDsa" onclick="setOntoFilter('dsa')">Tri thức DSA</button>
+        <button type="button" class="dash-seg" id="dashFilterAssess" onclick="setOntoFilter('assessment')">Mô hình đánh giá</button>
+        <button type="button" class="dash-seg" id="dashFilterAll" onclick="setOntoFilter('all')">Toàn bộ T-Box</button>
+        <input id="dashTreeSearch" type="text" placeholder="Tìm khái niệm, ID…" oninput="renderOntoTree()">
+        <button type="button" onclick="ontoExpandAll(true)">Mở hết</button>
+        <button type="button" onclick="ontoExpandAll(false)">Thu gọn</button>
+      </div>
+      <div id="dashSchemaSvg"></div>
+      <div class="dash-split">
+        <div class="onto-scroll" id="dashTree"></div>
+        <div class="onto-scroll" id="dashSide">
+          <div id="dashNodeDetail"></div>
+          <div id="dashRelList"></div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,94 @@
+<!-- VIEW 1: DATA INSPECTOR (LIGHT THEME, 1 COLUMN FULL WIDTH) -->
+  <div id="inspector-view" class="view-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-title">Tập tin ontology</div>
+      </div>
+      <ul class="dataset-list">
+        <li class="dataset-item active" onclick="selectDataset('concepts')">
+          <span>concepts.json</span>
+          <span class="dataset-badge" id="badge-concepts">0</span>
+        </li>
+        <li class="dataset-item" onclick="selectDataset('hierarchy')">
+          <span>hierarchy.json</span>
+          <span class="dataset-badge" id="badge-hierarchy">0</span>
+        </li>
+        <li class="dataset-item" onclick="selectDataset('instances')">
+          <span>instances.json</span>
+          <span class="dataset-badge" id="badge-instances">0</span>
+        </li>
+        <li class="dataset-item" onclick="selectDataset('relations')">
+          <span>relations.json</span>
+          <span class="dataset-badge" id="badge-relations">0</span>
+        </li>
+        <li class="dataset-item" onclick="selectDataset('assertions')">
+          <span>assertions.json</span>
+          <span class="dataset-badge" id="badge-assertions">0</span>
+        </li>
+        <li class="dataset-item" onclick="selectDataset('rules')">
+          <span>rules.json</span>
+          <span class="dataset-badge" id="badge-rules">0</span>
+        </li>
+        <li class="dataset-item" onclick="selectDataset('operands')">
+          <span>operands.json</span>
+          <span class="dataset-badge" id="badge-operands">0</span>
+        </li>
+        <li class="dataset-item" onclick="selectDataset('functions')">
+          <span>functions.json</span>
+          <span class="dataset-badge" id="badge-functions">0</span>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Main Inspector Area -->
+    <main class="main-content">
+      <!-- Search & Dynamic Filters Toolbar -->
+      <div class="filter-bar">
+        <!-- Row 1: Search -->
+        <div class="filter-row-primary">
+          <div class="search-box">
+            <span style="font-size: var(--fs-sm); color: var(--text-muted); font-weight: 600;">Tìm</span>
+            <input type="text" id="searchInput" placeholder="ID, tên, thuộc tính, mô tả…" oninput="handleSearch()">
+            <button class="btn" id="clearSearchBtn" style="display: none; padding: 0.2rem 0.5rem; font-size: var(--fs-xs);" onclick="clearSearch()">✕</button>
+          </div>
+
+          <div class="toolbar-actions" style="display: flex; gap: 0.5rem;">
+            <button class="btn btn-primary" onclick="switchView('graph')">Mở đồ thị 3D</button>
+          </div>
+        </div>
+
+        <!-- Row 2: Secondary Dynamic Filters -->
+        <div class="filter-row-secondary">
+          <div class="filter-group" id="filterCategoryGroup">
+            <span>Bộ lọc:</span>
+            <select class="filter-select" id="filterSelect" onchange="applyFilters()">
+              <option value="all">Tất cả mục</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <span>Sắp xếp:</span>
+            <select class="filter-select" id="sortSelect" onchange="applyFilters()">
+              <option value="default">Mặc định</option>
+              <option value="asc">Mã ID (A → Z)</option>
+              <option value="desc">Mã ID (Z → A)</option>
+            </select>
+          </div>
+
+          <button class="btn" onclick="resetFilters()">Đặt lại</button>
+
+          <div class="count-indicator" id="resultCounter">
+            Đang tải dữ liệu JSON...
+          </div>
+        </div>
+      </div>
+
+      <!-- Single Column Full Width Cards Container -->
+      <div class="data-cards-container" id="cardsContainer">
+        <div style="text-align: center; padding: 4rem 1rem; color: var(--text-muted); font-family: var(--font-ui); font-size: 15px;">
+          Đang đọc các tập tin ontology…
+        </div>
+      </div>
+    </main>
+  </div>

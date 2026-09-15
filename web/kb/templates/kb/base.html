@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DSA Knowledge Base</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{% static 'kb/css/base.css' %}?v={{ ASSET_V }}">
+  <link rel="stylesheet" href="{% static 'kb/css/inspector.css' %}?v={{ ASSET_V }}">
+  <link rel="stylesheet" href="{% static 'kb/css/theme.css' %}?v={{ ASSET_V }}">
+  <link rel="stylesheet" href="{% static 'kb/css/graph.css' %}?v={{ ASSET_V }}">
+  <link rel="stylesheet" href="{% static 'kb/css/questions.css' %}?v={{ ASSET_V }}">
+  <link rel="stylesheet" href="{% static 'kb/css/dashboard.css' %}?v={{ ASSET_V }}">
+</head>
+<body>
+  {% include 'kb/partials/header.html' %}
+  {% block content %}{% endblock %}
+  {% include 'kb/partials/theme_modal.html' %}
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="{% static 'kb/js/core.js' %}?v={{ ASSET_V }}"></script>
+  <script src="{% static 'kb/js/theme.js' %}?v={{ ASSET_V }}"></script>
+  <script src="{% static 'kb/js/inspector.js' %}?v={{ ASSET_V }}"></script>
+  <script src="{% static 'kb/js/graph.js' %}?v={{ ASSET_V }}"></script>
+  <script src="{% static 'kb/js/questions.js' %}?v={{ ASSET_V }}"></script>
+  <script src="{% static 'kb/js/dashboard.js' %}?v={{ ASSET_V }}"></script>
+  <script src="{% static 'kb/js/app.js' %}?v={{ ASSET_V }}"></script>
+</body>
+</html>

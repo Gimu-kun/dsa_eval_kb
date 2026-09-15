@@ -1,0 +1,49 @@
+<!-- VIEW 3: QUESTION + EXPECTED ANSWER -->
+  <div id="questions-view" class="view-container">
+    <aside class="q-sidebar">
+      <div class="q-sidebar-head">
+        <h2>Câu hỏi</h2>
+        <input class="q-search" id="qSearchInput" type="text" placeholder="Tìm ID, nội dung, chủ đề…" oninput="filterQuestionList()">
+        <div class="q-filters">
+          <select id="qFilterChapter" onchange="filterQuestionList()">
+            <option value="all">Mọi chương</option>
+            <option value="C1">Chương 1</option>
+            <option value="C2">Chương 2</option>
+            <option value="C3">Chương 3</option>
+          </select>
+          <select id="qFilterBloom" onchange="filterQuestionList()">
+            <option value="all">Mọi Bloom</option>
+            <option value="R">Remember</option>
+            <option value="U">Understand</option>
+            <option value="AP">Apply</option>
+          </select>
+          <select id="qFilterType" onchange="filterQuestionList()">
+            <option value="all">Mọi dạng</option>
+            <option value="DES">Descriptive</option>
+            <option value="PRO">Procedure</option>
+            <option value="APP">Application</option>
+          </select>
+          <select id="qFilterDiff" onchange="filterQuestionList()">
+            <option value="all">Mọi độ khó</option>
+            <option value="E">Easy</option>
+            <option value="M">Medium</option>
+            <option value="H">Hard</option>
+          </select>
+          <select id="qFilterTopic" class="span-2" onchange="onTopicFilterChange()">
+            <option value="all">Mọi topic</option>
+          </select>
+          <div class="q-retrieve-row">
+            <button class="primary" type="button" onclick="runQuestionRetrieval()">Truy hồi top 10</button>
+            <button type="button" onclick="clearQuestionRetrieval()">Duyệt tất cả</button>
+          </div>
+        </div>
+        <button type="button" class="q-branch" id="qBranchBox" hidden onclick="selectBranchView()"></button>
+      </div>
+      <div class="q-list" id="qList"></div>
+    </aside>
+    <main class="q-main">
+      <div class="q-detail" id="qDetail">
+        <div class="q-empty">Chọn một câu hỏi bên trái để xem lời giải mong đợi.</div>
+      </div>
+    </main>
+  </div>

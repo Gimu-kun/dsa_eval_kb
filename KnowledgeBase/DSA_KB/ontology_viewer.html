@@ -1745,6 +1745,387 @@
       background: var(--primary);
     }
 
+    /* ========================================= */
+    /* VIEW 4: DASHBOARD + T-BOX OVERVIEW        */
+    /* ========================================= */
+    #dashboard-view {
+      flex-direction: column;
+      height: calc(100vh - var(--header-h));
+      overflow: auto;
+      padding: 1.1rem 1.5rem 2.4rem;
+      gap: 1.1rem;
+    }
+
+    .dash-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .dash-head h2 {
+      font-size: var(--fs-xl);
+      font-weight: 650;
+      color: var(--text-heading);
+    }
+
+    .dash-head p {
+      font-size: var(--fs-sm);
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    .dash-kpis {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.7rem;
+    }
+
+    .dash-kpi {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-soft);
+      padding: 0.75rem 0.9rem 0.7rem;
+      min-width: 0;
+    }
+
+    .dash-kpi span {
+      display: block;
+      font-size: var(--fs-xs);
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .dash-kpi b {
+      display: block;
+      font-size: 1.45rem;
+      line-height: 1.2;
+      color: var(--text-heading);
+      font-variant-numeric: tabular-nums;
+      margin: 0.12rem 0 0.1rem;
+    }
+
+    .dash-kpi em {
+      font-style: normal;
+      font-size: var(--fs-xs);
+      color: var(--text-sub);
+    }
+
+    .dash-charts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .dash-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-soft);
+      padding: 0.85rem 1rem 0.95rem;
+      min-width: 0;
+    }
+
+    .dash-card h3 {
+      font-size: var(--fs-md);
+      font-weight: 650;
+      color: var(--text-heading);
+      margin-bottom: 0.15rem;
+    }
+
+    .dash-card .dash-cap {
+      font-size: var(--fs-xs);
+      color: var(--text-muted);
+      margin-bottom: 0.65rem;
+    }
+
+    .dash-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 0.75rem;
+      margin-top: 0.55rem;
+      font-size: var(--fs-xs);
+      color: var(--text-sub);
+    }
+
+    .dash-legend i {
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      border-radius: 2px;
+      margin-right: 0.3rem;
+      vertical-align: -1px;
+    }
+
+    .dash-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 0.42rem;
+    }
+
+    .dash-bar-row {
+      display: grid;
+      grid-template-columns: 7.4rem 1fr 2.2rem;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: var(--fs-sm);
+    }
+
+    .dash-bar-row span {
+      color: var(--text-sub);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .dash-bar-row b {
+      font-variant-numeric: tabular-nums;
+      color: var(--text-heading);
+      text-align: right;
+      font-weight: 650;
+    }
+
+    .dash-bar-track {
+      height: 9px;
+      background: var(--bg-subtle);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .dash-bar-track em {
+      display: block;
+      height: 100%;
+      border-radius: 99px;
+      font-style: normal;
+    }
+
+    .dash-donut-wrap {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .dash-donut-wrap svg { flex-shrink: 0; }
+
+    .dash-split {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 0.75rem;
+      min-height: 560px;
+    }
+
+    .dash-tree-toolbar {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.55rem;
+    }
+
+    .dash-tree-toolbar input {
+      flex: 1;
+      min-width: 140px;
+      padding: 0.38rem 0.6rem;
+      border: 1px solid var(--border-color);
+      border-radius: 7px;
+      background: var(--bg-input);
+      font-family: inherit;
+      font-size: var(--fs-sm);
+      color: var(--text-main);
+    }
+
+    .dash-tree-toolbar button,
+    .dash-seg {
+      padding: 0.35rem 0.6rem;
+      border: 1px solid var(--border-color);
+      border-radius: 7px;
+      background: var(--bg-card);
+      color: var(--text-sub);
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .dash-seg.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--on-primary);
+    }
+
+    .onto-scroll {
+      overflow: auto;
+      max-height: min(68vh, 720px);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      background: var(--bg-subtle);
+      padding: 0.55rem 0.45rem 0.7rem 0.35rem;
+    }
+
+    .onto-tree, .onto-tree ul {
+      list-style: none;
+      margin: 0;
+      padding: 0 0 0 0.85rem;
+    }
+
+    .onto-tree { padding-left: 0.15rem; }
+
+    .onto-tree li {
+      position: relative;
+      margin: 0.08rem 0;
+    }
+
+    .onto-row {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+    }
+
+    .onto-toggle {
+      width: 18px;
+      height: 18px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 10px;
+      line-height: 1;
+      flex-shrink: 0;
+      padding: 0;
+    }
+
+    .onto-toggle.leaf { visibility: hidden; }
+
+    .onto-node {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+      min-width: 0;
+      border: 1px solid transparent;
+      background: transparent;
+      border-radius: 7px;
+      padding: 0.18rem 0.4rem;
+      cursor: pointer;
+      font-family: inherit;
+      text-align: left;
+      color: var(--text-heading);
+      flex: 1;
+    }
+
+    .onto-node:hover { background: var(--bg-card); }
+
+    .onto-node.active {
+      background: var(--bg-card);
+      border-color: var(--border-color);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .onto-node .nm {
+      font-size: var(--fs-sm);
+      font-weight: 650;
+    }
+
+    .onto-node .id {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .onto-node .cnt {
+      margin-left: auto;
+      font-size: 11px;
+      color: var(--relation-color);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .onto-rel-group {
+      margin-bottom: 0.7rem;
+    }
+
+    .onto-rel-group h4 {
+      font-size: var(--fs-xs);
+      color: var(--text-muted);
+      font-weight: 650;
+      margin-bottom: 0.3rem;
+    }
+
+    .onto-rel-line {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: var(--fs-sm);
+      color: var(--text-sub);
+      padding: 0.22rem 0;
+      border-bottom: 1px dashed var(--border-color);
+    }
+
+    .onto-rel-line:last-child { border-bottom: none; }
+
+    .onto-rel-line b { color: var(--relation-color); }
+
+    .onto-chip {
+      display: inline-flex;
+      padding: 0.08rem 0.4rem;
+      border-radius: 999px;
+      background: var(--concept-bg);
+      color: var(--concept-color);
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      border: 1px solid var(--concept-border);
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .dash-detail-empty {
+      color: var(--text-muted);
+      font-size: var(--fs-sm);
+      padding: 0.4rem 0 0.8rem;
+    }
+
+    .dash-roots {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+      gap: 0.5rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .dash-root {
+      text-align: left;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 0.5rem 0.65rem 0.45rem;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .dash-root:hover, .dash-root.active {
+      border-color: var(--primary);
+    }
+
+    .dash-root b {
+      display: block;
+      font-size: var(--fs-sm);
+      color: var(--text-heading);
+      font-weight: 650;
+    }
+
+    .dash-root span {
+      display: block;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 0.12rem;
+    }
+
+    @media (max-width: 1100px) {
+      .dash-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .dash-charts, .dash-split { grid-template-columns: 1fr; }
+    }
+
     @media (max-width: 980px) {
       .q-sidebar { width: 250px; min-width: 250px; }
       .er-explain { grid-template-columns: 1fr; }
@@ -1756,7 +2137,6 @@
   <!-- Top Header Navigation -->
   <header>
     <a href="#" class="brand" onclick="switchView('inspector')">
-      <span class="brand-mark" id="brandBadge" aria-hidden="true"></span>
       <span class="brand-copy">
         <span class="brand-kicker">Ontology atelier</span>
         <span class="brand-title">DSA Knowledge Base</span>
@@ -1764,7 +2144,10 @@
     </a>
 
     <nav class="nav-tabs">
-      <button id="tab-inspector" class="nav-tab active" onclick="switchView('inspector')">
+      <button id="tab-dashboard" class="nav-tab active" onclick="switchView('dashboard')">
+        Tổng quan
+      </button>
+      <button id="tab-inspector" class="nav-tab" onclick="switchView('inspector')">
         Kiểm tra dữ liệu
       </button>
       <button id="tab-questions" class="nav-tab" onclick="switchView('questions')">
@@ -1794,7 +2177,7 @@
   </header>
 
   <!-- VIEW 1: DATA INSPECTOR (LIGHT THEME, 1 COLUMN FULL WIDTH) -->
-  <div id="inspector-view" class="view-container active">
+  <div id="inspector-view" class="view-container">
     <!-- Sidebar -->
     <aside class="sidebar">
       <div class="sidebar-header">
@@ -1997,6 +2380,38 @@
         <div class="q-empty">Chọn một câu hỏi bên trái để xem lời giải mong đợi.</div>
       </div>
     </main>
+  </div>
+
+  <!-- VIEW 4: DASHBOARD + T-BOX OVERVIEW -->
+  <div id="dashboard-view" class="view-container active">
+    <div class="dash-head">
+      <div>
+        <h2>Tổng quan tri thức</h2>
+        <p>Thống kê toàn bộ dữ liệu đang nạp, và sơ đồ T-Box (không gồm instance câu hỏi / lời giải mong đợi).</p>
+      </div>
+    </div>
+    <div class="dash-kpis" id="dashKpis"></div>
+    <div class="dash-charts" id="dashCharts"></div>
+    <div class="dash-card">
+      <h3>Sơ đồ T-Box · khái niệm và quan hệ gốc</h3>
+      <div class="dash-cap">Cây subclassOf của thực thể tri thức. Quan hệ gốc là định nghĩa REL_* giữa các khái niệm, không gồm I_Q_ / I_EA_ / I_ER_.</div>
+      <div class="dash-tree-toolbar">
+        <button type="button" class="dash-seg active" id="dashFilterDsa" onclick="setOntoFilter('dsa')">Tri thức DSA</button>
+        <button type="button" class="dash-seg" id="dashFilterAssess" onclick="setOntoFilter('assessment')">Mô hình đánh giá</button>
+        <button type="button" class="dash-seg" id="dashFilterAll" onclick="setOntoFilter('all')">Toàn bộ T-Box</button>
+        <input id="dashTreeSearch" type="text" placeholder="Tìm khái niệm, ID…" oninput="renderOntoTree()">
+        <button type="button" onclick="ontoExpandAll(true)">Mở hết</button>
+        <button type="button" onclick="ontoExpandAll(false)">Thu gọn</button>
+      </div>
+      <div id="dashSchemaSvg"></div>
+      <div class="dash-split">
+        <div class="onto-scroll" id="dashTree"></div>
+        <div class="onto-scroll" id="dashSide">
+          <div id="dashNodeDetail"></div>
+          <div id="dashRelList"></div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- THEME CUSTOMIZER MODAL -->
@@ -2221,6 +2636,7 @@
         applyFilters();
         populateTopicFilter();
         renderQuestionExplorer();
+        renderDashboard();
 
         // If 3D graph is already active, refresh nodes
         if (graphInitialized) {
@@ -2503,16 +2919,20 @@
       const inspectorView = document.getElementById('inspector-view');
       const graphView = document.getElementById('graph-view');
       const questionsView = document.getElementById('questions-view');
+      const dashboardView = document.getElementById('dashboard-view');
       const tabInspector = document.getElementById('tab-inspector');
       const tabGraph = document.getElementById('tab-graph');
       const tabQuestions = document.getElementById('tab-questions');
+      const tabDashboard = document.getElementById('tab-dashboard');
 
       inspectorView.classList.remove('active');
       graphView.classList.remove('active');
       questionsView.classList.remove('active');
+      if (dashboardView) dashboardView.classList.remove('active');
       tabInspector.classList.remove('active');
       tabGraph.classList.remove('active');
       tabQuestions.classList.remove('active');
+      if (tabDashboard) tabDashboard.classList.remove('active');
 
       if (viewName === 'inspector') {
         inspectorView.classList.add('active');
@@ -2521,6 +2941,10 @@
         questionsView.classList.add('active');
         tabQuestions.classList.add('active');
         renderQuestionExplorer();
+      } else if (viewName === 'dashboard') {
+        dashboardView.classList.add('active');
+        tabDashboard.classList.add('active');
+        renderDashboard();
       } else {
         graphView.classList.add('active');
         tabGraph.classList.add('active');
@@ -4433,6 +4857,459 @@
     });
 
     // Initial load
+    let ontoFilter = 'dsa';
+    let ontoSelectedId = null;
+    let ontoExpandAllFlag = null;
+    let ontoOpenIds = new Set();
+
+    function isABoxId(id) {
+      const s = String(id || '');
+      return s.startsWith('I_Q_') || s.startsWith('I_EA_') || s.startsWith('I_ER_') || /^I_/.test(s);
+    }
+
+    function relEndList(rel, field) {
+      const v = rel && rel[field];
+      if (Array.isArray(v)) return v.filter(Boolean);
+      return v ? [v] : [];
+    }
+
+    function conceptDomain(id) {
+      const c = conceptById(id);
+      return c && c.domain ? c.domain : '';
+    }
+
+    function isAssessmentRel(rel) {
+      const ids = relEndList(rel, 'source').concat(relEndList(rel, 'target'));
+      return ids.some(id => conceptDomain(id) === 'Assessment');
+    }
+
+    function dashColor(i) {
+      return ['#6B7F6E', '#4A6FA5', '#A07840', '#6B5B8A', '#8B5E4A', '#4F7A62', '#7A8B6F', '#5C6B8A'][i % 8];
+    }
+
+    function svgDonut(parts, size) {
+      const total = parts.reduce((s, p) => s + p.value, 0) || 1;
+      const cx = size / 2, cy = size / 2, r = size * 0.34, sw = size * 0.16;
+      let acc = 0;
+      const circ = 2 * Math.PI * r;
+      const rings = parts.map((p, i) => {
+        const frac = p.value / total;
+        const dash = frac * circ;
+        const gap = circ - dash;
+        const rot = (acc / total) * 360 - 90;
+        acc += p.value;
+        return `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${p.color || dashColor(i)}" stroke-width="${sw}" stroke-dasharray="${dash} ${gap}" stroke-dashoffset="0" transform="rotate(${rot} ${cx} ${cy})"></circle>`;
+      }).join('');
+      return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" aria-hidden="true">${rings}<text x="${cx}" y="${cy - 2}" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">${total}</text><text x="${cx}" y="${cy + 14}" text-anchor="middle" font-size="10" fill="#8A7F72">tổng</text></svg>`;
+    }
+
+    function htmlBars(rows) {
+      const max = Math.max(1, ...rows.map(r => r.value));
+      return `<div class="dash-bars">${rows.map(r => `
+        <div class="dash-bar-row" title="${escapeHtml(r.label)}: ${r.value}">
+          <span>${escapeHtml(r.label)}</span>
+          <div class="dash-bar-track"><em style="width:${Math.round(r.value / max * 100)}%;background:${r.color || 'var(--primary)'};"></em></div>
+          <b>${r.value}</b>
+        </div>`).join('')}</div>`;
+    }
+
+    function htmlLegend(parts) {
+      const total = parts.reduce((s, p) => s + p.value, 0) || 1;
+      return `<div class="dash-legend">${parts.map(p => {
+        const pct = Math.round(p.value / total * 100);
+        return `<span><i style="background:${p.color}"></i>${escapeHtml(p.label)} · ${p.value} (${pct}%)</span>`;
+      }).join('')}</div>`;
+    }
+
+    function computeDashStats() {
+      const concepts = KB_DATA.concepts || [];
+      const relations = KB_DATA.relations || [];
+      const assertions = KB_DATA.assertions || [];
+      const instances = KB_DATA.instances || [];
+      const dsa = concepts.filter(c => c.domain === 'DSA');
+      const assess = concepts.filter(c => c.domain === 'Assessment');
+      const tboxA = assertions.filter(a => !isABoxId(a.source) && !isABoxId(a.target));
+      const aboxA = assertions.filter(a => isABoxId(a.source) || isABoxId(a.target));
+      const qs = instances.filter(i => String(i.id || '').startsWith('I_Q_') || i.instanceOf === 'O_C_QUESTION');
+      const eas = instances.filter(i => String(i.id || '').startsWith('I_EA_') || i.instanceOf === 'O_C_EXPECTED_ANSWER');
+      const ers = instances.filter(i => String(i.id || '').startsWith('I_ER_') || i.instanceOf === 'O_C_EXPECTED_RULE');
+      const qStats = { C1: 0, C2: 0, C3: 0, R: 0, U: 0, AP: 0, DES: 0, PRO: 0, APP: 0, E: 0, M: 0, H: 0 };
+      qs.forEach(q => {
+        const code = String(q.id || '').replace(/^I_/, '');
+        const p = parseQuestionCode(code);
+        if (p.chapter) qStats[p.chapter] += 1;
+        if (p.bloom) qStats[p.bloom] += 1;
+        if (p.type) qStats[p.type] += 1;
+        if (p.diff) qStats[p.diff] += 1;
+      });
+      const relCount = {};
+      tboxA.forEach(a => { relCount[a.relation] = (relCount[a.relation] || 0) + 1; });
+      const topRels = Object.entries(relCount).sort((a, b) => b[1] - a[1]).slice(0, 8).map(([id, n], i) => {
+        const rel = relations.find(r => r.id === id);
+        return { label: (rel && rel.name) || id.replace(/^REL_/, ''), value: n, color: dashColor(i), id };
+      });
+      const chapterTopics = {};
+      tboxA.filter(a => a.relation === 'REL_CHAPTER_HAS_TOPIC').forEach(a => {
+        chapterTopics[a.source] = (chapterTopics[a.source] || 0) + 1;
+      });
+      const erTargets = new Set(assertions.filter(a => a.relation === 'REL_EXPECTED_RULE_REQUIRES_CONCEPT').map(a => a.target));
+      const dsaCovered = dsa.filter(c => erTargets.has(c.id)).length;
+      const dsaRels = relations.filter(r => !isAssessmentRel(r));
+      const assessRels = relations.filter(r => isAssessmentRel(r));
+      return {
+        concepts, dsa, assess, relations, dsaRels, assessRels, tboxA, aboxA, qs, eas, ers, qStats, topRels, chapterTopics, dsaCovered,
+        hierarchy: (KB_DATA.hierarchy || []).length,
+        rules: (KB_DATA.rules || []).length,
+        functions: (KB_DATA.functions || []).length,
+        operands: (KB_DATA.operands || []).length
+      };
+    }
+
+    function renderDashboard() {
+      const kpis = document.getElementById('dashKpis');
+      const charts = document.getElementById('dashCharts');
+      if (!kpis || !charts) return;
+      const s = computeDashStats();
+      kpis.innerHTML = [
+        ['Khái niệm', s.concepts.length, `${s.dsa.length} DSA · ${s.assess.length} đánh giá`],
+        ['Quan hệ gốc', s.relations.length, `${s.dsaRels.length} tri thức · ${s.assessRels.length} đánh giá`],
+        ['Kế thừa subclassOf', s.hierarchy, 'cạnh T-Box'],
+        ['Phán đoán T-Box', s.tboxA.length, `${s.aboxA.length} A-Box câu hỏi/EA`],
+        ['Câu hỏi', s.qs.length, `${s.eas.length} lời giải · ${s.ers.length} luật chấm`],
+        ['Luật miền', s.rules, `${s.functions} hàm · ${s.operands} toán hạng`],
+        ['Topic / chương', Object.values(s.chapterTopics).reduce((a, b) => a + b, 0), 'REL_CHAPTER_HAS_TOPIC'],
+        ['Concept được chấm', `${s.dsaCovered}/${s.dsa.length}`, 'có ER requiresConcept']
+      ].map(([k, v, sub]) => `<div class="dash-kpi"><span>${k}</span><b>${v}</b><em>${sub}</em></div>`).join('');
+
+      const domainParts = [
+        { label: 'DSA', value: s.dsa.length, color: '#4A6FA5' },
+        { label: 'Đánh giá', value: s.assess.length, color: '#A07840' }
+      ];
+      const boxParts = [
+        { label: 'T-Box (O_C_ ↔ O_C_)', value: s.tboxA.length, color: '#6B5B8A' },
+        { label: 'A-Box câu hỏi / EA / ER', value: s.aboxA.length, color: '#8B5E4A' }
+      ];
+      const instParts = [
+        { label: 'Question', value: s.qs.length, color: '#4A6FA5' },
+        { label: 'Expected Answer', value: s.eas.length, color: '#4F7A62' },
+        { label: 'Expected Rule', value: s.ers.length, color: '#8B5E4A' }
+      ];
+      const coverParts = [
+        { label: 'Có trong luật chấm', value: s.dsaCovered, color: '#6B7F6E' },
+        { label: 'Chưa gắn ER', value: Math.max(0, s.dsa.length - s.dsaCovered), color: '#D6CBBA' }
+      ];
+      const chRows = [
+        { label: 'Chương 1', value: s.qStats.C1, color: '#6B7F6E' },
+        { label: 'Chương 2', value: s.qStats.C2, color: '#4A6FA5' },
+        { label: 'Chương 3', value: s.qStats.C3, color: '#A07840' }
+      ];
+      const bloomRows = [
+        { label: 'Remember', value: s.qStats.R, color: '#4A6FA5' },
+        { label: 'Understand', value: s.qStats.U, color: '#6B7F6E' },
+        { label: 'Apply', value: s.qStats.AP, color: '#A07840' }
+      ];
+      const typeRows = [
+        { label: 'Descriptive', value: s.qStats.DES, color: '#6B5B8A' },
+        { label: 'Procedure', value: s.qStats.PRO, color: '#4F7A62' },
+        { label: 'Application', value: s.qStats.APP, color: '#8B5E4A' }
+      ];
+      const diffRows = [
+        { label: 'Easy', value: s.qStats.E, color: '#6B7F6E' },
+        { label: 'Medium', value: s.qStats.M, color: '#A07840' },
+        { label: 'Hard', value: s.qStats.H, color: '#8B5E4A' }
+      ];
+      const topicRows = [
+        { label: 'Tổng quan', value: s.chapterTopics.O_C_CHAPTER_OVERVIEW || 0, color: '#6B7F6E' },
+        { label: 'Tìm kiếm & SX', value: s.chapterTopics.O_C_CHAPTER_SEARCHING_AND_SORTING || 0, color: '#4A6FA5' },
+        { label: 'DSLK', value: s.chapterTopics.O_C_CHAPTER_LINKED_LIST || 0, color: '#A07840' }
+      ];
+
+      charts.innerHTML = `
+        <div class="dash-card">
+          <h3>Khái niệm theo miền</h3>
+          <div class="dash-cap">T-Box: DSA là tri thức môn học, Đánh giá là schema đề thi.</div>
+          <div class="dash-donut-wrap">${svgDonut(domainParts, 148)}${htmlLegend(domainParts)}</div>
+        </div>
+        <div class="dash-card">
+          <h3>Phán đoán T-Box / A-Box</h3>
+          <div class="dash-cap">A-Box là instance sinh khi tạo câu hỏi và lời giải mong đợi.</div>
+          <div class="dash-donut-wrap">${svgDonut(boxParts, 148)}${htmlLegend(boxParts)}</div>
+        </div>
+        <div class="dash-card">
+          <h3>Câu hỏi theo chương</h3>
+          <div class="dash-cap">81 câu, phân theo prefix Q_C1 / C2 / C3.</div>
+          ${htmlBars(chRows)}
+        </div>
+        <div class="dash-card">
+          <h3>Bloom · dạng · độ khó</h3>
+          <div class="dash-cap">Phân bố ngân hàng câu hỏi hiện có.</div>
+          ${htmlBars(bloomRows)}
+          <div style="height:0.55rem"></div>
+          ${htmlBars(typeRows)}
+          <div style="height:0.55rem"></div>
+          ${htmlBars(diffRows)}
+        </div>
+        <div class="dash-card">
+          <h3>Topic theo chương</h3>
+          <div class="dash-cap">Số assertion REL_CHAPTER_HAS_TOPIC.</div>
+          ${htmlBars(topicRows)}
+        </div>
+        <div class="dash-card">
+          <h3>Quan hệ T-Box dùng nhiều nhất</h3>
+          <div class="dash-cap">Chỉ đếm phán đoán giữa các O_C_, không gồm I_Q_/I_EA_/I_ER_.</div>
+          ${htmlBars(s.topRels)}
+        </div>
+        <div class="dash-card">
+          <h3>Instance đánh giá</h3>
+          <div class="dash-cap">A-Box sinh từ câu hỏi / EA / ExpectedRule — không nằm trên sơ đồ cây.</div>
+          <div class="dash-donut-wrap">${svgDonut(instParts, 148)}${htmlLegend(instParts)}</div>
+        </div>
+        <div class="dash-card">
+          <h3>Phủ luật chấm trên DSA</h3>
+          <div class="dash-cap">Khái niệm DSA được I_ER_ gắn qua requiresConcept.</div>
+          <div class="dash-donut-wrap">${svgDonut(coverParts, 148)}${htmlLegend(coverParts)}</div>
+        </div>
+      `;
+      renderOntoSchema();
+      renderOntoTree();
+      renderOntoRelPanel();
+    }
+
+    function setOntoFilter(mode) {
+      ontoFilter = mode;
+      ['dsa', 'assessment', 'all'].forEach(m => {
+        const el = document.getElementById('dashFilter' + (m === 'dsa' ? 'Dsa' : m === 'assessment' ? 'Assess' : 'All'));
+        if (el) el.classList.toggle('active', m === mode);
+      });
+      ontoExpandAllFlag = null;
+      ontoOpenIds = new Set();
+      renderOntoSchema();
+      renderOntoTree();
+      renderOntoRelPanel();
+    }
+
+    function ontoAllowConcept(c) {
+      if (!c) return false;
+      if (ontoFilter === 'dsa') return c.domain === 'DSA';
+      if (ontoFilter === 'assessment') return c.domain === 'Assessment';
+      return true;
+    }
+
+    function ontoRootId(id, parentOf) {
+      let cur = id, guard = 0;
+      while (parentOf[cur] && guard < 40) {
+        cur = parentOf[cur];
+        guard += 1;
+      }
+      return cur;
+    }
+
+    function renderOntoSchema() {
+      const host = document.getElementById('dashSchemaSvg');
+      if (!host) return;
+      const { parentOf, childrenOf } = hierarchyIndex();
+      const allowed = new Set((KB_DATA.concepts || []).filter(ontoAllowConcept).map(c => c.id));
+      const roots = (KB_DATA.concepts || []).filter(c => ontoAllowConcept(c) && !parentOf[c.id]).sort((a, b) => conceptLabel(a).localeCompare(conceptLabel(b), 'vi'));
+      const relBySrc = {};
+      (KB_DATA.relations || []).forEach(rel => {
+        relEndList(rel, 'source').forEach(src => {
+          relBySrc[src] = (relBySrc[src] || 0) + 1;
+        });
+      });
+      host.innerHTML = `<div class="dash-roots">${roots.map(c => {
+        const nChild = (childrenOf[c.id] || []).filter(id => allowed.has(id)).length;
+        const nRel = relBySrc[c.id] || 0;
+        const active = ontoSelectedId === c.id ? ' active' : '';
+        return `<button type="button" class="dash-root${active}" onclick="selectOntoNode('${c.id}')">
+          <b>${escapeHtml(conceptLabel(c) || c.id)}</b>
+          <span>${nChild} lớp con${nRel ? ' · ' + nRel + ' quan hệ gốc' : ''}</span>
+        </button>`;
+      }).join('')}</div>`;
+    }
+
+    function ontoMatchQuery(c, q) {
+      if (!q) return true;
+      const blob = foldText([c.id, conceptLabel(c), attrVal(c, 'description')].join(' '));
+      return blob.includes(q);
+    }
+
+    function ontoExpandAll(open) {
+      ontoExpandAllFlag = open;
+      ontoOpenIds = new Set();
+      if (open) {
+        (KB_DATA.concepts || []).forEach(c => { if (ontoAllowConcept(c)) ontoOpenIds.add(c.id); });
+      }
+      renderOntoTree();
+    }
+
+    function selectOntoNode(id) {
+      ontoSelectedId = id || null;
+      renderOntoSchema();
+      renderOntoTree();
+      renderOntoRelPanel();
+      const el = document.querySelector('.onto-node.active');
+      if (el && el.scrollIntoView) el.scrollIntoView({ block: 'nearest' });
+    }
+
+    function renderOntoTree() {
+      const host = document.getElementById('dashTree');
+      if (!host) return;
+      const q = foldText((document.getElementById('dashTreeSearch') || {}).value || '');
+      const { parentOf, childrenOf } = hierarchyIndex();
+      const allowed = (KB_DATA.concepts || []).filter(ontoAllowConcept);
+      const allowedIds = new Set(allowed.map(c => c.id));
+      const relBySrc = {};
+      (KB_DATA.relations || []).forEach(rel => {
+        relEndList(rel, 'source').forEach(src => {
+          if (!relBySrc[src]) relBySrc[src] = [];
+          relBySrc[src].push(rel);
+        });
+      });
+
+      const matchIds = new Set();
+      if (q) {
+        allowed.forEach(c => { if (ontoMatchQuery(c, q)) matchIds.add(c.id); });
+        matchIds.forEach(id => {
+          let cur = parentOf[id];
+          while (cur) { matchIds.add(cur); cur = parentOf[cur]; }
+        });
+      }
+
+      const roots = allowed.filter(c => !parentOf[c.id] || !allowedIds.has(parentOf[c.id]))
+        .sort((a, b) => conceptLabel(a).localeCompare(conceptLabel(b), 'vi'));
+
+      function subtreeCount(id) {
+        let n = 1;
+        (childrenOf[id] || []).forEach(ch => { if (allowedIds.has(ch)) n += subtreeCount(ch); });
+        return n;
+      }
+
+      function isOpen(id, depth) {
+        if (q) return matchIds.has(id);
+        if (ontoExpandAllFlag === true) return true;
+        if (ontoExpandAllFlag === false) return false;
+        if (ontoOpenIds.has(id)) return true;
+        if (ontoSelectedId) {
+          let cur = parentOf[ontoSelectedId];
+          while (cur) {
+            if (cur === id) return true;
+            cur = parentOf[cur];
+          }
+        }
+        return depth < 1;
+      }
+
+      function renderNode(id, depth) {
+        const c = conceptById(id);
+        if (!c || !allowedIds.has(id)) return '';
+        if (q && !matchIds.has(id)) return '';
+        const kids = (childrenOf[id] || []).filter(k => allowedIds.has(k)).sort();
+        const open = isOpen(id, depth) && kids.length > 0;
+        const nRel = (relBySrc[id] || []).length;
+        const childHtml = open ? `<ul>${kids.map(k => renderNode(k, depth + 1)).join('')}</ul>` : '';
+        return `<li>
+          <div class="onto-row">
+            <button class="onto-toggle${kids.length ? '' : ' leaf'}" onclick="event.stopPropagation(); ontoToggleNode('${id}')">${open ? '▾' : '▸'}</button>
+            <button class="onto-node${ontoSelectedId === id ? ' active' : ''}" onclick="selectOntoNode('${id}')">
+              <span class="nm">${escapeHtml(conceptLabel(c) || id)}</span>
+              <span class="id">${escapeHtml(id)}</span>
+              ${nRel ? `<span class="cnt">${nRel} quan hệ</span>` : ''}
+            </button>
+          </div>
+          ${childHtml}
+        </li>`;
+      }
+
+      const visibleRoots = q ? roots.filter(c => matchIds.has(c.id)) : roots;
+      host.innerHTML = `<ul class="onto-tree">${visibleRoots.map(c => renderNode(c.id, 0)).join('')}</ul>
+        <div class="dash-cap" style="padding:0.45rem 0.35rem 0;">${allowed.length} khái niệm · ${roots.length} gốc · không gồm instance câu hỏi/EA</div>`;
+    }
+
+    function ontoToggleNode(id) {
+      ontoExpandAllFlag = null;
+      if (ontoOpenIds.has(id)) ontoOpenIds.delete(id);
+      else ontoOpenIds.add(id);
+      renderOntoTree();
+    }
+
+    function renderOntoRelPanel() {
+      const relHost = document.getElementById('dashRelList');
+      const detHost = document.getElementById('dashNodeDetail');
+      if (!relHost || !detHost) return;
+      const { parentOf, childrenOf } = hierarchyIndex();
+      const allowedIds = new Set((KB_DATA.concepts || []).filter(ontoAllowConcept).map(c => c.id));
+      const rels = (KB_DATA.relations || []).filter(r => {
+        const srcs = relEndList(r, 'source');
+        const tgts = relEndList(r, 'target');
+        if (ontoFilter === 'dsa') return srcs.every(id => conceptDomain(id) === 'DSA') && tgts.every(id => conceptDomain(id) === 'DSA');
+        if (ontoFilter === 'assessment') return isAssessmentRel(r);
+        return true;
+      });
+
+      const grouped = {};
+      rels.forEach(rel => {
+        relEndList(rel, 'source').forEach(src => {
+          if (!grouped[src]) grouped[src] = [];
+          grouped[src].push(rel);
+        });
+      });
+
+      function chip(id) {
+        return `<button class="onto-chip" type="button" onclick="selectOntoNode('${id}')">${escapeHtml(conceptLabel(conceptById(id)) || id)}</button>`;
+      }
+
+      if (ontoSelectedId && conceptById(ontoSelectedId)) {
+        const c = conceptById(ontoSelectedId);
+        const parent = parentOf[c.id];
+        const kids = (childrenOf[c.id] || []).filter(id => allowedIds.has(id));
+        const directOut = rels.filter(r => relEndList(r, 'source').includes(c.id));
+        const directIn = rels.filter(r => relEndList(r, 'target').includes(c.id));
+        const tboxHits = (KB_DATA.assertions || []).filter(a => !isABoxId(a.source) && !isABoxId(a.target) && (a.source === c.id || a.target === c.id));
+        detHost.innerHTML = `
+          <div class="dash-card" style="box-shadow:none;">
+            <h3>${escapeHtml(conceptLabel(c) || c.id)}</h3>
+            <div class="dash-cap">${escapeHtml(c.id)} · ${escapeHtml(c.domain || '')}</div>
+            ${parent ? `<div class="dash-cap">Lớp cha: ${chip(parent)}</div>` : '<div class="dash-cap">Lớp gốc</div>'}
+            ${kids.length ? `<div class="q-section-label">Lớp con (${kids.length})</div><div>${kids.map(chip).join(' ')}</div>` : ''}
+            <div class="q-section-label">Quan hệ gốc đi ra (${directOut.length})</div>
+            ${directOut.map(r => `<div class="onto-rel-line">${chip(c.id)} <b>${escapeHtml(r.name)}</b> ${relEndList(r, 'target').map(chip).join(' ')}</div>`).join('') || '<div class="dash-detail-empty">Không có quan hệ gốc đi ra.</div>'}
+            <div class="q-section-label">Quan hệ gốc đi vào (${directIn.length})</div>
+            ${directIn.map(r => `<div class="onto-rel-line">${relEndList(r, 'source').map(chip).join(' ')} <b>${escapeHtml(r.name)}</b> ${chip(c.id)}</div>`).join('') || '<div class="dash-detail-empty">Không có quan hệ gốc đi vào.</div>'}
+            <div class="q-section-label">Assertion T-Box (${tboxHits.length})</div>
+            <div class="dash-cap">Chỉ O_C_ ↔ O_C_, đã loại instance câu hỏi/EA.</div>
+            ${tboxHits.slice(0, 12).map(a => `<div class="onto-rel-line">${chip(a.source)} <b>${escapeHtml((KB_DATA.relations.find(r => r.id === a.relation) || {}).name || a.relation)}</b> ${chip(a.target)}</div>`).join('') || '<div class="dash-detail-empty">Chưa có assertion T-Box.</div>'}
+            ${tboxHits.length > 12 ? `<div class="dash-cap">… ${tboxHits.length - 12} assertion nữa</div>` : ''}
+            <div style="margin-top:0.7rem;"><button class="btn" type="button" onclick="jumpToConceptFromDash('${c.id}')">Mở trong Kiểm tra dữ liệu</button></div>
+          </div>`;
+      } else {
+        detHost.innerHTML = '<div class="dash-detail-empty">Chọn một khái niệm trên cây hoặc sơ đồ gốc để xem chi tiết. Bên dưới là toàn bộ quan hệ gốc (định nghĩa REL_*), không gồm instance câu hỏi/EA.</div>';
+      }
+
+      const srcIds = Object.keys(grouped).filter(id => allowedIds.has(id) || grouped[id].length).sort((a, b) => (conceptLabel(conceptById(a)) || a).localeCompare(conceptLabel(conceptById(b)) || b, 'vi'));
+      if (ontoSelectedId) {
+        relHost.innerHTML = `<button class="btn" type="button" onclick="selectOntoNode('')" style="margin:0.35rem 0 0.7rem;">← Tất cả quan hệ gốc</button>`;
+      } else {
+        relHost.innerHTML = `
+        <div class="dash-card" style="box-shadow:none;margin-bottom:0.7rem;">
+          <h3>Quan hệ gốc</h3>
+          <div class="dash-cap">${rels.length} định nghĩa REL_* trong phạm vi đang lọc.</div>
+          ${srcIds.map(src => `
+            <div class="onto-rel-group">
+              <h4>${escapeHtml(conceptLabel(conceptById(src)) || src)}</h4>
+              ${grouped[src].map(r => `<div class="onto-rel-line">${chip(src)} <b>${escapeHtml(r.name)}</b> ${relEndList(r, 'target').map(chip).join(' ')}</div>`).join('')}
+            </div>`).join('') || '<div class="dash-detail-empty">Không có quan hệ gốc.</div>'}
+        </div>`;
+      }
+    }
+
+    function jumpToConceptFromDash(id) {
+      switchView('inspector');
+      selectDataset('concepts');
+      const search = document.getElementById('searchInput');
+      if (search) search.value = id;
+      applyFilters();
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       loadSavedTheme();
       fetchKBData(true);

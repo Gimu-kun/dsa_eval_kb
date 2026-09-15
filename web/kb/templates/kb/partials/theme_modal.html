@@ -1,0 +1,95 @@
+<!-- THEME CUSTOMIZER MODAL -->
+  <div class="theme-modal-backdrop" id="themeModalBackdrop" onclick="closeThemeModalOnBackdrop(event)">
+    <div class="theme-modal">
+      <div class="theme-modal-header">
+        <div class="theme-modal-title">
+          <span>Bảng màu</span>
+        </div>
+        <button class="drawer-close" onclick="closeThemeModal()">&times;</button>
+      </div>
+
+      <div class="color-grid">
+        <div class="color-field">
+          <div class="color-label-group">
+            <span class="color-label">Màu chủ đạo (Accent):</span>
+            <span class="color-desc">Logo, nút chính, đường phán đoán 3D</span>
+          </div>
+          <div class="color-input-wrapper">
+            <span class="color-hex-text" id="hex-primary">#6B7F6E</span>
+            <input type="color" id="picker-primary" value="#6B7F6E" oninput="updateThemeColor('primary', this.value)">
+          </div>
+        </div>
+
+        <div class="color-field">
+          <div class="color-label-group">
+            <span class="color-label">Màu nền trang (Background):</span>
+            <span class="color-desc">Màu nền toàn trang và nội dung</span>
+          </div>
+          <div class="color-input-wrapper">
+            <span class="color-hex-text" id="hex-bg-body">#F3EEE6</span>
+            <input type="color" id="picker-bg-body" value="#F3EEE6" oninput="updateThemeColor('bgBody', this.value)">
+          </div>
+        </div>
+
+        <div class="color-field">
+          <div class="color-label-group">
+            <span class="color-label">Màu nền khung / thẻ (Card Bg):</span>
+            <span class="color-desc">Màu nền các thẻ dữ liệu, header, sidebar</span>
+          </div>
+          <div class="color-input-wrapper">
+            <span class="color-hex-text" id="hex-bg-card">#FFFcf7</span>
+            <input type="color" id="picker-bg-card" value="#FFFcf7" oninput="updateThemeColor('bgCard', this.value)">
+          </div>
+        </div>
+
+        <div class="color-field">
+          <div class="color-label-group">
+            <span class="color-label">Màu chữ chính (Text Color):</span>
+            <span class="color-desc">Màu chữ nội dung, tiêu đề, mã định danh</span>
+          </div>
+          <div class="color-input-wrapper">
+            <span class="color-hex-text" id="hex-text-main">#2A241C</span>
+            <input type="color" id="picker-text-main" value="#2A241C" oninput="updateThemeColor('textMain', this.value)">
+          </div>
+        </div>
+
+        <div class="color-field">
+          <div class="color-label-group">
+            <span class="color-label">Màu đường viền (Border / Frame):</span>
+            <span class="color-desc">Đường viền thẻ, khung bảng, thanh phân cách</span>
+          </div>
+          <div class="color-input-wrapper">
+            <span class="color-hex-text" id="hex-border">#E4D9C8</span>
+            <input type="color" id="picker-border" value="#E4D9C8" oninput="updateThemeColor('border', this.value)">
+          </div>
+        </div>
+      </div>
+
+      <div class="preset-section">
+        <div class="preset-title">Giao diện mẫu</div>
+        <div class="preset-list">
+          <button class="preset-btn" onclick="applyPreset('default_light')">
+            <span class="preset-dot" style="background: #6B7F6E;"></span>
+            <span>Linen &amp; sage</span>
+          </button>
+          <button class="preset-btn" onclick="applyPreset('porcelain')">
+            <span class="preset-dot" style="background: #7A8B9A;"></span>
+            <span>Porcelain</span>
+          </button>
+          <button class="preset-btn" onclick="applyPreset('parchment')">
+            <span class="preset-dot" style="background: #A07840;"></span>
+            <span>Parchment</span>
+          </button>
+          <button class="preset-btn" onclick="applyPreset('dawn')">
+            <span class="preset-dot" style="background: #C4A4A0;"></span>
+            <span>Dawn blush</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="theme-modal-footer">
+        <button class="btn" onclick="resetThemeDefaults()">Khôi phục mặc định</button>
+        <button class="btn btn-primary" onclick="closeThemeModal()">Hoàn tất</button>
+      </div>
+    </div>
+  </div>

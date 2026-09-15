@@ -1,0 +1,60 @@
+<!-- VIEW 2: 3D ONTOLOGY GRAPH -->
+  <div id="graph-view" class="view-container">
+    <canvas id="canvas3d"></canvas>
+
+    <div class="hud-overlay">
+      <div class="hud-card">
+        <h3>Chú thích mô hình</h3>
+        
+        <div class="legend-item">
+          <span class="legend-color" style="background: var(--concept-color);"></span>
+          <span><b>Khái niệm (Concepts)</b> (<span id="hud-count-concepts">0</span>)</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-color" style="background: var(--instance-color);"></span>
+          <span><b>Đối tượng (Instances)</b> (<span id="hud-count-instances">0</span>)</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-line" style="background: var(--subclass-color);"></span>
+          <span><b>Kế thừa (subclassOf)</b></span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-line" style="background: var(--relation-color);"></span>
+          <span><b>Thể hiện (instanceOf)</b></span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-line" id="legendAssertionLine" style="background: var(--primary); height: 4px;"></span>
+          <span><b>Phán đoán thực tế (Assertions)</b></span>
+        </div>
+
+        <div class="hud-controls">
+          <button class="btn" onclick="resetCamera()">Đặt lại góc nhìn</button>
+          <button class="btn" id="autoRotateBtn" onclick="toggleAutoRotate()">Xoay tự động: Bật</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="drawer-3d" id="drawer3d">
+      <div class="drawer-header">
+        <div>
+          <span class="badge" id="drawerBadge">CONCEPT</span>
+          <h2 class="card-id" id="drawerId" style="font-size: 15px; margin-top: 0.35rem;">Id</h2>
+        </div>
+        <button class="drawer-close" onclick="closeDrawer()">&times;</button>
+      </div>
+      <div id="drawerBody" style="display: flex; flex-direction: column; gap: 0.75rem;">
+      </div>
+      <button class="btn btn-primary" id="drawerJumpBtn" style="margin-top: 0.5rem; justify-content: center;">
+        Xem trong trình kiểm tra
+      </button>
+    </div>
+
+    <div class="tooltip-3d" id="tooltip3d">Tooltip</div>
+
+    <div class="hint-bar">
+      <span>Chuột trái: xoay</span>
+      <span>Chuột phải: di chuyển</span>
+      <span>Cuộn: phóng to</span>
+      <span>Nhấp node: chi tiết</span>
+    </div>
+  </div>

@@ -1,0 +1,41 @@
+<!-- Top Header Navigation -->
+  <header>
+    <a href="#" class="brand" onclick="switchView('inspector')">
+      <span class="brand-copy">
+        <span class="brand-kicker">Ontology atelier</span>
+        <span class="brand-title">DSA Knowledge Base</span>
+      </span>
+    </a>
+
+    <nav class="nav-tabs">
+      <button id="tab-dashboard" class="nav-tab active" onclick="switchView('dashboard')">
+        Tổng quan
+      </button>
+      <button id="tab-inspector" class="nav-tab" onclick="switchView('inspector')">
+        Kiểm tra dữ liệu
+      </button>
+      <button id="tab-questions" class="nav-tab" onclick="switchView('questions')">
+        Câu hỏi &amp; lời giải
+      </button>
+      <button id="tab-graph" class="nav-tab" onclick="switchView('graph')">
+        Mô hình 3D
+      </button>
+    </nav>
+
+    <div class="header-actions">
+      <div class="header-stats">
+        <div class="stat-pill">Khái niệm <b id="stat-concepts">0</b></div>
+        <div class="stat-pill">Kế thừa <b id="stat-hierarchy">0</b></div>
+        <div class="stat-pill">Đối tượng <b id="stat-instances">0</b></div>
+      </div>
+
+      <div class="live-status-pill" id="liveSyncToggle" onclick="toggleAutoSync()" title="Nhấp để Bật/Tắt tự động đồng bộ thời gian thực">
+        <span class="live-dot" id="liveDot"></span>
+        <span id="liveStatusText">Live 3s</span>
+      </div>
+
+      <button class="btn" onclick="fetchKBData(true)" title="Làm mới dữ liệu từ file JSON">Làm mới</button>
+
+      <button class="btn-theme" onclick="openThemeModal()">Giao diện</button>
+    </div>
+  </header>
