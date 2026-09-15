@@ -1,329 +1,2315 @@
 {
     "assertions": [
         {
-            "source": "I_CHAPTER_OVERVIEW",
+            "source": "O_C_CHAPTER_OVERVIEW",
             "relation": "REL_CHAPTER_CONTRIBUTES_TO_CLOS",
-            "target": "I_CLOS_1"
+            "target": "O_C_CLOS_1"
         },
         {
-            "source": "I_CHAPTER_SEARCHING_AND_SORTING",
+            "source": "O_C_CHAPTER_SEARCHING_AND_SORTING",
             "relation": "REL_CHAPTER_CONTRIBUTES_TO_CLOS",
-            "target": "I_CLOS_2"
+            "target": "O_C_CLOS_2"
         },
         {
-            "source": "I_CHAPTER_SEARCHING_AND_SORTING",
+            "source": "O_C_CHAPTER_SEARCHING_AND_SORTING",
             "relation": "REL_CHAPTER_CONTRIBUTES_TO_CLOS",
-            "target": "I_CLOS_3"
+            "target": "O_C_CLOS_3"
         },
         {
-            "source": "I_CHAPTER_LINKED_LIST",
+            "source": "O_C_CHAPTER_LINKED_LIST",
             "relation": "REL_CHAPTER_CONTRIBUTES_TO_CLOS",
-            "target": "I_CLOS_4"
+            "target": "O_C_CLOS_4"
         },
         {
-            "source": "I_CHAPTER_LINKED_LIST",
+            "source": "O_C_CHAPTER_LINKED_LIST",
             "relation": "REL_CHAPTER_CONTRIBUTES_TO_CLOS",
-            "target": "I_CLOS_5"
+            "target": "O_C_CLOS_5"
         },
         {
-            "source": "I_ALGORITHM",
+            "source": "O_C_ALGORITHM",
             "relation": "REL_ALGORITHM_APPLY_TO_PROBLEM_SOLVING",
-            "target": "I_PROBLEM_SOLVING"
+            "target": "O_C_PROBLEM_SOLVING"
         },
         {
-            "source": "I_CHAPTER_OVERVIEW",
+            "source": "O_C_CHAPTER_OVERVIEW",
             "relation": "REL_CHAPTER_HAS_TOPIC",
-            "target": "I_ALGORITHM"
+            "target": "O_C_ALGORITHM"
         },
         {
-            "source": "I_CHAPTER_OVERVIEW",
+            "source": "O_C_CHAPTER_OVERVIEW",
             "relation": "REL_CHAPTER_HAS_TOPIC",
-            "target": "I_ALGORITHM_ANALYSIS"
+            "target": "O_C_ALGORITHM_ANALYSIS"
         },
         {
-            "source": "I_CHAPTER_OVERVIEW",
+            "source": "O_C_CHAPTER_OVERVIEW",
             "relation": "REL_CHAPTER_HAS_TOPIC",
-            "target": "I_ALGORITHM_DESIGN"
+            "target": "O_C_ALGORITHM_DESIGN"
         },
         {
-            "source": "I_CHAPTER_OVERVIEW",
+            "source": "O_C_CHAPTER_OVERVIEW",
             "relation": "REL_CHAPTER_HAS_TOPIC",
-            "target": "I_COMPLEXITY"
+            "target": "O_C_COMPLEXITY"
         },
         {
-            "source": "I_CHAPTER_OVERVIEW",
+            "source": "O_C_CHAPTER_OVERVIEW",
             "relation": "REL_CHAPTER_HAS_TOPIC",
-            "target": "I_DATA"
+            "target": "O_C_DATA"
         },
         {
-            "source": "I_CHAPTER_SEARCHING_AND_SORTING",
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_LINKED_LIST"
+        },
+        {
+            "source": "O_C_ALGORITHM",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_DATA"
+        },
+        {
+            "source": "O_C_ALGORITHM",
+            "relation": "REL_ALGORITHM_HAS_CHARACTERISTIC",
+            "target": "O_C_DEFINITENESS"
+        },
+        {
+            "source": "O_C_ALGORITHM",
+            "relation": "REL_ALGORITHM_HAS_CHARACTERISTIC",
+            "target": "O_C_FINITENESS"
+        },
+        {
+            "source": "O_C_ALGORITHM",
+            "relation": "REL_ALGORITHM_HAS_CHARACTERISTIC",
+            "target": "O_C_CORRECTNESS"
+        },
+        {
+            "source": "O_C_ALGORITHM",
+            "relation": "REL_ALGORITHM_HAS_CHARACTERISTIC",
+            "target": "O_C_EFFICIENCY"
+        },
+        {
+            "source": "O_C_ALGORITHM",
+            "relation": "REL_ALGORITHM_HAS_CHARACTERISTIC",
+            "target": "O_C_FEASIBILITY"
+        },
+        {
+            "source": "O_C_DEFINITENESS",
+            "relation": "REL_DEFINITENESS_REQUIRES_IDENTIFY_IO",
+            "target": "O_C_INPUT"
+        },
+        {
+            "source": "O_C_DEFINITENESS",
+            "relation": "REL_DEFINITENESS_REQUIRES_IDENTIFY_IO",
+            "target": "O_C_OUTPUT"
+        },
+        {
+            "source": "O_C_ALGORITHM_ANALYSIS",
+            "relation": "REL_ALGORITHM_ANALYSIS_EVALUATES_ALGORITHM",
+            "target": "O_C_ALGORITHM"
+        },
+        {
+            "source": "O_C_ALGORITHM_ANALYSIS",
+            "relation": "REL_ALGORITHM_ANALYSIS_MEASURES_COMPLEXITY",
+            "target": "O_C_COMPLEXITY"
+        },
+        {
+            "source": "O_C_ALGORITHM_ANALYSIS",
+            "relation": "REL_ALGORITHM_ANALYSIS_QUANTIFIES_RESOURCE",
+            "target": "O_C_RESOURCE"
+        },
+        {
+            "source": "O_C_ALGORITHM",
+            "relation": "REL_ALGORITHM_HAS_COMPLEXITY",
+            "target": "O_C_COMPLEXITY"
+        },
+        {
+            "source": "O_C_COMPLEXITY",
+            "relation": "REL_COMPLEXITY_HAS_NOTATION_BIG_O",
+            "target": "O_C_BIG_O"
+        },
+        {
+            "source": "O_C_CONSTANT_TIME",
+            "relation": "REL_BIG_O_BETTER_THAN_BIG_O",
+            "target": "O_C_LOGARITHMIC_TIME"
+        },
+        {
+            "source": "O_C_LOGARITHMIC_TIME",
+            "relation": "REL_BIG_O_BETTER_THAN_BIG_O",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_LINEAR_TIME",
+            "relation": "REL_BIG_O_BETTER_THAN_BIG_O",
+            "target": "O_C_LINEARITHMIC_TIME"
+        },
+        {
+            "source": "O_C_LINEARITHMIC_TIME",
+            "relation": "REL_BIG_O_BETTER_THAN_BIG_O",
+            "target": "O_C_QUADRATIC_TIME"
+        },
+        {
+            "source": "O_C_QUADRATIC_TIME",
+            "relation": "REL_BIG_O_BETTER_THAN_BIG_O",
+            "target": "O_C_EXPONENTIAL_TIME"
+        },
+        {
+            "source": "O_C_EXPONENTIAL_TIME",
+            "relation": "REL_BIG_O_BETTER_THAN_BIG_O",
+            "target": "O_C_FACTORIAL_TIME"
+        },
+        {
+            "source": "O_C_PROGRAM",
+            "relation": "REL_PROGRAM_INCLUDES",
+            "target": "O_C_ALGORITHM"
+        },
+        {
+            "source": "O_C_PROGRAM",
+            "relation": "REL_PROGRAM_INCLUDES",
+            "target": "O_C_DATA"
+        },
+        {
+            "source": "O_C_LINEAR_SEARCH",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_LINEAR_SEARCH",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_LINEAR_SEARCH",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_BINARY_SEARCH",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_BINARY_SEARCH",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_LOGARITHMIC_TIME"
+        },
+        {
+            "source": "O_C_BINARY_SEARCH",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_LOGARITHMIC_TIME"
+        },
+        {
+            "source": "O_C_SELECTION_SORT",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_QUADRATIC_TIME"
+        },
+        {
+            "source": "O_C_SELECTION_SORT",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_QUADRATIC_TIME"
+        },
+        {
+            "source": "O_C_SELECTION_SORT",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_QUADRATIC_TIME"
+        },
+        {
+            "source": "O_C_BUBBLE_SORT",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_BUBBLE_SORT",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_QUADRATIC_TIME"
+        },
+        {
+            "source": "O_C_BUBBLE_SORT",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_QUADRATIC_TIME"
+        },
+        {
+            "source": "O_C_INSERTION_SORT",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_INSERTION_SORT",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_QUADRATIC_TIME"
+        },
+        {
+            "source": "O_C_INSERTION_SORT",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_QUADRATIC_TIME"
+        },
+        {
+            "source": "O_C_QUICK_SORT",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_LINEARITHMIC_TIME"
+        },
+        {
+            "source": "O_C_QUICK_SORT",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_LINEARITHMIC_TIME"
+        },
+        {
+            "source": "O_C_QUICK_SORT",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_QUADRATIC_TIME"
+        },
+        {
+            "source": "O_C_MERGE_SORT",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_LINEARITHMIC_TIME"
+        },
+        {
+            "source": "O_C_MERGE_SORT",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_LINEARITHMIC_TIME"
+        },
+        {
+            "source": "O_C_MERGE_SORT",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_LINEARITHMIC_TIME"
+        },
+        {
+            "source": "O_C_HEAP_SORT",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_LINEARITHMIC_TIME"
+        },
+        {
+            "source": "O_C_HEAP_SORT",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_LINEARITHMIC_TIME"
+        },
+        {
+            "source": "O_C_HEAP_SORT",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_LINEARITHMIC_TIME"
+        },
+        {
+            "source": "O_C_BUCKET_SORT",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_BUCKET_SORT",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_BUCKET_SORT",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_QUADRATIC_TIME"
+        },
+        {
+            "source": "O_C_RADIX_SORT",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_RADIX_SORT",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_RADIX_SORT",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_PROGRAM"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_DATA_STRUCTURE"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_PRIMITIVE_DATA_STRUCTURE"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_NON_PRIMITIVE_DATA_STRUCTURE"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_ARRAY"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_1D_ARRAY"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_2D_ARRAY"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_TIME_COMPLEXITY"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_SPACE_COMPLEXITY"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_THEORETICAL_ANALYSIS"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_EXPERIMENTAL_ANALYSIS"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_DIVIDE_AND_CONQUER"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_RECURSIVE"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_PSEUDOCODE"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_FLOWCHART"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_NATURAL_LANGUAGE"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_ARRAY_ACCESS"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_ARRAY_INSERT"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_ARRAY_DELETE"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_ARRAY_TRAVERSE"
+        },
+        {
+            "source": "O_C_THEORETICAL_ANALYSIS",
+            "relation": "REL_ALGORITHM_ANALYSIS_EVALUATES_ALGORITHM",
+            "target": "O_C_ALGORITHM"
+        },
+        {
+            "source": "O_C_THEORETICAL_ANALYSIS",
+            "relation": "REL_ALGORITHM_ANALYSIS_MEASURES_COMPLEXITY",
+            "target": "O_C_TIME_COMPLEXITY"
+        },
+        {
+            "source": "O_C_THEORETICAL_ANALYSIS",
+            "relation": "REL_ALGORITHM_ANALYSIS_MEASURES_COMPLEXITY",
+            "target": "O_C_SPACE_COMPLEXITY"
+        },
+        {
+            "source": "O_C_EXPERIMENTAL_ANALYSIS",
+            "relation": "REL_ALGORITHM_ANALYSIS_EVALUATES_ALGORITHM",
+            "target": "O_C_ALGORITHM"
+        },
+        {
+            "source": "O_C_EXPERIMENTAL_ANALYSIS",
+            "relation": "REL_ALGORITHM_ANALYSIS_MEASURES_COMPLEXITY",
+            "target": "O_C_TIME_COMPLEXITY"
+        },
+        {
+            "source": "O_C_EXPERIMENTAL_ANALYSIS",
+            "relation": "REL_ALGORITHM_ANALYSIS_MEASURES_COMPLEXITY",
+            "target": "O_C_SPACE_COMPLEXITY"
+        },
+        {
+            "source": "O_C_EXPERIMENTAL_ANALYSIS",
+            "relation": "REL_ALGORITHM_ANALYSIS_QUANTIFIES_RESOURCE",
+            "target": "O_C_EXECUTION_TIME"
+        },
+        {
+            "source": "O_C_EXPERIMENTAL_ANALYSIS",
+            "relation": "REL_ALGORITHM_ANALYSIS_QUANTIFIES_RESOURCE",
+            "target": "O_C_MEMORY_USAGE"
+        },
+        {
+            "source": "O_C_TIME_COMPLEXITY",
+            "relation": "REL_COMPLEXITY_HAS_NOTATION_BIG_O",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_TIME_COMPLEXITY",
+            "relation": "REL_COMPLEXITY_HAS_NOTATION_BIG_O",
+            "target": "O_C_LOGARITHMIC_TIME"
+        },
+        {
+            "source": "O_C_TIME_COMPLEXITY",
+            "relation": "REL_COMPLEXITY_HAS_NOTATION_BIG_O",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_TIME_COMPLEXITY",
+            "relation": "REL_COMPLEXITY_HAS_NOTATION_BIG_O",
+            "target": "O_C_LINEARITHMIC_TIME"
+        },
+        {
+            "source": "O_C_TIME_COMPLEXITY",
+            "relation": "REL_COMPLEXITY_HAS_NOTATION_BIG_O",
+            "target": "O_C_QUADRATIC_TIME"
+        },
+        {
+            "source": "O_C_TIME_COMPLEXITY",
+            "relation": "REL_COMPLEXITY_HAS_NOTATION_BIG_O",
+            "target": "O_C_EXPONENTIAL_TIME"
+        },
+        {
+            "source": "O_C_TIME_COMPLEXITY",
+            "relation": "REL_COMPLEXITY_HAS_NOTATION_BIG_O",
+            "target": "O_C_FACTORIAL_TIME"
+        },
+        {
+            "source": "O_C_SPACE_COMPLEXITY",
+            "relation": "REL_COMPLEXITY_HAS_NOTATION_BIG_O",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_SPACE_COMPLEXITY",
+            "relation": "REL_COMPLEXITY_HAS_NOTATION_BIG_O",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_ALGORITHM",
+            "relation": "REL_ALGORITHM_REPRESENTED_BY",
+            "target": "O_C_PSEUDOCODE"
+        },
+        {
+            "source": "O_C_ALGORITHM",
+            "relation": "REL_ALGORITHM_REPRESENTED_BY",
+            "target": "O_C_FLOWCHART"
+        },
+        {
+            "source": "O_C_ALGORITHM",
+            "relation": "REL_ALGORITHM_REPRESENTED_BY",
+            "target": "O_C_NATURAL_LANGUAGE"
+        },
+        {
+            "source": "O_C_CHAPTER_SEARCHING_AND_SORTING",
             "relation": "REL_CHAPTER_HAS_TOPIC",
             "target": "O_C_SEARCHING_ALGORITHM"
         },
         {
-            "source": "I_CHAPTER_SEARCHING_AND_SORTING",
+            "source": "O_C_CHAPTER_SEARCHING_AND_SORTING",
             "relation": "REL_CHAPTER_HAS_TOPIC",
             "target": "O_C_SORTING_ALGORITHM"
         },
         {
-            "source": "I_CHAPTER_LINKED_LIST",
+            "source": "O_C_CHAPTER_SEARCHING_AND_SORTING",
             "relation": "REL_CHAPTER_HAS_TOPIC",
-            "target": "I_LINKED_LIST"
+            "target": "O_C_COMPARISON_BASED_SORTING_ALGORITHM"
         },
         {
-            "source": "I_ALGORITHM",
+            "source": "O_C_CHAPTER_SEARCHING_AND_SORTING",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_LINEAR_SEARCH"
+        },
+        {
+            "source": "O_C_CHAPTER_SEARCHING_AND_SORTING",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_BINARY_SEARCH"
+        },
+        {
+            "source": "O_C_CHAPTER_SEARCHING_AND_SORTING",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_BUBBLE_SORT"
+        },
+        {
+            "source": "O_C_CHAPTER_SEARCHING_AND_SORTING",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_SELECTION_SORT"
+        },
+        {
+            "source": "O_C_CHAPTER_SEARCHING_AND_SORTING",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_INSERTION_SORT"
+        },
+        {
+            "source": "O_C_CHAPTER_SEARCHING_AND_SORTING",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_TIME_COMPLEXITY"
+        },
+        {
+            "source": "O_C_CHAPTER_SEARCHING_AND_SORTING",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_SPACE_COMPLEXITY"
+        },
+        {
+            "source": "O_C_LINEAR_SEARCH",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_LINEAR_SEARCH",
             "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
-            "target": "I_DATA"
+            "target": "O_C_1D_ARRAY"
         },
         {
-            "source": "I_ALGORITHM",
-            "relation": "REL_ALGORITHM_HAS_CHARACTERISTIC",
-            "target": "I_DEFINITENESS"
+            "source": "O_C_BINARY_SEARCH",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_DIVIDE_AND_CONQUER"
         },
         {
-            "source": "I_ALGORITHM",
-            "relation": "REL_ALGORITHM_HAS_CHARACTERISTIC",
-            "target": "I_FINITENESS"
+            "source": "O_C_BINARY_SEARCH",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_1D_ARRAY"
         },
         {
-            "source": "I_ALGORITHM",
-            "relation": "REL_ALGORITHM_HAS_CHARACTERISTIC",
-            "target": "I_CORRECTNESS"
+            "source": "O_C_SELECTION_SORT",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
         },
         {
-            "source": "I_ALGORITHM",
-            "relation": "REL_ALGORITHM_HAS_CHARACTERISTIC",
-            "target": "I_EFFICIENCY"
+            "source": "O_C_SELECTION_SORT",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_1D_ARRAY"
         },
         {
-            "source": "I_ALGORITHM",
-            "relation": "REL_ALGORITHM_HAS_CHARACTERISTIC",
-            "target": "I_FEASIBILITY"
+            "source": "O_C_BUBBLE_SORT",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
         },
         {
-            "source": "I_DEFINITENESS",
-            "relation": "REL_DEFINITENESS_REQUIRES_IDENTIFY_IO",
-            "target": "I_INPUT"
+            "source": "O_C_BUBBLE_SORT",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_1D_ARRAY"
         },
         {
-            "source": "I_DEFINITENESS",
-            "relation": "REL_DEFINITENESS_REQUIRES_IDENTIFY_IO",
-            "target": "I_OUTPUT"
+            "source": "O_C_INSERTION_SORT",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
         },
         {
-            "source": "I_ALGORITHM_ANALYSIS",
-            "relation": "REL_ALGORITHM_ANALYSIS_EVALUATES_ALGORITHM",
-            "target": "I_ALGORITHM"
+            "source": "O_C_INSERTION_SORT",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_1D_ARRAY"
         },
         {
-            "source": "I_ALGORITHM_ANALYSIS",
-            "relation": "REL_ALGORITHM_ANALYSIS_MEASURES_COMPLEXITY",
-            "target": "I_COMPLEXITY"
+            "source": "O_C_QUICK_SORT",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_DIVIDE_AND_CONQUER"
         },
         {
-            "source": "I_ALGORITHM_ANALYSIS",
+            "source": "O_C_QUICK_SORT",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_1D_ARRAY"
+        },
+        {
+            "source": "O_C_MERGE_SORT",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_DIVIDE_AND_CONQUER"
+        },
+        {
+            "source": "O_C_MERGE_SORT",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_1D_ARRAY"
+        },
+        {
+            "source": "O_C_HEAP_SORT",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_1D_ARRAY"
+        },
+        {
+            "source": "O_C_BUCKET_SORT",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_BUCKET_SORT",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_1D_ARRAY"
+        },
+        {
+            "source": "O_C_RADIX_SORT",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_RADIX_SORT",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_1D_ARRAY"
+        },
+        {
+            "source": "O_C_BINARY_SEARCH",
+            "relation": "REL_ALGORITHM_REQUIRES_SORTED_COLLECTION",
+            "target": "O_C_1D_ARRAY",
+            "attributes": [
+                {
+                    "name": "mustBeSorted",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "source": "O_C_LINEAR_SEARCH",
+            "relation": "REL_ALGORITHM_APPLY_TO_PROBLEM_SOLVING",
+            "target": "O_C_SEARCHING_PROBLEM"
+        },
+        {
+            "source": "O_C_BINARY_SEARCH",
+            "relation": "REL_ALGORITHM_APPLY_TO_PROBLEM_SOLVING",
+            "target": "O_C_SEARCHING_PROBLEM"
+        },
+        {
+            "source": "O_C_BUBBLE_SORT",
+            "relation": "REL_ALGORITHM_APPLY_TO_PROBLEM_SOLVING",
+            "target": "O_C_SORTING_PROBLEM"
+        },
+        {
+            "source": "O_C_SELECTION_SORT",
+            "relation": "REL_ALGORITHM_APPLY_TO_PROBLEM_SOLVING",
+            "target": "O_C_SORTING_PROBLEM"
+        },
+        {
+            "source": "O_C_INSERTION_SORT",
+            "relation": "REL_ALGORITHM_APPLY_TO_PROBLEM_SOLVING",
+            "target": "O_C_SORTING_PROBLEM"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_SINGLY_LINKED_LIST"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_DOUBLY_LINKED_LIST"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_CIRCULAR_LINKED_LIST"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_NODE"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_POINTER"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_ARRAY"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_SLL_TRAVERSE"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_SLL_SEARCH"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_SLL_INSERT_HEAD"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_SLL_INSERT_TAIL"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_SLL_INSERT_AT"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_SLL_DELETE_HEAD"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_SLL_DELETE_AT"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_DLL_TRAVERSE"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_DLL_INSERT_HEAD"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_DLL_INSERT_TAIL"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_DLL_DELETE_HEAD"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_CLL_TRAVERSE"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_CLL_INSERT_HEAD"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_CLL_DELETE_HEAD"
+        },
+        {
+            "source": "O_C_SINGLY_LINKED_LIST",
+            "relation": "REL_LINKED_LIST_HAS_HEAD_POINTER",
+            "target": "O_C_HEAD_POINTER"
+        },
+        {
+            "source": "O_C_SINGLY_LINKED_LIST",
+            "relation": "REL_LINKED_LIST_HAS_TAIL_POINTER",
+            "target": "O_C_TAIL_POINTER"
+        },
+        {
+            "source": "O_C_NODE",
+            "relation": "REL_NODE_HAS_NEXT_POINTER",
+            "target": "O_C_NEXT_POINTER"
+        },
+        {
+            "source": "O_C_NODE",
+            "relation": "REL_NODE_HAS_DATA",
+            "target": "O_C_INTEGER"
+        },
+        {
+            "source": "O_C_HEAD_POINTER",
+            "relation": "REL_POINTER_POINT_TO_NODE",
+            "target": "O_C_NODE"
+        },
+        {
+            "source": "O_C_TAIL_POINTER",
+            "relation": "REL_POINTER_POINT_TO_NODE",
+            "target": "O_C_NODE"
+        },
+        {
+            "source": "O_C_NEXT_POINTER",
+            "relation": "REL_POINTER_POINT_TO_NODE",
+            "target": "O_C_NODE"
+        },
+        {
+            "source": "O_C_DOUBLY_LINKED_LIST",
+            "relation": "REL_LINKED_LIST_HAS_HEAD_POINTER",
+            "target": "O_C_HEAD_POINTER"
+        },
+        {
+            "source": "O_C_DOUBLY_LINKED_LIST",
+            "relation": "REL_LINKED_LIST_HAS_TAIL_POINTER",
+            "target": "O_C_TAIL_POINTER"
+        },
+        {
+            "source": "O_C_NODE",
+            "relation": "REL_NODE_HAS_PREV_POINTER",
+            "target": "O_C_PREV_POINTER"
+        },
+        {
+            "source": "O_C_PREV_POINTER",
+            "relation": "REL_POINTER_POINT_TO_NODE",
+            "target": "O_C_NODE"
+        },
+        {
+            "source": "O_C_CIRCULAR_LINKED_LIST",
+            "relation": "REL_LINKED_LIST_HAS_HEAD_POINTER",
+            "target": "O_C_HEAD_POINTER"
+        },
+        {
+            "source": "O_C_NODE",
+            "relation": "REL_NODE_HAS_DATA",
+            "target": "O_C_DATA"
+        },
+        {
+            "source": "O_C_ARRAY_ACCESS",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_ARRAY_ACCESS",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_ARRAY_ACCESS",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_ARRAY_ACCESS",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_1D_ARRAY"
+        },
+        {
+            "source": "O_C_ARRAY_ACCESS",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_ARRAY_INSERT",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_ARRAY_INSERT",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_ARRAY_INSERT",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_ARRAY_INSERT",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_1D_ARRAY"
+        },
+        {
+            "source": "O_C_ARRAY_INSERT",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_ARRAY_DELETE",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_ARRAY_DELETE",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_ARRAY_DELETE",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_ARRAY_DELETE",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_1D_ARRAY"
+        },
+        {
+            "source": "O_C_ARRAY_DELETE",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_ARRAY_TRAVERSE",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_ARRAY_TRAVERSE",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_ARRAY_TRAVERSE",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_ARRAY_TRAVERSE",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_1D_ARRAY"
+        },
+        {
+            "source": "O_C_ARRAY_TRAVERSE",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_SLL_TRAVERSE",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_SLL_TRAVERSE",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_SLL_TRAVERSE",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_SLL_TRAVERSE",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_SINGLY_LINKED_LIST"
+        },
+        {
+            "source": "O_C_SLL_TRAVERSE",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_SLL_SEARCH",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_SLL_SEARCH",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_SLL_SEARCH",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_SLL_SEARCH",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_SINGLY_LINKED_LIST"
+        },
+        {
+            "source": "O_C_SLL_SEARCH",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_SLL_INSERT_HEAD",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_SLL_INSERT_HEAD",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_SLL_INSERT_HEAD",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_SLL_INSERT_HEAD",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_SINGLY_LINKED_LIST"
+        },
+        {
+            "source": "O_C_SLL_INSERT_HEAD",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_SLL_INSERT_TAIL",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_SLL_INSERT_TAIL",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_SLL_INSERT_TAIL",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_SLL_INSERT_TAIL",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_SINGLY_LINKED_LIST"
+        },
+        {
+            "source": "O_C_SLL_INSERT_TAIL",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_SLL_INSERT_AT",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_SLL_INSERT_AT",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_SLL_INSERT_AT",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_SLL_INSERT_AT",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_SINGLY_LINKED_LIST"
+        },
+        {
+            "source": "O_C_SLL_INSERT_AT",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_SLL_DELETE_HEAD",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_SLL_DELETE_HEAD",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_SLL_DELETE_HEAD",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_SLL_DELETE_HEAD",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_SINGLY_LINKED_LIST"
+        },
+        {
+            "source": "O_C_SLL_DELETE_HEAD",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_SLL_DELETE_AT",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_SLL_DELETE_AT",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_SLL_DELETE_AT",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_SLL_DELETE_AT",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_SINGLY_LINKED_LIST"
+        },
+        {
+            "source": "O_C_SLL_DELETE_AT",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_DLL_TRAVERSE",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_DLL_TRAVERSE",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_DLL_TRAVERSE",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_DLL_TRAVERSE",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_DOUBLY_LINKED_LIST"
+        },
+        {
+            "source": "O_C_DLL_TRAVERSE",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_DLL_INSERT_HEAD",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_DLL_INSERT_HEAD",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_DLL_INSERT_HEAD",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_DLL_INSERT_HEAD",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_DOUBLY_LINKED_LIST"
+        },
+        {
+            "source": "O_C_DLL_INSERT_HEAD",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_DLL_INSERT_TAIL",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_DLL_INSERT_TAIL",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_DLL_INSERT_TAIL",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_DLL_INSERT_TAIL",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_DOUBLY_LINKED_LIST"
+        },
+        {
+            "source": "O_C_DLL_INSERT_TAIL",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_DLL_DELETE_HEAD",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_DLL_DELETE_HEAD",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_DLL_DELETE_HEAD",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_DLL_DELETE_HEAD",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_DOUBLY_LINKED_LIST"
+        },
+        {
+            "source": "O_C_DLL_DELETE_HEAD",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_CLL_TRAVERSE",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_CLL_TRAVERSE",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_CLL_TRAVERSE",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_CLL_TRAVERSE",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_CIRCULAR_LINKED_LIST"
+        },
+        {
+            "source": "O_C_CLL_TRAVERSE",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_CLL_INSERT_HEAD",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_CLL_INSERT_HEAD",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_CLL_INSERT_HEAD",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_CLL_INSERT_HEAD",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_CIRCULAR_LINKED_LIST"
+        },
+        {
+            "source": "O_C_CLL_INSERT_HEAD",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_CLL_DELETE_HEAD",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_CLL_DELETE_HEAD",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_CLL_DELETE_HEAD",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_CLL_DELETE_HEAD",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_CIRCULAR_LINKED_LIST"
+        },
+        {
+            "source": "O_C_CLL_DELETE_HEAD",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_LINKED_LIST",
+            "relation": "REL_LINKED_LIST_HAS_HEAD_POINTER",
+            "target": "O_C_HEAD_POINTER"
+        },
+        {
+            "source": "O_C_LINKED_LIST",
+            "relation": "REL_LINKED_LIST_HAS_TAIL_POINTER",
+            "target": "O_C_TAIL_POINTER"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_INTEGER"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_FLOAT"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_BOOLEAN"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_CHARACTER"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_DIRECT_ACCESS_DATA_STRUCTURE"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_SEQUENTIAL_ACCESS_DATA_STRUCTURE"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_STATIC_STRUCTURE"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_DYNAMIC_STRUCTURE"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_LINEAR_STRUCTURE"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_NON_LINEAR_STRUCTURE"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_STACK"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_QUEUE"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_TREE"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_GRAPH"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_ALGORITHM_CHARACTERISTICS"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_DEFINITENESS"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_FINITENESS"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_CORRECTNESS"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_EFFICIENCY"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_FEASIBILITY"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_IO"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_INPUT"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_OUTPUT"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_ALGORITHM_REPRESENTATION"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_BIG_O"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_LOGARITHMIC_TIME"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_LINEARITHMIC_TIME"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_QUADRATIC_TIME"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_RESOURCE"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_EXECUTION_TIME"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_MEMORY_USAGE"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_PROBLEM_SOLVING"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_GREEDY"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_DYNAMIC_PROGRAMMING"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_BACKTRACKING"
+        },
+        {
+            "source": "O_C_CHAPTER_OVERVIEW",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_ARRAY_UPDATE"
+        },
+        {
+            "source": "O_C_CHAPTER_SEARCHING_AND_SORTING",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_SEARCHING_PROBLEM"
+        },
+        {
+            "source": "O_C_CHAPTER_SEARCHING_AND_SORTING",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_SORTING_PROBLEM"
+        },
+        {
+            "source": "O_C_CHAPTER_SEARCHING_AND_SORTING",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_1D_ARRAY"
+        },
+        {
+            "source": "O_C_CHAPTER_SEARCHING_AND_SORTING",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_BIG_O"
+        },
+        {
+            "source": "O_C_CHAPTER_SEARCHING_AND_SORTING",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_CHAPTER_SEARCHING_AND_SORTING",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_LOGARITHMIC_TIME"
+        },
+        {
+            "source": "O_C_CHAPTER_SEARCHING_AND_SORTING",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_CHAPTER_SEARCHING_AND_SORTING",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_QUADRATIC_TIME"
+        },
+        {
+            "source": "O_C_CHAPTER_SEARCHING_AND_SORTING",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_CHAPTER_SEARCHING_AND_SORTING",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_DIVIDE_AND_CONQUER"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_HEAD_POINTER"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_TAIL_POINTER"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_NEXT_POINTER"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_PREV_POINTER"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_SLL_DELETE_TAIL"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_SLL_REVERSE"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_SLL_COUNT"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_DLL_SEARCH"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_DLL_INSERT_AT"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_DLL_DELETE_TAIL"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_DLL_DELETE_AT"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_DLL_REVERSE"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_CLL_SEARCH"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_CLL_INSERT_TAIL"
+        },
+        {
+            "source": "O_C_CHAPTER_LINKED_LIST",
+            "relation": "REL_CHAPTER_HAS_TOPIC",
+            "target": "O_C_CLL_DELETE_TAIL"
+        },
+        {
+            "source": "O_C_ARRAY",
+            "relation": "REL_DATA_STRUCTURE_HAS_CLASSIFICATION",
+            "target": "O_C_STATIC_STRUCTURE"
+        },
+        {
+            "source": "O_C_ARRAY",
+            "relation": "REL_DATA_STRUCTURE_HAS_CLASSIFICATION",
+            "target": "O_C_LINEAR_STRUCTURE"
+        },
+        {
+            "source": "O_C_1D_ARRAY",
+            "relation": "REL_DATA_STRUCTURE_HAS_CLASSIFICATION",
+            "target": "O_C_STATIC_STRUCTURE"
+        },
+        {
+            "source": "O_C_1D_ARRAY",
+            "relation": "REL_DATA_STRUCTURE_HAS_CLASSIFICATION",
+            "target": "O_C_LINEAR_STRUCTURE"
+        },
+        {
+            "source": "O_C_2D_ARRAY",
+            "relation": "REL_DATA_STRUCTURE_HAS_CLASSIFICATION",
+            "target": "O_C_STATIC_STRUCTURE"
+        },
+        {
+            "source": "O_C_2D_ARRAY",
+            "relation": "REL_DATA_STRUCTURE_HAS_CLASSIFICATION",
+            "target": "O_C_LINEAR_STRUCTURE"
+        },
+        {
+            "source": "O_C_LINKED_LIST",
+            "relation": "REL_DATA_STRUCTURE_HAS_CLASSIFICATION",
+            "target": "O_C_DYNAMIC_STRUCTURE"
+        },
+        {
+            "source": "O_C_LINKED_LIST",
+            "relation": "REL_DATA_STRUCTURE_HAS_CLASSIFICATION",
+            "target": "O_C_LINEAR_STRUCTURE"
+        },
+        {
+            "source": "O_C_SINGLY_LINKED_LIST",
+            "relation": "REL_DATA_STRUCTURE_HAS_CLASSIFICATION",
+            "target": "O_C_DYNAMIC_STRUCTURE"
+        },
+        {
+            "source": "O_C_SINGLY_LINKED_LIST",
+            "relation": "REL_DATA_STRUCTURE_HAS_CLASSIFICATION",
+            "target": "O_C_LINEAR_STRUCTURE"
+        },
+        {
+            "source": "O_C_DOUBLY_LINKED_LIST",
+            "relation": "REL_DATA_STRUCTURE_HAS_CLASSIFICATION",
+            "target": "O_C_DYNAMIC_STRUCTURE"
+        },
+        {
+            "source": "O_C_DOUBLY_LINKED_LIST",
+            "relation": "REL_DATA_STRUCTURE_HAS_CLASSIFICATION",
+            "target": "O_C_LINEAR_STRUCTURE"
+        },
+        {
+            "source": "O_C_CIRCULAR_LINKED_LIST",
+            "relation": "REL_DATA_STRUCTURE_HAS_CLASSIFICATION",
+            "target": "O_C_DYNAMIC_STRUCTURE"
+        },
+        {
+            "source": "O_C_CIRCULAR_LINKED_LIST",
+            "relation": "REL_DATA_STRUCTURE_HAS_CLASSIFICATION",
+            "target": "O_C_LINEAR_STRUCTURE"
+        },
+        {
+            "source": "O_C_STACK",
+            "relation": "REL_DATA_STRUCTURE_HAS_CLASSIFICATION",
+            "target": "O_C_DYNAMIC_STRUCTURE"
+        },
+        {
+            "source": "O_C_STACK",
+            "relation": "REL_DATA_STRUCTURE_HAS_CLASSIFICATION",
+            "target": "O_C_LINEAR_STRUCTURE"
+        },
+        {
+            "source": "O_C_QUEUE",
+            "relation": "REL_DATA_STRUCTURE_HAS_CLASSIFICATION",
+            "target": "O_C_DYNAMIC_STRUCTURE"
+        },
+        {
+            "source": "O_C_QUEUE",
+            "relation": "REL_DATA_STRUCTURE_HAS_CLASSIFICATION",
+            "target": "O_C_LINEAR_STRUCTURE"
+        },
+        {
+            "source": "O_C_TREE",
+            "relation": "REL_DATA_STRUCTURE_HAS_CLASSIFICATION",
+            "target": "O_C_DYNAMIC_STRUCTURE"
+        },
+        {
+            "source": "O_C_TREE",
+            "relation": "REL_DATA_STRUCTURE_HAS_CLASSIFICATION",
+            "target": "O_C_NON_LINEAR_STRUCTURE"
+        },
+        {
+            "source": "O_C_GRAPH",
+            "relation": "REL_DATA_STRUCTURE_HAS_CLASSIFICATION",
+            "target": "O_C_DYNAMIC_STRUCTURE"
+        },
+        {
+            "source": "O_C_GRAPH",
+            "relation": "REL_DATA_STRUCTURE_HAS_CLASSIFICATION",
+            "target": "O_C_NON_LINEAR_STRUCTURE"
+        },
+        {
+            "source": "O_C_ARRAY",
+            "relation": "REL_DATA_STRUCTURE_COMPARED_WITH",
+            "target": "O_C_LINKED_LIST"
+        },
+        {
+            "source": "O_C_LINKED_LIST",
+            "relation": "REL_DATA_STRUCTURE_COMPARED_WITH",
+            "target": "O_C_ARRAY"
+        },
+        {
+            "source": "O_C_QUICK_SORT",
+            "relation": "REL_ALGORITHM_USES_MECHANISM",
+            "target": "O_C_PIVOT"
+        },
+        {
+            "source": "O_C_QUICK_SORT",
+            "relation": "REL_ALGORITHM_USES_MECHANISM",
+            "target": "O_C_PARTITION"
+        },
+        {
+            "source": "O_C_MERGE_SORT",
+            "relation": "REL_ALGORITHM_USES_MECHANISM",
+            "target": "O_C_MERGE_STEP"
+        },
+        {
+            "source": "O_C_HEAP_SORT",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_LINEAR_SEARCH",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_BINARY_SEARCH",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_BUBBLE_SORT",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_SELECTION_SORT",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_INSERTION_SORT",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_QUICK_SORT",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_LOGARITHMIC_TIME"
+        },
+        {
+            "source": "O_C_MERGE_SORT",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_HEAP_SORT",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_BUCKET_SORT",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_RADIX_SORT",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_QUICK_SORT",
+            "relation": "REL_ALGORITHM_APPLY_TO_PROBLEM_SOLVING",
+            "target": "O_C_SORTING_PROBLEM"
+        },
+        {
+            "source": "O_C_MERGE_SORT",
+            "relation": "REL_ALGORITHM_APPLY_TO_PROBLEM_SOLVING",
+            "target": "O_C_SORTING_PROBLEM"
+        },
+        {
+            "source": "O_C_HEAP_SORT",
+            "relation": "REL_ALGORITHM_APPLY_TO_PROBLEM_SOLVING",
+            "target": "O_C_SORTING_PROBLEM"
+        },
+        {
+            "source": "O_C_ARRAY_ACCESS",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_ARRAY_INSERT",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_ARRAY_DELETE",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_ARRAY_TRAVERSE",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_ARRAY_UPDATE",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_ARRAY_UPDATE",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_ARRAY_UPDATE",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_ARRAY_UPDATE",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_1D_ARRAY"
+        },
+        {
+            "source": "O_C_ARRAY_UPDATE",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_ARRAY_UPDATE",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_SLL_TRAVERSE",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_SLL_SEARCH",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_SLL_INSERT_HEAD",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_SLL_INSERT_TAIL",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_SLL_INSERT_AT",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_SLL_DELETE_HEAD",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_SLL_DELETE_TAIL",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_SLL_DELETE_TAIL",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_SLL_DELETE_TAIL",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_SLL_DELETE_TAIL",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_SINGLY_LINKED_LIST"
+        },
+        {
+            "source": "O_C_SLL_DELETE_TAIL",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_SLL_DELETE_TAIL",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_SLL_DELETE_AT",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_SLL_REVERSE",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_SLL_REVERSE",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_SLL_REVERSE",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_SLL_REVERSE",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_SINGLY_LINKED_LIST"
+        },
+        {
+            "source": "O_C_SLL_REVERSE",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_SLL_REVERSE",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_SLL_COUNT",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_SLL_COUNT",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_SLL_COUNT",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_SLL_COUNT",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_SINGLY_LINKED_LIST"
+        },
+        {
+            "source": "O_C_SLL_COUNT",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_SLL_COUNT",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_DLL_TRAVERSE",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_DLL_SEARCH",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_DLL_SEARCH",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_DLL_SEARCH",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_DLL_SEARCH",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_DOUBLY_LINKED_LIST"
+        },
+        {
+            "source": "O_C_DLL_SEARCH",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_DLL_SEARCH",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_DLL_INSERT_HEAD",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_DLL_INSERT_TAIL",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_DLL_INSERT_AT",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_DLL_INSERT_AT",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_DLL_INSERT_AT",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_DLL_INSERT_AT",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_DOUBLY_LINKED_LIST"
+        },
+        {
+            "source": "O_C_DLL_INSERT_AT",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_DLL_INSERT_AT",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_DLL_DELETE_HEAD",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_DLL_DELETE_TAIL",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_DLL_DELETE_TAIL",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_DLL_DELETE_TAIL",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_DLL_DELETE_TAIL",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_DOUBLY_LINKED_LIST"
+        },
+        {
+            "source": "O_C_DLL_DELETE_TAIL",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_DLL_DELETE_TAIL",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_DLL_DELETE_AT",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_DLL_DELETE_AT",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_DLL_DELETE_AT",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_DLL_DELETE_AT",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_DOUBLY_LINKED_LIST"
+        },
+        {
+            "source": "O_C_DLL_DELETE_AT",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_DLL_DELETE_AT",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_DLL_REVERSE",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_DLL_REVERSE",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_DLL_REVERSE",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_DLL_REVERSE",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_DOUBLY_LINKED_LIST"
+        },
+        {
+            "source": "O_C_DLL_REVERSE",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_DLL_REVERSE",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_CLL_TRAVERSE",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_CLL_SEARCH",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_CLL_SEARCH",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_CLL_SEARCH",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_CLL_SEARCH",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_CIRCULAR_LINKED_LIST"
+        },
+        {
+            "source": "O_C_CLL_SEARCH",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_CLL_SEARCH",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_CLL_INSERT_HEAD",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_CLL_INSERT_TAIL",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_CLL_INSERT_TAIL",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_CLL_INSERT_TAIL",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_CLL_INSERT_TAIL",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_CIRCULAR_LINKED_LIST"
+        },
+        {
+            "source": "O_C_CLL_INSERT_TAIL",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_CLL_INSERT_TAIL",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_CLL_DELETE_HEAD",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_CLL_DELETE_TAIL",
+            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_CLL_DELETE_TAIL",
+            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_CLL_DELETE_TAIL",
+            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
+            "target": "O_C_LINEAR_TIME"
+        },
+        {
+            "source": "O_C_CLL_DELETE_TAIL",
+            "relation": "REL_ALGORITHM_OPERATES_ON_DATA",
+            "target": "O_C_CIRCULAR_LINKED_LIST"
+        },
+        {
+            "source": "O_C_CLL_DELETE_TAIL",
+            "relation": "REL_ALGORITHM_USES_TECHNIQUE",
+            "target": "O_C_BRUTE_FORCE"
+        },
+        {
+            "source": "O_C_CLL_DELETE_TAIL",
+            "relation": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "target": "O_C_CONSTANT_TIME"
+        },
+        {
+            "source": "O_C_THEORETICAL_ANALYSIS",
             "relation": "REL_ALGORITHM_ANALYSIS_QUANTIFIES_RESOURCE",
-            "target": "I_RESOURCE"
+            "target": "O_C_EXECUTION_TIME"
         },
         {
-            "source": "I_ALGORITHM",
-            "relation": "REL_ALGORITHM_HAS_COMPLEXITY",
-            "target": "I_COMPLEXITY"
-        },
-        {
-            "source": "I_COMPLEXITY",
-            "relation": "REL_COMPLEXITY_HAS_NOTATION_BIG_O",
-            "target": "I_BIG_O"
-        },
-        {
-            "source": "I_CONSTANT_TIME",
-            "relation": "REL_BIG_O_BETTER_THAN_BIG_O",
-            "target": "I_LOGARITHMIC_TIME"
-        },
-        {
-            "source": "I_LOGARITHMIC_TIME",
-            "relation": "REL_BIG_O_BETTER_THAN_BIG_O",
-            "target": "I_LINEAR_TIME"
-        },
-        {
-            "source": "I_LINEAR_TIME",
-            "relation": "REL_BIG_O_BETTER_THAN_BIG_O",
-            "target": "I_LINEARITHMIC_TIME"
-        },
-        {
-            "source": "I_LINEARITHMIC_TIME",
-            "relation": "REL_BIG_O_BETTER_THAN_BIG_O",
-            "target": "I_QUADRATIC_TIME"
-        },
-        {
-            "source": "I_QUADRATIC_TIME",
-            "relation": "REL_BIG_O_BETTER_THAN_BIG_O",
-            "target": "I_EXPONENTIAL_TIME"
-        },
-        {
-            "source": "I_EXPONENTIAL_TIME",
-            "relation": "REL_BIG_O_BETTER_THAN_BIG_O",
-            "target": "I_FACTORIAL_TIME"
-        },
-        {
-            "source": "I_PROGRAM",
-            "relation": "REL_PROGRAM_INCLUDES",
-            "target": "I_ALGORITHM"
-        },
-        {
-            "source": "I_PROGRAM",
-            "relation": "REL_PROGRAM_INCLUDES",
-            "target": "I_DATA"
-        },
-        {
-            "source": "I_LINEAR_SEARCH",
-            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
-            "target": "I_CONSTANT_TIME"
-        },
-        {
-            "source": "I_LINEAR_SEARCH",
-            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
-            "target": "I_LINEAR_TIME"
-        },
-        {
-            "source": "I_LINEAR_SEARCH",
-            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
-            "target": "I_LINEAR_TIME"
-        },
-        {
-            "source": "I_BINARY_SEARCH",
-            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
-            "target": "I_CONSTANT_TIME"
-        },
-        {
-            "source": "I_BINARY_SEARCH",
-            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
-            "target": "I_LOGARITHMIC_TIME"
-        },
-        {
-            "source": "I_BINARY_SEARCH",
-            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
-            "target": "I_LOGARITHMIC_TIME"
-        },
-        {
-            "source": "I_SELECTION_SORT",
-            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
-            "target": "I_QUADRATIC_TIME"
-        },
-        {
-            "source": "I_SELECTION_SORT",
-            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
-            "target": "I_QUADRATIC_TIME"
-        },
-        {
-            "source": "I_SELECTION_SORT",
-            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
-            "target": "I_QUADRATIC_TIME"
-        },
-        {
-            "source": "I_BUBBLE_SORT",
-            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
-            "target": "I_LINEAR_TIME"
-        },
-        {
-            "source": "I_BUBBLE_SORT",
-            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
-            "target": "I_QUADRATIC_TIME"
-        },
-        {
-            "source": "I_BUBBLE_SORT",
-            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
-            "target": "I_QUADRATIC_TIME"
-        },
-        {
-            "source": "I_INSERTION_SORT",
-            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
-            "target": "I_LINEAR_TIME"
-        },
-        {
-            "source": "I_INSERTION_SORT",
-            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
-            "target": "I_QUADRATIC_TIME"
-        },
-        {
-            "source": "I_INSERTION_SORT",
-            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
-            "target": "I_QUADRATIC_TIME"
-        },
-        {
-            "source": "I_QUICK_SORT",
-            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
-            "target": "I_LINEARITHMIC_TIME"
-        },
-        {
-            "source": "I_QUICK_SORT",
-            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
-            "target": "I_LINEARITHMIC_TIME"
-        },
-        {
-            "source": "I_QUICK_SORT",
-            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
-            "target": "I_QUADRATIC_TIME"
-        },
-        {
-            "source": "I_MERGE_SORT",
-            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
-            "target": "I_LINEARITHMIC_TIME"
-        },
-        {
-            "source": "I_MERGE_SORT",
-            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
-            "target": "I_LINEARITHMIC_TIME"
-        },
-        {
-            "source": "I_MERGE_SORT",
-            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
-            "target": "I_LINEARITHMIC_TIME"
-        },
-        {
-            "source": "I_HEAP_SORT",
-            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
-            "target": "I_LINEARITHMIC_TIME"
-        },
-        {
-            "source": "I_HEAP_SORT",
-            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
-            "target": "I_LINEARITHMIC_TIME"
-        },
-        {
-            "source": "I_HEAP_SORT",
-            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
-            "target": "I_LINEARITHMIC_TIME"
-        },
-        {
-            "source": "I_BUCKET_SORT",
-            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
-            "target": "I_LINEAR_TIME"
-        },
-        {
-            "source": "I_BUCKET_SORT",
-            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
-            "target": "I_LINEAR_TIME"
-        },
-        {
-            "source": "I_BUCKET_SORT",
-            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
-            "target": "I_LINEAR_TIME"
-        },
-        {
-            "source": "I_RADIX_SORT",
-            "relation": "REL_ALGORITHM_HAS_BEST_COMPLEXITY",
-            "target": "I_LINEAR_TIME"
-        },
-        {
-            "source": "I_RADIX_SORT",
-            "relation": "REL_ALGORITHM_HAS_AVERAGE_COMPLEXITY",
-            "target": "I_LINEAR_TIME"
-        },
-        {
-            "source": "I_RADIX_SORT",
-            "relation": "REL_ALGORITHM_HAS_WORST_COMPLEXITY",
-            "target": "I_LINEAR_TIME"
+            "source": "O_C_THEORETICAL_ANALYSIS",
+            "relation": "REL_ALGORITHM_ANALYSIS_QUANTIFIES_RESOURCE",
+            "target": "O_C_MEMORY_USAGE"
         }
     ]
 }

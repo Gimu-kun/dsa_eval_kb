@@ -315,6 +315,198 @@
         {
             "subclass": "O_C_RADIX_SORT",
             "superclass": "O_C_NON_COMPARISON_BASED_SORTING_ALGORITHM"
+        },
+        {
+            "subclass": "O_C_PSEUDOCODE",
+            "superclass": "O_C_ALGORITHM_REPRESENTATION"
+        },
+        {
+            "subclass": "O_C_FLOWCHART",
+            "superclass": "O_C_ALGORITHM_REPRESENTATION"
+        },
+        {
+            "subclass": "O_C_NATURAL_LANGUAGE",
+            "superclass": "O_C_ALGORITHM_REPRESENTATION"
+        },
+        {
+            "subclass": "O_C_STATIC_STRUCTURE",
+            "superclass": "O_C_STRUCTURE_CLASSIFICATION"
+        },
+        {
+            "subclass": "O_C_DYNAMIC_STRUCTURE",
+            "superclass": "O_C_STRUCTURE_CLASSIFICATION"
+        },
+        {
+            "subclass": "O_C_LINEAR_STRUCTURE",
+            "superclass": "O_C_STRUCTURE_CLASSIFICATION"
+        },
+        {
+            "subclass": "O_C_NON_LINEAR_STRUCTURE",
+            "superclass": "O_C_STRUCTURE_CLASSIFICATION"
+        },
+        {
+            "subclass": "O_C_GRAPH",
+            "superclass": "O_C_SEQUENTIAL_ACCESS_DATA_STRUCTURE"
+        },
+        {
+            "subclass": "O_C_SEARCHING_PROBLEM",
+            "superclass": "O_C_PROBLEM_SOLVING"
+        },
+        {
+            "subclass": "O_C_SORTING_PROBLEM",
+            "superclass": "O_C_PROBLEM_SOLVING"
+        },
+        {
+            "subclass": "O_C_HEAD_POINTER",
+            "superclass": "O_C_POINTER"
+        },
+        {
+            "subclass": "O_C_TAIL_POINTER",
+            "superclass": "O_C_POINTER"
+        },
+        {
+            "subclass": "O_C_NEXT_POINTER",
+            "superclass": "O_C_POINTER"
+        },
+        {
+            "subclass": "O_C_PREV_POINTER",
+            "superclass": "O_C_POINTER"
+        },
+        {
+            "subclass": "O_C_PIVOT",
+            "superclass": "O_C_SORTING_MECHANISM"
+        },
+        {
+            "subclass": "O_C_PARTITION",
+            "superclass": "O_C_SORTING_MECHANISM"
+        },
+        {
+            "subclass": "O_C_MERGE_STEP",
+            "superclass": "O_C_SORTING_MECHANISM"
+        },
+        {
+            "subclass": "O_C_DATA_STRUCTURE_OPERATION",
+            "superclass": "O_C_ALGORITHM"
+        },
+        {
+            "subclass": "O_C_ARRAY_ACCESS",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_ARRAY_INSERT",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_ARRAY_DELETE",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_ARRAY_TRAVERSE",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_ARRAY_UPDATE",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_SLL_TRAVERSE",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_SLL_SEARCH",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_SLL_INSERT_HEAD",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_SLL_INSERT_TAIL",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_SLL_INSERT_AT",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_SLL_DELETE_HEAD",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_SLL_DELETE_TAIL",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_SLL_DELETE_AT",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_SLL_REVERSE",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_SLL_COUNT",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_DLL_TRAVERSE",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_DLL_SEARCH",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_DLL_INSERT_HEAD",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_DLL_INSERT_TAIL",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_DLL_INSERT_AT",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_DLL_DELETE_HEAD",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_DLL_DELETE_TAIL",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_DLL_DELETE_AT",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_DLL_REVERSE",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_CLL_TRAVERSE",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_CLL_SEARCH",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_CLL_INSERT_HEAD",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_CLL_INSERT_TAIL",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_CLL_DELETE_HEAD",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
+        },
+        {
+            "subclass": "O_C_CLL_DELETE_TAIL",
+            "superclass": "O_C_DATA_STRUCTURE_OPERATION"
         }
     ]
 }

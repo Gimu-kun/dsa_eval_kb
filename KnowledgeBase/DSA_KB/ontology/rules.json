@@ -184,6 +184,1915 @@
                     "value": true
                 }
             ]
+        },
+        {
+            "id": "rul-000004",
+            "name": "finitenessValidate",
+            "description": "Tinh huu han hop le khi thuat toan dung sau mot so huu han buoc",
+            "expression": "isTerminate(algo)",
+            "condition": {
+                "condition_type": "FuncCall",
+                "operator": "isTerminate",
+                "operands": [
+                    {
+                        "operand_type": "variable",
+                        "id": "OP_ALGORITHM",
+                        "value": "algo"
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "fin",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000005",
+            "name": "correctnessValidate",
+            "description": "Tinh dung dan hop le khi thuat toan cho ket qua dung tren moi bo du lieu hop le",
+            "expression": "producesCorrectOutput(algo)",
+            "condition": {
+                "condition_type": "FuncCall",
+                "operator": "producesCorrectOutput",
+                "operands": [
+                    {
+                        "operand_type": "variable",
+                        "id": "OP_ALGORITHM",
+                        "value": "algo"
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "cor",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000006",
+            "name": "feasibilityValidate",
+            "description": "Tinh kha thi hop le khi thuat toan cai dat duoc bang phep toan co so",
+            "expression": "isImplementable(algo)",
+            "condition": {
+                "condition_type": "FuncCall",
+                "operator": "isImplementable",
+                "operands": [
+                    {
+                        "operand_type": "variable",
+                        "id": "OP_ALGORITHM",
+                        "value": "algo"
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "fea",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000007",
+            "name": "efficiencyValidate",
+            "description": "Tinh hieu qua hop le khi thuat toan co do phuc tap va thu tu best <= average <= worst",
+            "expression": "hasComplexity(algo) && best.rank <= avg.rank && avg.rank <= worst.rank",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "AND",
+                "operands": [
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "hasComplexity",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_ALGORITHM",
+                                "value": "algo"
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "Comparison",
+                        "operator": "LTE",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_BEST_BIG_O",
+                                "value": "best.rank"
+                            },
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_AVG_BIG_O",
+                                "value": "avg.rank"
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "Comparison",
+                        "operator": "LTE",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_AVG_BIG_O",
+                                "value": "avg.rank"
+                            },
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_WORST_BIG_O",
+                                "value": "worst.rank"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "eff",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000008",
+            "name": "programValidate",
+            "description": "Chuong trinh hop le khi bao gom ca thuat toan va du lieu",
+            "expression": "includesAlgorithm(prog) && includesData(prog)",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "AND",
+                "operands": [
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "includesAlgorithm",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_PROGRAM",
+                                "value": "prog"
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "includesData",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_PROGRAM",
+                                "value": "prog"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "prog",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000009",
+            "name": "betterNotationValidate",
+            "description": "Hai ky hieu Big-O thoa isBetterNotation khi rank(left) < rank(right)",
+            "expression": "left.rank < right.rank",
+            "condition": {
+                "condition_type": "Comparison",
+                "operator": "LT",
+                "operands": [
+                    {
+                        "operand_type": "variable",
+                        "id": "OP_LEFT_BIG_O",
+                        "value": "left.rank"
+                    },
+                    {
+                        "operand_type": "variable",
+                        "id": "OP_RIGHT_BIG_O",
+                        "value": "right.rank"
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "assertion",
+                    "source_instance": "left",
+                    "relation_id": "REL_BIG_O_BETTER_THAN_BIG_O",
+                    "target_instance": "right",
+                    "attributes": []
+                }
+            ]
+        },
+        {
+            "id": "rul-000010",
+            "name": "arrayIndexInRangeValidate",
+            "description": "Truy cap mang hop le khi 0 <= index < length(arr)",
+            "expression": "index >= 0 && index < length(arr)",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "AND",
+                "operands": [
+                    {
+                        "condition_type": "Comparison",
+                        "operator": "GTE",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_INDEX",
+                                "value": "index"
+                            },
+                            {
+                                "operand_type": "int",
+                                "value": 0
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "Comparison",
+                        "operator": "LT",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_INDEX",
+                                "value": "index"
+                            },
+                            {
+                                "condition_type": "FuncCall",
+                                "operator": "length",
+                                "operands": [
+                                    {
+                                        "operand_type": "variable",
+                                        "id": "OP_ARRAY",
+                                        "value": "arr"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "arr",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000011",
+            "name": "binarySearchPreconditionValidate",
+            "description": "Tim kiem nhi phan chi ap dung khi mang da sap xep",
+            "expression": "isSorted(arr)",
+            "condition": {
+                "condition_type": "FuncCall",
+                "operator": "isSorted",
+                "operands": [
+                    {
+                        "operand_type": "variable",
+                        "id": "OP_ARRAY",
+                        "value": "arr"
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "binsearch",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000012",
+            "name": "linearSearchUnsortedValidate",
+            "description": "Tim kiem tuyen tinh van hop le khi mang chua sap xep",
+            "expression": "!isEmpty(arr)",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "NOT",
+                "operands": [
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "isEmpty",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_ARRAY",
+                                "value": "arr"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "linsearch",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000013",
+            "name": "emptyArrayHasZeroLength",
+            "description": "Mang rong thi length bang 0",
+            "expression": "isEmpty(arr) && length(arr) = 0",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "AND",
+                "operands": [
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "isEmpty",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_ARRAY",
+                                "value": "arr"
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "Comparison",
+                        "operator": "EQ",
+                        "operands": [
+                            {
+                                "condition_type": "FuncCall",
+                                "operator": "length",
+                                "operands": [
+                                    {
+                                        "operand_type": "variable",
+                                        "id": "OP_ARRAY",
+                                        "value": "arr"
+                                    }
+                                ]
+                            },
+                            {
+                                "operand_type": "int",
+                                "value": 0
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "arr",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000014",
+            "name": "nonEmptyListHasAtLeastOneNode",
+            "description": "Danh sach khong rong thi countNodes >= 1 va phai co head",
+            "expression": "!isEmpty(lst) && hasHead(lst) && countNodes(lst) >= 1",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "AND",
+                "operands": [
+                    {
+                        "condition_type": "Logical",
+                        "operator": "NOT",
+                        "operands": [
+                            {
+                                "condition_type": "FuncCall",
+                                "operator": "isEmpty",
+                                "operands": [
+                                    {
+                                        "operand_type": "variable",
+                                        "id": "OP_LINKED_LIST",
+                                        "value": "lst"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "hasHead",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_LINKED_LIST",
+                                "value": "lst"
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "Comparison",
+                        "operator": "GTE",
+                        "operands": [
+                            {
+                                "condition_type": "FuncCall",
+                                "operator": "countNodes",
+                                "operands": [
+                                    {
+                                        "operand_type": "variable",
+                                        "id": "OP_LINKED_LIST",
+                                        "value": "lst"
+                                    }
+                                ]
+                            },
+                            {
+                                "operand_type": "int",
+                                "value": 1
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "lst",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000015",
+            "name": "nodeDataValidate",
+            "description": "Node hop le khi co truong du lieu",
+            "expression": "hasData(node)",
+            "condition": {
+                "condition_type": "FuncCall",
+                "operator": "hasData",
+                "operands": [
+                    {
+                        "operand_type": "variable",
+                        "id": "OP_NODE",
+                        "value": "node"
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "node",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000016",
+            "name": "pointerValidate",
+            "description": "Con tro hop le khi bang null hoac tro toi mot node",
+            "expression": "isNullPointer(ptr) || pointsToNode(ptr)",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "OR",
+                "operands": [
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "isNullPointer",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_POINTER",
+                                "value": "ptr"
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "pointsToNode",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_POINTER",
+                                "value": "ptr"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "ptr",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000017",
+            "name": "linkedListStructureValidate",
+            "description": "Danh sach lien ket hop le khi rong hoac co head",
+            "expression": "isEmpty(lst) || hasHead(lst)",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "OR",
+                "operands": [
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "isEmpty",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_LINKED_LIST",
+                                "value": "lst"
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "hasHead",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_LINKED_LIST",
+                                "value": "lst"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "lst",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000018",
+            "name": "sllNodeValidate",
+            "description": "Node danh sach lien ket don hop le khi co data, co next va khong co prev",
+            "expression": "hasData(node) && hasNext(node) && !hasPrev(node)",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "AND",
+                "operands": [
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "hasData",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_NODE",
+                                "value": "node"
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "hasNext",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_NODE",
+                                "value": "node"
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "Logical",
+                        "operator": "NOT",
+                        "operands": [
+                            {
+                                "condition_type": "FuncCall",
+                                "operator": "hasPrev",
+                                "operands": [
+                                    {
+                                        "operand_type": "variable",
+                                        "id": "OP_NODE",
+                                        "value": "node"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "node",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000019",
+            "name": "dllNodeValidate",
+            "description": "Node danh sach lien ket doi hop le khi co data, next va prev",
+            "expression": "hasData(node) && hasNext(node) && hasPrev(node)",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "AND",
+                "operands": [
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "hasData",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_NODE",
+                                "value": "node"
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "hasNext",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_NODE",
+                                "value": "node"
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "hasPrev",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_NODE",
+                                "value": "node"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "node",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000020",
+            "name": "circularListNonEmptyValidate",
+            "description": "Danh sach lien ket vong khac rong thi head phai tro toi node (khong null)",
+            "expression": "!isEmpty(cll) && hasHead(cll) && pointsToNode(head)",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "AND",
+                "operands": [
+                    {
+                        "condition_type": "Logical",
+                        "operator": "NOT",
+                        "operands": [
+                            {
+                                "condition_type": "FuncCall",
+                                "operator": "isEmpty",
+                                "operands": [
+                                    {
+                                        "operand_type": "variable",
+                                        "id": "OP_CIRCULAR_LINKED_LIST",
+                                        "value": "cll"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "hasHead",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_CIRCULAR_LINKED_LIST",
+                                "value": "cll"
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "pointsToNode",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_HEAD",
+                                "value": "head"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "cll",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000021",
+            "name": "emptyListHasZeroNodes",
+            "description": "Danh sach rong thi so node bang 0",
+            "expression": "isEmpty(lst) && countNodes(lst) = 0",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "AND",
+                "operands": [
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "isEmpty",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_LINKED_LIST",
+                                "value": "lst"
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "Comparison",
+                        "operator": "EQ",
+                        "operands": [
+                            {
+                                "condition_type": "FuncCall",
+                                "operator": "countNodes",
+                                "operands": [
+                                    {
+                                        "operand_type": "variable",
+                                        "id": "OP_LINKED_LIST",
+                                        "value": "lst"
+                                    }
+                                ]
+                            },
+                            {
+                                "operand_type": "int",
+                                "value": 0
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "lst",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000022",
+            "name": "insertTailNeedsTailPointer",
+            "description": "Chen cuoi DSLK don O(1) khi danh sach co tail",
+            "expression": "hasTail(sll)",
+            "condition": {
+                "condition_type": "FuncCall",
+                "operator": "hasTail",
+                "operands": [
+                    {
+                        "operand_type": "variable",
+                        "id": "OP_SINGLY_LINKED_LIST",
+                        "value": "sll"
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "sll",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000023",
+            "name": "staticIfFixedSize",
+            "description": "Cấu trúc có kích thước cố định thì thuộc lớp tĩnh",
+            "expression": "hasFixedSize(ds)",
+            "condition": {
+                "condition_type": "FuncCall",
+                "operator": "hasFixedSize",
+                "operands": [
+                    {
+                        "operand_type": "variable",
+                        "id": "OP_DATA_STRUCTURE",
+                        "value": "ds"
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "staticds",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000024",
+            "name": "dynamicIfCanGrow",
+            "description": "Cấu trúc tăng được số phần tử khi chạy thì thuộc lớp động",
+            "expression": "canGrow(ds)",
+            "condition": {
+                "condition_type": "FuncCall",
+                "operator": "canGrow",
+                "operands": [
+                    {
+                        "operand_type": "variable",
+                        "id": "OP_DATA_STRUCTURE",
+                        "value": "ds"
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "dynamicds",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000025",
+            "name": "recommendBinarySearchIfSorted",
+            "description": "Mảng đã sắp và cần tìm kiếm thì gợi ý tìm kiếm nhị phân",
+            "expression": "isSorted(arr)",
+            "condition": {
+                "condition_type": "FuncCall",
+                "operator": "isSorted",
+                "operands": [
+                    {
+                        "operand_type": "variable",
+                        "id": "OP_ARRAY",
+                        "value": "arr"
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "binsearch",
+                    "attribute_name": "isRecommended",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000026",
+            "name": "recommendLinearSearchIfUnsorted",
+            "description": "Mảng chưa sắp thì gợi ý tìm kiếm tuyến tính",
+            "expression": "!isSorted(arr)",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "NOT",
+                "operands": [
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "isSorted",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_ARRAY",
+                                "value": "arr"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "linsearch",
+                    "attribute_name": "isRecommended",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000027",
+            "name": "recommendInsertionSortIfSmall",
+            "description": "Tập dữ liệu nhỏ (n <= 30) thì gợi ý sắp xếp chèn",
+            "expression": "isSmallDataset(arr)",
+            "condition": {
+                "condition_type": "FuncCall",
+                "operator": "isSmallDataset",
+                "operands": [
+                    {
+                        "operand_type": "variable",
+                        "id": "OP_ARRAY",
+                        "value": "arr"
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "insort",
+                    "attribute_name": "isRecommended",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000028",
+            "name": "excludeQuickSortIfNeedStable",
+            "description": "Nếu cần sắp ổn định thì không gợi ý Quick Sort",
+            "expression": "isStable(qsort) = false",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "NOT",
+                "operands": [
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "isStable",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_QUICK_SORT",
+                                "value": "qsort"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "qsort",
+                    "attribute_name": "isRecommended",
+                    "valueType": "bool",
+                    "value": false
+                }
+            ]
+        },
+        {
+            "id": "rul-000029",
+            "name": "efficientIfLogarithmicWorst",
+            "description": "Worst-case O(log n) thì thuật toán được xem là hiệu quả",
+            "expression": "isEfficient(binsearch)",
+            "condition": {
+                "condition_type": "FuncCall",
+                "operator": "isEfficient",
+                "operands": [
+                    {
+                        "operand_type": "variable",
+                        "id": "OP_BINARY_SEARCH",
+                        "value": "binsearch"
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "binsearch",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000030",
+            "name": "insertHeadConstantTime",
+            "description": "Chèn đầu DSLK luôn O(1) nên thao tác hợp lệ trên danh sách có head",
+            "expression": "hasHead(lst)",
+            "condition": {
+                "condition_type": "FuncCall",
+                "operator": "hasHead",
+                "operands": [
+                    {
+                        "operand_type": "variable",
+                        "id": "OP_LINKED_LIST",
+                        "value": "lst"
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "sllinshead",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000031",
+            "name": "deleteHeadConstantTime",
+            "description": "Xóa đầu DSLK O(1) khi danh sách có head",
+            "expression": "hasHead(lst)",
+            "condition": {
+                "condition_type": "FuncCall",
+                "operator": "hasHead",
+                "operands": [
+                    {
+                        "operand_type": "variable",
+                        "id": "OP_LINKED_LIST",
+                        "value": "lst"
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "slldelhead",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000032",
+            "name": "searchListLinearTime",
+            "description": "Tìm trong DSLK hợp lệ khi danh sách khác rỗng hoặc rỗng (không tìm thấy)",
+            "expression": "hasHead(lst) || isEmpty(lst)",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "OR",
+                "operands": [
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "hasHead",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_LINKED_LIST",
+                                "value": "lst"
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "isEmpty",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_LINKED_LIST",
+                                "value": "lst"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "sllsearch",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000033",
+            "name": "dllSupportsBackwardTraversal",
+            "description": "DSLK đôi hỗ trợ duyệt ngược khi node có prev",
+            "expression": "hasPrev(node)",
+            "condition": {
+                "condition_type": "FuncCall",
+                "operator": "hasPrev",
+                "operands": [
+                    {
+                        "operand_type": "variable",
+                        "id": "OP_NODE",
+                        "value": "node"
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "dll",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000034",
+            "name": "arrayRandomAccessConstant",
+            "description": "Mảng truy cập trực tiếp nên thao tác access hợp lệ khi chỉ số trong [0, n)",
+            "expression": "index >= 0 && index < length(arr)",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "AND",
+                "operands": [
+                    {
+                        "condition_type": "Comparison",
+                        "operator": "GE",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_INDEX",
+                                "value": "index"
+                            },
+                            {
+                                "operand_type": "int",
+                                "value": 0
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "Comparison",
+                        "operator": "LT",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_INDEX",
+                                "value": "index"
+                            },
+                            {
+                                "condition_type": "FuncCall",
+                                "operator": "length",
+                                "operands": [
+                                    {
+                                        "operand_type": "variable",
+                                        "id": "OP_ARRAY",
+                                        "value": "arr"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "arraccess",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000035",
+            "name": "preferArrayIfDirectAccess",
+            "description": "Cần truy cập ngẫu nhiên O(1) thì chọn mảng (cấu trúc tĩnh, truy cập trực tiếp)",
+            "expression": "isDirectAccess(arr) && isStatic(arr)",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "AND",
+                "operands": [
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "isDirectAccess",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_ARRAY",
+                                "value": "arr"
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "isStatic",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_ARRAY",
+                                "value": "arr"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "arr",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000036",
+            "name": "preferListIfDynamicInsert",
+            "description": "Cần chèn/xóa đầu thường xuyên thì chọn DSLK (cấu trúc động)",
+            "expression": "canGrow(lst) && hasHead(lst)",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "AND",
+                "operands": [
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "canGrow",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_LINKED_LIST",
+                                "value": "lst"
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "hasHead",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_LINKED_LIST",
+                                "value": "lst"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "lst",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000037",
+            "name": "bubbleBestLinearWhenSorted",
+            "description": "Bubble sort best-case O(n) khi dữ liệu đã sắp",
+            "expression": "isSorted(arr) && isStable(bubsort)",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "AND",
+                "operands": [
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "isSorted",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_ARRAY",
+                                "value": "arr"
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "isStable",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_BUBBLE_SORT",
+                                "value": "bubsort"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "bubsort",
+                    "attribute_name": "isRecommended",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000038",
+            "name": "selectionNeverStableRecommend",
+            "description": "Selection sort không ổn định; chỉ gợi ý khi không yêu cầu ổn định",
+            "expression": "!isStable(selsort) && isInPlace(selsort)",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "AND",
+                "operands": [
+                    {
+                        "condition_type": "Logical",
+                        "operator": "NOT",
+                        "operands": [
+                            {
+                                "condition_type": "FuncCall",
+                                "operator": "isStable",
+                                "operands": [
+                                    {
+                                        "operand_type": "variable",
+                                        "id": "OP_SELECTION_SORT",
+                                        "value": "selsort"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "isInPlace",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_SELECTION_SORT",
+                                "value": "selsort"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "selsort",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000039",
+            "name": "binarySearchNeedsArrayNotList",
+            "description": "Tìm kiếm nhị phân yêu cầu truy cập trực tiếp trên mảng đã sắp, không áp dụng DSLK",
+            "expression": "isSorted(arr) && isDirectAccess(arr)",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "AND",
+                "operands": [
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "isSorted",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_ARRAY",
+                                "value": "arr"
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "isDirectAccess",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_ARRAY",
+                                "value": "arr"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "binsearch",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000040",
+            "name": "circularListIsCircular",
+            "description": "DSLK vòng có thuộc tính isCircular",
+            "expression": "isCircular(cll)",
+            "condition": {
+                "condition_type": "FuncCall",
+                "operator": "isCircular",
+                "operands": [
+                    {
+                        "operand_type": "variable",
+                        "id": "OP_CIRCULAR_LINKED_LIST",
+                        "value": "cll"
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "cll",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000041",
+            "name": "nonEmptyListHasPositiveCount",
+            "description": "Danh sách khác rỗng thì số node > 0",
+            "expression": "!isEmpty(lst) && countNodes(lst) > 0",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "AND",
+                "operands": [
+                    {
+                        "condition_type": "Logical",
+                        "operator": "NOT",
+                        "operands": [
+                            {
+                                "condition_type": "FuncCall",
+                                "operator": "isEmpty",
+                                "operands": [
+                                    {
+                                        "operand_type": "variable",
+                                        "id": "OP_LINKED_LIST",
+                                        "value": "lst"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "Comparison",
+                        "operator": "GT",
+                        "operands": [
+                            {
+                                "condition_type": "FuncCall",
+                                "operator": "countNodes",
+                                "operands": [
+                                    {
+                                        "operand_type": "variable",
+                                        "id": "OP_LINKED_LIST",
+                                        "value": "lst"
+                                    }
+                                ]
+                            },
+                            {
+                                "operand_type": "int",
+                                "value": 0
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "lst",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000042",
+            "name": "inPlaceSortConstantExtraSpace",
+            "description": "Thuật toán sắp tại chỗ thì không cần mảng phụ",
+            "expression": "isInPlace(sort)",
+            "condition": {
+                "condition_type": "FuncCall",
+                "operator": "isInPlace",
+                "operands": [
+                    {
+                        "operand_type": "variable",
+                        "id": "OP_SORTING_ALGORITHM",
+                        "value": "sort"
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "sort",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000043",
+            "name": "mergeSortIfLargeUnstableOk",
+            "description": "Tập lớn có thể gợi ý merge sort khi chấp nhận bộ nhớ O(n)",
+            "expression": "isLargeDataset(arr) && isStable(msort)",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "AND",
+                "operands": [
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "isLargeDataset",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_ARRAY",
+                                "value": "arr"
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "isStable",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_MERGE_SORT",
+                                "value": "msort"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "msort",
+                    "attribute_name": "isRecommended",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000044",
+            "name": "emptyArrayLengthZero",
+            "description": "Mảng rỗng có length = 0",
+            "expression": "isEmpty(arr) && length(arr) = 0",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "AND",
+                "operands": [
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "isEmpty",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_ARRAY",
+                                "value": "arr"
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "Comparison",
+                        "operator": "EQ",
+                        "operands": [
+                            {
+                                "condition_type": "FuncCall",
+                                "operator": "length",
+                                "operands": [
+                                    {
+                                        "operand_type": "variable",
+                                        "id": "OP_ARRAY",
+                                        "value": "arr"
+                                    }
+                                ]
+                            },
+                            {
+                                "operand_type": "int",
+                                "value": 0
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "arr",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000045",
+            "name": "recommendSearchFunctionConsistent",
+            "description": "Hàm gợi ý tìm kiếm trả về nhị phân khi mảng đã sắp",
+            "expression": "isSorted(arr1d)",
+            "condition": {
+                "condition_type": "FuncCall",
+                "operator": "isSorted",
+                "operands": [
+                    {
+                        "operand_type": "variable",
+                        "id": "OP_1D_ARRAY",
+                        "value": "arr1d"
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "binsearch",
+                    "attribute_name": "isRecommended",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000046",
+            "name": "sllHasNextNotPrev",
+            "description": "Node DSLK đơn có next và không có prev",
+            "expression": "hasNext(node) && !hasPrev(node)",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "AND",
+                "operands": [
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "hasNext",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_NODE",
+                                "value": "node"
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "Logical",
+                        "operator": "NOT",
+                        "operands": [
+                            {
+                                "condition_type": "FuncCall",
+                                "operator": "hasPrev",
+                                "operands": [
+                                    {
+                                        "operand_type": "variable",
+                                        "id": "OP_NODE",
+                                        "value": "node"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "sll",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000047",
+            "name": "pointerValidIfNullOrPoints",
+            "description": "Con trỏ hợp lệ khi null hoặc trỏ tới node",
+            "expression": "isNullPointer(ptr) || pointsToNode(ptr)",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "OR",
+                "operands": [
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "isNullPointer",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_POINTER",
+                                "value": "ptr"
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "pointsToNode",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_POINTER",
+                                "value": "ptr"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "ptr",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000048",
+            "name": "algorithmHasFiniteSteps",
+            "description": "Thuật toán hợp lệ phải hữu hạn",
+            "expression": "isTerminate(algo)",
+            "condition": {
+                "condition_type": "FuncCall",
+                "operator": "isTerminate",
+                "operands": [
+                    {
+                        "operand_type": "variable",
+                        "id": "OP_ALGORITHM",
+                        "value": "algo"
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "fin",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000049",
+            "name": "chooseInsertionWhenAlmostSortedSmall",
+            "description": "Dữ liệu nhỏ hoặc gần sắp thì insertion sort được gợi ý",
+            "expression": "isSmallDataset(arr) || isSorted(arr)",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "OR",
+                "operands": [
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "isSmallDataset",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_ARRAY",
+                                "value": "arr"
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "isSorted",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_ARRAY",
+                                "value": "arr"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "insort",
+                    "attribute_name": "isRecommended",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000050",
+            "name": "linkedListNotDirectAccess",
+            "description": "DSLK không truy cập trực tiếp: isDirectAccess = false",
+            "expression": "!isDirectAccess(lst)",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "NOT",
+                "operands": [
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "isDirectAccess",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_LINKED_LIST",
+                                "value": "lst"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "lst",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000051",
+            "name": "arrayIsStaticLinear",
+            "description": "Mảng vừa tĩnh vừa tuyến tính",
+            "expression": "isStatic(arr) && isLinear(arr)",
+            "condition": {
+                "condition_type": "Logical",
+                "operator": "AND",
+                "operands": [
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "isStatic",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_ARRAY",
+                                "value": "arr"
+                            }
+                        ]
+                    },
+                    {
+                        "condition_type": "FuncCall",
+                        "operator": "isLinear",
+                        "operands": [
+                            {
+                                "operand_type": "variable",
+                                "id": "OP_ARRAY",
+                                "value": "arr"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "arr",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "rul-000052",
+            "name": "dllBackwardIfSupports",
+            "description": "DSLK đôi hợp lệ khi hỗ trợ duyệt ngược",
+            "expression": "supportsBackwardTraversal(dll)",
+            "condition": {
+                "condition_type": "FuncCall",
+                "operator": "supportsBackwardTraversal",
+                "operands": [
+                    {
+                        "operand_type": "variable",
+                        "id": "OP_DOUBLY_LINKED_LIST",
+                        "value": "dll"
+                    }
+                ]
+            },
+            "conclusion": [
+                {
+                    "type": "attribute",
+                    "target_instance": "dll",
+                    "attribute_name": "isValid",
+                    "valueType": "bool",
+                    "value": true
+                }
+            ]
         }
     ]
 }

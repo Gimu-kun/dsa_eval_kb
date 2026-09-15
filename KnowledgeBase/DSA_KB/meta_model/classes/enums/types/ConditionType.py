@@ -7,3 +7,5 @@ class ConditionType(Enum):
     DOMAIN = "Domain"
     EXISTENCE = "Existence"
     RELATION = "Relation"
+    FUNCCALL = "FuncCall"
+    ARITHMETIC = "Arithmetic"

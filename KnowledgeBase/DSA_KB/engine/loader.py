@@ -79,7 +79,8 @@ def parse_attribute_definition(attr_data: dict) -> AttributeDefinition:
         name=attr_data.get("name"),
         value_type=val_type,
         required=bool(attr_data.get("required", False)),
-        constraint=constraints
+        constraint=constraints,
+        default=attr_data.get("default"),
     )
 
 def parse_attribute_value(attr_data: dict) -> AttributeValue:
@@ -91,10 +92,17 @@ def parse_attribute_value(attr_data: dict) -> AttributeValue:
 def parse_parameter(p_data: dict) -> Parameter:
     if not p_data:
         return Parameter(name="", value_type="any", required=True)
+    required = bool(p_data.get("required", True))
+    card_str = p_data.get("cardinality")
+    if card_str:
+        cardinality = next((c for c in Cardinality if c.value == card_str), Cardinality.ONE_ONE)
+    else:
+        cardinality = Cardinality.ONE_ONE if required else Cardinality.ZERO_ONE
     return Parameter(
         name=p_data.get("name", ""),
         value_type=p_data.get("valueType") or p_data.get("value_type", "any"),
-        required=bool(p_data.get("required", True))
+        required=required,
+        cardinality=cardinality
     )
 
 def parse_operation(op_data: dict) -> Operation:
@@ -228,6 +236,8 @@ class DsaKbLoader:
                 invariant=invariants,
                 operation=operations
             )
+            if not concept.name:
+                concept.name = concept.display_name()
             concepts.append(concept)
         return concepts
 

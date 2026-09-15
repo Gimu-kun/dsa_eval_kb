@@ -72,6 +72,426 @@
             "operandType": "concept",
             "variable": "algo",
             "value": "O_C_ALGORITHM"
+        },
+        {
+            "id": "OP_PROGRAM",
+            "operandType": "concept",
+            "variable": "prog",
+            "value": "O_C_PROGRAM"
+        },
+        {
+            "id": "OP_ARRAY",
+            "operandType": "concept",
+            "variable": "arr",
+            "value": "O_C_ARRAY"
+        },
+        {
+            "id": "OP_1D_ARRAY",
+            "operandType": "concept",
+            "variable": "arr1d",
+            "value": "O_C_1D_ARRAY"
+        },
+        {
+            "id": "OP_LINKED_LIST",
+            "operandType": "concept",
+            "variable": "lst",
+            "value": "O_C_LINKED_LIST"
+        },
+        {
+            "id": "OP_SINGLY_LINKED_LIST",
+            "operandType": "concept",
+            "variable": "sll",
+            "value": "O_C_SINGLY_LINKED_LIST"
+        },
+        {
+            "id": "OP_DOUBLY_LINKED_LIST",
+            "operandType": "concept",
+            "variable": "dll",
+            "value": "O_C_DOUBLY_LINKED_LIST"
+        },
+        {
+            "id": "OP_CIRCULAR_LINKED_LIST",
+            "operandType": "concept",
+            "variable": "cll",
+            "value": "O_C_CIRCULAR_LINKED_LIST"
+        },
+        {
+            "id": "OP_NODE",
+            "operandType": "concept",
+            "variable": "node",
+            "value": "O_C_NODE"
+        },
+        {
+            "id": "OP_POINTER",
+            "operandType": "concept",
+            "variable": "ptr",
+            "value": "O_C_POINTER"
+        },
+        {
+            "id": "OP_HEAD",
+            "operandType": "concept",
+            "variable": "head",
+            "value": "O_C_POINTER"
+        },
+        {
+            "id": "OP_BINARY_SEARCH",
+            "operandType": "concept",
+            "variable": "binsearch",
+            "value": "O_C_BINARY_SEARCH"
+        },
+        {
+            "id": "OP_LINEAR_SEARCH",
+            "operandType": "concept",
+            "variable": "linsearch",
+            "value": "O_C_LINEAR_SEARCH"
+        },
+        {
+            "id": "OP_SORTING_ALGORITHM",
+            "operandType": "concept",
+            "variable": "sort",
+            "value": "O_C_SORTING_ALGORITHM"
+        },
+        {
+            "id": "OP_BEST_BIG_O",
+            "operandType": "concept",
+            "variable": "best",
+            "value": "O_C_BIG_O"
+        },
+        {
+            "id": "OP_AVG_BIG_O",
+            "operandType": "concept",
+            "variable": "avg",
+            "value": "O_C_BIG_O"
+        },
+        {
+            "id": "OP_WORST_BIG_O",
+            "operandType": "concept",
+            "variable": "worst",
+            "value": "O_C_BIG_O"
+        },
+        {
+            "id": "OP_LEFT_BIG_O",
+            "operandType": "concept",
+            "variable": "left",
+            "value": "O_C_BIG_O"
+        },
+        {
+            "id": "OP_RIGHT_BIG_O",
+            "operandType": "concept",
+            "variable": "right",
+            "value": "O_C_BIG_O"
+        },
+        {
+            "id": "OP_INDEX",
+            "operandType": "variable",
+            "variable": "index",
+            "value": "index"
+        },
+        {
+            "id": "OP_IS_TERMINATE",
+            "operandType": "function",
+            "variable": "isTerminate()",
+            "value": "FUN_IS_TERMINATE"
+        },
+        {
+            "id": "OP_PRODUCES_CORRECT_OUTPUT",
+            "operandType": "function",
+            "variable": "producesCorrectOutput()",
+            "value": "FUN_PRODUCES_CORRECT_OUTPUT"
+        },
+        {
+            "id": "OP_IS_IMPLEMENTABLE",
+            "operandType": "function",
+            "variable": "isImplementable()",
+            "value": "FUN_IS_IMPLEMENTABLE"
+        },
+        {
+            "id": "OP_HAS_COMPLEXITY",
+            "operandType": "function",
+            "variable": "hasComplexity()",
+            "value": "FUN_HAS_COMPLEXITY"
+        },
+        {
+            "id": "OP_IS_BETTER_NOTATION",
+            "operandType": "function",
+            "variable": "isBetterNotation()",
+            "value": "FUN_IS_BETTER_NOTATION"
+        },
+        {
+            "id": "OP_INCLUDES_ALGORITHM",
+            "operandType": "function",
+            "variable": "includesAlgorithm()",
+            "value": "FUN_INCLUDES_ALGORITHM"
+        },
+        {
+            "id": "OP_INCLUDES_DATA",
+            "operandType": "function",
+            "variable": "includesData()",
+            "value": "FUN_INCLUDES_DATA"
+        },
+        {
+            "id": "OP_IS_SORTED",
+            "operandType": "function",
+            "variable": "isSorted()",
+            "value": "FUN_IS_SORTED"
+        },
+        {
+            "id": "OP_IS_EMPTY",
+            "operandType": "function",
+            "variable": "isEmpty()",
+            "value": "FUN_IS_EMPTY"
+        },
+        {
+            "id": "OP_LENGTH",
+            "operandType": "function",
+            "variable": "length()",
+            "value": "FUN_LENGTH"
+        },
+        {
+            "id": "OP_IS_STABLE",
+            "operandType": "function",
+            "variable": "isStable()",
+            "value": "FUN_IS_STABLE"
+        },
+        {
+            "id": "OP_IS_IN_PLACE",
+            "operandType": "function",
+            "variable": "isInPlace()",
+            "value": "FUN_IS_IN_PLACE"
+        },
+        {
+            "id": "OP_HAS_HEAD",
+            "operandType": "function",
+            "variable": "hasHead()",
+            "value": "FUN_HAS_HEAD"
+        },
+        {
+            "id": "OP_HAS_TAIL",
+            "operandType": "function",
+            "variable": "hasTail()",
+            "value": "FUN_HAS_TAIL"
+        },
+        {
+            "id": "OP_COUNT_NODES",
+            "operandType": "function",
+            "variable": "countNodes()",
+            "value": "FUN_COUNT_NODES"
+        },
+        {
+            "id": "OP_HAS_DATA",
+            "operandType": "function",
+            "variable": "hasData()",
+            "value": "FUN_HAS_DATA"
+        },
+        {
+            "id": "OP_HAS_NEXT",
+            "operandType": "function",
+            "variable": "hasNext()",
+            "value": "FUN_HAS_NEXT"
+        },
+        {
+            "id": "OP_HAS_PREV",
+            "operandType": "function",
+            "variable": "hasPrev()",
+            "value": "FUN_HAS_PREV"
+        },
+        {
+            "id": "OP_IS_NULL_POINTER",
+            "operandType": "function",
+            "variable": "isNullPointer()",
+            "value": "FUN_IS_NULL_POINTER"
+        },
+        {
+            "id": "OP_POINTS_TO_NODE",
+            "operandType": "function",
+            "variable": "pointsToNode()",
+            "value": "FUN_POINTS_TO_NODE"
+        },
+        {
+            "id": "OP_INSERTION_SORT",
+            "operandType": "concept",
+            "variable": "insort",
+            "value": "O_C_INSERTION_SORT"
+        },
+        {
+            "id": "OP_BUBBLE_SORT",
+            "operandType": "concept",
+            "variable": "bubsort",
+            "value": "O_C_BUBBLE_SORT"
+        },
+        {
+            "id": "OP_SELECTION_SORT",
+            "operandType": "concept",
+            "variable": "selsort",
+            "value": "O_C_SELECTION_SORT"
+        },
+        {
+            "id": "OP_QUICK_SORT",
+            "operandType": "concept",
+            "variable": "qsort",
+            "value": "O_C_QUICK_SORT"
+        },
+        {
+            "id": "OP_MERGE_SORT",
+            "operandType": "concept",
+            "variable": "msort",
+            "value": "O_C_MERGE_SORT"
+        },
+        {
+            "id": "OP_SEARCHING_ALGORITHM",
+            "operandType": "concept",
+            "variable": "searchalgo",
+            "value": "O_C_SEARCHING_ALGORITHM"
+        },
+        {
+            "id": "OP_DATA_STRUCTURE",
+            "operandType": "concept",
+            "variable": "ds",
+            "value": "O_C_DATA_STRUCTURE"
+        },
+        {
+            "id": "OP_STATIC",
+            "operandType": "concept",
+            "variable": "staticds",
+            "value": "O_C_STATIC_STRUCTURE"
+        },
+        {
+            "id": "OP_DYNAMIC",
+            "operandType": "concept",
+            "variable": "dynamicds",
+            "value": "O_C_DYNAMIC_STRUCTURE"
+        },
+        {
+            "id": "OP_SLL_INSERT_HEAD",
+            "operandType": "concept",
+            "variable": "sllinshead",
+            "value": "O_C_SLL_INSERT_HEAD"
+        },
+        {
+            "id": "OP_SLL_DELETE_HEAD",
+            "operandType": "concept",
+            "variable": "slldelhead",
+            "value": "O_C_SLL_DELETE_HEAD"
+        },
+        {
+            "id": "OP_SLL_SEARCH",
+            "operandType": "concept",
+            "variable": "sllsearch",
+            "value": "O_C_SLL_SEARCH"
+        },
+        {
+            "id": "OP_ARRAY_ACCESS",
+            "operandType": "concept",
+            "variable": "arraccess",
+            "value": "O_C_ARRAY_ACCESS"
+        },
+        {
+            "id": "OP_SIZE",
+            "operandType": "variable",
+            "variable": "n",
+            "value": "n"
+        },
+        {
+            "id": "OP_IS_SMALL_DATASET",
+            "operandType": "function",
+            "variable": "isSmallDataset()",
+            "value": "FUN_IS_SMALL_DATASET"
+        },
+        {
+            "id": "OP_IS_LARGE_DATASET",
+            "operandType": "function",
+            "variable": "isLargeDataset()",
+            "value": "FUN_IS_LARGE_DATASET"
+        },
+        {
+            "id": "OP_IS_EFFICIENT",
+            "operandType": "function",
+            "variable": "isEfficient()",
+            "value": "FUN_IS_EFFICIENT"
+        },
+        {
+            "id": "OP_IS_STATIC",
+            "operandType": "function",
+            "variable": "isStatic()",
+            "value": "FUN_IS_STATIC"
+        },
+        {
+            "id": "OP_CAN_GROW",
+            "operandType": "function",
+            "variable": "canGrow()",
+            "value": "FUN_CAN_GROW"
+        },
+        {
+            "id": "OP_HAS_FIXED_SIZE",
+            "operandType": "function",
+            "variable": "hasFixedSize()",
+            "value": "FUN_HAS_FIXED_SIZE"
+        },
+        {
+            "id": "OP_IS_LINEAR_DS",
+            "operandType": "function",
+            "variable": "isLinear()",
+            "value": "FUN_IS_LINEAR"
+        },
+        {
+            "id": "OP_IS_DIRECT_ACCESS",
+            "operandType": "function",
+            "variable": "isDirectAccess()",
+            "value": "FUN_IS_DIRECT_ACCESS"
+        },
+        {
+            "id": "OP_IS_CIRCULAR",
+            "operandType": "function",
+            "variable": "isCircular()",
+            "value": "FUN_IS_CIRCULAR"
+        },
+        {
+            "id": "OP_SUPPORTS_BACKWARD",
+            "operandType": "function",
+            "variable": "supportsBackwardTraversal()",
+            "value": "FUN_SUPPORTS_BACKWARD"
+        },
+        {
+            "id": "OP_RECOMMEND_SEARCH",
+            "operandType": "function",
+            "variable": "recommendSearchAlgorithm()",
+            "value": "FUN_RECOMMEND_SEARCH"
+        },
+        {
+            "id": "OP_RECOMMEND_SORT",
+            "operandType": "function",
+            "variable": "recommendSortingAlgorithm()",
+            "value": "FUN_RECOMMEND_SORT"
+        },
+        {
+            "id": "OP_INSERT_HEAD_FN",
+            "operandType": "function",
+            "variable": "insertHead()",
+            "value": "FUN_INSERT_HEAD"
+        },
+        {
+            "id": "OP_DELETE_HEAD_FN",
+            "operandType": "function",
+            "variable": "deleteHead()",
+            "value": "FUN_DELETE_HEAD"
+        },
+        {
+            "id": "OP_REVERSE_LIST",
+            "operandType": "function",
+            "variable": "reverseList()",
+            "value": "FUN_REVERSE_LIST"
+        },
+        {
+            "id": "OP_WORST_RANK",
+            "operandType": "function",
+            "variable": "worstCaseRank()",
+            "value": "FUN_WORST_RANK"
+        },
+        {
+            "id": "OP_BEST_RANK",
+            "operandType": "function",
+            "variable": "bestCaseRank()",
+            "value": "FUN_BEST_RANK"
         }
     ]
 }

@@ -7,12 +7,12 @@ html_content = '''<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DSA Ontology & Knowledge Base Inspector (Real-time)</title>
+  <title>DSA Knowledge Base</title>
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   
   <!-- Three.js and OrbitControls -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -20,53 +20,57 @@ html_content = '''<!DOCTYPE html>
 
   <style>
     :root {
-      /* Configurable Theme Variables */
-      --primary: #FF8787;
-      --primary-hover: #ff6b6b;
-      --primary-active: #fa5252;
-      --primary-light: #fff0f0;
-      --primary-border: #ffc9c9;
-      --primary-text: #c92a2a;
-      --primary-shadow: rgba(255, 135, 135, 0.25);
+      --primary: #6B7F6E;
+      --primary-hover: #556658;
+      --primary-active: #445348;
+      --primary-light: #E8EEE8;
+      --primary-border: #C5D0C6;
+      --primary-text: #3E4F41;
+      --primary-shadow: rgba(90, 108, 94, 0.16);
+      --on-primary: #FFFEFB;
 
-      /* Backgrounds */
-      --bg-body: #f8fafc;
-      --bg-card: #ffffff;
-      --bg-subtle: #f1f5f9;
-      --bg-input: #ffffff;
-      
-      /* Borders */
-      --border-color: #e2e8f0;
-      --border-hover: #cbd5e1;
-      --border-focus: #FF8787;
+      --bg-body: #F3EEE6;
+      --bg-card: #FFFcf7;
+      --bg-subtle: #EBE4D8;
+      --bg-input: #FFFcf7;
+      --bg-wash: rgba(255, 252, 247, 0.78);
 
-      /* Typography */
-      --text-main: #0f172a;       /* Slate 900 */
-      --text-heading: #1e293b;    /* Slate 800 */
-      --text-sub: #334155;        /* Slate 700 */
-      --text-muted: #64748b;      /* Slate 500 */
-      --text-light: #94a3b8;
+      --border-color: #E4D9C8;
+      --border-hover: #D4C6B0;
+      --border-focus: #6B7F6E;
 
-      /* Semantic Badges */
-      --concept-color: #2563eb;
-      --concept-bg: #eff6ff;
-      --concept-border: #bfdbfe;
+      --text-main: #2A241C;
+      --text-heading: #1C1814;
+      --text-sub: #5C5348;
+      --text-muted: #8A7F72;
+      --text-light: #B0A494;
 
-      --instance-color: #059669;
-      --instance-bg: #ecfdf5;
-      --instance-border: #a7f3d0;
+      --concept-color: #4A6FA5;
+      --concept-bg: #EEF2F8;
+      --concept-border: #D3DDE9;
 
-      --subclass-color: #d97706;
-      --subclass-bg: #fffbeb;
-      --subclass-border: #fde68a;
+      --instance-color: #4F7A62;
+      --instance-bg: #EEF4F0;
+      --instance-border: #D0E0D6;
 
-      --relation-color: #7c3aed;
-      --relation-bg: #f5f3ff;
-      --relation-border: #ddd6fe;
+      --subclass-color: #A07840;
+      --subclass-bg: #F6F0E6;
+      --subclass-border: #E6D6BA;
 
-      --assertion-color: #FF8787;
-      --assertion-bg: #fff0f0;
-      --assertion-border: #ffc9c9;
+      --relation-color: #6B5B8A;
+      --relation-bg: #F3F0F7;
+      --relation-border: #DDD6E8;
+
+      --assertion-color: #8B5E4A;
+      --assertion-bg: #F6EEEA;
+      --assertion-border: #E5D2C8;
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --shadow-soft: 0 1px 2px rgba(44, 36, 24, 0.04), 0 8px 24px rgba(44, 36, 24, 0.05);
+      --shadow-lift: 0 10px 28px rgba(44, 36, 24, 0.08);
+      --header-h: 72px;
     }
 
     * {
@@ -75,115 +79,191 @@ html_content = '''<!DOCTYPE html>
       padding: 0;
     }
 
+    html {
+      color-scheme: light;
+    }
+
     body {
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
       background-color: var(--bg-body);
       color: var(--text-main);
       overflow-x: hidden;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      transition: background-color 0.2s ease, color 0.2s ease;
+      letter-spacing: 0.01em;
+      line-height: 1.5;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(1200px 520px at 8% -12%, rgba(255, 255, 255, 0.72), transparent 58%),
+        radial-gradient(900px 480px at 100% 0%, rgba(107, 127, 110, 0.08), transparent 52%),
+        radial-gradient(700px 400px at 70% 110%, rgba(160, 120, 64, 0.06), transparent 50%);
+    }
+
+    header,
+    .view-container {
+      position: relative;
+      z-index: 1;
+    }
+
+    ::selection {
+      background: var(--primary-light);
+      color: var(--text-heading);
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D6CBBA;
+      border-radius: 99px;
+      border: 2px solid transparent;
+      background-clip: padding-box;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #C4B6A2;
+      background-clip: padding-box;
     }
 
     /* Top Navigation Bar */
     header {
-      background: var(--bg-card);
+      background: var(--bg-wash);
+      backdrop-filter: blur(18px) saturate(1.2);
+      -webkit-backdrop-filter: blur(18px) saturate(1.2);
       border-bottom: 1px solid var(--border-color);
       position: sticky;
       top: 0;
       z-index: 100;
-      padding: 0.85rem 1.75rem;
+      min-height: var(--header-h);
+      padding: 0.7rem 1.75rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 1.25rem;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
-      transition: background 0.2s ease, border-color 0.2s ease;
+      gap: 1.5rem;
+      box-shadow: none;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      font-weight: 800;
-      font-size: 1.2rem;
+      gap: 0.85rem;
       color: var(--text-heading);
       text-decoration: none;
+      min-width: 0;
     }
 
-    .brand-badge {
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
       background: var(--primary);
-      color: #ffffff;
-      padding: 0.35rem 0.65rem;
-      border-radius: 8px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      box-shadow: 0 2px 6px var(--primary-shadow);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      transition: background 0.2s ease;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18);
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .brand-mark::after {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1.5px solid rgba(255,254,251,0.85);
+      border-radius: 4px;
+    }
+
+    .brand-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 0.05rem;
+      line-height: 1.15;
+    }
+
+    .brand-kicker {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .brand-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.28rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      color: var(--text-heading);
     }
 
     .nav-tabs {
       display: flex;
-      background: var(--bg-subtle);
-      padding: 0.3rem;
-      border-radius: 10px;
-      border: 1px solid var(--border-color);
-      gap: 0.35rem;
+      background: transparent;
+      padding: 0;
+      border-radius: 0;
+      border: none;
+      gap: 0.15rem;
     }
 
     .nav-tab {
-      padding: 0.55rem 1.25rem;
-      border-radius: 8px;
+      padding: 0.55rem 1rem 0.7rem;
+      border-radius: 0;
       border: none;
+      border-bottom: 2px solid transparent;
       background: transparent;
       color: var(--text-muted);
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       font-weight: 600;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      transition: all 0.2s ease;
+      gap: 0.45rem;
+      transition: color 0.2s ease, border-color 0.2s ease;
       font-family: inherit;
     }
 
     .nav-tab:hover {
-      color: var(--text-main);
-      background: rgba(255, 255, 255, 0.7);
+      color: var(--text-heading);
+      background: transparent;
     }
 
     .nav-tab.active {
-      background: var(--primary);
-      color: #ffffff;
-      box-shadow: 0 2px 8px var(--primary-shadow);
+      background: transparent;
+      color: var(--text-heading);
+      box-shadow: none;
+      border-bottom-color: var(--primary);
     }
 
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.65rem;
     }
 
-    /* Live Sync Status Indicator */
     .live-status-pill {
-      background: var(--bg-subtle);
+      background: transparent;
       border: 1px solid var(--border-color);
-      padding: 0.35rem 0.75rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
+      padding: 0.38rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.76rem;
       font-weight: 600;
+      letter-spacing: 0.04em;
       display: flex;
       align-items: center;
       gap: 0.45rem;
       color: var(--text-sub);
       cursor: pointer;
       user-select: none;
-      transition: all 0.15s ease;
+      transition: border-color 0.15s ease, background 0.15s ease;
     }
 
     .live-status-pill:hover {
@@ -192,66 +272,81 @@ html_content = '''<!DOCTYPE html>
     }
 
     .live-dot {
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
-      background: #10b981;
-      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-      animation: pulseGreen 2s infinite;
+      background: #6B8F71;
+      box-shadow: 0 0 0 0 rgba(107, 143, 113, 0.45);
+      animation: pulseGreen 2.4s infinite;
     }
 
     @keyframes pulseGreen {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-      70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(107, 143, 113, 0.45); }
+      70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(107, 143, 113, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(107, 143, 113, 0); }
     }
 
     .live-dot.paused {
-      background: #94a3b8;
+      background: #B0A494;
       animation: none;
     }
 
     .header-stats {
       display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.82rem;
-      color: var(--text-sub);
+      align-items: stretch;
+      gap: 0;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--bg-card);
     }
 
     .stat-pill {
-      background: var(--bg-card);
-      padding: 0.3rem 0.65rem;
-      border-radius: 6px;
-      border: 1px solid var(--border-color);
+      background: transparent;
+      padding: 0.38rem 0.75rem;
+      border-radius: 0;
+      border: none;
+      border-right: 1px solid var(--border-color);
       font-weight: 500;
+      display: flex;
+      flex-direction: column;
+      gap: 0.02rem;
+      line-height: 1.2;
+    }
+    .stat-pill:last-child {
+      border-right: none;
     }
     .stat-pill b {
       color: var(--text-heading);
       font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      font-size: 0.92rem;
     }
 
     .btn-theme {
-      background: var(--primary-light);
-      color: var(--primary-text);
-      border: 1px solid var(--primary-border);
-      font-size: 0.84rem;
-      padding: 0.45rem 0.9rem;
-      border-radius: 8px;
-      font-weight: 700;
+      background: var(--bg-card);
+      color: var(--text-sub);
+      border: 1px solid var(--border-color);
+      font-size: 0.8rem;
+      padding: 0.42rem 0.85rem;
+      border-radius: 999px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
+      gap: 0.4rem;
       transition: all 0.2s ease;
       font-family: inherit;
     }
 
     .btn-theme:hover {
-      background: var(--primary);
-      color: #ffffff;
-      border-color: var(--primary);
-      box-shadow: 0 2px 8px var(--primary-shadow);
+      background: var(--primary-light);
+      color: var(--primary-text);
+      border-color: var(--primary-border);
+      box-shadow: none;
     }
 
     /* View Switcher Containers */
@@ -268,38 +363,36 @@ html_content = '''<!DOCTYPE html>
     /* ========================================= */
     #inspector-view {
       flex-direction: row;
-      height: calc(100vh - 66px);
+      height: calc(100vh - var(--header-h));
       overflow: hidden;
     }
 
-    /* Sidebar */
     .sidebar {
-      width: 290px;
-      min-width: 290px;
-      background: var(--bg-card);
+      width: 268px;
+      min-width: 268px;
+      background: transparent;
       border-right: 1px solid var(--border-color);
       display: flex;
       flex-direction: column;
-      transition: background 0.2s ease, border-color 0.2s ease;
     }
 
     .sidebar-header {
-      padding: 1.1rem 1.25rem 0.75rem 1.25rem;
-      border-bottom: 1px solid var(--border-color);
+      padding: 1.35rem 1.25rem 0.85rem;
+      border-bottom: none;
     }
 
     .sidebar-title {
-      font-size: 0.76rem;
+      font-size: 0.7rem;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.14em;
       color: var(--text-muted);
-      font-weight: 800;
+      font-weight: 700;
     }
 
     .dataset-list {
       list-style: none;
       overflow-y: auto;
-      padding: 0.75rem 0.65rem;
+      padding: 0.35rem 0.75rem 1.25rem;
       flex: 1;
     }
 
@@ -307,63 +400,67 @@ html_content = '''<!DOCTYPE html>
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.75rem 0.95rem;
-      border-radius: 8px;
+      padding: 0.62rem 0.8rem;
+      border-radius: var(--radius-sm);
       cursor: pointer;
-      margin-bottom: 0.35rem;
+      margin-bottom: 0.18rem;
       color: var(--text-sub);
-      font-size: 0.9rem;
-      font-weight: 600;
-      transition: all 0.15s ease;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: background 0.15s ease, color 0.15s ease;
       border: 1px solid transparent;
     }
 
     .dataset-item:hover {
-      background: var(--bg-subtle);
+      background: rgba(255, 252, 247, 0.7);
       color: var(--text-heading);
     }
 
     .dataset-item.active {
-      background: var(--primary-light);
-      border-color: var(--primary-border);
-      color: var(--primary-text);
-      font-weight: 700;
+      background: var(--bg-card);
+      border-color: var(--border-color);
+      color: var(--text-heading);
+      font-weight: 600;
+      box-shadow: var(--shadow-soft);
     }
 
     .dataset-badge {
       background: var(--bg-subtle);
-      padding: 0.2rem 0.55rem;
-      border-radius: 12px;
-      font-size: 0.75rem;
-      font-weight: 700;
+      padding: 0.12rem 0.48rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 650;
+      font-variant-numeric: tabular-nums;
       color: var(--text-muted);
     }
 
     .dataset-item.active .dataset-badge {
-      background: var(--primary);
-      color: #ffffff;
+      background: var(--primary-light);
+      color: var(--primary-text);
     }
 
-    /* Main Inspector Area */
+    .dataset-item > span:first-child {
+      font-family: 'IBM Plex Mono', ui-monospace, monospace;
+      font-size: 0.78rem;
+      letter-spacing: -0.01em;
+    }
+
     .main-content {
       flex: 1;
       display: flex;
       flex-direction: column;
-      background: var(--bg-body);
+      background: transparent;
       overflow: hidden;
-      transition: background 0.2s ease;
     }
 
-    /* Filter & Search Toolbar */
     .filter-bar {
-      padding: 1rem 1.75rem;
-      background: var(--bg-card);
+      padding: 1.15rem 1.85rem 1rem;
+      background: transparent;
       border-bottom: 1px solid var(--border-color);
       display: flex;
       flex-direction: column;
-      gap: 0.85rem;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
-      transition: background 0.2s ease, border-color 0.2s ease;
+      gap: 0.75rem;
+      box-shadow: none;
     }
 
     .filter-row-primary {
@@ -377,14 +474,15 @@ html_content = '''<!DOCTYPE html>
     .search-box {
       display: flex;
       align-items: center;
-      background: var(--bg-body);
+      background: var(--bg-card);
       border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      padding: 0.52rem 1rem;
       flex: 1;
-      min-width: 320px;
+      min-width: 280px;
       gap: 0.6rem;
-      transition: all 0.15s ease;
+      box-shadow: 0 1px 2px rgba(44, 36, 24, 0.03);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
     }
 
     .search-box:focus-within {
@@ -403,6 +501,10 @@ html_content = '''<!DOCTYPE html>
       font-family: inherit;
     }
 
+    .search-box input::placeholder {
+      color: var(--text-light);
+    }
+
     .filter-row-secondary {
       display: flex;
       align-items: center;
@@ -414,17 +516,17 @@ html_content = '''<!DOCTYPE html>
       display: flex;
       align-items: center;
       gap: 0.45rem;
-      font-size: 0.84rem;
-      color: var(--text-sub);
+      font-size: 0.82rem;
+      color: var(--text-muted);
     }
 
     .filter-select {
-      padding: 0.45rem 0.85rem;
-      border-radius: 7px;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
       border: 1px solid var(--border-color);
       background: var(--bg-card);
       color: var(--text-main);
-      font-size: 0.84rem;
+      font-size: 0.82rem;
       font-weight: 500;
       font-family: inherit;
       outline: none;
@@ -433,21 +535,21 @@ html_content = '''<!DOCTYPE html>
 
     .filter-select:focus {
       border-color: var(--border-focus);
-      box-shadow: 0 0 0 2px var(--primary-light);
+      box-shadow: 0 0 0 3px var(--primary-light);
     }
 
     .btn {
-      padding: 0.45rem 0.95rem;
-      border-radius: 7px;
+      padding: 0.42rem 0.9rem;
+      border-radius: 999px;
       border: 1px solid var(--border-color);
       background: var(--bg-card);
       color: var(--text-main);
-      font-size: 0.84rem;
+      font-size: 0.82rem;
       font-weight: 600;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
+      gap: 0.4rem;
       transition: all 0.15s ease;
       font-family: inherit;
     }
@@ -460,8 +562,8 @@ html_content = '''<!DOCTYPE html>
     .btn-primary {
       background: var(--primary);
       border-color: var(--primary);
-      color: #ffffff;
-      box-shadow: 0 2px 6px var(--primary-shadow);
+      color: var(--on-primary);
+      box-shadow: none;
     }
 
     .btn-primary:hover {
@@ -471,40 +573,52 @@ html_content = '''<!DOCTYPE html>
 
     .count-indicator {
       margin-left: auto;
-      font-size: 0.84rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
-      font-weight: 600;
+      font-weight: 500;
+      letter-spacing: 0.02em;
     }
 
-    /* 1-Column Full-Width Card List */
     .data-cards-container {
       flex: 1;
       overflow-y: auto;
-      padding: 1.5rem 1.75rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      width: 100%;
-    }
-
-    /* Card Item (100% full width, 1 column) */
-    .data-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 1.25rem 1.5rem;
-      width: 100%;
+      padding: 1.35rem 1.85rem 2.5rem;
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      transition: all 0.2s ease;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+      width: 100%;
+    }
+
+    .data-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.2rem 1.4rem 1.25rem;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.95rem;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+    }
+
+    .data-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 14px;
+      bottom: 14px;
+      width: 2px;
+      border-radius: 2px;
+      background: var(--primary);
+      opacity: 0.45;
     }
 
     .data-card:hover {
-      border-color: var(--primary);
-      box-shadow: 0 8px 20px var(--primary-shadow);
-      transform: translateY(-1px);
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-lift);
+      transform: none;
     }
 
     .card-header {
@@ -513,13 +627,13 @@ html_content = '''<!DOCTYPE html>
       justify-content: space-between;
       gap: 1rem;
       border-bottom: 1px solid var(--border-color);
-      padding-bottom: 0.85rem;
+      padding-bottom: 0.8rem;
     }
 
     .card-title-group {
       display: flex;
       flex-direction: column;
-      gap: 0.25rem;
+      gap: 0.22rem;
     }
 
     .card-title-row {
@@ -530,27 +644,31 @@ html_content = '''<!DOCTYPE html>
     }
 
     .card-id {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 1.1rem;
-      font-weight: 700;
+      font-family: 'IBM Plex Mono', ui-monospace, monospace;
+      font-size: 0.98rem;
+      font-weight: 500;
       color: var(--text-heading);
+      letter-spacing: -0.01em;
     }
 
     .card-subtitle {
-      font-size: 0.92rem;
-      color: var(--text-muted);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.12rem;
+      color: var(--text-sub);
       font-weight: 500;
+      font-style: italic;
     }
 
     .badge {
       display: inline-flex;
       align-items: center;
       gap: 0.3rem;
-      padding: 0.25rem 0.65rem;
-      border-radius: 6px;
-      font-size: 0.76rem;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.68rem;
       font-weight: 700;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .badge-concept {
@@ -578,51 +696,51 @@ html_content = '''<!DOCTYPE html>
     }
 
     .btn-3d-jump {
-      background: var(--primary-light);
+      background: transparent;
       color: var(--primary-text);
       border: 1px solid var(--primary-border);
-      font-size: 0.82rem;
-      padding: 0.4rem 0.85rem;
-      border-radius: 7px;
+      font-size: 0.78rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      font-weight: 700;
+      gap: 0.35rem;
+      font-weight: 600;
       transition: all 0.15s ease;
       white-space: nowrap;
     }
 
     .btn-3d-jump:hover {
       background: var(--primary);
-      color: #ffffff;
+      color: var(--on-primary);
       border-color: var(--primary);
-      box-shadow: 0 2px 8px var(--primary-shadow);
+      box-shadow: none;
     }
 
-    /* Card Structured Information Rows */
     .card-info-section {
       display: flex;
       flex-direction: column;
-      gap: 0.65rem;
+      gap: 0.5rem;
     }
 
     .info-line {
       display: flex;
       align-items: baseline;
       gap: 0.75rem;
-      padding: 0.55rem 0.85rem;
-      background: var(--bg-body);
-      border-radius: 6px;
+      padding: 0.5rem 0.8rem;
+      background: rgba(243, 238, 230, 0.55);
+      border-radius: var(--radius-sm);
       border: 1px solid var(--border-color);
       font-size: 0.88rem;
     }
 
     .info-line-label {
-      font-weight: 700;
-      color: var(--text-sub);
+      font-weight: 600;
+      color: var(--text-muted);
       min-width: 140px;
       flex-shrink: 0;
+      letter-spacing: 0.02em;
     }
 
     .info-line-value {
@@ -631,22 +749,21 @@ html_content = '''<!DOCTYPE html>
       flex: 1;
     }
 
-    /* Attributes Table inside Card */
     .attributes-box {
       border: 1px solid var(--border-color);
-      border-radius: 8px;
+      border-radius: var(--radius-sm);
       overflow: hidden;
-      margin-top: 0.25rem;
+      margin-top: 0.15rem;
     }
 
     .attributes-header {
       background: var(--bg-subtle);
-      padding: 0.5rem 0.85rem;
-      font-size: 0.8rem;
+      padding: 0.48rem 0.85rem;
+      font-size: 0.72rem;
       font-weight: 700;
-      color: var(--text-sub);
+      color: var(--text-muted);
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.1em;
       border-bottom: 1px solid var(--border-color);
       display: flex;
       justify-content: space-between;
@@ -655,7 +772,7 @@ html_content = '''<!DOCTYPE html>
     .attr-row {
       display: flex;
       align-items: flex-start;
-      padding: 0.6rem 0.85rem;
+      padding: 0.55rem 0.85rem;
       border-bottom: 1px solid var(--border-color);
       font-size: 0.88rem;
       background: var(--bg-card);
@@ -665,12 +782,12 @@ html_content = '''<!DOCTYPE html>
       border-bottom: none;
     }
     .attr-row:nth-child(even) {
-      background: var(--bg-subtle);
+      background: rgba(243, 238, 230, 0.4);
     }
 
     .attr-name {
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 600;
+      font-family: 'IBM Plex Mono', ui-monospace, monospace;
+      font-weight: 500;
       color: var(--primary-text);
       min-width: 150px;
       flex-shrink: 0;
@@ -678,12 +795,12 @@ html_content = '''<!DOCTYPE html>
 
     .attr-type-pill {
       display: inline-block;
-      padding: 0.15rem 0.45rem;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 600;
-      background: var(--border-color);
+      padding: 0.12rem 0.42rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-family: 'IBM Plex Mono', ui-monospace, monospace;
+      font-weight: 500;
+      background: var(--bg-subtle);
       color: var(--text-sub);
       margin-right: 0.5rem;
     }
@@ -691,17 +808,17 @@ html_content = '''<!DOCTYPE html>
     .attr-value {
       flex: 1;
       color: var(--text-main);
-      line-height: 1.5;
+      line-height: 1.55;
     }
 
     .text-quote-box {
-      background: var(--bg-body);
-      border-left: 3px solid var(--primary);
-      padding: 0.5rem 0.85rem;
-      border-radius: 0 6px 6px 0;
+      background: rgba(243, 238, 230, 0.5);
+      border-left: 2px solid var(--primary);
+      padding: 0.55rem 0.9rem;
+      border-radius: 0 8px 8px 0;
       color: var(--text-sub);
       font-size: 0.88rem;
-      line-height: 1.55;
+      line-height: 1.6;
       margin-top: 0.25rem;
     }
 
@@ -714,8 +831,8 @@ html_content = '''<!DOCTYPE html>
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(15, 23, 42, 0.4);
-      backdrop-filter: blur(4px);
+      background: rgba(28, 24, 20, 0.28);
+      backdrop-filter: blur(8px);
       z-index: 200;
       display: none;
       align-items: center;
@@ -726,14 +843,16 @@ html_content = '''<!DOCTYPE html>
     .theme-modal {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
-      border-radius: 16px;
-      width: 480px;
+      border-radius: var(--radius-lg);
+      width: 500px;
       max-width: 92vw;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-      padding: 1.5rem;
+      max-height: min(88vh, 640px);
+      overflow-y: auto;
+      box-shadow: 0 24px 60px rgba(44, 36, 24, 0.16);
+      padding: 1.35rem 1.45rem;
       display: flex;
       flex-direction: column;
-      gap: 1.25rem;
+      gap: 1rem;
       animation: scaleUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -756,8 +875,9 @@ html_content = '''<!DOCTYPE html>
     }
 
     .theme-modal-title {
-      font-size: 1.15rem;
-      font-weight: 800;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 600;
       color: var(--text-heading);
       display: flex;
       align-items: center;
@@ -823,10 +943,10 @@ html_content = '''<!DOCTYPE html>
     }
 
     .color-hex-text {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
+      font-family: 'IBM Plex Mono', ui-monospace, monospace;
+      font-size: 0.78rem;
       color: var(--text-sub);
-      width: 70px;
+      width: 78px;
     }
 
     .preset-section {
@@ -893,9 +1013,9 @@ html_content = '''<!DOCTYPE html>
     #graph-view {
       position: relative;
       width: 100%;
-      height: calc(100vh - 66px);
+      height: calc(100vh - var(--header-h));
       overflow: hidden;
-      background: radial-gradient(circle at center, #ffffff 0%, #edf2f7 100%);
+      background: radial-gradient(circle at 50% 42%, #FFFcf7 0%, #E8E0D4 100%);
     }
 
     #canvas3d {
@@ -916,22 +1036,24 @@ html_content = '''<!DOCTYPE html>
     }
 
     .hud-card {
-      background: var(--bg-card);
-      opacity: 0.96;
+      background: var(--bg-wash);
+      backdrop-filter: blur(14px);
+      opacity: 1;
       border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 1rem 1.25rem;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.2rem;
+      box-shadow: var(--shadow-soft);
     }
 
     .hud-card h3 {
-      font-size: 0.95rem;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.12rem;
       margin-bottom: 0.75rem;
       display: flex;
       align-items: center;
       gap: 0.45rem;
       color: var(--text-heading);
-      font-weight: 700;
+      font-weight: 600;
     }
 
     .legend-item {
@@ -971,13 +1093,13 @@ html_content = '''<!DOCTYPE html>
       top: 1.25rem;
       right: 1.25rem;
       width: 380px;
-      max-height: calc(100vh - 105px);
+      max-height: calc(100vh - 120px);
       background: var(--bg-card);
-      opacity: 0.98;
-      border: 1px solid var(--primary);
-      border-radius: 14px;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12), 0 0 16px var(--primary-shadow);
-      padding: 1.35rem;
+      opacity: 1;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lift);
+      padding: 1.25rem;
       z-index: 20;
       display: none;
       flex-direction: column;
@@ -1014,18 +1136,18 @@ html_content = '''<!DOCTYPE html>
 
     .tooltip-3d {
       position: absolute;
-      background: rgba(15, 23, 42, 0.92);
-      border: 1px solid var(--primary);
-      color: #ffffff;
-      padding: 0.4rem 0.75rem;
-      border-radius: 6px;
-      font-size: 0.82rem;
-      font-weight: 600;
+      background: rgba(28, 24, 20, 0.9);
+      border: 1px solid rgba(255, 252, 247, 0.12);
+      color: #FFFcf7;
+      padding: 0.38rem 0.7rem;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 500;
       pointer-events: none;
       z-index: 50;
       display: none;
       white-space: nowrap;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+      box-shadow: var(--shadow-soft);
     }
 
     .hint-bar {
@@ -1033,19 +1155,37 @@ html_content = '''<!DOCTYPE html>
       bottom: 1.25rem;
       left: 50%;
       transform: translateX(-50%);
-      background: var(--bg-card);
-      opacity: 0.95;
+      background: var(--bg-wash);
+      backdrop-filter: blur(12px);
+      opacity: 1;
       border: 1px solid var(--border-color);
-      border-radius: 30px;
-      padding: 0.5rem 1.35rem;
-      font-size: 0.82rem;
-      font-weight: 600;
+      border-radius: 999px;
+      padding: 0.48rem 1.25rem;
+      font-size: 0.78rem;
+      font-weight: 500;
       color: var(--text-sub);
       display: flex;
       align-items: center;
       gap: 1.25rem;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      box-shadow: var(--shadow-soft);
       pointer-events: none;
+    }
+
+    @media (max-width: 980px) {
+      .header-stats { display: none; }
+    }
+
+    @media (max-width: 860px) {
+      header {
+        flex-wrap: wrap;
+        row-gap: 0.55rem;
+        padding: 0.7rem 1rem;
+      }
+      .brand { min-width: auto; }
+      .nav-tabs { order: 3; width: 100%; }
+      .sidebar { width: 210px; min-width: 210px; }
+      .data-cards-container,
+      .filter-bar { padding-left: 1rem; padding-right: 1rem; }
     }
   </style>
 </head>
@@ -1054,42 +1194,37 @@ html_content = '''<!DOCTYPE html>
   <!-- Top Header Navigation -->
   <header>
     <a href="#" class="brand" onclick="switchView('inspector')">
-      <span class="brand-badge" id="brandBadge">#FF8787</span>
-      <span>DSA Knowledge Base</span>
+      <span class="brand-mark" id="brandBadge" aria-hidden="true"></span>
+      <span class="brand-copy">
+        <span class="brand-kicker">Ontology atelier</span>
+        <span class="brand-title">DSA Knowledge Base</span>
+      </span>
     </a>
 
     <nav class="nav-tabs">
       <button id="tab-inspector" class="nav-tab active" onclick="switchView('inspector')">
-        📋 Kiểm tra dữ liệu JSON
+        Kiểm tra dữ liệu
       </button>
       <button id="tab-graph" class="nav-tab" onclick="switchView('graph')">
-        🌐 Mô hình Ontology 3D
+        Mô hình 3D
       </button>
     </nav>
 
     <div class="header-actions">
-      <!-- Live Sync Indicator -->
+      <div class="header-stats">
+        <div class="stat-pill">Khái niệm <b id="stat-concepts">0</b></div>
+        <div class="stat-pill">Kế thừa <b id="stat-hierarchy">0</b></div>
+        <div class="stat-pill">Đối tượng <b id="stat-instances">0</b></div>
+      </div>
+
       <div class="live-status-pill" id="liveSyncToggle" onclick="toggleAutoSync()" title="Nhấp để Bật/Tắt tự động đồng bộ thời gian thực">
         <span class="live-dot" id="liveDot"></span>
-        <span id="liveStatusText">Live Sync: 3s</span>
+        <span id="liveStatusText">Live 3s</span>
       </div>
 
-      <!-- Manual Refresh Button -->
-      <button class="btn" onclick="fetchKBData(true)" style="padding: 0.35rem 0.65rem;" title="Làm mới dữ liệu từ file JSON">
-        🔄
-      </button>
+      <button class="btn" onclick="fetchKBData(true)" title="Làm mới dữ liệu từ file JSON">Làm mới</button>
 
-      <div class="header-stats">
-        <div class="stat-pill">Khái niệm: <b id="stat-concepts">0</b></div>
-        <div class="stat-pill">Kế thừa: <b id="stat-hierarchy">0</b></div>
-        <div class="stat-pill">Đối tượng: <b id="stat-instances">0</b></div>
-      </div>
-
-      <!-- Color Customizer Button -->
-      <button class="btn-theme" onclick="openThemeModal()">
-        <span>🎨</span>
-        <span>Tuỳ chỉnh màu sắc</span>
-      </button>
+      <button class="btn-theme" onclick="openThemeModal()">Giao diện</button>
     </div>
   </header>
 
@@ -1098,39 +1233,39 @@ html_content = '''<!DOCTYPE html>
     <!-- Sidebar -->
     <aside class="sidebar">
       <div class="sidebar-header">
-        <div class="sidebar-title">Danh mục tập tin JSON</div>
+        <div class="sidebar-title">Tập tin ontology</div>
       </div>
       <ul class="dataset-list">
         <li class="dataset-item active" onclick="selectDataset('concepts')">
-          <span>📁 concepts.json</span>
+          <span>concepts.json</span>
           <span class="dataset-badge" id="badge-concepts">0</span>
         </li>
         <li class="dataset-item" onclick="selectDataset('hierarchy')">
-          <span>📁 hierarchy.json</span>
+          <span>hierarchy.json</span>
           <span class="dataset-badge" id="badge-hierarchy">0</span>
         </li>
         <li class="dataset-item" onclick="selectDataset('instances')">
-          <span>📁 instances.json (data/)</span>
+          <span>instances.json</span>
           <span class="dataset-badge" id="badge-instances">0</span>
         </li>
         <li class="dataset-item" onclick="selectDataset('relations')">
-          <span>📁 relations.json</span>
+          <span>relations.json</span>
           <span class="dataset-badge" id="badge-relations">0</span>
         </li>
         <li class="dataset-item" onclick="selectDataset('assertions')">
-          <span>📁 assertions.json</span>
+          <span>assertions.json</span>
           <span class="dataset-badge" id="badge-assertions">0</span>
         </li>
         <li class="dataset-item" onclick="selectDataset('rules')">
-          <span>📁 rules.json</span>
+          <span>rules.json</span>
           <span class="dataset-badge" id="badge-rules">0</span>
         </li>
         <li class="dataset-item" onclick="selectDataset('operands')">
-          <span>📁 operands.json</span>
+          <span>operands.json</span>
           <span class="dataset-badge" id="badge-operands">0</span>
         </li>
         <li class="dataset-item" onclick="selectDataset('functions')">
-          <span>📁 functions.json</span>
+          <span>functions.json</span>
           <span class="dataset-badge" id="badge-functions">0</span>
         </li>
       </ul>
@@ -1143,15 +1278,13 @@ html_content = '''<!DOCTYPE html>
         <!-- Row 1: Search -->
         <div class="filter-row-primary">
           <div class="search-box">
-            <span style="font-size: 1rem; color: var(--text-muted);">🔍</span>
-            <input type="text" id="searchInput" placeholder="Tìm kiếm theo ID, tên, thuộc tính, mô tả..." oninput="handleSearch()">
+            <span style="font-size: 0.78rem; color: var(--text-light); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600;">Tìm</span>
+            <input type="text" id="searchInput" placeholder="ID, tên, thuộc tính, mô tả…" oninput="handleSearch()">
             <button class="btn" id="clearSearchBtn" style="display: none; padding: 0.2rem 0.5rem; font-size: 0.75rem;" onclick="clearSearch()">✕</button>
           </div>
 
           <div class="toolbar-actions" style="display: flex; gap: 0.5rem;">
-            <button class="btn btn-primary" onclick="switchView('graph')">
-              <span>🌐 Mở đồ thị 3D</span>
-            </button>
+            <button class="btn btn-primary" onclick="switchView('graph')">Mở đồ thị 3D</button>
           </div>
         </div>
 
@@ -1173,7 +1306,7 @@ html_content = '''<!DOCTYPE html>
             </select>
           </div>
 
-          <button class="btn" onclick="resetFilters()">🔄 Đặt lại bộ lọc</button>
+          <button class="btn" onclick="resetFilters()">Đặt lại</button>
 
           <div class="count-indicator" id="resultCounter">
             Đang tải dữ liệu JSON...
@@ -1183,8 +1316,8 @@ html_content = '''<!DOCTYPE html>
 
       <!-- Single Column Full Width Cards Container -->
       <div class="data-cards-container" id="cardsContainer">
-        <div style="text-align: center; padding: 3rem; color: var(--text-muted);">
-          ⏳ Đang kết nối và tải dữ liệu từ các file JSON trực tiếp...
+        <div style="text-align: center; padding: 4rem 1rem; color: var(--text-muted); font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.25rem; font-style: italic;">
+          Đang đọc các tập tin ontology…
         </div>
       </div>
     </main>
@@ -1196,7 +1329,7 @@ html_content = '''<!DOCTYPE html>
 
     <div class="hud-overlay">
       <div class="hud-card">
-        <h3><span style="color: var(--primary);">●</span> Chú thích Mô hình 3D Ontology</h3>
+        <h3>Chú thích mô hình</h3>
         
         <div class="legend-item">
           <span class="legend-color" style="background: var(--concept-color);"></span>
@@ -1220,8 +1353,8 @@ html_content = '''<!DOCTYPE html>
         </div>
 
         <div class="hud-controls">
-          <button class="btn" onclick="resetCamera()">🎯 Đặt lại góc nhìn</button>
-          <button class="btn" id="autoRotateBtn" onclick="toggleAutoRotate()">🔄 Xoay tự động: Bật</button>
+          <button class="btn" onclick="resetCamera()">Đặt lại góc nhìn</button>
+          <button class="btn" id="autoRotateBtn" onclick="toggleAutoRotate()">Xoay tự động: Bật</button>
         </div>
       </div>
     </div>
@@ -1237,17 +1370,17 @@ html_content = '''<!DOCTYPE html>
       <div id="drawerBody" style="display: flex; flex-direction: column; gap: 0.75rem;">
       </div>
       <button class="btn btn-primary" id="drawerJumpBtn" style="margin-top: 0.5rem; justify-content: center;">
-        📋 Xem trong Data Inspector
+        Xem trong trình kiểm tra
       </button>
     </div>
 
     <div class="tooltip-3d" id="tooltip3d">Tooltip</div>
 
     <div class="hint-bar">
-      <span>🖱️ Chuột trái: Xoay 3D</span>
-      <span>🖱️ Chuột phải: Di chuyển</span>
-      <span>⚙️ Cuộn: Zoom</span>
-      <span>👆 Nhấp vào Node: Xem thông tin chi tiết</span>
+      <span>Chuột trái: xoay</span>
+      <span>Chuột phải: di chuyển</span>
+      <span>Cuộn: phóng to</span>
+      <span>Nhấp node: chi tiết</span>
     </div>
   </div>
 
@@ -1256,8 +1389,7 @@ html_content = '''<!DOCTYPE html>
     <div class="theme-modal">
       <div class="theme-modal-header">
         <div class="theme-modal-title">
-          <span>🎨</span>
-          <span>Tuỳ chỉnh màu sắc giao diện</span>
+          <span>Bảng màu</span>
         </div>
         <button class="drawer-close" onclick="closeThemeModal()">&times;</button>
       </div>
@@ -1269,8 +1401,8 @@ html_content = '''<!DOCTYPE html>
             <span class="color-desc">Logo, nút chính, đường phán đoán 3D</span>
           </div>
           <div class="color-input-wrapper">
-            <span class="color-hex-text" id="hex-primary">#FF8787</span>
-            <input type="color" id="picker-primary" value="#FF8787" oninput="updateThemeColor('primary', this.value)">
+            <span class="color-hex-text" id="hex-primary">#6B7F6E</span>
+            <input type="color" id="picker-primary" value="#6B7F6E" oninput="updateThemeColor('primary', this.value)">
           </div>
         </div>
 
@@ -1280,8 +1412,8 @@ html_content = '''<!DOCTYPE html>
             <span class="color-desc">Màu nền toàn trang và nội dung</span>
           </div>
           <div class="color-input-wrapper">
-            <span class="color-hex-text" id="hex-bg-body">#f8fafc</span>
-            <input type="color" id="picker-bg-body" value="#f8fafc" oninput="updateThemeColor('bgBody', this.value)">
+            <span class="color-hex-text" id="hex-bg-body">#F3EEE6</span>
+            <input type="color" id="picker-bg-body" value="#F3EEE6" oninput="updateThemeColor('bgBody', this.value)">
           </div>
         </div>
 
@@ -1291,8 +1423,8 @@ html_content = '''<!DOCTYPE html>
             <span class="color-desc">Màu nền các thẻ dữ liệu, header, sidebar</span>
           </div>
           <div class="color-input-wrapper">
-            <span class="color-hex-text" id="hex-bg-card">#ffffff</span>
-            <input type="color" id="picker-bg-card" value="#ffffff" oninput="updateThemeColor('bgCard', this.value)">
+            <span class="color-hex-text" id="hex-bg-card">#FFFcf7</span>
+            <input type="color" id="picker-bg-card" value="#FFFcf7" oninput="updateThemeColor('bgCard', this.value)">
           </div>
         </div>
 
@@ -1302,8 +1434,8 @@ html_content = '''<!DOCTYPE html>
             <span class="color-desc">Màu chữ nội dung, tiêu đề, mã định danh</span>
           </div>
           <div class="color-input-wrapper">
-            <span class="color-hex-text" id="hex-text-main">#0f172a</span>
-            <input type="color" id="picker-text-main" value="#0f172a" oninput="updateThemeColor('textMain', this.value)">
+            <span class="color-hex-text" id="hex-text-main">#2A241C</span>
+            <input type="color" id="picker-text-main" value="#2A241C" oninput="updateThemeColor('textMain', this.value)">
           </div>
         </div>
 
@@ -1313,43 +1445,37 @@ html_content = '''<!DOCTYPE html>
             <span class="color-desc">Đường viền thẻ, khung bảng, thanh phân cách</span>
           </div>
           <div class="color-input-wrapper">
-            <span class="color-hex-text" id="hex-border">#e2e8f0</span>
-            <input type="color" id="picker-border" value="#e2e8f0" oninput="updateThemeColor('border', this.value)">
+            <span class="color-hex-text" id="hex-border">#E4D9C8</span>
+            <input type="color" id="picker-border" value="#E4D9C8" oninput="updateThemeColor('border', this.value)">
           </div>
         </div>
       </div>
 
       <div class="preset-section">
-        <div class="preset-title">Giao diện mẫu có sẵn (Presets)</div>
+        <div class="preset-title">Giao diện mẫu</div>
         <div class="preset-list">
           <button class="preset-btn" onclick="applyPreset('default_light')">
-            <span class="preset-dot" style="background: #FF8787;"></span>
-            <span>Sáng San hô (#FF8787)</span>
+            <span class="preset-dot" style="background: #6B7F6E;"></span>
+            <span>Linen &amp; sage</span>
           </button>
-          <button class="preset-btn" onclick="applyPreset('dark_slate')">
-            <span class="preset-dot" style="background: #38bdf8;"></span>
-            <span>Tối Hiện đại (Dark Slate)</span>
+          <button class="preset-btn" onclick="applyPreset('porcelain')">
+            <span class="preset-dot" style="background: #7A8B9A;"></span>
+            <span>Porcelain</span>
           </button>
-          <button class="preset-btn" onclick="applyPreset('ocean_blue')">
-            <span class="preset-dot" style="background: #2563eb;"></span>
-            <span>Đại dương Xanh (Ocean)</span>
+          <button class="preset-btn" onclick="applyPreset('parchment')">
+            <span class="preset-dot" style="background: #A07840;"></span>
+            <span>Parchment</span>
           </button>
-          <button class="preset-btn" onclick="applyPreset('warm_sepia')">
-            <span class="preset-dot" style="background: #b45309;"></span>
-            <span>Giấy ấm (Warm Sepia)</span>
+          <button class="preset-btn" onclick="applyPreset('dawn')">
+            <span class="preset-dot" style="background: #C4A4A0;"></span>
+            <span>Dawn blush</span>
           </button>
         </div>
       </div>
 
       <div class="theme-modal-footer">
-        <button class="btn" onclick="resetThemeDefaults()">
-          <span>🔄</span>
-          <span>Khôi phục mặc định</span>
-        </button>
-        <button class="btn btn-primary" onclick="closeThemeModal()">
-          <span>✓</span>
-          <span>Hoàn tất & Đóng</span>
-        </button>
+        <button class="btn" onclick="resetThemeDefaults()">Khôi phục mặc định</button>
+        <button class="btn btn-primary" onclick="closeThemeModal()">Hoàn tất</button>
       </div>
     </div>
   </div>
@@ -1373,6 +1499,14 @@ html_content = '''<!DOCTYPE html>
     let lastDataFingerprint = '';
     let autoSyncEnabled = true;
     let autoSyncTimer = null;
+
+    function conceptLabel(item) {
+      if (!item) return '';
+      const attrs = item.attributes || [];
+      const named = attrs.find(a => a && a.name === 'name' && a.default != null && a.default !== '');
+      if (named) return String(named.default);
+      return item.name || item.id || '';
+    }
 
     async function fetchJSONFile(url) {
       try {
@@ -1533,7 +1667,7 @@ html_content = '''<!DOCTYPE html>
 
       if (autoSyncEnabled) {
         dot.className = 'live-dot';
-        text.innerText = 'Live Sync: 3s';
+        text.innerText = 'Live 3s';
         startAutoSync();
         fetchKBData(true);
       } else {
@@ -1557,7 +1691,7 @@ html_content = '''<!DOCTYPE html>
       const orig = text.innerText;
       text.innerText = msg;
       setTimeout(() => {
-        text.innerText = autoSyncEnabled ? 'Live Sync: 3s' : 'Live: Tạm dừng';
+        text.innerText = autoSyncEnabled ? 'Live 3s' : 'Tạm dừng';
       }, 2000);
     }
 
@@ -1565,41 +1699,41 @@ html_content = '''<!DOCTYPE html>
     // THEME CUSTOMIZER LOGIC
     // =========================================================================
     const DEFAULT_THEME = {
-      primary: '#FF8787',
-      bgBody: '#f8fafc',
-      bgCard: '#ffffff',
-      textMain: '#0f172a',
-      border: '#e2e8f0'
+      primary: '#6B7F6E',
+      bgBody: '#F3EEE6',
+      bgCard: '#FFFcf7',
+      textMain: '#2A241C',
+      border: '#E4D9C8'
     };
 
     const PRESETS = {
       default_light: {
-        primary: '#FF8787',
-        bgBody: '#f8fafc',
-        bgCard: '#ffffff',
-        textMain: '#0f172a',
-        border: '#e2e8f0'
+        primary: '#6B7F6E',
+        bgBody: '#F3EEE6',
+        bgCard: '#FFFcf7',
+        textMain: '#2A241C',
+        border: '#E4D9C8'
       },
-      dark_slate: {
-        primary: '#FF8787',
-        bgBody: '#0f172a',
-        bgCard: '#1e293b',
-        textMain: '#f8fafc',
-        border: '#334155'
+      porcelain: {
+        primary: '#6A7C8C',
+        bgBody: '#F4F1EC',
+        bgCard: '#FFFEFB',
+        textMain: '#2B3036',
+        border: '#DDD6CC'
       },
-      ocean_blue: {
-        primary: '#38bdf8',
-        bgBody: '#f0f9ff',
-        bgCard: '#ffffff',
-        textMain: '#0c4a6e',
-        border: '#bae6fd'
+      parchment: {
+        primary: '#A07840',
+        bgBody: '#F6F0E4',
+        bgCard: '#FFFBF3',
+        textMain: '#2C2418',
+        border: '#E6D8BE'
       },
-      warm_sepia: {
-        primary: '#d97706',
-        bgBody: '#fefce8',
-        bgCard: '#ffffff',
-        textMain: '#451a03',
-        border: '#fde68a'
+      dawn: {
+        primary: '#B08986',
+        bgBody: '#F7F1EE',
+        bgCard: '#FFFBFA',
+        textMain: '#2C2422',
+        border: '#E8D9D4'
       }
     };
 
@@ -1607,7 +1741,7 @@ html_content = '''<!DOCTYPE html>
 
     function loadSavedTheme() {
       try {
-        const saved = localStorage.getItem('dsa_kb_custom_theme');
+        const saved = localStorage.getItem('dsa_kb_custom_theme_v2');
         if (saved) {
           currentTheme = Object.assign({}, DEFAULT_THEME, JSON.parse(saved));
         }
@@ -1619,7 +1753,7 @@ html_content = '''<!DOCTYPE html>
 
     function saveCurrentTheme() {
       try {
-        localStorage.setItem('dsa_kb_custom_theme', JSON.stringify(currentTheme));
+        localStorage.setItem('dsa_kb_custom_theme_v2', JSON.stringify(currentTheme));
       } catch (e) {
         console.error('Could not save theme', e);
       }
@@ -1632,8 +1766,9 @@ html_content = '''<!DOCTYPE html>
       root.style.setProperty('--primary-hover', adjustColorBrightness(currentTheme.primary, -15));
       root.style.setProperty('--primary-light', hexToRgba(currentTheme.primary, 0.12));
       root.style.setProperty('--primary-border', hexToRgba(currentTheme.primary, 0.35));
-      root.style.setProperty('--primary-text', currentTheme.primary);
-      root.style.setProperty('--primary-shadow', hexToRgba(currentTheme.primary, 0.25));
+      root.style.setProperty('--primary-text', adjustColorBrightness(currentTheme.primary, -28));
+      root.style.setProperty('--primary-shadow', hexToRgba(currentTheme.primary, 0.16));
+      root.style.setProperty('--bg-wash', hexToRgba(currentTheme.bgCard, 0.82));
 
       root.style.setProperty('--bg-body', currentTheme.bgBody);
       root.style.setProperty('--bg-card', currentTheme.bgCard);
@@ -1641,14 +1776,16 @@ html_content = '''<!DOCTYPE html>
 
       root.style.setProperty('--border-color', currentTheme.border);
       root.style.setProperty('--border-hover', adjustColorBrightness(currentTheme.border, -10));
+      root.style.setProperty('--border-focus', currentTheme.primary);
 
       root.style.setProperty('--text-main', currentTheme.textMain);
       root.style.setProperty('--text-heading', currentTheme.textMain);
-      root.style.setProperty('--text-sub', hexToRgba(currentTheme.textMain, 0.8));
-      root.style.setProperty('--text-muted', hexToRgba(currentTheme.textMain, 0.6));
+      root.style.setProperty('--text-sub', hexToRgba(currentTheme.textMain, 0.72));
+      root.style.setProperty('--text-muted', hexToRgba(currentTheme.textMain, 0.52));
+      root.style.setProperty('--text-light', hexToRgba(currentTheme.textMain, 0.38));
 
       const badge = document.getElementById('brandBadge');
-      if (badge) badge.innerText = currentTheme.primary.toUpperCase();
+      if (badge) badge.style.background = currentTheme.primary;
 
       updatePickerValues();
 
@@ -1860,6 +1997,7 @@ html_content = '''<!DOCTYPE html>
         if (!query) return true;
         if (item.id && item.id.toLowerCase().includes(query)) return true;
         if (item.name && item.name.toLowerCase().includes(query)) return true;
+        if (conceptLabel(item).toLowerCase().includes(query)) return true;
         if (item.instanceOf && item.instanceOf.toLowerCase().includes(query)) return true;
         if (item.subclassOf && item.subclassOf.toLowerCase().includes(query)) return true;
         if (item.domain && item.domain.toLowerCase().includes(query)) return true;
@@ -1961,16 +2099,23 @@ html_content = '''<!DOCTYPE html>
       });
     }
 
-        function renderFunctionCard(card, item) {
-      const inputs = (item.input || []).map(p => `<code>${p.name}: ${p.valueType || p.value_type}</code>`).join(', ') || 'None';
-      let outStr = 'void';
-      if (item.output) {
-        if (Array.isArray(item.output)) {
-          outStr = item.output.map(p => `<code>${p.name}: ${p.valueType || p.value_type}</code>`).join(', ');
-        } else {
-          outStr = `<code>${item.output.name}: ${item.output.valueType || item.output.value_type}</code>`;
-        }
-      }
+        function formatParam(p) {
+      if (!p) return '';
+      const t = p.valueType || p.value_type || 'any';
+      const card = p.cardinality && p.cardinality !== '(1..1)' ? p.cardinality : '';
+      return `${p.name}: ${t}${card}`;
+    }
+
+    function formatParamList(params, emptyLabel) {
+      if (!params) return emptyLabel;
+      const list = Array.isArray(params) ? params : [params];
+      if (!list.length) return emptyLabel;
+      return list.map(p => `<code>${formatParam(p)}</code>`).join(', ');
+    }
+
+    function renderFunctionCard(card, item) {
+      const inputs = formatParamList(item.input, 'None');
+      const outStr = formatParamList(item.output, 'void');
       card.innerHTML = `
         <div class="card-header">
           <div class="card-title-group">
@@ -2071,6 +2216,7 @@ html_content = '''<!DOCTYPE html>
               <span class="attr-name">${attr.name || 'attr'}${reqBadge}</span>
               <div class="attr-value">
                 <span class="attr-type-pill">${attr.value_type || 'any'}</span>
+                ${attr.default != null && attr.default !== '' ? `<span class="attr-type-pill">mặc định: ${attr.default}</span>` : ''}
                 ${constraintStr}
               </div>
             </div>
@@ -2082,10 +2228,12 @@ html_content = '''<!DOCTYPE html>
       if (Array.isArray(item.operation) && item.operation.length > 0) {
         opHtml = `<div style="display: flex; flex-direction: column; gap: 0.35rem; margin-top: 0.35rem;">` + 
           item.operation.map(op => {
-            if (typeof op === 'string') return `<div style="font-family: 'JetBrains Mono'; font-size: 0.85rem; color: var(--concept-color);">• ${op}</div>`;
-            const inputs = (op.input || []).map(p => `${p.name}: ${p.valueType || p.value_type}`).join(', ');
-            const out = op.output ? (op.output.name ? `${op.output.name}: ${op.output.valueType || op.output.value_type}` : JSON.stringify(op.output)) : 'void';
-            return `<div style="font-family: 'JetBrains Mono'; font-size: 0.85rem; color: var(--concept-color);">• <b>${op.name}</b>(${inputs}) ➔ ${out}${op.description ? ` <span style="color: var(--text-muted); font-family: sans-serif;">(${op.description})</span>` : ''}</div>`;
+            if (typeof op === 'string') return `<div style="font-family: 'IBM Plex Mono'; font-size: 0.85rem; color: var(--concept-color);">• ${op}</div>`;
+            const inputs = (op.input || []).map(p => formatParam(p)).join(', ');
+            const out = op.output
+              ? (Array.isArray(op.output) ? op.output.map(formatParam).join(', ') : formatParam(op.output))
+              : 'void';
+            return `<div style="font-family: 'IBM Plex Mono'; font-size: 0.85rem; color: var(--concept-color);">• <b>${op.name}</b>(${inputs}) ➔ ${out}${op.description ? ` <span style="color: var(--text-muted); font-family: sans-serif;">(${op.description})</span>` : ''}</div>`;
           }).join('') +
           `</div>`;
       }
@@ -2108,11 +2256,11 @@ html_content = '''<!DOCTYPE html>
               <span class="badge badge-concept">KHÁI NIỆM (CONCEPT)</span>
               ${item.domain ? `<span class="badge" style="background: var(--bg-subtle); color: var(--text-sub); border: 1px solid var(--border-color);">Miền: ${item.domain}</span>` : ''}
             </div>
-            <span class="card-subtitle">${item.name || ''}</span>
+            <span class="card-subtitle">${conceptLabel(item)}</span>
           </div>
 
           <button class="btn-3d-jump" onclick="jumpTo3D('${item.id}')">
-            👁️ Xem trên 3D
+            Xem 3D
           </button>
         </div>
 
@@ -2167,7 +2315,7 @@ html_content = '''<!DOCTYPE html>
               <div class="attr-value">
                 ${isDesc 
                   ? `<div class="text-quote-box">${attr.value}</div>` 
-                  : `<b style="color: var(--text-heading); font-family: 'JetBrains Mono'; font-size: 0.92rem;">${attr.value}</b>`
+                  : `<b style="color: var(--text-heading); font-family: 'IBM Plex Mono'; font-size: 0.92rem;">${attr.value}</b>`
                 }
               </div>
             </div>
@@ -2186,7 +2334,7 @@ html_content = '''<!DOCTYPE html>
           </div>
 
           <button class="btn-3d-jump" onclick="jumpTo3D('${item.id}')">
-            👁️ Xem trên 3D
+            Xem 3D
           </button>
         </div>
 
@@ -2312,7 +2460,7 @@ html_content = '''<!DOCTYPE html>
           <div class="info-line">
             <span class="info-line-label">Chủ thể (Source / Subject):</span>
             <div class="info-line-value">
-              <b style="color: var(--instance-color); font-family: 'JetBrains Mono'; font-size: 0.95rem;">${item.source}</b>
+              <b style="color: var(--instance-color); font-family: 'IBM Plex Mono'; font-size: 0.95rem;">${item.source}</b>
             </div>
           </div>
 
@@ -2326,7 +2474,7 @@ html_content = '''<!DOCTYPE html>
           <div class="info-line">
             <span class="info-line-label">Đối tượng (Target / Object):</span>
             <div class="info-line-value">
-              <b style="color: var(--instance-color); font-family: 'JetBrains Mono'; font-size: 0.95rem;">${item.target}</b>
+              <b style="color: var(--instance-color); font-family: 'IBM Plex Mono'; font-size: 0.95rem;">${item.target}</b>
             </div>
           </div>
 
@@ -2431,7 +2579,7 @@ html_content = '''<!DOCTYPE html>
       const height = container.clientHeight || (window.innerHeight - 66);
 
       scene = new THREE.Scene();
-      scene.fog = new THREE.FogExp2(0xf1f5f9, 0.0016);
+      scene.fog = new THREE.FogExp2(0xe8e0d4, 0.0018);
 
       camera = new THREE.PerspectiveCamera(52, width / height, 1, 3000);
       camera.position.set(0, 160, 420);
@@ -2453,7 +2601,7 @@ html_content = '''<!DOCTYPE html>
       dirLight.position.set(150, 250, 150);
       scene.add(dirLight);
 
-      const pointLight = new THREE.PointLight(0xFF8787, 1.8, 800);
+      const pointLight = new THREE.PointLight(0xC4B49A, 1.35, 800);
       pointLight.position.set(0, 50, 0);
       scene.add(pointLight);
 
@@ -2501,7 +2649,7 @@ html_content = '''<!DOCTYPE html>
 
         nodesMap[c.id] = {
           id: c.id,
-          name: c.name || c.id,
+          name: conceptLabel(c) || c.id,
           type: 'concept',
           data: c,
           x: x,
@@ -2539,16 +2687,16 @@ html_content = '''<!DOCTYPE html>
 
       const conceptGeo = new THREE.SphereGeometry(4.6, 28, 28);
       const conceptMat = new THREE.MeshStandardMaterial({
-        color: 0x2563eb,
-        roughness: 0.25,
-        metalness: 0.2
+        color: 0x4A6FA5,
+        roughness: 0.38,
+        metalness: 0.08
       });
 
       const instanceGeo = new THREE.OctahedronGeometry(3.4, 0);
       const instanceMat = new THREE.MeshStandardMaterial({
-        color: 0x059669,
-        roughness: 0.25,
-        metalness: 0.2
+        color: 0x4F7A62,
+        roughness: 0.38,
+        metalness: 0.08
       });
 
       Object.values(nodesMap).forEach(node => {
@@ -2561,7 +2709,7 @@ html_content = '''<!DOCTYPE html>
         node.mesh = mesh;
 
         if (isConcept && (node.id.length <= 15 || node.id.includes('CHAPTER') || node.id.includes('ALGORITHM') || node.id.includes('QUESTION'))) {
-          const sprite = createTextSprite(node.id, '#0f172a');
+          const sprite = createTextSprite(node.id, '#2A241C');
           sprite.position.set(node.x, node.y + 7.5, node.z);
           scene.add(sprite);
           labelSprites.push(sprite);
@@ -2570,7 +2718,7 @@ html_content = '''<!DOCTYPE html>
 
       // 1. subclassOf -> Amber
       const subclassMat = new THREE.LineBasicMaterial({
-        color: 0xd97706,
+        color: 0xA07840,
         transparent: true,
         opacity: 0.7,
         linewidth: 1.5
@@ -2586,7 +2734,7 @@ html_content = '''<!DOCTYPE html>
 
       // 2. instanceOf -> Royal Purple
       const instanceOfMat = new THREE.LineBasicMaterial({
-        color: 0x7c3aed,
+        color: 0x6B5B8A,
         transparent: true,
         opacity: 0.5,
         linewidth: 1
@@ -2643,7 +2791,7 @@ html_content = '''<!DOCTYPE html>
       canvas.width = 256;
       canvas.height = 64;
       const ctx = canvas.getContext('2d');
-      ctx.font = 'bold 22px Plus Jakarta Sans, sans-serif';
+      ctx.font = '500 20px Source Sans 3, sans-serif';
       ctx.fillStyle = color;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
@@ -2784,7 +2932,7 @@ html_content = '''<!DOCTYPE html>
 
     function toggleAutoRotate() {
       autoRotate = !autoRotate;
-      document.getElementById('autoRotateBtn').innerText = `🔄 Xoay tự động: ${autoRotate ? 'Bật' : 'Tắt'}`;
+      document.getElementById('autoRotateBtn').innerText = `Xoay tự động: ${autoRotate ? 'Bật' : 'Tắt'}`;
     }
 
     function animate() {

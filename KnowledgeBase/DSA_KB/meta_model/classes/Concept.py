@@ -24,3 +24,9 @@ class Concept:
     @subclassOf.setter
     def subclassOf(self, value: Optional[str]):
         self.subclass_of = value
+
+    def display_name(self) -> str:
+        for attr in self.attributes:
+            if attr.name == "name" and attr.default not in (None, ""):
+                return str(attr.default)
+        return self.name or self.id

@@ -11,6 +11,7 @@ if root_dir not in sys.path:
     sys.path.insert(0, root_dir)
 
 from KnowledgeBase.DSA_KB.meta_model.classes.enums.types import ValueType, Cardinality, ConditionType
+from KnowledgeBase.DSA_KB.meta_model.classes.Parameter import Parameter, PRIMITIVE_VALUE_TYPES
 from KnowledgeBase.DSA_KB.meta_model.classes.Condition import Condition
 from KnowledgeBase.DSA_KB.meta_model.classes.Attribute import AttributeDefinition, AttributeValue
 from KnowledgeBase.DSA_KB.meta_model.classes.Rule import (
@@ -103,7 +104,13 @@ class KnowledgeValidator:
                 self.errors.append("[Concept] Phát hiện Khái niệm không có trường 'id'")
                 continue
             if not c.name:
-                self.warnings.append(f"[Concept] Khái niệm '{c.id}' thiếu trường tên 'name'")
+                inherited = self.get_all_attributes_for_concept(c.id).get("name")
+                if inherited and inherited.default not in (None, ""):
+                    c.name = str(inherited.default)
+                else:
+                    self.warnings.append(
+                        f"[Concept] Khái niệm '{c.id}' thiếu nhãn: thêm thuộc tính 'name' với 'default'"
+                    )
 
             # Kiểm tra lớp cha subclass_of
             if c.subclass_of:
@@ -128,6 +135,41 @@ class KnowledgeValidator:
                     self.errors.append(f"[Concept] Khái niệm '{c.id}' có thuộc tính không có tên 'name'")
                 if not isinstance(attr.value_type, ValueType):
                     self.errors.append(f"[Concept] Khái niệm '{c.id}' thuộc tính '{attr.name}' có kiểu dữ liệu không hợp lệ: {attr.value_type}")
+
+            for op in c.operation or []:
+                if not getattr(op, "name", None):
+                    self.errors.append(f"[Operation] Khái niệm '{c.id}' có thao tác không có tên 'name'")
+                    continue
+                for p in op.input or []:
+                    self.validate_parameter(f"Operation '{c.id}.{op.name}' input", p)
+                outputs = op.output
+                if outputs is None:
+                    continue
+                if not isinstance(outputs, list):
+                    outputs = [outputs]
+                for p in outputs:
+                    self.validate_parameter(f"Operation '{c.id}.{op.name}' output", p)
+
+    def validate_parameter(self, owner: str, param: Parameter):
+        if not param.name:
+            self.errors.append(f"[{owner}] Tham số thiếu trường 'name'")
+        vt = (param.value_type or "").strip()
+        if not vt:
+            self.errors.append(f"[{owner}] Tham số '{param.name}' thiếu 'valueType'")
+            return
+        if vt.lower() in PRIMITIVE_VALUE_TYPES:
+            pass
+        elif vt in self.concept_map:
+            pass
+        else:
+            self.errors.append(
+                f"[{owner}] Tham số '{param.name}' có valueType '{vt}' không phải kiểu nguyên thủy "
+                f"(int/float/str/bool/any) cũng không phải id khái niệm tồn tại"
+            )
+        if not isinstance(param.cardinality, Cardinality):
+            self.errors.append(
+                f"[{owner}] Tham số '{param.name}' có cardinality không hợp lệ: '{param.cardinality}'"
+            )
 
     def validate_hierarchy(self):
         """Kiểm tra tính hợp lệ của quan hệ kế thừa trong file hierarchy.json / hierarchy.json."""
@@ -283,7 +325,9 @@ class KnowledgeValidator:
             # Kiểm tra thuộc tính bắt buộc (required: True)
             for attr_name, attr_def in expected_attrs.items():
                 if attr_def.required:
-                    if attr_name not in actual_attrs or actual_attrs[attr_name].value in (None, ""):
+                    has_value = attr_name in actual_attrs and actual_attrs[attr_name].value not in (None, "")
+                    has_default = attr_def.default not in (None, "")
+                    if not has_value and not has_default:
                         self.errors.append(
                             f"[Instance Thiếu Thuộc Tính Bắt Buộc] Đối tượng '{instance.id}' thiếu giá trị cho thuộc tính bắt buộc '{attr_name}' "
                             f"(định nghĩa bởi Khái niệm '{instance.instanceOf}')"
@@ -461,6 +505,15 @@ class KnowledgeValidator:
                 continue
             if not f.name:
                 self.warnings.append(f"[Function] Hàm '{f.id}' thiếu trường tên 'name'")
+            for p in f.input or []:
+                self.validate_parameter(f"Function '{f.id}' input", p)
+            outputs = f.output
+            if outputs is None:
+                continue
+            if not isinstance(outputs, list):
+                outputs = [outputs]
+            for p in outputs:
+                self.validate_parameter(f"Function '{f.id}' output", p)
 
     # =========================================================================
     # 7. KIỂM TRA TẬP TOÁN HẠN (OPERANDS VALIDATION)

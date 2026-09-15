@@ -3,17 +3,1371 @@
         {
             "id": "FUN_IS_IDENTIFY",
             "name": "isIdentify",
-            "description": "Kiểm tra dữ liệu đầu vào hoặc đầu ra đã được xác định cụ thể và rõ ràng hay chưa",
+            "description": "Kiem tra du lieu dau vao hoac dau ra da duoc xac dinh cu the va ro rang hay chua",
             "input": [
                 {
                     "name": "data",
                     "valueType": "O_C_IO",
-                    "required": true
+                    "required": true,
+                    "cardinality": "(1..1)"
                 }
             ],
             "output": {
                 "name": "result",
-                "valueType": "bool"
+                "valueType": "bool",
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_IS_TERMINATE",
+            "name": "isTerminate",
+            "description": "Kiem tra thuat toan co dung sau mot so huu han buoc hay khong (tinh huu han)",
+            "input": [
+                {
+                    "name": "algorithm",
+                    "valueType": "O_C_ALGORITHM",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "bool",
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_PRODUCES_CORRECT_OUTPUT",
+            "name": "producesCorrectOutput",
+            "description": "Kiem tra thuat toan co cho ket qua dung voi moi bo du lieu hop le hay khong (tinh dung dan)",
+            "input": [
+                {
+                    "name": "algorithm",
+                    "valueType": "O_C_ALGORITHM",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "bool",
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_IS_IMPLEMENTABLE",
+            "name": "isImplementable",
+            "description": "Kiem tra thuat toan co the cai dat bang cac phep toan co so hay khong (tinh kha thi)",
+            "input": [
+                {
+                    "name": "algorithm",
+                    "valueType": "O_C_ALGORITHM",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "bool",
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_HAS_COMPLEXITY",
+            "name": "hasComplexity",
+            "description": "Kiem tra thuat toan da duoc gan do phuc tap (best/average/worst hoac space) hay chua",
+            "input": [
+                {
+                    "name": "algorithm",
+                    "valueType": "O_C_ALGORITHM",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "bool",
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_IS_BETTER_NOTATION",
+            "name": "isBetterNotation",
+            "description": "So sanh hai ky hieu Big-O: tra ve true khi left tot hon right (rank nho hon)",
+            "input": [
+                {
+                    "name": "left",
+                    "valueType": "O_C_BIG_O",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                },
+                {
+                    "name": "right",
+                    "valueType": "O_C_BIG_O",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "bool",
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_INCLUDES_ALGORITHM",
+            "name": "includesAlgorithm",
+            "description": "Kiem tra chuong trinh co bao gom thuat toan hay khong",
+            "input": [
+                {
+                    "name": "program",
+                    "valueType": "O_C_PROGRAM",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "bool",
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_INCLUDES_DATA",
+            "name": "includesData",
+            "description": "Kiem tra chuong trinh co bao gom du lieu / cau truc du lieu hay khong",
+            "input": [
+                {
+                    "name": "program",
+                    "valueType": "O_C_PROGRAM",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "bool",
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_IS_SORTED",
+            "name": "isSorted",
+            "description": "Kiem tra mang mot chieu da duoc sap xep hay chua (tien dieu kien tim kiem nhi phan)",
+            "input": [
+                {
+                    "name": "array",
+                    "valueType": "O_C_ARRAY",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "bool",
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_IS_EMPTY",
+            "name": "isEmpty",
+            "description": "Kiem tra cau truc du lieu (mang hoac danh sach lien ket) co rong hay khong",
+            "input": [
+                {
+                    "name": "collection",
+                    "valueType": "O_C_DATA",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "bool",
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_LENGTH",
+            "name": "length",
+            "description": "Tra ve so phan tu cua mang",
+            "input": [
+                {
+                    "name": "array",
+                    "valueType": "O_C_ARRAY",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "size",
+                "valueType": "int",
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_IS_STABLE",
+            "name": "isStable",
+            "description": "Kiem tra thuat toan sap xep co on dinh hay khong",
+            "input": [
+                {
+                    "name": "algorithm",
+                    "valueType": "O_C_SORTING_ALGORITHM",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "bool",
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_IS_IN_PLACE",
+            "name": "isInPlace",
+            "description": "Kiem tra thuat toan sap xep co thuc hien tai cho (khong can mang phu) hay khong",
+            "input": [
+                {
+                    "name": "algorithm",
+                    "valueType": "O_C_SORTING_ALGORITHM",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "bool",
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_HAS_HEAD",
+            "name": "hasHead",
+            "description": "Kiem tra danh sach lien ket co con tro head hay khong",
+            "input": [
+                {
+                    "name": "list",
+                    "valueType": "O_C_LINKED_LIST",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "bool",
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_HAS_TAIL",
+            "name": "hasTail",
+            "description": "Kiem tra danh sach lien ket co con tro tail hay khong",
+            "input": [
+                {
+                    "name": "list",
+                    "valueType": "O_C_LINKED_LIST",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "bool",
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_COUNT_NODES",
+            "name": "countNodes",
+            "description": "Dem so node cua danh sach lien ket",
+            "input": [
+                {
+                    "name": "list",
+                    "valueType": "O_C_LINKED_LIST",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "size",
+                "valueType": "int",
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_HAS_DATA",
+            "name": "hasData",
+            "description": "Kiem tra node co truong du lieu hay khong",
+            "input": [
+                {
+                    "name": "node",
+                    "valueType": "O_C_NODE",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "bool",
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_HAS_NEXT",
+            "name": "hasNext",
+            "description": "Kiem tra node co con tro next hay khong",
+            "input": [
+                {
+                    "name": "node",
+                    "valueType": "O_C_NODE",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "bool",
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_HAS_PREV",
+            "name": "hasPrev",
+            "description": "Kiem tra node co con tro prev hay khong (dac trung danh sach lien ket doi)",
+            "input": [
+                {
+                    "name": "node",
+                    "valueType": "O_C_NODE",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "bool",
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_IS_NULL_POINTER",
+            "name": "isNullPointer",
+            "description": "Kiem tra con tro co bang null hay khong",
+            "input": [
+                {
+                    "name": "pointer",
+                    "valueType": "O_C_POINTER",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "bool",
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_POINTS_TO_NODE",
+            "name": "pointsToNode",
+            "description": "Kiem tra con tro co tro toi mot node hop le hay khong",
+            "input": [
+                {
+                    "name": "pointer",
+                    "valueType": "O_C_POINTER",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "bool",
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_LINEAR_SEARCH",
+            "name": "linearSearch",
+            "description": "Tìm khóa trên mảng bằng duyệt tuần tự, trả về chỉ số hoặc không tìm thấy",
+            "input": [
+                {
+                    "name": "array",
+                    "valueType": "O_C_1D_ARRAY",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                },
+                {
+                    "name": "value",
+                    "valueType": "O_C_DATA",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "index",
+                "valueType": "int",
+                "required": false,
+                "cardinality": "(0..1)"
+            }
+        },
+        {
+            "id": "FUN_BINARY_SEARCH",
+            "name": "binarySearch",
+            "description": "Tìm khóa trên mảng một chiều đã sắp bằng chia đôi khoảng",
+            "input": [
+                {
+                    "name": "array",
+                    "valueType": "O_C_1D_ARRAY",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                },
+                {
+                    "name": "value",
+                    "valueType": "O_C_DATA",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "index",
+                "valueType": "int",
+                "required": false,
+                "cardinality": "(0..1)"
+            }
+        },
+        {
+            "id": "FUN_BUBBLE_SORT",
+            "name": "bubbleSort",
+            "description": "Sắp xếp nổi bọt trên mảng một chiều",
+            "input": [
+                {
+                    "name": "array",
+                    "valueType": "O_C_1D_ARRAY",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "array",
+                "valueType": "O_C_1D_ARRAY",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_SELECTION_SORT",
+            "name": "selectionSort",
+            "description": "Sắp xếp chọn trên mảng một chiều",
+            "input": [
+                {
+                    "name": "array",
+                    "valueType": "O_C_1D_ARRAY",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "array",
+                "valueType": "O_C_1D_ARRAY",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_INSERTION_SORT",
+            "name": "insertionSort",
+            "description": "Sắp xếp chèn trên mảng một chiều",
+            "input": [
+                {
+                    "name": "array",
+                    "valueType": "O_C_1D_ARRAY",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "array",
+                "valueType": "O_C_1D_ARRAY",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_MERGE_SORT",
+            "name": "mergeSort",
+            "description": "Sắp xếp trộn (đối chiếu, không thuộc lõi Chương 2)",
+            "input": [
+                {
+                    "name": "array",
+                    "valueType": "O_C_1D_ARRAY",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "array",
+                "valueType": "O_C_1D_ARRAY",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_QUICK_SORT",
+            "name": "quickSort",
+            "description": "Sắp xếp nhanh quanh pivot (đối chiếu, không thuộc lõi Chương 2)",
+            "input": [
+                {
+                    "name": "array",
+                    "valueType": "O_C_1D_ARRAY",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "array",
+                "valueType": "O_C_1D_ARRAY",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_HEAP_SORT",
+            "name": "heapSort",
+            "description": "Sắp xếp vun đống (đối chiếu, không thuộc lõi Chương 2)",
+            "input": [
+                {
+                    "name": "array",
+                    "valueType": "O_C_1D_ARRAY",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "array",
+                "valueType": "O_C_1D_ARRAY",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_ACCESS_ARRAY",
+            "name": "accessArray",
+            "description": "Trả về phần tử mảng tại chỉ số",
+            "input": [
+                {
+                    "name": "array",
+                    "valueType": "O_C_ARRAY",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                },
+                {
+                    "name": "index",
+                    "valueType": "int",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "value",
+                "valueType": "O_C_DATA",
+                "required": false,
+                "cardinality": "(0..1)"
+            }
+        },
+        {
+            "id": "FUN_INSERT_ARRAY",
+            "name": "insertArray",
+            "description": "Chèn phần tử vào mảng tại chỉ số",
+            "input": [
+                {
+                    "name": "array",
+                    "valueType": "O_C_ARRAY",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                },
+                {
+                    "name": "index",
+                    "valueType": "int",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                },
+                {
+                    "name": "value",
+                    "valueType": "O_C_DATA",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "array",
+                "valueType": "O_C_ARRAY",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_DELETE_ARRAY",
+            "name": "deleteArray",
+            "description": "Xóa phần tử khỏi mảng tại chỉ số",
+            "input": [
+                {
+                    "name": "array",
+                    "valueType": "O_C_ARRAY",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                },
+                {
+                    "name": "index",
+                    "valueType": "int",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "array",
+                "valueType": "O_C_ARRAY",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_UPDATE_ARRAY",
+            "name": "updateArray",
+            "description": "Cập nhật phần tử mảng tại chỉ số",
+            "input": [
+                {
+                    "name": "array",
+                    "valueType": "O_C_ARRAY",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                },
+                {
+                    "name": "index",
+                    "valueType": "int",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                },
+                {
+                    "name": "value",
+                    "valueType": "O_C_DATA",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "array",
+                "valueType": "O_C_ARRAY",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_TRAVERSE_ARRAY",
+            "name": "traverseArray",
+            "description": "Duyệt toàn bộ phần tử mảng",
+            "input": [
+                {
+                    "name": "array",
+                    "valueType": "O_C_ARRAY",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "values",
+                "valueType": "O_C_DATA",
+                "required": true,
+                "cardinality": "(0..*)"
+            }
+        },
+        {
+            "id": "FUN_INSERT_HEAD",
+            "name": "insertHead",
+            "description": "Chèn node vào đầu danh sách liên kết",
+            "input": [
+                {
+                    "name": "list",
+                    "valueType": "O_C_LINKED_LIST",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                },
+                {
+                    "name": "value",
+                    "valueType": "O_C_DATA",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "list",
+                "valueType": "O_C_LINKED_LIST",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_INSERT_TAIL",
+            "name": "insertTail",
+            "description": "Chèn node vào cuối danh sách liên kết",
+            "input": [
+                {
+                    "name": "list",
+                    "valueType": "O_C_LINKED_LIST",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                },
+                {
+                    "name": "value",
+                    "valueType": "O_C_DATA",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "list",
+                "valueType": "O_C_LINKED_LIST",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_INSERT_AT",
+            "name": "insertAt",
+            "description": "Chèn node vào vị trí k trong danh sách",
+            "input": [
+                {
+                    "name": "list",
+                    "valueType": "O_C_LINKED_LIST",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                },
+                {
+                    "name": "index",
+                    "valueType": "int",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                },
+                {
+                    "name": "value",
+                    "valueType": "O_C_DATA",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "list",
+                "valueType": "O_C_LINKED_LIST",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_DELETE_HEAD",
+            "name": "deleteHead",
+            "description": "Xóa node đầu danh sách liên kết",
+            "input": [
+                {
+                    "name": "list",
+                    "valueType": "O_C_LINKED_LIST",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "list",
+                "valueType": "O_C_LINKED_LIST",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_DELETE_TAIL",
+            "name": "deleteTail",
+            "description": "Xóa node cuối danh sách liên kết",
+            "input": [
+                {
+                    "name": "list",
+                    "valueType": "O_C_LINKED_LIST",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "list",
+                "valueType": "O_C_LINKED_LIST",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_DELETE_NODE",
+            "name": "deleteNode",
+            "description": "Xóa node tại vị trí hoặc theo khóa",
+            "input": [
+                {
+                    "name": "list",
+                    "valueType": "O_C_LINKED_LIST",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                },
+                {
+                    "name": "index",
+                    "valueType": "int",
+                    "required": false,
+                    "cardinality": "(0..1)"
+                }
+            ],
+            "output": {
+                "name": "list",
+                "valueType": "O_C_LINKED_LIST",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_SEARCH_NODE",
+            "name": "searchNode",
+            "description": "Tìm node theo giá trị dữ liệu",
+            "input": [
+                {
+                    "name": "list",
+                    "valueType": "O_C_LINKED_LIST",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                },
+                {
+                    "name": "value",
+                    "valueType": "O_C_DATA",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "node",
+                "valueType": "O_C_NODE",
+                "required": false,
+                "cardinality": "(0..1)"
+            }
+        },
+        {
+            "id": "FUN_REVERSE_LIST",
+            "name": "reverseList",
+            "description": "Đảo chiều danh sách liên kết",
+            "input": [
+                {
+                    "name": "list",
+                    "valueType": "O_C_LINKED_LIST",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "list",
+                "valueType": "O_C_LINKED_LIST",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_TRAVERSE_LIST",
+            "name": "traverseList",
+            "description": "Duyệt danh sách liên kết từ head",
+            "input": [
+                {
+                    "name": "list",
+                    "valueType": "O_C_LINKED_LIST",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "nodes",
+                "valueType": "O_C_NODE",
+                "required": true,
+                "cardinality": "(0..*)"
+            }
+        },
+        {
+            "id": "FUN_GET_HEAD",
+            "name": "getHead",
+            "description": "Trả về con trỏ head của danh sách",
+            "input": [
+                {
+                    "name": "list",
+                    "valueType": "O_C_LINKED_LIST",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "pointer",
+                "valueType": "O_C_POINTER",
+                "required": false,
+                "cardinality": "(0..1)"
+            }
+        },
+        {
+            "id": "FUN_GET_TAIL",
+            "name": "getTail",
+            "description": "Trả về con trỏ tail của danh sách",
+            "input": [
+                {
+                    "name": "list",
+                    "valueType": "O_C_LINKED_LIST",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "pointer",
+                "valueType": "O_C_POINTER",
+                "required": false,
+                "cardinality": "(0..1)"
+            }
+        },
+        {
+            "id": "FUN_SUPPORTS_BACKWARD",
+            "name": "supportsBackwardTraversal",
+            "description": "Kiểm tra danh sách có duyệt ngược (có prev) hay không",
+            "input": [
+                {
+                    "name": "list",
+                    "valueType": "O_C_LINKED_LIST",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "bool",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_IS_CIRCULAR",
+            "name": "isCircular",
+            "description": "Kiểm tra danh sách có liên kết vòng hay không",
+            "input": [
+                {
+                    "name": "list",
+                    "valueType": "O_C_LINKED_LIST",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "bool",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_IS_STATIC",
+            "name": "isStatic",
+            "description": "Kiểm tra cấu trúc dữ liệu có kích thước cố định hay không",
+            "input": [
+                {
+                    "name": "structure",
+                    "valueType": "O_C_DATA_STRUCTURE",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "bool",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_IS_LINEAR",
+            "name": "isLinear",
+            "description": "Kiểm tra cấu trúc dữ liệu có phải tuyến tính hay không",
+            "input": [
+                {
+                    "name": "structure",
+                    "valueType": "O_C_DATA_STRUCTURE",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "bool",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_HAS_FIXED_SIZE",
+            "name": "hasFixedSize",
+            "description": "Kiểm tra cấu trúc có kích thước cố định khi cấp phát hay không",
+            "input": [
+                {
+                    "name": "structure",
+                    "valueType": "O_C_DATA_STRUCTURE",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "bool",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_CAN_GROW",
+            "name": "canGrow",
+            "description": "Kiểm tra cấu trúc có thể tăng số phần tử khi chạy hay không",
+            "input": [
+                {
+                    "name": "structure",
+                    "valueType": "O_C_DATA_STRUCTURE",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "bool",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_IS_DIRECT_ACCESS",
+            "name": "isDirectAccess",
+            "description": "Kiểm tra có truy cập phần tử thứ i trong O(1) hay không",
+            "input": [
+                {
+                    "name": "structure",
+                    "valueType": "O_C_DATA_STRUCTURE",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "bool",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_IS_SMALL_DATASET",
+            "name": "isSmallDataset",
+            "description": "Kiểm tra kích thước dữ liệu đủ nhỏ để ưu tiên insertion sort (n <= 30)",
+            "input": [
+                {
+                    "name": "array",
+                    "valueType": "O_C_ARRAY",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "bool",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_IS_LARGE_DATASET",
+            "name": "isLargeDataset",
+            "description": "Kiểm tra kích thước dữ liệu lớn (n > 1000)",
+            "input": [
+                {
+                    "name": "array",
+                    "valueType": "O_C_ARRAY",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "bool",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_IS_EFFICIENT",
+            "name": "isEfficient",
+            "description": "Thuật toán được xem là hiệu quả khi worst-case không kém hơn O(n log n)",
+            "input": [
+                {
+                    "name": "algorithm",
+                    "valueType": "O_C_ALGORITHM",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "result",
+                "valueType": "bool",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_COMPARE_ALGORITHMS",
+            "name": "compareAlgorithms",
+            "description": "So sánh hai thuật toán theo rank Big-O của worst-case",
+            "input": [
+                {
+                    "name": "left",
+                    "valueType": "O_C_ALGORITHM",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                },
+                {
+                    "name": "right",
+                    "valueType": "O_C_ALGORITHM",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "better",
+                "valueType": "O_C_ALGORITHM",
+                "required": false,
+                "cardinality": "(0..1)"
+            }
+        },
+        {
+            "id": "FUN_RECOMMEND_SEARCH",
+            "name": "recommendSearchAlgorithm",
+            "description": "Gợi ý thuật toán tìm kiếm: nhị phân nếu đã sắp, tuyến tính nếu chưa sắp",
+            "input": [
+                {
+                    "name": "array",
+                    "valueType": "O_C_1D_ARRAY",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "algorithm",
+                "valueType": "O_C_SEARCHING_ALGORITHM",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_RECOMMEND_SORT",
+            "name": "recommendSortingAlgorithm",
+            "description": "Gợi ý thuật toán sắp xếp theo kích thước, tính ổn định và bộ nhớ",
+            "input": [
+                {
+                    "name": "array",
+                    "valueType": "O_C_1D_ARRAY",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                },
+                {
+                    "name": "needStable",
+                    "valueType": "bool",
+                    "required": false,
+                    "cardinality": "(0..1)"
+                }
+            ],
+            "output": {
+                "name": "algorithm",
+                "valueType": "O_C_SORTING_ALGORITHM",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_RECOMMEND_DATA_STRUCTURE",
+            "name": "recommendDataStructure",
+            "description": "Gợi ý mảng khi cần truy cập ngẫu nhiên, DSLK khi chèn/xóa đầu thường xuyên",
+            "input": [
+                {
+                    "name": "needRandomAccess",
+                    "valueType": "bool",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                },
+                {
+                    "name": "needFrequentInsertHead",
+                    "valueType": "bool",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "structure",
+                "valueType": "O_C_DATA_STRUCTURE",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_COMPARE_ARRAY_AND_LIST",
+            "name": "compareArrayAndLinkedList",
+            "description": "Đối chiếu mảng và DSLK về truy cập, chèn/xóa và bộ nhớ",
+            "input": [
+                {
+                    "name": "array",
+                    "valueType": "O_C_ARRAY",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                },
+                {
+                    "name": "list",
+                    "valueType": "O_C_LINKED_LIST",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "summary",
+                "valueType": "str",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_PARTITION",
+            "name": "partition",
+            "description": "Phân đoạn mảng quanh pivot cho Quick Sort",
+            "input": [
+                {
+                    "name": "array",
+                    "valueType": "O_C_1D_ARRAY",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                },
+                {
+                    "name": "low",
+                    "valueType": "int",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                },
+                {
+                    "name": "high",
+                    "valueType": "int",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "pivotIndex",
+                "valueType": "int",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_MERGE",
+            "name": "merge",
+            "description": "Trộn hai đoạn đã sắp trong Merge Sort",
+            "input": [
+                {
+                    "name": "array",
+                    "valueType": "O_C_1D_ARRAY",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                },
+                {
+                    "name": "left",
+                    "valueType": "int",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                },
+                {
+                    "name": "mid",
+                    "valueType": "int",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                },
+                {
+                    "name": "right",
+                    "valueType": "int",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "array",
+                "valueType": "O_C_1D_ARRAY",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_SWAP",
+            "name": "swap",
+            "description": "Đổi chỗ hai phần tử mảng",
+            "input": [
+                {
+                    "name": "array",
+                    "valueType": "O_C_ARRAY",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                },
+                {
+                    "name": "i",
+                    "valueType": "int",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                },
+                {
+                    "name": "j",
+                    "valueType": "int",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "array",
+                "valueType": "O_C_ARRAY",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_WORST_RANK",
+            "name": "worstCaseRank",
+            "description": "Trả về rank Big-O của trường hợp xấu nhất",
+            "input": [
+                {
+                    "name": "algorithm",
+                    "valueType": "O_C_ALGORITHM",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "rank",
+                "valueType": "int",
+                "required": true,
+                "cardinality": "(1..1)"
+            }
+        },
+        {
+            "id": "FUN_BEST_RANK",
+            "name": "bestCaseRank",
+            "description": "Trả về rank Big-O của trường hợp tốt nhất",
+            "input": [
+                {
+                    "name": "algorithm",
+                    "valueType": "O_C_ALGORITHM",
+                    "required": true,
+                    "cardinality": "(1..1)"
+                }
+            ],
+            "output": {
+                "name": "rank",
+                "valueType": "int",
+                "required": true,
+                "cardinality": "(1..1)"
             }
         }
     ]

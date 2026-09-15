@@ -107,7 +107,18 @@
                 "O_C_ALGORITHM_ANALYSIS",
                 "O_C_ALGORITHM_DESIGN",
                 "O_C_COMPLEXITY",
-                "O_C_DATA"
+                "O_C_DATA",
+                "O_C_PROGRAM",
+                "O_C_ALGORITHM_REPRESENTATION",
+                "O_C_NODE",
+                "O_C_POINTER",
+                "O_C_IO",
+                "O_C_ALGORITHM_CHARACTERISTICS",
+                "O_C_BIG_O",
+                "O_C_PROBLEM_SOLVING",
+                "O_C_STRUCTURE_CLASSIFICATION",
+                "O_C_SORTING_MECHANISM",
+                "O_C_RESOURCE"
             ],
             "constraint": [],
             "attributes": []
@@ -160,7 +171,9 @@
         {
             "id": "REL_ALGORITHM_ANALYSIS_QUANTIFIES_RESOURCE",
             "name": "quantifies",
-            "source": ["O_C_ALGORITHM_ANALYSIS"],
+            "source": [
+                "O_C_ALGORITHM_ANALYSIS"
+            ],
             "cardinality": "(*..*)",
             "target": "O_C_RESOURCE",
             "constraint": [],
@@ -188,7 +201,7 @@
             "id": "REL_BIG_O_BETTER_THAN_BIG_O",
             "name": "betterThan",
             "source": "O_C_BIG_O",
-            "cardinality": "(0..1)",
+            "cardinality": "(0..*)",
             "target": "O_C_BIG_O",
             "constraint": [],
             "attributes": []
@@ -289,6 +302,67 @@
             "source": "O_C_ALGORITHM",
             "cardinality": "(1..1)",
             "target": "O_C_DATA",
+            "constraint": [],
+            "attributes": []
+        },
+        {
+            "id": "REL_ALGORITHM_REPRESENTED_BY",
+            "name": "representedBy",
+            "source": "O_C_ALGORITHM",
+            "cardinality": "(0..*)",
+            "target": "O_C_ALGORITHM_REPRESENTATION",
+            "constraint": [],
+            "attributes": []
+        },
+        {
+            "id": "REL_ALGORITHM_REQUIRES_SORTED_COLLECTION",
+            "name": "requiresSortedCollection",
+            "source": "O_C_ALGORITHM",
+            "cardinality": "(0..1)",
+            "target": "O_C_1D_ARRAY",
+            "constraint": [],
+            "attributes": [
+                {
+                    "name": "mustBeSorted",
+                    "value_type": "bool",
+                    "required": true,
+                    "constraint": []
+                }
+            ]
+        },
+        {
+            "id": "REL_ALGORITHM_HAS_SPACE_COMPLEXITY",
+            "name": "hasSpaceComplexity",
+            "source": "O_C_ALGORITHM",
+            "cardinality": "(0..1)",
+            "target": "O_C_BIG_O",
+            "constraint": [],
+            "attributes": []
+        },
+        {
+            "id": "REL_DATA_STRUCTURE_HAS_CLASSIFICATION",
+            "name": "hasClassification",
+            "source": "O_C_DATA_STRUCTURE",
+            "cardinality": "(0..*)",
+            "target": "O_C_STRUCTURE_CLASSIFICATION",
+            "constraint": [],
+            "attributes": []
+        },
+        {
+            "id": "REL_ALGORITHM_USES_MECHANISM",
+            "name": "usesMechanism",
+            "source": "O_C_ALGORITHM",
+            "cardinality": "(0..*)",
+            "target": "O_C_SORTING_MECHANISM",
+            "constraint": [],
+            "attributes": []
+        },
+        {
+            "id": "REL_DATA_STRUCTURE_COMPARED_WITH",
+            "name": "comparedWith",
+            "source": "O_C_DATA_STRUCTURE",
+            "cardinality": "(0..*)",
+            "target": "O_C_DATA_STRUCTURE",
             "constraint": [],
             "attributes": []
         }
