@@ -3026,7 +3026,7 @@
             "invariant": [
                 {
                     "name": "nodeHasNextNotPrev",
-                    "description": "Node cua danh sach lien ket don co next va khong co prev",
+                    "description": "Node của danh sách liên kết đơn có next và không có prev",
                     "condition": {
                         "condition_type": "Logical",
                         "operator": "AND",
@@ -3136,7 +3136,7 @@
             "invariant": [
                 {
                     "name": "nodeHasNextAndPrev",
-                    "description": "Node cua danh sach lien ket doi co ca next va prev",
+                    "description": "Node của danh sách liên kết đôi có cả next và prev",
                     "condition": {
                         "condition_type": "Logical",
                         "operator": "AND",
@@ -3252,7 +3252,7 @@
             "invariant": [
                 {
                     "name": "nonEmptyHeadPointsToNode",
-                    "description": "Danh sach vong khac rong thi head phai tro toi mot node",
+                    "description": "Danh sách vòng khác rỗng thì head phải trỏ tới một node",
                     "condition": {
                         "condition_type": "Logical",
                         "operator": "OR",
@@ -3617,7 +3617,7 @@
             "invariant": [
                 {
                     "name": "requiresSortedInput",
-                    "description": "Tim kiem nhi phan chi dung dung khi mang mot chieu dau vao da duoc sap xep",
+                    "description": "Tìm kiếm nhị phân chỉ đúng đắn khi mảng một chiều đầu vào đã được sắp xếp",
                     "condition": {
                         "condition_type": "FuncCall",
                         "operator": "isSorted",

@@ -3,7 +3,7 @@
         {
             "id": "FUN_IS_IDENTIFY",
             "name": "isIdentify",
-            "description": "Kiem tra du lieu dau vao hoac dau ra da duoc xac dinh cu the va ro rang hay chua",
+            "description": "Kiểm tra dữ liệu đầu vào hoặc đầu ra đã được xác định cụ thể và rõ ràng hay chưa",
             "input": [
                 {
                     "name": "data",
@@ -21,7 +21,7 @@
         {
             "id": "FUN_IS_TERMINATE",
             "name": "isTerminate",
-            "description": "Kiem tra thuat toan co dung sau mot so huu han buoc hay khong (tinh huu han)",
+            "description": "Kiểm tra thuật toán có dừng sau một số hữu hạn bước hay không (tính hữu hạn)",
             "input": [
                 {
                     "name": "algorithm",
@@ -39,7 +39,7 @@
         {
             "id": "FUN_PRODUCES_CORRECT_OUTPUT",
             "name": "producesCorrectOutput",
-            "description": "Kiem tra thuat toan co cho ket qua dung voi moi bo du lieu hop le hay khong (tinh dung dan)",
+            "description": "Kiểm tra thuật toán có cho kết quả đúng với mọi bộ dữ liệu hợp lệ hay không (tính đúng đắn)",
             "input": [
                 {
                     "name": "algorithm",
@@ -57,7 +57,7 @@
         {
             "id": "FUN_IS_IMPLEMENTABLE",
             "name": "isImplementable",
-            "description": "Kiem tra thuat toan co the cai dat bang cac phep toan co so hay khong (tinh kha thi)",
+            "description": "Kiểm tra thuật toán có thể cài đặt bằng các phép toán cơ sở hay không (tính khả thi)",
             "input": [
                 {
                     "name": "algorithm",
@@ -75,7 +75,7 @@
         {
             "id": "FUN_HAS_COMPLEXITY",
             "name": "hasComplexity",
-            "description": "Kiem tra thuat toan da duoc gan do phuc tap (best/average/worst hoac space) hay chua",
+            "description": "Kiểm tra thuật toán đã được gán độ phức tạp (best/average/worst hoặc space) hay chưa",
             "input": [
                 {
                     "name": "algorithm",
@@ -93,7 +93,7 @@
         {
             "id": "FUN_IS_BETTER_NOTATION",
             "name": "isBetterNotation",
-            "description": "So sanh hai ky hieu Big-O: tra ve true khi left tot hon right (rank nho hon)",
+            "description": "So sánh hai ký hiệu Big-O: trả về true khi left tốt hơn right (rank nhỏ hơn)",
             "input": [
                 {
                     "name": "left",
@@ -117,7 +117,7 @@
         {
             "id": "FUN_INCLUDES_ALGORITHM",
             "name": "includesAlgorithm",
-            "description": "Kiem tra chuong trinh co bao gom thuat toan hay khong",
+            "description": "Kiểm tra chương trình có bao gồm thuật toán hay không",
             "input": [
                 {
                     "name": "program",
@@ -135,7 +135,7 @@
         {
             "id": "FUN_INCLUDES_DATA",
             "name": "includesData",
-            "description": "Kiem tra chuong trinh co bao gom du lieu / cau truc du lieu hay khong",
+            "description": "Kiểm tra chương trình có bao gồm dữ liệu / cấu trúc dữ liệu hay không",
             "input": [
                 {
                     "name": "program",
@@ -153,7 +153,7 @@
         {
             "id": "FUN_IS_SORTED",
             "name": "isSorted",
-            "description": "Kiem tra mang mot chieu da duoc sap xep hay chua (tien dieu kien tim kiem nhi phan)",
+            "description": "Kiểm tra mảng một chiều đã được sắp xếp hay chưa (tiền điều kiện tìm kiếm nhị phân)",
             "input": [
                 {
                     "name": "array",
@@ -171,7 +171,7 @@
         {
             "id": "FUN_IS_EMPTY",
             "name": "isEmpty",
-            "description": "Kiem tra cau truc du lieu (mang hoac danh sach lien ket) co rong hay khong",
+            "description": "Kiểm tra cấu trúc dữ liệu (mảng hoặc danh sách liên kết) có rỗng hay không",
             "input": [
                 {
                     "name": "collection",
@@ -189,7 +189,7 @@
         {
             "id": "FUN_LENGTH",
             "name": "length",
-            "description": "Tra ve so phan tu cua mang",
+            "description": "Trả về số phần tử của mảng",
             "input": [
                 {
                     "name": "array",
@@ -207,7 +207,7 @@
         {
             "id": "FUN_IS_STABLE",
             "name": "isStable",
-            "description": "Kiem tra thuat toan sap xep co on dinh hay khong",
+            "description": "Kiểm tra thuật toán sắp xếp có ổn định hay không",
             "input": [
                 {
                     "name": "algorithm",
@@ -225,7 +225,7 @@
         {
             "id": "FUN_IS_IN_PLACE",
             "name": "isInPlace",
-            "description": "Kiem tra thuat toan sap xep co thuc hien tai cho (khong can mang phu) hay khong",
+            "description": "Kiểm tra thuật toán sắp xếp có thực hiện tại chỗ (không cần mảng phụ) hay không",
             "input": [
                 {
                     "name": "algorithm",
@@ -243,7 +243,7 @@
         {
             "id": "FUN_HAS_HEAD",
             "name": "hasHead",
-            "description": "Kiem tra danh sach lien ket co con tro head hay khong",
+            "description": "Kiểm tra danh sách liên kết có con trỏ head hay không",
             "input": [
                 {
                     "name": "list",
@@ -261,7 +261,7 @@
         {
             "id": "FUN_HAS_TAIL",
             "name": "hasTail",
-            "description": "Kiem tra danh sach lien ket co con tro tail hay khong",
+            "description": "Kiểm tra danh sách liên kết có con trỏ tail hay không",
             "input": [
                 {
                     "name": "list",
@@ -279,7 +279,7 @@
         {
             "id": "FUN_COUNT_NODES",
             "name": "countNodes",
-            "description": "Dem so node cua danh sach lien ket",
+            "description": "Đếm số node của danh sách liên kết",
             "input": [
                 {
                     "name": "list",
@@ -297,7 +297,7 @@
         {
             "id": "FUN_HAS_DATA",
             "name": "hasData",
-            "description": "Kiem tra node co truong du lieu hay khong",
+            "description": "Kiểm tra node có trường dữ liệu hay không",
             "input": [
                 {
                     "name": "node",
@@ -315,7 +315,7 @@
         {
             "id": "FUN_HAS_NEXT",
             "name": "hasNext",
-            "description": "Kiem tra node co con tro next hay khong",
+            "description": "Kiểm tra node có con trỏ next hay không",
             "input": [
                 {
                     "name": "node",
@@ -333,7 +333,7 @@
         {
             "id": "FUN_HAS_PREV",
             "name": "hasPrev",
-            "description": "Kiem tra node co con tro prev hay khong (dac trung danh sach lien ket doi)",
+            "description": "Kiểm tra node có con trỏ prev hay không (đặc trưng danh sách liên kết đôi)",
             "input": [
                 {
                     "name": "node",
@@ -351,7 +351,7 @@
         {
             "id": "FUN_IS_NULL_POINTER",
             "name": "isNullPointer",
-            "description": "Kiem tra con tro co bang null hay khong",
+            "description": "Kiểm tra con trỏ có bằng null hay không",
             "input": [
                 {
                     "name": "pointer",
@@ -369,7 +369,7 @@
         {
             "id": "FUN_POINTS_TO_NODE",
             "name": "pointsToNode",
-            "description": "Kiem tra con tro co tro toi mot node hop le hay khong",
+            "description": "Kiểm tra con trỏ có trỏ tới một node hợp lệ hay không",
             "input": [
                 {
                     "name": "pointer",

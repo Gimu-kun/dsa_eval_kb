@@ -28,7 +28,6 @@
             "id": "OP_OUTPUT",
             "operandType": "concept",
             "variable": "output",
-            "alias": "ouput",
             "value": "O_C_OUTPUT"
         },
         {
@@ -183,9 +182,8 @@
         },
         {
             "id": "OP_INDEX",
-            "operandType": "variable",
-            "variable": "index",
-            "value": "index"
+            "operandType": "int",
+            "variable": "index"
         },
         {
             "id": "OP_IS_TERMINATE",
@@ -387,9 +385,8 @@
         },
         {
             "id": "OP_SIZE",
-            "operandType": "variable",
-            "variable": "n",
-            "value": "n"
+            "operandType": "int",
+            "variable": "n"
         },
         {
             "id": "OP_IS_SMALL_DATASET",

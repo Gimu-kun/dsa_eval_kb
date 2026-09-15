@@ -188,7 +188,7 @@
         {
             "id": "rul-000004",
             "name": "finitenessValidate",
-            "description": "Tinh huu han hop le khi thuat toan dung sau mot so huu han buoc",
+            "description": "Tính hữu hạn hợp lệ khi thuật toán dừng sau một số hữu hạn bước",
             "expression": "isTerminate(algo)",
             "condition": {
                 "condition_type": "FuncCall",
@@ -214,7 +214,7 @@
         {
             "id": "rul-000005",
             "name": "correctnessValidate",
-            "description": "Tinh dung dan hop le khi thuat toan cho ket qua dung tren moi bo du lieu hop le",
+            "description": "Tính đúng đắn hợp lệ khi thuật toán cho kết quả đúng trên mọi bộ dữ liệu hợp lệ",
             "expression": "producesCorrectOutput(algo)",
             "condition": {
                 "condition_type": "FuncCall",
@@ -240,7 +240,7 @@
         {
             "id": "rul-000006",
             "name": "feasibilityValidate",
-            "description": "Tinh kha thi hop le khi thuat toan cai dat duoc bang phep toan co so",
+            "description": "Tính khả thi hợp lệ khi thuật toán cài đặt được bằng phép toán cơ sở",
             "expression": "isImplementable(algo)",
             "condition": {
                 "condition_type": "FuncCall",
@@ -266,7 +266,7 @@
         {
             "id": "rul-000007",
             "name": "efficiencyValidate",
-            "description": "Tinh hieu qua hop le khi thuat toan co do phuc tap va thu tu best <= average <= worst",
+            "description": "Tính hiệu quả hợp lệ khi thuật toán có độ phức tạp và thứ tự best <= average <= worst",
             "expression": "hasComplexity(algo) && best.rank <= avg.rank && avg.rank <= worst.rank",
             "condition": {
                 "condition_type": "Logical",
@@ -330,7 +330,7 @@
         {
             "id": "rul-000008",
             "name": "programValidate",
-            "description": "Chuong trinh hop le khi bao gom ca thuat toan va du lieu",
+            "description": "Chương trình hợp lệ khi bao gồm cả thuật toán và dữ liệu",
             "expression": "includesAlgorithm(prog) && includesData(prog)",
             "condition": {
                 "condition_type": "Logical",
@@ -373,7 +373,7 @@
         {
             "id": "rul-000009",
             "name": "betterNotationValidate",
-            "description": "Hai ky hieu Big-O thoa isBetterNotation khi rank(left) < rank(right)",
+            "description": "Hai ký hiệu Big-O thỏa isBetterNotation khi rank(left) < rank(right)",
             "expression": "left.rank < right.rank",
             "condition": {
                 "condition_type": "Comparison",
@@ -404,7 +404,7 @@
         {
             "id": "rul-000010",
             "name": "arrayIndexInRangeValidate",
-            "description": "Truy cap mang hop le khi 0 <= index < length(arr)",
+            "description": "Truy cập mảng hợp lệ khi 0 <= index < length(arr)",
             "expression": "index >= 0 && index < length(arr)",
             "condition": {
                 "condition_type": "Logical",
@@ -462,7 +462,7 @@
         {
             "id": "rul-000011",
             "name": "binarySearchPreconditionValidate",
-            "description": "Tim kiem nhi phan chi ap dung khi mang da sap xep",
+            "description": "Tìm kiếm nhị phân chỉ áp dụng khi mảng đã sắp xếp",
             "expression": "isSorted(arr)",
             "condition": {
                 "condition_type": "FuncCall",
@@ -488,7 +488,7 @@
         {
             "id": "rul-000012",
             "name": "linearSearchUnsortedValidate",
-            "description": "Tim kiem tuyen tinh van hop le khi mang chua sap xep",
+            "description": "Tìm kiếm tuyến tính vẫn hợp lệ khi mảng chưa sắp xếp",
             "expression": "!isEmpty(arr)",
             "condition": {
                 "condition_type": "Logical",
@@ -520,7 +520,7 @@
         {
             "id": "rul-000013",
             "name": "emptyArrayHasZeroLength",
-            "description": "Mang rong thi length bang 0",
+            "description": "Mảng rỗng thì length bằng 0",
             "expression": "isEmpty(arr) && length(arr) = 0",
             "condition": {
                 "condition_type": "Logical",
@@ -573,7 +573,7 @@
         {
             "id": "rul-000014",
             "name": "nonEmptyListHasAtLeastOneNode",
-            "description": "Danh sach khong rong thi countNodes >= 1 va phai co head",
+            "description": "Danh sách không rỗng thì countNodes >= 1 và phải có head",
             "expression": "!isEmpty(lst) && hasHead(lst) && countNodes(lst) >= 1",
             "condition": {
                 "condition_type": "Logical",
@@ -643,7 +643,7 @@
         {
             "id": "rul-000015",
             "name": "nodeDataValidate",
-            "description": "Node hop le khi co truong du lieu",
+            "description": "Node hợp lệ khi có trường dữ liệu",
             "expression": "hasData(node)",
             "condition": {
                 "condition_type": "FuncCall",
@@ -669,7 +669,7 @@
         {
             "id": "rul-000016",
             "name": "pointerValidate",
-            "description": "Con tro hop le khi bang null hoac tro toi mot node",
+            "description": "Con trỏ hợp lệ khi bằng null hoặc trỏ tới một node",
             "expression": "isNullPointer(ptr) || pointsToNode(ptr)",
             "condition": {
                 "condition_type": "Logical",
@@ -712,7 +712,7 @@
         {
             "id": "rul-000017",
             "name": "linkedListStructureValidate",
-            "description": "Danh sach lien ket hop le khi rong hoac co head",
+            "description": "Danh sách liên kết hợp lệ khi rỗng hoặc có head",
             "expression": "isEmpty(lst) || hasHead(lst)",
             "condition": {
                 "condition_type": "Logical",
@@ -755,7 +755,7 @@
         {
             "id": "rul-000018",
             "name": "sllNodeValidate",
-            "description": "Node danh sach lien ket don hop le khi co data, co next va khong co prev",
+            "description": "Node danh sách liên kết đơn hợp lệ khi có data, có next và không có prev",
             "expression": "hasData(node) && hasNext(node) && !hasPrev(node)",
             "condition": {
                 "condition_type": "Logical",
@@ -815,7 +815,7 @@
         {
             "id": "rul-000019",
             "name": "dllNodeValidate",
-            "description": "Node danh sach lien ket doi hop le khi co data, next va prev",
+            "description": "Node danh sách liên kết đôi hợp lệ khi có data, next và prev",
             "expression": "hasData(node) && hasNext(node) && hasPrev(node)",
             "condition": {
                 "condition_type": "Logical",
@@ -869,7 +869,7 @@
         {
             "id": "rul-000020",
             "name": "circularListNonEmptyValidate",
-            "description": "Danh sach lien ket vong khac rong thi head phai tro toi node (khong null)",
+            "description": "Danh sách liên kết vòng khác rỗng thì head phải trỏ tới node (không null)",
             "expression": "!isEmpty(cll) && hasHead(cll) && pointsToNode(head)",
             "condition": {
                 "condition_type": "Logical",
@@ -929,7 +929,7 @@
         {
             "id": "rul-000021",
             "name": "emptyListHasZeroNodes",
-            "description": "Danh sach rong thi so node bang 0",
+            "description": "Danh sách rỗng thì số node bằng 0",
             "expression": "isEmpty(lst) && countNodes(lst) = 0",
             "condition": {
                 "condition_type": "Logical",
@@ -982,7 +982,7 @@
         {
             "id": "rul-000022",
             "name": "insertTailNeedsTailPointer",
-            "description": "Chen cuoi DSLK don O(1) khi danh sach co tail",
+            "description": "Chèn cuối DSLK đơn O(1) khi danh sách có tail",
             "expression": "hasTail(sll)",
             "condition": {
                 "condition_type": "FuncCall",
